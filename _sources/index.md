@@ -1,4 +1,4 @@
-# CSC-272 Data Mining (Fall 2023)
+# CSC-272 Data Mining (Fall 2024)
 
 Hi! Welcome to the CSC-272 Data Mining course website 👋🏾
 

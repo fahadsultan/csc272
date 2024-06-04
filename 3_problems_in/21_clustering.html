@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>7.1. Clustering &#8212; CSC-272 Data Mining</title>
+    <title>9.1. Clustering &#8212; Data Science for Machine Learning</title>
   
   
   
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -72,8 +73,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '3_problems_in/21_clustering';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="8. Graphical Models" href="../4_models/graphical.html" />
-    <link rel="prev" title="7. Unsupervised Learning" href="20_unsupervised.html" />
+    <link rel="next" title="10. Reinforcement Learning" href="30_reinforcement.html" />
+    <link rel="prev" title="9. Unsupervised Learning" href="20_unsupervised.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -160,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    CSC-272 Data Mining (Fall 2023)
+                    CSC-272 Data Mining (Fall 2024)
                 </a>
             </li>
         </ul>
@@ -187,9 +188,10 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming for Data Science</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/10_dataops.html">1. Vectorized Operations on Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas1.html">1.1. Pandas I: Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas1.html">1.1. Pandas I: Preliminaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas2.html">1.2. Pandas II: Selection, Filtering and Dropping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas3.html">1.3. Pandas III: Aggregation, Merging and Concatenation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas3.html">1.3. Pandas III - Data Manipulation and Wrangling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas4.html">1.4. Pandas IV: Aggregation, Merging and Concatenation <br/></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/40_modalities.html">2. Encoding and Representation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -198,48 +200,76 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../1_programming/43_modalities.html">2.3. Modalities of Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/20_visualization.html">3. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/21_univariate.html">3.1. Univariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/22_multivariate.html">3.2. Multivariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/23_dosdonts.html">3.3. Dos and Donts of Visualization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/30_collecting.html">3. Collecting Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/31_apis.html">3.1. APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/32_scraping.html">3.2. Web Scraping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/20_visualization.html">4. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/21_univariate.html">4.1. Univariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/22_multivariate.html">4.2. Multivariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/23_dosdonts.html">4.3. Dos and Donts of Visualization</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mathematics for Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">4. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">4.1. Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">4.2. Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">4.3. Logarithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">5. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">5.1. Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">5.2. Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">5.3. Logarithms</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">5. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">5.1. Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">5.2. Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">5.3. Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">6. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">6.1. Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">6.2. Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">6.3. Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/50_calculus.html">7. Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/51_integral.html">7.1. Integral Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/52_differential.html">7.2. Differential Calculus</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems in Data Science</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="40_supervised.html">6. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="41_classification.html">6.6. Classification</a></li>
-<li class="toctree-l2"><a class="reference internal" href="42_regression.html">6.7. Regression</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="40_supervised.html">8. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="41_classification.html">8.6. Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42_regression.html">8.7. Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="20_unsupervised.html">7. Unsupervised Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">7.1. Clustering</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="20_unsupervised.html">9. Unsupervised Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">9.1. Clustering</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="30_reinforcement.html">10. Reinforcement Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Models in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">8. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">8.1. Naive Bayes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">11. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">11.1. Naive Bayes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">9. Generalized Linear Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">10. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">12. Generalized Linear Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">13. Neural Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithms in Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/em.html">14. Expectation Maximization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/gradient_descent.html">15. Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/backprop.html">16. Backpropogation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems with Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/10_representation.html">17. Representation Matters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/40_feedback.html">18. Positive Feedback Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/20_boundaries.html">19. Decision Boundaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/30_incentives.html">20. Majority Rule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications of Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/40_recommendation.html">21. Recommendation Engine</a></li>
 </ul>
 
     </div>
@@ -294,7 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/fahadsultan/datascience_ml/blob/main/3_problems_in/21_clustering.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/fahadsultan/csc272/blob/main/3_problems_in/21_clustering.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -417,27 +447,27 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means">7.1.1. K-means</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-clustering">7.1.1.1. Before Clustering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.1.1.2. Clustering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#after-clustering">7.1.1.3. After Clustering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-k-means">7.1.1.4. Limitations of K-means</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-score">7.1.1.4.1. Silhouette Score</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means">9.1.1. K-means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-clustering">9.1.1.1. Before Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.1.1.2. Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#after-clustering">9.1.1.3. After Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-k-means">9.1.1.4. Limitations of K-means</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-score">9.1.1.4.1. Silhouette Score</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dbscan">7.1.2. DBSCAN</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1.2.1. Before Clustering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.1.2.2. Clustering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7.1.2.3. After clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dbscan">9.1.2. DBSCAN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">9.1.2.1. Before Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">9.1.2.2. Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">9.1.2.3. After clustering</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-dbscan-and-k-means">7.1.3. Comparing DBSCAN and K-means</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-clustering">7.1.4. Limitations of Clustering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-clusters-and-labels">7.1.5. Relationship between Clusters and Labels</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-score-to-identify-k-epsilon-and-min-samples">7.1.6. Silhouette Score to identify <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(\epsilon\)</span> and <code class="docutils literal notranslate"><span class="pre">min_samples</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-silhouette-score-to-find-k">7.1.7. Plotting Silhouette score to find <code class="docutils literal notranslate"><span class="pre">k</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-dbscan-and-k-means">9.1.3. Comparing DBSCAN and K-means</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-clustering">9.1.4. Limitations of Clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-clusters-and-labels">9.1.5. Relationship between Clusters and Labels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-score-to-identify-k-epsilon-and-min-samples">9.1.6. Silhouette Score to identify <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(\epsilon\)</span> and <code class="docutils literal notranslate"><span class="pre">min_samples</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-silhouette-score-to-find-k">9.1.7. Plotting Silhouette score to find <code class="docutils literal notranslate"><span class="pre">k</span></code></a></li>
 </ul>
             </nav>
         </div>
@@ -450,7 +480,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section id="clustering">
-<h1><span class="section-number">7.1. </span>Clustering<a class="headerlink" href="#clustering" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">9.1. </span>Clustering<a class="headerlink" href="#clustering" title="Permalink to this headline">#</a></h1>
 <p>Clustering is the most well-known unsupervised learning technique. The goal of clustering is to discover groups in observations. The groups are called clusters.</p>
 <p>The data points in the same cluster are similar to each other, compared to points in different clusters, which are relatively dissimilar.</p>
 <p>There are many clustering algorithms. In this notebook, we will focus on two of them:</p>
@@ -465,7 +495,7 @@ document.write(`
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span> 
 
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/data/clusters/&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/fahadsultan/csc272/main/data/clusters/&quot;</span>
 
 <span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;aniso&quot;</span><span class="p">,</span> <span class="s2">&quot;blobs&quot;</span><span class="p">,</span> <span class="s2">&quot;no_structure&quot;</span><span class="p">,</span> <span class="s2">&quot;noisy_circles&quot;</span><span class="p">,</span> <span class="s2">&quot;noisy_moons&quot;</span><span class="p">,</span> <span class="s2">&quot;varied&quot;</span><span class="p">]</span>
 
@@ -487,7 +517,7 @@ document.write(`
 </div>
 <p>Note that the data sets are <strong>not labeled</strong>. Also note that unsupervised learning algorithms do not work only with 2-dimensional data but with data of any dimensionality. Here we use 2-dimensional data only to be able to visualize the results.</p>
 <section id="k-means">
-<h2><span class="section-number">7.1.1. </span>K-means<a class="headerlink" href="#k-means" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">9.1.1. </span>K-means<a class="headerlink" href="#k-means" title="Permalink to this headline">#</a></h2>
 <p>The k-means algorithm is a simple and popular clustering algorithm. It is an iterative algorithm that partitions the data points into a pre-specified <span class="math notranslate nohighlight">\(k\)</span> number of clusters.</p>
 <p>The algorithm works as follows:</p>
 <ol class="arabic simple">
@@ -501,7 +531,7 @@ document.write(`
 <p>The algorithm is guaranteed to converge to a result. However, the result may not be the optimal one.</p>
 <p>Because of random initialization, the algorithm converges to different results on different runs. Such algorithms or processes, where there is an element of randomness but with some bounds of predictability, are called <strong>stochastic</strong> algorithms or processes.</p>
 <section id="before-clustering">
-<h3><span class="section-number">7.1.1.1. </span>Before Clustering<a class="headerlink" href="#before-clustering" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.1.1.1. </span>Before Clustering<a class="headerlink" href="#before-clustering" title="Permalink to this headline">#</a></h3>
 <p>Let’s try the k-means algorithm on the blobs dataset first. Note that the raw data has just two features (<code class="docutils literal notranslate"><span class="pre">x1</span></code> and <code class="docutils literal notranslate"><span class="pre">x2</span></code>) but no labels.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -578,7 +608,7 @@ document.write(`
 <p>Note that there are clearly three clusters in the data where the points within each cluster are closer to each other compared to points across clusters.</p>
 </section>
 <section id="id1">
-<h3><span class="section-number">7.1.1.2. </span>Clustering<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.1.1.2. </span>Clustering<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>We will use the <code class="docutils literal notranslate"><span class="pre">KMeans</span></code> class from the <code class="docutils literal notranslate"><span class="pre">sklearn.cluster</span></code> module.</p>
 <p>The constructor of the <code class="docutils literal notranslate"><span class="pre">KMeans</span></code> class takes the number of clusters <span class="math notranslate nohighlight">\(k\)</span> as input.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">KMeans</span></code> class has a <code class="docutils literal notranslate"><span class="pre">fit()</span></code> method that takes the data as input and runs the k-means algorithm on it.</p>
@@ -657,7 +687,7 @@ document.write(`
 </div>
 </section>
 <section id="after-clustering">
-<h3><span class="section-number">7.1.1.3. </span>After Clustering<a class="headerlink" href="#after-clustering" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.1.1.3. </span>After Clustering<a class="headerlink" href="#after-clustering" title="Permalink to this headline">#</a></h3>
 <p>The code below plots the data again, but this time with the cluster labels.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -673,7 +703,7 @@ document.write(`
 <p>Note that the k-means algorithm has perfectly discovered the three blobs in the data.</p>
 </section>
 <section id="limitations-of-k-means">
-<h3><span class="section-number">7.1.1.4. </span>Limitations of K-means<a class="headerlink" href="#limitations-of-k-means" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.1.1.4. </span>Limitations of K-means<a class="headerlink" href="#limitations-of-k-means" title="Permalink to this headline">#</a></h3>
 <p>K-means is a simple and popular clustering algorithm. However, it has some limitations:</p>
 <ol class="arabic simple">
 <li><p>It requires the number of clusters <span class="math notranslate nohighlight">\(k\)</span> to be specified. If the number of clusters is not known in advance, then we need to try different values of <span class="math notranslate nohighlight">\(k\)</span> and select the one that gives the best results.</p></li>
@@ -709,7 +739,7 @@ document.write(`
 <p>Note how the k-means algorithm fails to discover the two clusters in the data. This is because the clusters are a) not spherical and b) of different sizes.</p>
 <p>Such failures of a clustering algorithm can only be detected by either visualizing the results or computing internal cluster validation metrics such as the silhouette score.</p>
 <section id="silhouette-score">
-<h4><span class="section-number">7.1.1.4.1. </span>Silhouette Score<a class="headerlink" href="#silhouette-score" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">9.1.1.4.1. </span>Silhouette Score<a class="headerlink" href="#silhouette-score" title="Permalink to this headline">#</a></h4>
 <p>The Silhouette Score is calculated using the <strong>mean intra-cluster distance (<span class="math notranslate nohighlight">\(a\)</span>)</strong> and the <strong>mean nearest-cluster distance (<span class="math notranslate nohighlight">\(b\)</span>)</strong> for each sample. The Silhouette Coefficient for a sample is</p>
 <div class="math notranslate nohighlight">
 \[\text{Silhouette Coefficient} = \frac{(b - a)}{\text{max}(a, b)}\]</div>
@@ -736,7 +766,7 @@ document.write(`
 </section>
 </section>
 <section id="dbscan">
-<h2><span class="section-number">7.1.2. </span>DBSCAN<a class="headerlink" href="#dbscan" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">9.1.2. </span>DBSCAN<a class="headerlink" href="#dbscan" title="Permalink to this headline">#</a></h2>
 <p>DBSCAN stands for Density-Based Spatial Clustering of Applications with Noise. It is a density-based clustering algorithm. It is a popular clustering algorithm because it does not require the number of clusters to be specified. It can discover clusters of arbitrary shapes. It can also identify outliers in the data.</p>
 <p>The algorithm has <strong>two parameters</strong>:</p>
 <ol class="arabic simple">
@@ -756,7 +786,7 @@ document.write(`
 <br/>
 <p>Note that despite the random initialization, DBSCAN is a deterministic algorithm. That is, it always produces the same result on the same data set.</p>
 <section id="id2">
-<h3><span class="section-number">7.1.2.1. </span>Before Clustering<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.1.2.1. </span>Before Clustering<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;noisy_circles&#39;</span><span class="p">]</span>
@@ -779,7 +809,7 @@ document.write(`
 </div>
 </section>
 <section id="id3">
-<h3><span class="section-number">7.1.2.2. </span>Clustering<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.1.2.2. </span>Clustering<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <p>DBSCAN is implemented in the <code class="docutils literal notranslate"><span class="pre">DBSCAN</span></code> class from the <code class="docutils literal notranslate"><span class="pre">sklearn.cluster</span></code> module.</p>
 <p>The constructor of the <code class="docutils literal notranslate"><span class="pre">DBSCAN</span></code> class takes the two parameters <span class="math notranslate nohighlight">\(\epsilon\)</span> and <span class="math notranslate nohighlight">\(m\)</span> as input.</p>
 <p>Similar to <code class="docutils literal notranslate"><span class="pre">KMeans</span></code>, the <code class="docutils literal notranslate"><span class="pre">DBSCAN</span></code> class has a <code class="docutils literal notranslate"><span class="pre">fit()</span></code> method that takes the data as input and runs the DBSCAN algorithm on it.</p>
@@ -797,7 +827,7 @@ document.write(`
 </div>
 </section>
 <section id="id4">
-<h3><span class="section-number">7.1.2.3. </span>After clustering<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">9.1.2.3. </span>After clustering<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
 <p>The code below plots the data again, but this time with the cluster labels.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -823,7 +853,7 @@ document.write(`
 </section>
 </section>
 <section id="comparing-dbscan-and-k-means">
-<h2><span class="section-number">7.1.3. </span>Comparing DBSCAN and K-means<a class="headerlink" href="#comparing-dbscan-and-k-means" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">9.1.3. </span>Comparing DBSCAN and K-means<a class="headerlink" href="#comparing-dbscan-and-k-means" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fnames</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;aniso&quot;</span><span class="p">,</span> <span class="s2">&quot;blobs&quot;</span><span class="p">,</span> <span class="s2">&quot;no_structure&quot;</span><span class="p">,</span> <span class="s2">&quot;noisy_circles&quot;</span><span class="p">,</span> <span class="s2">&quot;noisy_moons&quot;</span><span class="p">,</span> <span class="s2">&quot;varied&quot;</span><span class="p">]</span>
@@ -861,13 +891,13 @@ document.write(`
 <p>Furthermore, the parameters of the two algorithms (<span class="math notranslate nohighlight">\(k\)</span> for nearest neighbor and <span class="math notranslate nohighlight">\(\epsilon\)</span> and <span class="math notranslate nohighlight">\(m\)</span> for DBSCAN) need to be tuned to get the best results for an individual datasets.</p>
 </section>
 <section id="limitations-of-clustering">
-<h2><span class="section-number">7.1.4. </span>Limitations of Clustering<a class="headerlink" href="#limitations-of-clustering" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">9.1.4. </span>Limitations of Clustering<a class="headerlink" href="#limitations-of-clustering" title="Permalink to this headline">#</a></h2>
 <p>Note that not all data sets are suitable for clustering. Some data sets do not have a well-defined cluster structure.</p>
 <p>For example, below we try the k-means algorithm on the sentiments dataset. We know that the data set has three classes: positive, negative, and neutral. However, the k-means algorithm fails to discover the three classes. This is because the data set does not have a well-defined cluster structure.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/data/chat_dataset.csv&#39;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/fahadsultan/csc272/main/data/chat_dataset.csv&#39;</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -986,7 +1016,7 @@ dtype: int64
 </div>
 </section>
 <section id="relationship-between-clusters-and-labels">
-<h2><span class="section-number">7.1.5. </span>Relationship between Clusters and Labels<a class="headerlink" href="#relationship-between-clusters-and-labels" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">9.1.5. </span>Relationship between Clusters and Labels<a class="headerlink" href="#relationship-between-clusters-and-labels" title="Permalink to this headline">#</a></h2>
 <p>Please take caution in comparing the discovered clusters with any available labels for a dataset.</p>
 <p>In clustering, the label ‘values’ are arbitrary. For example, if we have a dataset with three classes, we can label them as 0, 1, and 2 or as 1, 2, and 3 or as 100, 200, and 300.</p>
 <div class="cell docutils container">
@@ -1038,7 +1068,7 @@ dtype: int64
 </div>
 </section>
 <section id="silhouette-score-to-identify-k-epsilon-and-min-samples">
-<h2><span class="section-number">7.1.6. </span>Silhouette Score to identify <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(\epsilon\)</span> and <code class="docutils literal notranslate"><span class="pre">min_samples</span></code><a class="headerlink" href="#silhouette-score-to-identify-k-epsilon-and-min-samples" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">9.1.6. </span>Silhouette Score to identify <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(\epsilon\)</span> and <code class="docutils literal notranslate"><span class="pre">min_samples</span></code><a class="headerlink" href="#silhouette-score-to-identify-k-epsilon-and-min-samples" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">[</span><span class="s1">&#39;noisy_circles&#39;</span><span class="p">]</span>
@@ -1059,12 +1089,12 @@ dtype: int64
 </div>
 </section>
 <section id="plotting-silhouette-score-to-find-k">
-<h2><span class="section-number">7.1.7. </span>Plotting Silhouette score to find <code class="docutils literal notranslate"><span class="pre">k</span></code><a class="headerlink" href="#plotting-silhouette-score-to-find-k" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">9.1.7. </span>Plotting Silhouette score to find <code class="docutils literal notranslate"><span class="pre">k</span></code><a class="headerlink" href="#plotting-silhouette-score-to-find-k" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sscores</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;noisy_circles&#39;</span><span class="p">:[],</span> <span class="s1">&#39;blobs&#39;</span><span class="p">:[]}</span>
 <span class="n">ks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/data/clusters/&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/fahadsultan/csc272/main/data/clusters/&quot;</span>
 
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;noisy_circles&#39;</span><span class="p">,</span> <span class="s1">&#39;blobs&#39;</span><span class="p">]:</span>
 
@@ -1194,15 +1224,15 @@ dtype: int64
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Unsupervised Learning</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Unsupervised Learning</p>
       </div>
     </a>
     <a class="right-next"
-       href="../4_models/graphical.html"
+       href="30_reinforcement.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">8. </span>Graphical Models</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Reinforcement Learning</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1224,27 +1254,27 @@ dtype: int64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means">7.1.1. K-means</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-clustering">7.1.1.1. Before Clustering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">7.1.1.2. Clustering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#after-clustering">7.1.1.3. After Clustering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-k-means">7.1.1.4. Limitations of K-means</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-score">7.1.1.4.1. Silhouette Score</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means">9.1.1. K-means</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#before-clustering">9.1.1.1. Before Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">9.1.1.2. Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#after-clustering">9.1.1.3. After Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-k-means">9.1.1.4. Limitations of K-means</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-score">9.1.1.4.1. Silhouette Score</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dbscan">7.1.2. DBSCAN</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">7.1.2.1. Before Clustering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">7.1.2.2. Clustering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">7.1.2.3. After clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dbscan">9.1.2. DBSCAN</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">9.1.2.1. Before Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">9.1.2.2. Clustering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">9.1.2.3. After clustering</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-dbscan-and-k-means">7.1.3. Comparing DBSCAN and K-means</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-clustering">7.1.4. Limitations of Clustering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-clusters-and-labels">7.1.5. Relationship between Clusters and Labels</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-score-to-identify-k-epsilon-and-min-samples">7.1.6. Silhouette Score to identify <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(\epsilon\)</span> and <code class="docutils literal notranslate"><span class="pre">min_samples</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-silhouette-score-to-find-k">7.1.7. Plotting Silhouette score to find <code class="docutils literal notranslate"><span class="pre">k</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-dbscan-and-k-means">9.1.3. Comparing DBSCAN and K-means</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations-of-clustering">9.1.4. Limitations of Clustering</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-clusters-and-labels">9.1.5. Relationship between Clusters and Labels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#silhouette-score-to-identify-k-epsilon-and-min-samples">9.1.6. Silhouette Score to identify <span class="math notranslate nohighlight">\(k\)</span>, <span class="math notranslate nohighlight">\(\epsilon\)</span> and <code class="docutils literal notranslate"><span class="pre">min_samples</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-silhouette-score-to-find-k">9.1.7. Plotting Silhouette score to find <code class="docutils literal notranslate"><span class="pre">k</span></code></a></li>
 </ul>
   </nav></div>
 
@@ -1268,7 +1298,7 @@ By Syed Fahad Sultan
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

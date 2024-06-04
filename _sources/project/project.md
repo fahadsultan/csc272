@@ -51,7 +51,7 @@ Posing questions is one of the primary ways the data science lifecycle begins. I
 
 | | |
 |:---:|:---:|
-|<img src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/ask_question.png" alt="fishy" class="bg-primary" width="100%"> | <img src="../assets/data_acquisition.png" alt="fishy" class="bg-primary" width="100%"> |
+|<img src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/ask_question.png" alt="fishy" class="bg-primary" width="100%"> | <img src="../assets/data_acquisition.png" alt="fishy" class="bg-primary" width="100%"> |
  | 1. Ask a Question | 2. Obtain Data |
 
 The second entry point to the lifecycle is by obtaining data. A careful analysis of any problem requires the use of data. Data may be readily available to us, or we may have to embark on a process to collect it. When doing so, its crucial to ask the following:  

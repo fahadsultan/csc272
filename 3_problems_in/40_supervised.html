@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>6. Supervised Learning &#8212; CSC-272 Data Mining</title>
+    <title>8. Supervised Learning &#8212; Data Science for Machine Learning</title>
   
   
   
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -72,8 +73,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '3_problems_in/40_supervised';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6.6. Classification" href="41_classification.html" />
-    <link rel="prev" title="5.3. Applications" href="../2_maths/43_applications.html" />
+    <link rel="next" title="8.6. Classification" href="41_classification.html" />
+    <link rel="prev" title="7.2. Differential Calculus" href="../2_maths/52_differential.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -160,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    CSC-272 Data Mining (Fall 2023)
+                    CSC-272 Data Mining (Fall 2024)
                 </a>
             </li>
         </ul>
@@ -187,9 +188,10 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming for Data Science</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/10_dataops.html">1. Vectorized Operations on Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas1.html">1.1. Pandas I: Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas1.html">1.1. Pandas I: Preliminaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas2.html">1.2. Pandas II: Selection, Filtering and Dropping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas3.html">1.3. Pandas III: Aggregation, Merging and Concatenation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas3.html">1.3. Pandas III - Data Manipulation and Wrangling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas4.html">1.4. Pandas IV: Aggregation, Merging and Concatenation <br/></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/40_modalities.html">2. Encoding and Representation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -198,48 +200,76 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../1_programming/43_modalities.html">2.3. Modalities of Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/20_visualization.html">3. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/21_univariate.html">3.1. Univariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/22_multivariate.html">3.2. Multivariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/23_dosdonts.html">3.3. Dos and Donts of Visualization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/30_collecting.html">3. Collecting Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/31_apis.html">3.1. APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/32_scraping.html">3.2. Web Scraping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/20_visualization.html">4. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/21_univariate.html">4.1. Univariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/22_multivariate.html">4.2. Multivariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/23_dosdonts.html">4.3. Dos and Donts of Visualization</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mathematics for Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">4. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">4.1. Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">4.2. Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">4.3. Logarithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">5. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">5.1. Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">5.2. Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">5.3. Logarithms</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">5. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">5.1. Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">5.2. Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">5.3. Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">6. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">6.1. Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">6.2. Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">6.3. Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/50_calculus.html">7. Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/51_integral.html">7.1. Integral Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/52_differential.html">7.2. Differential Calculus</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems in Data Science</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">6. Supervised Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="41_classification.html">6.6. Classification</a></li>
-<li class="toctree-l2"><a class="reference internal" href="42_regression.html">6.7. Regression</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">8. Supervised Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="41_classification.html">8.6. Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42_regression.html">8.7. Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="20_unsupervised.html">7. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="21_clustering.html">7.1. Clustering</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="20_unsupervised.html">9. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="21_clustering.html">9.1. Clustering</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="30_reinforcement.html">10. Reinforcement Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Models in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">8. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">8.1. Naive Bayes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">11. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">11.1. Naive Bayes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">9. Generalized Linear Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">10. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">12. Generalized Linear Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">13. Neural Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithms in Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/em.html">14. Expectation Maximization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/gradient_descent.html">15. Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/backprop.html">16. Backpropogation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems with Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/10_representation.html">17. Representation Matters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/40_feedback.html">18. Positive Feedback Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/20_boundaries.html">19. Decision Boundaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/30_incentives.html">20. Majority Rule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications of Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/40_recommendation.html">21. Recommendation Engine</a></li>
 </ul>
 
     </div>
@@ -294,7 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/fahadsultan/datascience_ml/blob/main/3_problems_in/40_supervised.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/fahadsultan/csc272/blob/main/3_problems_in/40_supervised.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -417,24 +447,24 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">6.1. Train-Test Split</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">6.1.1. Code Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">8.1. Train-Test Split</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">8.1.1. Code Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-phase">6.2. Training Phase</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.1. Code Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-phase">8.2. Training Phase</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">8.2.1. Code Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-phase">6.3. Testing Phase</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.3.1. Code Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-phase">8.3. Testing Phase</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8.3.1. Code Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">6.4. Evaluation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.4.1. Code Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">8.4. Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">8.4.1. Code Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">6.5. Cross Validation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.5.1. Code Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">8.5. Cross Validation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">8.5.1. Code Example</a></li>
 </ul>
 </li>
 </ul>
@@ -449,7 +479,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="supervised-learning">
-<h1><span class="section-number">6. </span>Supervised Learning<a class="headerlink" href="#supervised-learning" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">8. </span>Supervised Learning<a class="headerlink" href="#supervised-learning" title="Permalink to this headline">#</a></h1>
 <p>Supervised learning is similar to how we learn in school.</p>
 <p>First, there is a learning or <strong>training phase</strong> where we <strong>learn from lots of examples</strong>. Examples are essentially a set of questions and their answers.</p>
 <p>The training phase is then followed by a <strong>testing phase</strong> where we apply our learning to a relatively <strong>small set of previously unseen questions</strong>.</p>
@@ -529,7 +559,7 @@ Name: target, dtype: int64
 </div>
 </div>
 <section id="train-test-split">
-<h2><span class="section-number">6.1. </span>Train-Test Split<a class="headerlink" href="#train-test-split" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.1. </span>Train-Test Split<a class="headerlink" href="#train-test-split" title="Permalink to this headline">#</a></h2>
 <p>The first step in supervised learning is to split the data into two sets: a <strong>training set</strong> and a <strong>test set</strong>.</p>
 <p>The training set is used to <em>train</em> or <em>learn</em> the parameters of the model. The test set is used to evaluate the performance of the learning.</p>
 <p>The convention is to use majority of the data for training and the rest for testing. The ratio of training to test data is typically 80:20 or 70:30.</p>
@@ -545,7 +575,7 @@ Name: target, dtype: int64
 <p>To ensure this, the train set must be randomly drawn from the data.</p>
 <p>This can be implemented by randomly shuffling the data before splitting it into train and test sets or using the built-in <code class="docutils literal notranslate"><span class="pre">.sample</span></code> method.</p>
 <section id="code-example">
-<h3><span class="section-number">6.1.1. </span>Code Example<a class="headerlink" href="#code-example" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">8.1.1. </span>Code Example<a class="headerlink" href="#code-example" title="Permalink to this headline">#</a></h3>
 <p>The code below uses the <strong><code class="docutils literal notranslate"><span class="pre">train_test_split</span></code></strong> function from the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> library to split the data into train and test sets.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">test_size</span></code> parameter is set to <code class="docutils literal notranslate"><span class="pre">0.2</span></code> which means that 20% of the data will be used for testing and the remaining 80% will be used for training.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">random_state</span></code> parameter is set to <code class="docutils literal notranslate"><span class="pre">42</span></code> which means that the random number generator will be initialized to a known state. This ensures that the results are reproducible.</p>
@@ -572,7 +602,7 @@ Test set:
 </section>
 </section>
 <section id="training-phase">
-<h2><span class="section-number">6.2. </span>Training Phase<a class="headerlink" href="#training-phase" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.2. </span>Training Phase<a class="headerlink" href="#training-phase" title="Permalink to this headline">#</a></h2>
 <p>In supervised learning problems, we have a set of observations, each observation consisting of a set of input variables <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> and a target variable <span class="math notranslate nohighlight">\(\mathcal{y}\)</span>, and we want to learn a function <span class="math notranslate nohighlight">\(\mathcal{f}\)</span> that maps the input <span class="math notranslate nohighlight">\(\mathcal{X}\)</span> to the output <span class="math notranslate nohighlight">\(\mathcal{y}\)</span>.</p>
 <a class="reference internal image-reference" href="../_images/training.png"><img alt="../_images/training.png" class="align-center" src="../_images/training.png" style="width: 80%;" /></a>
 <br/>
@@ -587,7 +617,7 @@ Test set:
 <p>where x is the input temperature in Celsius and f(x) is the output temperature in Fahrenheit.</p>
 <p>The above is just an example and there exist many other families of functions that we can consider. These will be covered in Chapters 10-13.</p>
 <section id="id1">
-<h3><span class="section-number">6.2.1. </span>Code Example<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">8.2.1. </span>Code Example<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>The code below uses K-Nearest Neighbors (KNN) to learn the relationship between the features and the target variable.</p>
 <p><strong>The <code class="docutils literal notranslate"><span class="pre">fit</span></code> method is used to <em>train</em> the model</strong>. The <code class="docutils literal notranslate"><span class="pre">fit</span></code> method takes two arguments:</p>
 <ol class="arabic simple">
@@ -616,11 +646,11 @@ Test set:
 </section>
 </section>
 <section id="testing-phase">
-<h2><span class="section-number">6.3. </span>Testing Phase<a class="headerlink" href="#testing-phase" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.3. </span>Testing Phase<a class="headerlink" href="#testing-phase" title="Permalink to this headline">#</a></h2>
 <p>Once we have learned the function <span class="math notranslate nohighlight">\(f\)</span> from the training data, we can apply it to the test data to predict the target variable <span class="math notranslate nohighlight">\(\mathcal{y}\)</span>.</p>
 <img alt="../_images/testing.png" src="../_images/testing.png" />
 <section id="id2">
-<h3><span class="section-number">6.3.1. </span>Code Example<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">8.3.1. </span>Code Example<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>The code below uses the <code class="docutils literal notranslate"><span class="pre">predict</span></code> method to predict the target variable for the test data.</p>
 <p><strong>The <code class="docutils literal notranslate"><span class="pre">predict</span></code> method is used to <em>test</em> the model</strong>. The <code class="docutils literal notranslate"><span class="pre">predict</span></code> method takes one argument:</p>
 <ol class="arabic simple">
@@ -646,13 +676,13 @@ Test set:
 </section>
 </section>
 <section id="evaluation">
-<h2><span class="section-number">6.4. </span>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.4. </span>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">#</a></h2>
 <p>If supervised learning is like school, then the evaluation phase is like the grading phase and criteria.</p>
 <p>The evaluation phase is where we evaluate how well we have learned the function <span class="math notranslate nohighlight">\(f\)</span> from the training data and how well we can predict the target variable <span class="math notranslate nohighlight">\(\mathcal{y}\)</span> from the test data.</p>
 <p>The exact criteria for evaluation depends on the type of supervised learning problem. That is, evaluation metrics used for classification problems are different from those used for regression problems. These metrics are discussed in detail in the following chapters.</p>
 <!-- Finally, we evaluate the performance of our model by comparing the predicted values of $\mathcal{y}$ to the actual values of $\mathcal{y}$. -->
 <section id="id3">
-<h3><span class="section-number">6.4.1. </span>Code Example<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">8.4.1. </span>Code Example<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
 <p>The code below uses the <code class="docutils literal notranslate"><span class="pre">accuracy_score</span></code> method to evaluate the performance of the model.</p>
 <p><strong>The <code class="docutils literal notranslate"><span class="pre">accuracy_score</span></code> method is used to <em>evaluate</em> the model</strong>. The <code class="docutils literal notranslate"><span class="pre">accuracy_score</span></code> method takes two arguments:</p>
 <ol class="arabic simple">
@@ -677,12 +707,12 @@ Test set:
 </section>
 </section>
 <section id="cross-validation">
-<h2><span class="section-number">6.5. </span>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.5. </span>Cross Validation<a class="headerlink" href="#cross-validation" title="Permalink to this headline">#</a></h2>
 <p>Just as most courses in school don’t have just the final test, most machine learning problems don’t have just one test set either. Often times, it is better to create multiple test sets, evaluate the performance of the model on each of them and then report the average performance of the model. This practice is called <strong>cross validation</strong> in machine learning.</p>
 <center><img width="70%" src="https://scikit-learn.org/stable/_images/grid_search_cross_validation.png"></center>
 <p>There exist many different ways to create multiple test sets. The most common way is to randomly split the data into multiple randomly sampled train and test sets. This is called <strong>random cross validation</strong>.</p>
 <section id="id4">
-<h3><span class="section-number">6.5.1. </span>Code Example<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">8.5.1. </span>Code Example<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
 <p>The code below uses the <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> method to perform random cross validation.</p>
 <p><strong>The <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> method is used to <em>cross validate</em> the model</strong>. The <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> method takes four arguments:</p>
 <ol class="arabic simple">
@@ -746,12 +776,12 @@ Test set:
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../2_maths/43_applications.html"
+       href="../2_maths/52_differential.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5.3. </span>Applications</p>
+        <p class="prev-next-title"><span class="section-number">7.2. </span>Differential Calculus</p>
       </div>
     </a>
     <a class="right-next"
@@ -759,7 +789,7 @@ Test set:
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6.6. </span>Classification</p>
+        <p class="prev-next-title"><span class="section-number">8.6. </span>Classification</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -781,24 +811,24 @@ Test set:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">6.1. Train-Test Split</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">6.1.1. Code Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#train-test-split">8.1. Train-Test Split</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">8.1.1. Code Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-phase">6.2. Training Phase</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">6.2.1. Code Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-phase">8.2. Training Phase</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">8.2.1. Code Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-phase">6.3. Testing Phase</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">6.3.1. Code Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-phase">8.3. Testing Phase</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8.3.1. Code Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">6.4. Evaluation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">6.4.1. Code Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">8.4. Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">8.4.1. Code Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">6.5. Cross Validation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">6.5.1. Code Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">8.5. Cross Validation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">8.5.1. Code Example</a></li>
 </ul>
 </li>
 </ul>
@@ -824,7 +854,7 @@ By Syed Fahad Sultan
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

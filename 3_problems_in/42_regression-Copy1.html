@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Regression &#8212; CSC-272 Data Mining</title>
+    <title>Regression &#8212; Data Science for Machine Learning</title>
   
   
   
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -158,7 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    CSC-272 Data Mining (Fall 2023)
+                    CSC-272 Data Mining (Fall 2024)
                 </a>
             </li>
         </ul>
@@ -185,9 +186,10 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming for Data Science</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/10_dataops.html">1. Vectorized Operations on Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas1.html">1.1. Pandas I: Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas1.html">1.1. Pandas I: Preliminaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas2.html">1.2. Pandas II: Selection, Filtering and Dropping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas3.html">1.3. Pandas III: Aggregation, Merging and Concatenation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas3.html">1.3. Pandas III - Data Manipulation and Wrangling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas4.html">1.4. Pandas IV: Aggregation, Merging and Concatenation <br/></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/40_modalities.html">2. Encoding and Representation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -196,48 +198,76 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../1_programming/43_modalities.html">2.3. Modalities of Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/20_visualization.html">3. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/21_univariate.html">3.1. Univariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/22_multivariate.html">3.2. Multivariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/23_dosdonts.html">3.3. Dos and Donts of Visualization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/30_collecting.html">3. Collecting Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/31_apis.html">3.1. APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/32_scraping.html">3.2. Web Scraping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/20_visualization.html">4. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/21_univariate.html">4.1. Univariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/22_multivariate.html">4.2. Multivariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/23_dosdonts.html">4.3. Dos and Donts of Visualization</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mathematics for Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">4. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">4.1. Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">4.2. Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">4.3. Logarithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">5. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">5.1. Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">5.2. Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">5.3. Logarithms</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">5. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">5.1. Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">5.2. Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">5.3. Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">6. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">6.1. Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">6.2. Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">6.3. Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/50_calculus.html">7. Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/51_integral.html">7.1. Integral Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/52_differential.html">7.2. Differential Calculus</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="40_supervised.html">6. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="41_classification.html">6.6. Classification</a></li>
-<li class="toctree-l2"><a class="reference internal" href="42_regression.html">6.7. Regression</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="40_supervised.html">8. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="41_classification.html">8.6. Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42_regression.html">8.7. Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="20_unsupervised.html">7. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="21_clustering.html">7.1. Clustering</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="20_unsupervised.html">9. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="21_clustering.html">9.1. Clustering</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="30_reinforcement.html">10. Reinforcement Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Models in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">8. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">8.1. Naive Bayes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">11. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">11.1. Naive Bayes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">9. Generalized Linear Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">10. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">12. Generalized Linear Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">13. Neural Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithms in Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/em.html">14. Expectation Maximization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/gradient_descent.html">15. Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/backprop.html">16. Backpropogation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems with Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/10_representation.html">17. Representation Matters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/40_feedback.html">18. Positive Feedback Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/20_boundaries.html">19. Decision Boundaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/30_incentives.html">20. Majority Rule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications of Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/40_recommendation.html">21. Recommendation Engine</a></li>
 </ul>
 
     </div>
@@ -292,7 +322,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/fahadsultan/datascience_ml/blob/main/3_problems_in/42_regression-Copy1.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/fahadsultan/csc272/blob/main/3_problems_in/42_regression-Copy1.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -452,12 +482,12 @@ document.write(`
 \[\textbf{y} = f(\textbf{X})\]</div>
 <p>where <span class="math notranslate nohighlight">\(f\)</span> is some unknown function.</p>
 <p><span class="math notranslate nohighlight">\(X\)</span> here simply is some data that we have as a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> whereas <span class="math notranslate nohighlight">\(y\)</span> here is the target variable, one value for each observation, that we want to predict, as of type <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code>.</p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/supervised2.png"><img alt="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/supervised2.png" class="align-center" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/supervised2.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/supervised2.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/supervised2.png" class="align-center" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/supervised2.png" style="width: 80%;" /></a>
 <p>The form of <strong>supervised learning</strong> we have talked about so far is <strong>classification</strong>. As discussed previously, in classification, the output variable <span class="math notranslate nohighlight">\(y\)</span> is a <strong>discrete target variable</strong> e.g. sentiment <span class="math notranslate nohighlight">\(\in\)</span> {positive, neutral or negative},  ring <span class="math notranslate nohighlight">\(\in\)</span> {A, B} or diagnosis <span class="math notranslate nohighlight">\(\in\)</span> {malignant, benign} etc.</p>
 <p>The other type of supervised learning that we will talk about in this notebook is called <strong>Regression</strong>. In regression, the target variable is to predict a <strong>continuous target variable</strong> i.e. $<span class="math notranslate nohighlight">\(\mathbf{y} \in \mathbb{R^N}\)</span>$.</p>
 <p>For example, predicting the stock price of a publicly listed company, predicting the price of a house in dollars, or predicting the average surface temperature on Earth next year are all examples of regression problems.</p>
 <p>Note that the <strong>splitting of the data into training and test sets is exactly the same as in classification</strong>. The only difference is that the target variable is continuous instead of discrete.</p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/training.png"><img alt="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/training.png" class="align-center" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/training.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/training.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/training.png" class="align-center" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/training.png" style="width: 70%;" /></a>
 <section id="linear-regression">
 <h2>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">#</a></h2>
 <p>Linear Regression is the simplest solution to any regression problem.</p>
@@ -578,7 +608,7 @@ document.write(`
 <section id="errors-in-regression">
 <h3>Errors in Regression<a class="headerlink" href="#errors-in-regression" title="Permalink to this headline">#</a></h3>
 <p>The evaluation of regression models is done similar to classification models. The model is trained on the training set and then evaluated on the test set.</p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/testing.png"><img alt="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/testing.png" class="align-center" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/testing.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/testing.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/testing.png" class="align-center" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/testing.png" style="width: 70%;" /></a>
 <p>The difference is that the training has an <strong>internal evaluation metric that is minimized to find the values of coefficients such as <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(b\)</span> that best fit the training data</strong>.</p>
 <p>For example, model-1 and model-2 above would yield different scores for how well they fit the training data. The model with the lowest score is the one that best fits the training data.</p>
 <p>Once the model is trained, the test set is used to evaluate the model.</p>
@@ -882,98 +912,35 @@ The target variable is:
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A neighborhood is &#39;rich&#39; if MedInc is &gt; 7. </span>
+<span class="c1"># Predict if a neighborhood is &#39;rich&#39;</span>
+
+<span class="c1"># 1. Create a boolean variable from MedInc</span>
+<span class="c1"># 2. Create train and test set </span>
+<span class="c1"># 3. Perform classifier </span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">&#39;MedInc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">7</span> <span class="k">else</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">&#39;MedInc&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>MedInc</th>
-      <th>HouseAge</th>
-      <th>AveRooms</th>
-      <th>AveBedrms</th>
-      <th>Population</th>
-      <th>AveOccup</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>8.3252</td>
-      <td>41.0</td>
-      <td>6.984127</td>
-      <td>1.023810</td>
-      <td>322.0</td>
-      <td>2.555556</td>
-      <td>37.88</td>
-      <td>-122.23</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>8.3014</td>
-      <td>21.0</td>
-      <td>6.238137</td>
-      <td>0.971880</td>
-      <td>2401.0</td>
-      <td>2.109842</td>
-      <td>37.86</td>
-      <td>-122.22</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>7.2574</td>
-      <td>52.0</td>
-      <td>8.288136</td>
-      <td>1.073446</td>
-      <td>496.0</td>
-      <td>2.802260</td>
-      <td>37.85</td>
-      <td>-122.24</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>5.6431</td>
-      <td>52.0</td>
-      <td>5.817352</td>
-      <td>1.073059</td>
-      <td>558.0</td>
-      <td>2.547945</td>
-      <td>37.85</td>
-      <td>-122.25</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>3.8462</td>
-      <td>52.0</td>
-      <td>6.281853</td>
-      <td>1.081081</td>
-      <td>565.0</td>
-      <td>2.181467</td>
-      <td>37.85</td>
-      <td>-122.25</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0         True
+1         True
+2         True
+3        False
+4        False
+         ...  
+20635    False
+20636    False
+20637    False
+20638    False
+20639    False
+Name: MedInc, Length: 20640, dtype: bool
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1021,7 +988,7 @@ Name: Price, dtype: float64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MAE:  0.53
-MSE:  0.51
+MSE:  0.52
 RMSE: 0.72
 R2:   0.61
 </pre></div>
@@ -1048,7 +1015,7 @@ R2:   0.61
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3ebb866ce6eb771119567546caf908e258302e62a9fed67972f6d16dade589d0.png" src="../_images/3ebb866ce6eb771119567546caf908e258302e62a9fed67972f6d16dade589d0.png" />
+<img alt="../_images/0870648e96def5f35844904413ed355ae78dba38d0829c862b357de1682bf17f.png" src="../_images/0870648e96def5f35844904413ed355ae78dba38d0829c862b357de1682bf17f.png" />
 </div>
 </div>
 </section>
@@ -1062,13 +1029,12 @@ R2:   0.61
 <p>The code cell below plots the slopes in decreasing order of magnitude.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 4.39233523e-01,  9.52339210e-03, -1.09673660e-01,  6.39069500e-01,
-       -5.24861424e-06, -4.50021084e-03, -4.21777392e-01, -4.35175340e-01])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
 </pre></div>
 </div>
 </div>
@@ -1083,7 +1049,7 @@ R2:   0.61
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3815bc7f36b0f43b235e5e0c2e4345432d6f48d4849b9211d65c0ebd07bb21a6.png" src="../_images/3815bc7f36b0f43b235e5e0c2e4345432d6f48d4849b9211d65c0ebd07bb21a6.png" />
+<img alt="../_images/d772c479bee25598743b247c6b05740666a08b7744a01d423fda0857f0a1522d.png" src="../_images/d772c479bee25598743b247c6b05740666a08b7744a01d423fda0857f0a1522d.png" />
 </div>
 </div>
 <p>The plot indicates that <code class="docutils literal notranslate"><span class="pre">AveBedrms</span></code>, <code class="docutils literal notranslate"><span class="pre">MedInc</span></code> and <code class="docutils literal notranslate"><span class="pre">AveRooms</span></code> have the <strong>highest positive relationship</strong> with the Price of the house whereas <code class="docutils literal notranslate"><span class="pre">AveRooms</span></code>, <code class="docutils literal notranslate"><span class="pre">Latitude</span></code>, <code class="docutils literal notranslate"><span class="pre">Longitude</span></code> have the <strong>strongest negative relationship</strong> with the target variable Price of the house.</p>
@@ -1404,7 +1370,7 @@ By Syed Fahad Sultan
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

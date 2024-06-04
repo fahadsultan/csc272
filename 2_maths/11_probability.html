@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>4.1. Probability &#8212; CSC-272 Data Mining</title>
+    <title>5.1. Probability &#8212; Data Science for Machine Learning</title>
   
   
   
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -72,8 +73,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '2_maths/11_probability';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.2. Statistics" href="12_stats.html" />
-    <link rel="prev" title="4. Prob, Stats and Logs" href="10_prob_stats_log.html" />
+    <link rel="next" title="5.2. Statistics" href="12_stats.html" />
+    <link rel="prev" title="5. Prob, Stats and Logs" href="10_prob_stats_log.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -160,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    CSC-272 Data Mining (Fall 2023)
+                    CSC-272 Data Mining (Fall 2024)
                 </a>
             </li>
         </ul>
@@ -187,9 +188,10 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming for Data Science</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/10_dataops.html">1. Vectorized Operations on Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas1.html">1.1. Pandas I: Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas1.html">1.1. Pandas I: Preliminaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas2.html">1.2. Pandas II: Selection, Filtering and Dropping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas3.html">1.3. Pandas III: Aggregation, Merging and Concatenation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas3.html">1.3. Pandas III - Data Manipulation and Wrangling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas4.html">1.4. Pandas IV: Aggregation, Merging and Concatenation <br/></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/40_modalities.html">2. Encoding and Representation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -198,48 +200,76 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../1_programming/43_modalities.html">2.3. Modalities of Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/20_visualization.html">3. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/21_univariate.html">3.1. Univariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/22_multivariate.html">3.2. Multivariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/23_dosdonts.html">3.3. Dos and Donts of Visualization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/30_collecting.html">3. Collecting Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/31_apis.html">3.1. APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/32_scraping.html">3.2. Web Scraping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/20_visualization.html">4. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/21_univariate.html">4.1. Univariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/22_multivariate.html">4.2. Multivariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/23_dosdonts.html">4.3. Dos and Donts of Visualization</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mathematics for Data Science</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="10_prob_stats_log.html">4. Prob, Stats and Logs</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.1. Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="12_stats.html">4.2. Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="13_log.html">4.3. Logarithms</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="10_prob_stats_log.html">5. Prob, Stats and Logs</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.1. Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="12_stats.html">5.2. Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_log.html">5.3. Logarithms</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="40_linearalgebra.html">5. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="41_vectors.html">5.1. Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="42_matrices.html">5.2. Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="43_applications.html">5.3. Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="40_linearalgebra.html">6. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="41_vectors.html">6.1. Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42_matrices.html">6.2. Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="43_applications.html">6.3. Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="50_calculus.html">7. Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="51_integral.html">7.1. Integral Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="52_differential.html">7.2. Differential Calculus</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/40_supervised.html">6. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/41_classification.html">6.6. Classification</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/42_regression.html">6.7. Regression</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/40_supervised.html">8. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/41_classification.html">8.6. Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/42_regression.html">8.7. Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/20_unsupervised.html">7. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/21_clustering.html">7.1. Clustering</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/20_unsupervised.html">9. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/21_clustering.html">9.1. Clustering</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../3_problems_in/30_reinforcement.html">10. Reinforcement Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Models in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">8. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">8.1. Naive Bayes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">11. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">11.1. Naive Bayes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">9. Generalized Linear Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">10. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">12. Generalized Linear Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">13. Neural Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithms in Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/em.html">14. Expectation Maximization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/gradient_descent.html">15. Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/backprop.html">16. Backpropogation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems with Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/10_representation.html">17. Representation Matters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/40_feedback.html">18. Positive Feedback Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/20_boundaries.html">19. Decision Boundaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/30_incentives.html">20. Majority Rule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications of Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/40_recommendation.html">21. Recommendation Engine</a></li>
 </ul>
 
     </div>
@@ -294,7 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/fahadsultan/datascience_ml/blob/main/2_maths/11_probability.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/fahadsultan/csc272/blob/main/2_maths/11_probability.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -417,18 +447,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variable">4.1.1. Random Variable</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-outcome-omega-and-sample-space-omega">4.1.2. Experiment, Outcome <span class="math notranslate nohighlight">\(\omega\)</span> and Sample Space <span class="math notranslate nohighlight">\(\Omega\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-model-p-x">4.1.3. Probability Model <span class="math notranslate nohighlight">\(P(X)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-of-an-event-p-phi">4.1.4. Probability of an Event <span class="math notranslate nohighlight">\(P(\phi)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-probability-p-a-b">4.1.5. Joint Probability <span class="math notranslate nohighlight">\(P(A, B)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-probability-p-a">4.1.6. Marginal Probability <span class="math notranslate nohighlight">\(P(A)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-random-variables">4.1.7. Independent Random Variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-probability-p-a-b">4.1.8. Conditional Probability <span class="math notranslate nohighlight">\(P(A | B)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#product-rule-p-a-b">4.1.9. Product Rule <span class="math notranslate nohighlight">\(P(A, B)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chain-rule-p-a-b-c">4.1.10. Chain Rule <span class="math notranslate nohighlight">\(P(A, B, C)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inclusion-exclusion-principle-p-a-vee-b">4.1.11. Inclusion-Exclusion Principle <span class="math notranslate nohighlight">\(P(A \vee B)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-theorem-p-a-b">4.1.12. Bayes Theorem <span class="math notranslate nohighlight">\(P(A|B)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variable">5.1.1. Random Variable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-outcome-omega-and-sample-space-omega">5.1.2. Experiment, Outcome <span class="math notranslate nohighlight">\(\omega\)</span> and Sample Space <span class="math notranslate nohighlight">\(\Omega\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-model-p-x">5.1.3. Probability Model <span class="math notranslate nohighlight">\(P(X)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-of-an-event-p-phi">5.1.4. Probability of an Event <span class="math notranslate nohighlight">\(P(\phi)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-probability-p-a-b">5.1.5. Joint Probability <span class="math notranslate nohighlight">\(P(A, B)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-probability-p-a">5.1.6. Marginal Probability <span class="math notranslate nohighlight">\(P(A)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-random-variables">5.1.7. Independent Random Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-probability-p-a-b">5.1.8. Conditional Probability <span class="math notranslate nohighlight">\(P(A | B)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#product-rule-p-a-b">5.1.9. Product Rule <span class="math notranslate nohighlight">\(P(A, B)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chain-rule-p-a-b-c">5.1.10. Chain Rule <span class="math notranslate nohighlight">\(P(A, B, C)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inclusion-exclusion-principle-p-a-vee-b">5.1.11. Inclusion-Exclusion Principle <span class="math notranslate nohighlight">\(P(A \vee B)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-theorem-p-a-b">5.1.12. Bayes Theorem <span class="math notranslate nohighlight">\(P(A|B)\)</span></a></li>
 </ul>
             </nav>
         </div>
@@ -441,10 +471,10 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="probability">
-<h1><span class="section-number">4.1. </span>Probability<a class="headerlink" href="#probability" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">5.1. </span>Probability<a class="headerlink" href="#probability" title="Permalink to this headline">#</a></h1>
 <p>Probability allows us to talk about uncertainty, in certain terms. Once, we are able to quantify uncertainties, we can deterministically make deductions about the future. The language of statistics also allows us to talk about uncertainty in uncertain but tractable terms that we can reason about.</p>
 <section id="random-variable">
-<h2><span class="section-number">4.1.1. </span>Random Variable<a class="headerlink" href="#random-variable" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1.1. </span>Random Variable<a class="headerlink" href="#random-variable" title="Permalink to this headline">#</a></h2>
 <p>A <strong>random variable</strong> is a mathematical formalization of an abstract quantity that has some degree of uncertainty associated with the values it may take on.
 The set of all possible values that a random variable can take on is called its <strong>range</strong>.</p>
 <p>A random variable is very much similar to a variable in computer programming. <strong>In the context of <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, a random variable is a column or feature in a <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>.</strong></p>
@@ -518,7 +548,7 @@ The set of all possible values that a random variable can take on is called its 
 <p>The ranges of <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> are <span class="math notranslate nohighlight">\(\{H, T\}\)</span> and <span class="math notranslate nohighlight">\(\{1, 2, 3, 4, 5, 6\}\)</span> respectively. It is worth repeating for emphasis that the ranges of the two variables is independent of observed data, since the observed data is a limited sample.</p>
 </section>
 <section id="experiment-outcome-omega-and-sample-space-omega">
-<h2><span class="section-number">4.1.2. </span>Experiment, Outcome <span class="math notranslate nohighlight">\(\omega\)</span> and Sample Space <span class="math notranslate nohighlight">\(\Omega\)</span><a class="headerlink" href="#experiment-outcome-omega-and-sample-space-omega" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1.2. </span>Experiment, Outcome <span class="math notranslate nohighlight">\(\omega\)</span> and Sample Space <span class="math notranslate nohighlight">\(\Omega\)</span><a class="headerlink" href="#experiment-outcome-omega-and-sample-space-omega" title="Permalink to this headline">#</a></h2>
 <p>An <strong>outcome</strong>, denoted by <span class="math notranslate nohighlight">\(\omega\)</span>, is the set of values that one or more random variables take on as a result of an <strong>experiment</strong>.</p>
 <p>An <strong>experiment</strong> is a process that yields outcomes out of set of all possible outcomes.</p>
 <p>The <strong>sample space</strong>, denoted by <span class="math notranslate nohighlight">\(\Omega\)</span>, is the set of all possible outcomes.</p>
@@ -667,7 +697,7 @@ The set of all possible values that a random variable can take on is called its 
 <p>This means that the sample space <span class="math notranslate nohighlight">\(\Omega\)</span> is not the set of all observed outcomes. This is despite the fact that many observed outcomes are observed more than once. The missing outcome, that is never observed, is <span class="math notranslate nohighlight">\(w_{12} = (T, 6)\)</span>.</p>
 </section>
 <section id="probability-model-p-x">
-<h2><span class="section-number">4.1.3. </span>Probability Model <span class="math notranslate nohighlight">\(P(X)\)</span><a class="headerlink" href="#probability-model-p-x" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1.3. </span>Probability Model <span class="math notranslate nohighlight">\(P(X)\)</span><a class="headerlink" href="#probability-model-p-x" title="Permalink to this headline">#</a></h2>
 <p>Probability model is a function that assigns a probability score <span class="math notranslate nohighlight">\(P(\omega_i)\)</span> to each possible outcome <span class="math notranslate nohighlight">\(\omega_i\)</span> for every <span class="math notranslate nohighlight">\(\omega_i \in \Omega\)</span> such that</p>
 <!-- $ 0 \lt P(\omega_i) \lt 1 $ and $\sum_{\omega \in \Omega} P(\omega_i) = 1$. -->
 <!-- such that  -->
@@ -818,7 +848,7 @@ The set of all possible values that a random variable can take on is called its 
 </div>
 </section>
 <section id="probability-of-an-event-p-phi">
-<h2><span class="section-number">4.1.4. </span>Probability of an Event <span class="math notranslate nohighlight">\(P(\phi)\)</span><a class="headerlink" href="#probability-of-an-event-p-phi" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1.4. </span>Probability of an Event <span class="math notranslate nohighlight">\(P(\phi)\)</span><a class="headerlink" href="#probability-of-an-event-p-phi" title="Permalink to this headline">#</a></h2>
 <p>An event <span class="math notranslate nohighlight">\(\phi\)</span> is a set of possible worlds <span class="math notranslate nohighlight">\(\{\omega_i, \omega_j, ... \omega_n\}\)</span>. In other words, an event <span class="math notranslate nohighlight">\(\phi\)</span> is a subset of <span class="math notranslate nohighlight">\(\Omega\)</span> i.e. <span class="math notranslate nohighlight">\(\phi \subset \Omega\)</span></p>
 <p>If we continue with the example of rolling a die, we can define an event <span class="math notranslate nohighlight">\(\phi\)</span> as the set of all possible worlds where the die rolls an even number. From the table above, we can see that there are three possible worlds where the die rolls an even number.</p>
 <p>Therefore, the event <span class="math notranslate nohighlight">\(\phi\)</span> is the set <span class="math notranslate nohighlight">\(\{\omega_2, \omega_4, \omega_6\}\)</span> or <span class="math notranslate nohighlight">\(\{D=2, D=4, D=6\}\)</span>.</p>
@@ -845,7 +875,7 @@ The set of all possible values that a random variable can take on is called its 
 </div>
 </section>
 <section id="joint-probability-p-a-b">
-<h2><span class="section-number">4.1.5. </span>Joint Probability <span class="math notranslate nohighlight">\(P(A, B)\)</span><a class="headerlink" href="#joint-probability-p-a-b" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1.5. </span>Joint Probability <span class="math notranslate nohighlight">\(P(A, B)\)</span><a class="headerlink" href="#joint-probability-p-a-b" title="Permalink to this headline">#</a></h2>
 <p>Joint probability is the probability of two events occurring together.The joint probability is usually denoted by <span class="math notranslate nohighlight">\(P(A, B)\)</span>, which is shorthand for <span class="math notranslate nohighlight">\(P(A \wedge B)\)</span> read as <em>Probability of <span class="math notranslate nohighlight">\(A\)</span> AND <span class="math notranslate nohighlight">\(B\)</span>.</em></p>
 <p>Note that <span class="math notranslate nohighlight">\(P(A, B) = P(B, A)\)</span> since <span class="math notranslate nohighlight">\(A \wedge B = B \wedge A\)</span>.</p>
 <p>For example, if we are rolling two dice, the joint probability is the probability of rolling a 1 on the first die and a 2 on the second die.</p>
@@ -1227,7 +1257,7 @@ The set of all possible values that a random variable can take on is called its 
 </div>
 </section>
 <section id="marginal-probability-p-a">
-<h2><span class="section-number">4.1.6. </span>Marginal Probability <span class="math notranslate nohighlight">\(P(A)\)</span><a class="headerlink" href="#marginal-probability-p-a" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1.6. </span>Marginal Probability <span class="math notranslate nohighlight">\(P(A)\)</span><a class="headerlink" href="#marginal-probability-p-a" title="Permalink to this headline">#</a></h2>
 <p>Because most data sets are multi-dimensional i.e. involving multiple random variables, we can sometimes find ourselves in a situation where we want to know the joint probability <span class="math notranslate nohighlight">\(P(A, B)\)</span> of two random variables <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> but we don’t know <span class="math notranslate nohighlight">\(P(A)\)</span> or <span class="math notranslate nohighlight">\(P(B)\)</span>. In such cases, we compute the <strong>marginal probability</strong> of one variable from joint probability over multiple random variables.</p>
 <p>Marginalizing is the process of summing over one or more variables (say B) to get the probability of another variable (say A). This summing takes place over the joint probability table.</p>
 <div class="math notranslate nohighlight">
@@ -1524,7 +1554,7 @@ Name: P(C), dtype: float64
 </div>
 </section>
 <section id="independent-random-variables">
-<h2><span class="section-number">4.1.7. </span>Independent Random Variables<a class="headerlink" href="#independent-random-variables" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1.7. </span>Independent Random Variables<a class="headerlink" href="#independent-random-variables" title="Permalink to this headline">#</a></h2>
 <p>Random variables can be either independent or dependent. If two random variables are independent, then the value of one random variable does not affect the value of the other random variable.</p>
 <p>For example, if we are rolling two dice, we can use two random variables to represent the numbers that we roll. The two random variables are independent because the value of one die does not affect the value of the other die. If two random variables are dependent, then the value of one random variable does affect the value of the other random variable. For example, if we are measuring the temperature and the humidity, we can use two random variables to represent the temperature and the humidity. The two random variables are dependent because the temperature affects the humidity and the humidity affects the temperature.</p>
 <p>More formally, <strong>two random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are independent if and only if <span class="math notranslate nohighlight">\(P(X, Y) = P(X) \cdot P(Y)\)</span></strong>.</p>
@@ -1924,7 +1954,7 @@ Name: P(C), dtype: float64
 </div>
 </section>
 <section id="conditional-probability-p-a-b">
-<h2><span class="section-number">4.1.8. </span>Conditional Probability <span class="math notranslate nohighlight">\(P(A | B)\)</span><a class="headerlink" href="#conditional-probability-p-a-b" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1.8. </span>Conditional Probability <span class="math notranslate nohighlight">\(P(A | B)\)</span><a class="headerlink" href="#conditional-probability-p-a-b" title="Permalink to this headline">#</a></h2>
 <p>Conditional probability is the probability of one event occurring given that another event has occurred.</p>
 <p>The conditional probability is usually denoted by <span class="math notranslate nohighlight">\(P(A | B)\)</span> and is defined as:</p>
 <div class="math notranslate nohighlight">
@@ -2185,7 +2215,7 @@ Name: P(D | C), dtype: float64
 </div>
 </section>
 <section id="product-rule-p-a-b">
-<h2><span class="section-number">4.1.9. </span>Product Rule <span class="math notranslate nohighlight">\(P(A, B)\)</span><a class="headerlink" href="#product-rule-p-a-b" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1.9. </span>Product Rule <span class="math notranslate nohighlight">\(P(A, B)\)</span><a class="headerlink" href="#product-rule-p-a-b" title="Permalink to this headline">#</a></h2>
 <p>Rearranging the definition of conditional probability, we get the product rule:</p>
 <div class="math notranslate nohighlight">
 \[ P(A, B) = P(A | B) \cdot P(B) \]</div>
@@ -2197,7 +2227,7 @@ Name: P(D | C), dtype: float64
 \[ P(A, B) = P(A | B) \cdot P(B) = P(B | A) \cdot P(A)\]</div>
 </section>
 <section id="chain-rule-p-a-b-c">
-<h2><span class="section-number">4.1.10. </span>Chain Rule <span class="math notranslate nohighlight">\(P(A, B, C)\)</span><a class="headerlink" href="#chain-rule-p-a-b-c" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1.10. </span>Chain Rule <span class="math notranslate nohighlight">\(P(A, B, C)\)</span><a class="headerlink" href="#chain-rule-p-a-b-c" title="Permalink to this headline">#</a></h2>
 <p>The chain rule is a generalization of the product rule to more than two events.</p>
 <p><span class="math notranslate nohighlight">\( P(A, B, C) = P(A | B, C) \cdot P(B, C) \)</span></p>
 <p><span class="math notranslate nohighlight">\(P(A, B, C) = P(A | B, C) \cdot P(B | C) \cdot P(C)\)</span></p>
@@ -2205,7 +2235,7 @@ Name: P(D | C), dtype: float64
 <p><strong>Chain rule essentially allows expressing the joint probability of multiple random variables as a product of conditional probabilities.</strong> This is useful because conditional probabilities are often easier to estimate from data than joint probabilities.</p>
 </section>
 <section id="inclusion-exclusion-principle-p-a-vee-b">
-<h2><span class="section-number">4.1.11. </span>Inclusion-Exclusion Principle <span class="math notranslate nohighlight">\(P(A \vee B)\)</span><a class="headerlink" href="#inclusion-exclusion-principle-p-a-vee-b" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1.11. </span>Inclusion-Exclusion Principle <span class="math notranslate nohighlight">\(P(A \vee B)\)</span><a class="headerlink" href="#inclusion-exclusion-principle-p-a-vee-b" title="Permalink to this headline">#</a></h2>
 <p>Inclusion-Exclusion Principle is a way of calculating the probability of two events occurring i.e. <span class="math notranslate nohighlight">\( P(A=a ~\text{OR}~ B=b) \)</span> denoted generally as <span class="math notranslate nohighlight">\(P(A = a \vee B = b)\)</span>.</p>
 <p>It is defined as:</p>
 <div class="math notranslate nohighlight">
@@ -2218,7 +2248,7 @@ Name: P(D | C), dtype: float64
 <p><span class="math notranslate nohighlight">\( = 0.75\)</span></p>
 </section>
 <section id="bayes-theorem-p-a-b">
-<h2><span class="section-number">4.1.12. </span>Bayes Theorem <span class="math notranslate nohighlight">\(P(A|B)\)</span><a class="headerlink" href="#bayes-theorem-p-a-b" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.1.12. </span>Bayes Theorem <span class="math notranslate nohighlight">\(P(A|B)\)</span><a class="headerlink" href="#bayes-theorem-p-a-b" title="Permalink to this headline">#</a></h2>
 <p>Bayes theorem is a way of calculating conditional probability. For example, if we are rolling two dice, Bayes theorem can be used to calculate the probability of rolling a 1 on the first die given that we rolled a 2 on the second die.</p>
 <div class="math notranslate nohighlight">
 \[ P(A | B) = \frac{P(B | A) \cdot P(A)}{P(B)} \]</div>
@@ -2299,7 +2329,7 @@ $$ Corr(X, Y) = \frac{Cov(X, Y)}{\sqrt{Var(X) \cdot Var(Y)}} $$ --><p>Bayes Theo
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Prob, Stats and Logs</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Prob, Stats and Logs</p>
       </div>
     </a>
     <a class="right-next"
@@ -2307,7 +2337,7 @@ $$ Corr(X, Y) = \frac{Cov(X, Y)}{\sqrt{Var(X) \cdot Var(Y)}} $$ --><p>Bayes Theo
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4.2. </span>Statistics</p>
+        <p class="prev-next-title"><span class="section-number">5.2. </span>Statistics</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -2329,18 +2359,18 @@ $$ Corr(X, Y) = \frac{Cov(X, Y)}{\sqrt{Var(X) \cdot Var(Y)}} $$ --><p>Bayes Theo
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variable">4.1.1. Random Variable</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-outcome-omega-and-sample-space-omega">4.1.2. Experiment, Outcome <span class="math notranslate nohighlight">\(\omega\)</span> and Sample Space <span class="math notranslate nohighlight">\(\Omega\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-model-p-x">4.1.3. Probability Model <span class="math notranslate nohighlight">\(P(X)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-of-an-event-p-phi">4.1.4. Probability of an Event <span class="math notranslate nohighlight">\(P(\phi)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-probability-p-a-b">4.1.5. Joint Probability <span class="math notranslate nohighlight">\(P(A, B)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-probability-p-a">4.1.6. Marginal Probability <span class="math notranslate nohighlight">\(P(A)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-random-variables">4.1.7. Independent Random Variables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-probability-p-a-b">4.1.8. Conditional Probability <span class="math notranslate nohighlight">\(P(A | B)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#product-rule-p-a-b">4.1.9. Product Rule <span class="math notranslate nohighlight">\(P(A, B)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chain-rule-p-a-b-c">4.1.10. Chain Rule <span class="math notranslate nohighlight">\(P(A, B, C)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inclusion-exclusion-principle-p-a-vee-b">4.1.11. Inclusion-Exclusion Principle <span class="math notranslate nohighlight">\(P(A \vee B)\)</span></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-theorem-p-a-b">4.1.12. Bayes Theorem <span class="math notranslate nohighlight">\(P(A|B)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-variable">5.1.1. Random Variable</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-outcome-omega-and-sample-space-omega">5.1.2. Experiment, Outcome <span class="math notranslate nohighlight">\(\omega\)</span> and Sample Space <span class="math notranslate nohighlight">\(\Omega\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-model-p-x">5.1.3. Probability Model <span class="math notranslate nohighlight">\(P(X)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-of-an-event-p-phi">5.1.4. Probability of an Event <span class="math notranslate nohighlight">\(P(\phi)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-probability-p-a-b">5.1.5. Joint Probability <span class="math notranslate nohighlight">\(P(A, B)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marginal-probability-p-a">5.1.6. Marginal Probability <span class="math notranslate nohighlight">\(P(A)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#independent-random-variables">5.1.7. Independent Random Variables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conditional-probability-p-a-b">5.1.8. Conditional Probability <span class="math notranslate nohighlight">\(P(A | B)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#product-rule-p-a-b">5.1.9. Product Rule <span class="math notranslate nohighlight">\(P(A, B)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chain-rule-p-a-b-c">5.1.10. Chain Rule <span class="math notranslate nohighlight">\(P(A, B, C)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inclusion-exclusion-principle-p-a-vee-b">5.1.11. Inclusion-Exclusion Principle <span class="math notranslate nohighlight">\(P(A \vee B)\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-theorem-p-a-b">5.1.12. Bayes Theorem <span class="math notranslate nohighlight">\(P(A|B)\)</span></a></li>
 </ul>
   </nav></div>
 
@@ -2364,7 +2394,7 @@ By Syed Fahad Sultan
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>6.7. Regression &#8212; CSC-272 Data Mining</title>
+    <title>8.7. Regression &#8212; Data Science for Machine Learning</title>
   
   
   
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -72,8 +73,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '3_problems_in/42_regression';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="7. Unsupervised Learning" href="20_unsupervised.html" />
-    <link rel="prev" title="6.6. Classification" href="41_classification.html" />
+    <link rel="next" title="9. Unsupervised Learning" href="20_unsupervised.html" />
+    <link rel="prev" title="8.6. Classification" href="41_classification.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -160,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    CSC-272 Data Mining (Fall 2023)
+                    CSC-272 Data Mining (Fall 2024)
                 </a>
             </li>
         </ul>
@@ -187,9 +188,10 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming for Data Science</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/10_dataops.html">1. Vectorized Operations on Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas1.html">1.1. Pandas I: Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas1.html">1.1. Pandas I: Preliminaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas2.html">1.2. Pandas II: Selection, Filtering and Dropping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas3.html">1.3. Pandas III: Aggregation, Merging and Concatenation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas3.html">1.3. Pandas III - Data Manipulation and Wrangling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas4.html">1.4. Pandas IV: Aggregation, Merging and Concatenation <br/></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/40_modalities.html">2. Encoding and Representation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -198,48 +200,76 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../1_programming/43_modalities.html">2.3. Modalities of Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/20_visualization.html">3. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/21_univariate.html">3.1. Univariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/22_multivariate.html">3.2. Multivariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/23_dosdonts.html">3.3. Dos and Donts of Visualization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/30_collecting.html">3. Collecting Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/31_apis.html">3.1. APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/32_scraping.html">3.2. Web Scraping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/20_visualization.html">4. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/21_univariate.html">4.1. Univariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/22_multivariate.html">4.2. Multivariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/23_dosdonts.html">4.3. Dos and Donts of Visualization</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mathematics for Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">4. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">4.1. Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">4.2. Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">4.3. Logarithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">5. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">5.1. Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">5.2. Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">5.3. Logarithms</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">5. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">5.1. Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">5.2. Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">5.3. Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">6. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">6.1. Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">6.2. Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">6.3. Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/50_calculus.html">7. Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/51_integral.html">7.1. Integral Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/52_differential.html">7.2. Differential Calculus</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems in Data Science</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="40_supervised.html">6. Supervised Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="41_classification.html">6.6. Classification</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">6.7. Regression</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="40_supervised.html">8. Supervised Learning</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="41_classification.html">8.6. Classification</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">8.7. Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="20_unsupervised.html">7. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="21_clustering.html">7.1. Clustering</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="20_unsupervised.html">9. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="21_clustering.html">9.1. Clustering</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="30_reinforcement.html">10. Reinforcement Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Models in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">8. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">8.1. Naive Bayes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">11. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">11.1. Naive Bayes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">9. Generalized Linear Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">10. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">12. Generalized Linear Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">13. Neural Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithms in Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/em.html">14. Expectation Maximization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/gradient_descent.html">15. Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/backprop.html">16. Backpropogation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems with Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/10_representation.html">17. Representation Matters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/40_feedback.html">18. Positive Feedback Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/20_boundaries.html">19. Decision Boundaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/30_incentives.html">20. Majority Rule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications of Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/40_recommendation.html">21. Recommendation Engine</a></li>
 </ul>
 
     </div>
@@ -294,7 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/fahadsultan/datascience_ml/blob/main/3_problems_in/42_regression.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/fahadsultan/csc272/blob/main/3_problems_in/42_regression.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -417,25 +447,25 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">6.7.1. Linear Regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#univariate-linear-regression">6.7.1.1. Univariate Linear Regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errors-in-regression">6.7.1.2. Errors in Regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#residuals">6.7.1.2.1. Residuals</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-absolute-error">6.7.1.2.2. Mean Absolute Error</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squared-error">6.7.1.2.3. Mean Squared Error</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#root-mean-squared-error">6.7.1.2.4. Root Mean Squared Error</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#text-r-2">6.7.1.2.5. <span class="math notranslate nohighlight">\(\text{R}^2\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">8.7.1. Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#univariate-linear-regression">8.7.1.1. Univariate Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errors-in-regression">8.7.1.2. Errors in Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#residuals">8.7.1.2.1. Residuals</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-absolute-error">8.7.1.2.2. Mean Absolute Error</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squared-error">8.7.1.2.3. Mean Squared Error</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#root-mean-squared-error">8.7.1.2.4. Root Mean Squared Error</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#text-r-2">8.7.1.2.5. <span class="math notranslate nohighlight">\(\text{R}^2\)</span></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-regression">6.7.2. Multivariate Regression</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-model">6.7.3. Interpreting the Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression">6.7.4. Polynomial Regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">6.7.4.1. Code Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-regression">8.7.2. Multivariate Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-model">8.7.3. Interpreting the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression">8.7.4. Polynomial Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">8.7.4.1. Code Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-vs-overfitting">6.7.5. Underfitting vs. Overfitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-vs-overfitting">8.7.5. Underfitting vs. Overfitting</a></li>
 </ul>
             </nav>
         </div>
@@ -448,24 +478,24 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="regression">
-<h1><span class="section-number">6.7. </span>Regression<a class="headerlink" href="#regression" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">8.7. </span>Regression<a class="headerlink" href="#regression" title="Permalink to this headline">#</a></h1>
 <p>Recall that all supervised learning is based on the assumption that there is a relationship between the input variables <span class="math notranslate nohighlight">\(X\)</span> and the output variable <span class="math notranslate nohighlight">\(y\)</span> i.e.</p>
 <div class="math notranslate nohighlight">
 \[\textbf{y} = f(\textbf{X})\]</div>
 <p>where <span class="math notranslate nohighlight">\(f\)</span> is some unknown function.</p>
 <p><span class="math notranslate nohighlight">\(X\)</span> here simply is some data that we have as a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> whereas <span class="math notranslate nohighlight">\(y\)</span> here is the target variable, one value for each observation, that we want to predict, as of type <code class="docutils literal notranslate"><span class="pre">pd.Series</span></code>.</p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/supervised2.png"><img alt="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/supervised2.png" class="align-center" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/supervised2.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/supervised2.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/supervised2.png" class="align-center" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/supervised2.png" style="width: 80%;" /></a>
 <p>The form of <strong>supervised learning</strong> we have talked about so far is <strong>classification</strong>. As discussed previously, in classification, the output variable <span class="math notranslate nohighlight">\(y\)</span> is a <strong>discrete target variable</strong> e.g. sentiment <span class="math notranslate nohighlight">\(\in\)</span> {positive, neutral or negative},  ring <span class="math notranslate nohighlight">\(\in\)</span> {A, B} or diagnosis <span class="math notranslate nohighlight">\(\in\)</span> {malignant, benign} etc.</p>
 <p>The other type of supervised learning that we will talk about in this notebook is called <strong>Regression</strong>. In regression, the target variable is to predict a <strong>continuous target variable</strong> i.e. $<span class="math notranslate nohighlight">\(\mathbf{y} \in \mathbb{R^N}\)</span>$.</p>
 <p>For example, predicting the stock price of a publicly listed company, predicting the price of a house in dollars, or predicting the average surface temperature on Earth next year are all examples of regression problems.</p>
 <p>Note that the <strong>splitting of the data into training and test sets is exactly the same as in classification</strong>. The only difference is that the target variable is continuous instead of discrete.</p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/training.png"><img alt="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/training.png" class="align-center" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/training.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/training.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/training.png" class="align-center" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/training.png" style="width: 70%;" /></a>
 <section id="linear-regression">
-<h2><span class="section-number">6.7.1. </span>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.7.1. </span>Linear Regression<a class="headerlink" href="#linear-regression" title="Permalink to this headline">#</a></h2>
 <p>Linear Regression is the simplest solution to any regression problem.</p>
 <p>In linear regression, the relationship between the input variable(s) <span class="math notranslate nohighlight">\(X\)</span> and the output variable <span class="math notranslate nohighlight">\(y\)</span> is assumed to be a linear.</p>
 <section id="univariate-linear-regression">
-<h3><span class="section-number">6.7.1.1. </span>Univariate Linear Regression<a class="headerlink" href="#univariate-linear-regression" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">8.7.1.1. </span>Univariate Linear Regression<a class="headerlink" href="#univariate-linear-regression" title="Permalink to this headline">#</a></h3>
 <p>For simplicity, let’s assume we only have one input variable <span class="math notranslate nohighlight">\(x\)</span> and one output variable <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <p>Our goal, then is to find a linear function <span class="math notranslate nohighlight">\(f\)</span> that maps <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(y\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -578,16 +608,16 @@ document.write(`
 </div>
 </section>
 <section id="errors-in-regression">
-<h3><span class="section-number">6.7.1.2. </span>Errors in Regression<a class="headerlink" href="#errors-in-regression" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">8.7.1.2. </span>Errors in Regression<a class="headerlink" href="#errors-in-regression" title="Permalink to this headline">#</a></h3>
 <p>The evaluation of regression models is done similar to classification models. The model is trained on the training set and then evaluated on the test set.</p>
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/testing.png"><img alt="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/testing.png" class="align-center" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/testing.png" style="width: 70%;" /></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/testing.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/testing.png" class="align-center" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/testing.png" style="width: 70%;" /></a>
 <p>The difference is that the training has an <strong>internal evaluation metric that is minimized to find the values of coefficients such as <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(b\)</span> that best fit the training data</strong>.</p>
 <p>For example, model-1 and model-2 above would yield different scores for how well they fit the training data. The model with the lowest score is the one that best fits the training data.</p>
 <p>Once the model is trained, the test set is used to evaluate the model.</p>
 <p>The internal evaluation metrics for linear regression during training are similar to the ones used in extrinsic evaluation on the test set.</p>
 <p>The most common evaluation metrics for linear regression are as follows:</p>
 <section id="residuals">
-<h4><span class="section-number">6.7.1.2.1. </span>Residuals<a class="headerlink" href="#residuals" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">8.7.1.2.1. </span>Residuals<a class="headerlink" href="#residuals" title="Permalink to this headline">#</a></h4>
 <p>Residuals are the difference between the true values of y and the predicted values of y.</p>
 <div class="math notranslate nohighlight">
 \[\text{Residual}_i = y_i - \hat{y}_i\]</div>
@@ -625,7 +655,7 @@ document.write(`
 </div>
 </section>
 <section id="mean-absolute-error">
-<h4><span class="section-number">6.7.1.2.2. </span>Mean Absolute Error<a class="headerlink" href="#mean-absolute-error" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">8.7.1.2.2. </span>Mean Absolute Error<a class="headerlink" href="#mean-absolute-error" title="Permalink to this headline">#</a></h4>
 <p>The Mean Absolute Error (or MAE) is the average of the absolute differences between predictions and actual values. It gives an idea of how wrong the predictions were. The measure gives an idea of the magnitude of the error, but no idea of the direction (e.g. over or under predicting).</p>
 <div class="math notranslate nohighlight">
 \[MAE = \frac{1}{n}\sum_{i=1}^{n}|\text{residual}_i|\]</div>
@@ -691,7 +721,7 @@ document.write(`
 </div>
 </section>
 <section id="mean-squared-error">
-<h4><span class="section-number">6.7.1.2.3. </span>Mean Squared Error<a class="headerlink" href="#mean-squared-error" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">8.7.1.2.3. </span>Mean Squared Error<a class="headerlink" href="#mean-squared-error" title="Permalink to this headline">#</a></h4>
 <p>The Mean Squared Error (or MSE) is much like the mean absolute error in that it provides a gross idea of the magnitude of error.</p>
 <div class="math notranslate nohighlight">
 \[MSE = \frac{1}{n}\sum_{i=1}^{n}(\text{Residual}_i)^2\]</div>
@@ -719,7 +749,7 @@ document.write(`
 </div>
 </section>
 <section id="root-mean-squared-error">
-<h4><span class="section-number">6.7.1.2.4. </span>Root Mean Squared Error<a class="headerlink" href="#root-mean-squared-error" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">8.7.1.2.4. </span>Root Mean Squared Error<a class="headerlink" href="#root-mean-squared-error" title="Permalink to this headline">#</a></h4>
 <p>Taking the square root of the mean squared error converts the units back to the original units of the output variable and can be meaningful for description and presentation. This is called the Root Mean Squared Error (or RMSE).</p>
 <div class="math notranslate nohighlight">
 \[RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(\text{Residual}_i)^2}\]</div>
@@ -747,7 +777,7 @@ document.write(`
 </div>
 </section>
 <section id="text-r-2">
-<h4><span class="section-number">6.7.1.2.5. </span><span class="math notranslate nohighlight">\(\text{R}^2\)</span><a class="headerlink" href="#text-r-2" title="Permalink to this headline">#</a></h4>
+<h4><span class="section-number">8.7.1.2.5. </span><span class="math notranslate nohighlight">\(\text{R}^2\)</span><a class="headerlink" href="#text-r-2" title="Permalink to this headline">#</a></h4>
 <p>The <span class="math notranslate nohighlight">\(\text{R}^2\)</span> (or R Squared) metric provides an indication of the goodness of fit of a set of predictions to the actual values. In statistical literature, this measure is called the coefficient of determination. This is a value between 0 and 1 for no-fit and perfect fit respectively.</p>
 <div class="math notranslate nohighlight">
 \[\text{R}^2 = 1 - \frac{\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}{\sum_{i=1}^{n}(y_i - \bar{y})^2}\]</div>
@@ -775,7 +805,7 @@ document.write(`
 </section>
 </section>
 <section id="multivariate-regression">
-<h2><span class="section-number">6.7.2. </span>Multivariate Regression<a class="headerlink" href="#multivariate-regression" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.7.2. </span>Multivariate Regression<a class="headerlink" href="#multivariate-regression" title="Permalink to this headline">#</a></h2>
 <p>Multiple linear regression (MLR), also known simply as multiple regression,  uses multiple (&gt; 1) input variables (<span class="math notranslate nohighlight">\(X\)</span>) to predict the outcome of a target variable (<span class="math notranslate nohighlight">\(y \in \mathbb{R}\)</span>) by fitting a linear equation to observed data.</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{y} = f(\mathbf{X})\]</div>
@@ -1049,7 +1079,7 @@ R2:   0.62
 </div>
 </section>
 <section id="interpreting-the-model">
-<h2><span class="section-number">6.7.3. </span>Interpreting the Model<a class="headerlink" href="#interpreting-the-model" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.7.3. </span>Interpreting the Model<a class="headerlink" href="#interpreting-the-model" title="Permalink to this headline">#</a></h2>
 <p>The model we have trained is a linear function of the form:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\text{MedianHouseValue} = (m_1 \times \text{MedInc}) + (m_2 \times \text{HouseAge}) + \\(m_3 \times \text{AveRooms}) + (m_4 \times \text{AveBedrms}) + \\(m_5 \times \text{Population}) + (m_6 \times \text{AveOccup}) + \\(m_7 \times \text{Longitude}) + (m_8 \times \text{Latitude}) + b\end{split}\]</div>
@@ -1072,7 +1102,7 @@ R2:   0.62
 <p>The plot indicates that <code class="docutils literal notranslate"><span class="pre">AveBedrms</span></code>, <code class="docutils literal notranslate"><span class="pre">MedInc</span></code> and <code class="docutils literal notranslate"><span class="pre">AveRooms</span></code> have the <strong>highest positive relationship</strong> with the Price of the house whereas <code class="docutils literal notranslate"><span class="pre">AveRooms</span></code>, <code class="docutils literal notranslate"><span class="pre">Latitude</span></code>, <code class="docutils literal notranslate"><span class="pre">Longitude</span></code> have the <strong>strongest negative relationship</strong> with the target variable Price of the house.</p>
 </section>
 <section id="polynomial-regression">
-<h2><span class="section-number">6.7.4. </span>Polynomial Regression<a class="headerlink" href="#polynomial-regression" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.7.4. </span>Polynomial Regression<a class="headerlink" href="#polynomial-regression" title="Permalink to this headline">#</a></h2>
 <p>Polynomial functions are functions that have the form:</p>
 <div class="math notranslate nohighlight">
 \[f(x) = b + m_1 x + m_2 x^2 + m_3 x^3 + ... + m_n x^n\]</div>
@@ -1104,7 +1134,7 @@ m_2 \\
 m_D \\
 \end{bmatrix} + b\end{split}\]</div>
 <section id="code-example">
-<h3><span class="section-number">6.7.4.1. </span>Code Example<a class="headerlink" href="#code-example" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">8.7.4.1. </span>Code Example<a class="headerlink" href="#code-example" title="Permalink to this headline">#</a></h3>
 <p>Let’s implement polynomial regression on the Average Land Temperature dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1201,7 +1231,7 @@ m_D \\
 </section>
 </section>
 <section id="underfitting-vs-overfitting">
-<h2><span class="section-number">6.7.5. </span>Underfitting vs. Overfitting<a class="headerlink" href="#underfitting-vs-overfitting" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.7.5. </span>Underfitting vs. Overfitting<a class="headerlink" href="#underfitting-vs-overfitting" title="Permalink to this headline">#</a></h2>
 <p>This example demonstrates the problems of underfitting and overfitting and how we can use linear regression with polynomial features to approximate nonlinear functions.</p>
 <p>The plot shows the function that we want to approximate, which is a part of the cosine function. In addition, the samples from the real function and the approximations of different models are displayed. The models have polynomial features of different degrees. We can see that a linear function (polynomial with degree 1) is not sufficient to fit the training samples. This is called <strong>underfitting</strong>.</p>
 <p>A polynomial of degree 4 approximates the true function almost perfectly. However, for higher degrees the model will overfit the training data, i.e. it learns the noise of the training data. This is called <strong>overfitting</strong>. We evaluate quantitatively overfitting / underfitting by using cross-validation.</p>
@@ -1333,7 +1363,7 @@ m_D \\
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">6.6. </span>Classification</p>
+        <p class="prev-next-title"><span class="section-number">8.6. </span>Classification</p>
       </div>
     </a>
     <a class="right-next"
@@ -1341,7 +1371,7 @@ m_D \\
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Unsupervised Learning</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Unsupervised Learning</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1363,25 +1393,25 @@ m_D \\
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">6.7.1. Linear Regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#univariate-linear-regression">6.7.1.1. Univariate Linear Regression</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errors-in-regression">6.7.1.2. Errors in Regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#residuals">6.7.1.2.1. Residuals</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-absolute-error">6.7.1.2.2. Mean Absolute Error</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squared-error">6.7.1.2.3. Mean Squared Error</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#root-mean-squared-error">6.7.1.2.4. Root Mean Squared Error</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#text-r-2">6.7.1.2.5. <span class="math notranslate nohighlight">\(\text{R}^2\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-regression">8.7.1. Linear Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#univariate-linear-regression">8.7.1.1. Univariate Linear Regression</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#errors-in-regression">8.7.1.2. Errors in Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#residuals">8.7.1.2.1. Residuals</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-absolute-error">8.7.1.2.2. Mean Absolute Error</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squared-error">8.7.1.2.3. Mean Squared Error</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#root-mean-squared-error">8.7.1.2.4. Root Mean Squared Error</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#text-r-2">8.7.1.2.5. <span class="math notranslate nohighlight">\(\text{R}^2\)</span></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-regression">6.7.2. Multivariate Regression</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-model">6.7.3. Interpreting the Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression">6.7.4. Polynomial Regression</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">6.7.4.1. Code Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multivariate-regression">8.7.2. Multivariate Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-the-model">8.7.3. Interpreting the Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-regression">8.7.4. Polynomial Regression</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#code-example">8.7.4.1. Code Example</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-vs-overfitting">6.7.5. Underfitting vs. Overfitting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#underfitting-vs-overfitting">8.7.5. Underfitting vs. Overfitting</a></li>
 </ul>
   </nav></div>
 
@@ -1405,7 +1435,7 @@ By Syed Fahad Sultan
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

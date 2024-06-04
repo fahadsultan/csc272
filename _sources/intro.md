@@ -103,11 +103,11 @@ Course week. I am in my office most weekdays from 9 AM - 5 PM and have an open-d
 
 ## About the Course
  
-Course website: **[https://fahadsultan.com/datascience_ml](https://fahadsultan.com/datascience_ml)**
+Course website: **[https://fahadsultan.com/csc272](https://fahadsultan.com/csc272)**
 
-The **[Syllabus](https://fahadsultan.com/datascience_ml/syllabus/index.html)** is available on the course website. In particular, please make sure to read the **[Grading](https://fahadsultan.com/datascience_ml/syllabus/grading.html)**, **[Academic Integrity](https://fahadsultan.com/datascience_ml/syllabus/integrity.html)** and **[Textbook](https://fahadsultan.com/datascience_ml/syllabus/textbook.html)** sections carefully.
+The **[Syllabus](https://fahadsultan.com/csc272/syllabus/index.html)** is available on the course website. In particular, please make sure to read the **[Grading](https://fahadsultan.com/csc272/syllabus/grading.html)**, **[Academic Integrity](https://fahadsultan.com/csc272/syllabus/integrity.html)** and **[Textbook](https://fahadsultan.com/csc272/syllabus/textbook.html)** sections carefully.
 
-Last but not least, please go over the **[Course Project](https://fahadsultan.com/datascience_ml/syllabus/policies.html)** in detail. The project is a **major component** of the course and will be due at the end of the semester. 
+Last but not least, please go over the **[Course Project](https://fahadsultan.com/csc272/syllabus/policies.html)** in detail. The project is a **major component** of the course and will be due at the end of the semester. 
 
 All of the course content will be posted on this website.
 
@@ -179,7 +179,7 @@ Please answer questions and participate in discussions during class
 
 <i><u>**Everything is tentative and subject to change**</u></i>
 
-```{figure} https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/complaints.jpeg
+```{figure} https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/complaints.jpeg
 ---
 width: 50%
 align: right

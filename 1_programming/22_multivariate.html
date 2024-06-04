@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3.2. Multivariate Visualizations &#8212; CSC-272 Data Mining</title>
+    <title>4.2. Multivariate Visualizations &#8212; Data Science for Machine Learning</title>
   
   
   
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -70,8 +71,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '1_programming/22_multivariate';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3.3. Dos and Donts of Visualization" href="23_dosdonts.html" />
-    <link rel="prev" title="3.1. Univariate Visualizations" href="21_univariate.html" />
+    <link rel="next" title="4.3. Dos and Donts of Visualization" href="23_dosdonts.html" />
+    <link rel="prev" title="4.1. Univariate Visualizations" href="21_univariate.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -158,7 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    CSC-272 Data Mining (Fall 2023)
+                    CSC-272 Data Mining (Fall 2024)
                 </a>
             </li>
         </ul>
@@ -185,9 +186,10 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming for Data Science</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="10_dataops.html">1. Vectorized Operations on Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="pandas1.html">1.1. Pandas I: Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas1.html">1.1. Pandas I: Preliminaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas2.html">1.2. Pandas II: Selection, Filtering and Dropping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pandas3.html">1.3. Pandas III: Aggregation, Merging and Concatenation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas3.html">1.3. Pandas III - Data Manipulation and Wrangling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas4.html">1.4. Pandas IV: Aggregation, Merging and Concatenation <br/></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="40_modalities.html">2. Encoding and Representation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -196,48 +198,76 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="43_modalities.html">2.3. Modalities of Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="20_visualization.html">3. Visualizing Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="21_univariate.html">3.1. Univariate Visualizations</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.2. Multivariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="23_dosdonts.html">3.3. Dos and Donts of Visualization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="30_collecting.html">3. Collecting Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="31_apis.html">3.1. APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_scraping.html">3.2. Web Scraping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="20_visualization.html">4. Visualizing Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="21_univariate.html">4.1. Univariate Visualizations</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.2. Multivariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_dosdonts.html">4.3. Dos and Donts of Visualization</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mathematics for Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">4. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">4.1. Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">4.2. Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">4.3. Logarithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">5. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">5.1. Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">5.2. Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">5.3. Logarithms</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">5. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">5.1. Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">5.2. Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">5.3. Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">6. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">6.1. Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">6.2. Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">6.3. Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/50_calculus.html">7. Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/51_integral.html">7.1. Integral Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/52_differential.html">7.2. Differential Calculus</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/40_supervised.html">6. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/41_classification.html">6.6. Classification</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/42_regression.html">6.7. Regression</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/40_supervised.html">8. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/41_classification.html">8.6. Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/42_regression.html">8.7. Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/20_unsupervised.html">7. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/21_clustering.html">7.1. Clustering</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/20_unsupervised.html">9. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/21_clustering.html">9.1. Clustering</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../3_problems_in/30_reinforcement.html">10. Reinforcement Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Models in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">8. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">8.1. Naive Bayes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">11. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">11.1. Naive Bayes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">9. Generalized Linear Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">10. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">12. Generalized Linear Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">13. Neural Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithms in Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/em.html">14. Expectation Maximization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/gradient_descent.html">15. Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/backprop.html">16. Backpropogation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems with Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/10_representation.html">17. Representation Matters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/40_feedback.html">18. Positive Feedback Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/20_boundaries.html">19. Decision Boundaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/30_incentives.html">20. Majority Rule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications of Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/40_recommendation.html">21. Recommendation Engine</a></li>
 </ul>
 
     </div>
@@ -292,7 +322,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/fahadsultan/datascience_ml/blob/main/1_programming/22_multivariate.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/fahadsultan/csc272/blob/main/1_programming/22_multivariate.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -415,19 +445,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-a-numeric-feature-w-r-t-a-categorical-features">3.2.1. Distribution of a numeric feature w.r.t a categorical features</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overlaid-histograms-1-numeric-1-categorical">3.2.1.1. Overlaid Histograms (1 numeric, 1 categorical)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#side-by-side-box-plots">3.2.1.2. Side-by-side box plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-a-numeric-feature-w-r-t-a-categorical-features">4.2.1. Distribution of a numeric feature w.r.t a categorical features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overlaid-histograms-1-numeric-1-categorical">4.2.1.1. Overlaid Histograms (1 numeric, 1 categorical)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#side-by-side-box-plots">4.2.1.2. Side-by-side box plots</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-relationships">3.2.2. Visualizing Relationships</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plots-2-or-more-numeric-features">3.2.2.1. Scatter Plots (2 or more numeric features)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-plots-2-or-more-numeric-features">3.2.2.2. Joint Plots (2 or more numeric features)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hex-plots">3.2.2.3. Hex plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-relationships">4.2.2. Visualizing Relationships</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plots-2-or-more-numeric-features">4.2.2.1. Scatter Plots (2 or more numeric features)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-plots-2-or-more-numeric-features">4.2.2.2. Joint Plots (2 or more numeric features)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hex-plots">4.2.2.3. Hex plots</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-data-line-plot">3.2.3. Temporal Data: Line Plot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-panel-visualizations">3.2.4. Multi-panel Visualizations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-data-line-plot">4.2.3. Temporal Data: Line Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-panel-visualizations">4.2.4. Multi-panel Visualizations</a></li>
 </ul>
             </nav>
         </div>
@@ -440,7 +470,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="multivariate-visualizations">
-<h1><span class="section-number">3.2. </span>Multivariate Visualizations<a class="headerlink" href="#multivariate-visualizations" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4.2. </span>Multivariate Visualizations<a class="headerlink" href="#multivariate-visualizations" title="Permalink to this headline">#</a></h1>
 <p>Up until now, we’ve discussed how to visualize single-feature distributions. Now, let’s understand how to visualize the relationship between more than one features.</p>
 <p>We will continue to use the World Bank dataset, which contains information from 2015/16 about countries around the world. We will use the same features as before: GDP per capita, life expectancy, and population.</p>
 <div class="cell docutils container">
@@ -451,7 +481,7 @@ document.write(`
 
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s1">&#39;whitegrid&#39;</span><span class="p">)</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/data/world_bank.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/fahadsultan/csc272/main/data/world_bank.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -625,10 +655,10 @@ document.write(`
 </div></div></div>
 </div>
 <section id="distribution-of-a-numeric-feature-w-r-t-a-categorical-features">
-<h2><span class="section-number">3.2.1. </span>Distribution of a numeric feature w.r.t a categorical features<a class="headerlink" href="#distribution-of-a-numeric-feature-w-r-t-a-categorical-features" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.2.1. </span>Distribution of a numeric feature w.r.t a categorical features<a class="headerlink" href="#distribution-of-a-numeric-feature-w-r-t-a-categorical-features" title="Permalink to this headline">#</a></h2>
 <p>Let’s start by visualizing the distribution of a numeric feature, across the categories defined by a categorical feature. In other words, we want to visualize the distribution of a numeric feature, separately for each category of another categorical feature.</p>
 <section id="overlaid-histograms-1-numeric-1-categorical">
-<h3><span class="section-number">3.2.1.1. </span>Overlaid Histograms (1 numeric, 1 categorical)<a class="headerlink" href="#overlaid-histograms-1-numeric-1-categorical" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.1.1. </span>Overlaid Histograms (1 numeric, 1 categorical)<a class="headerlink" href="#overlaid-histograms-1-numeric-1-categorical" title="Permalink to this headline">#</a></h3>
 <p>We can use a histogram to visualize the distribution of a numeric variable. To visualize how this distribution differs between the groups created by another categorical variable, we can create a histogram for each group separately.</p>
 <p>In order to create overlaid histograms, we will continue to use <code class="docutils literal notranslate"><span class="pre">sns.histplot</span></code>. The only addition we need to make is to use the <strong><code class="docutils literal notranslate"><span class="pre">hue</span></code> argument to specify the categorical feature</strong> that defines the groups.</p>
 <div class="cell docutils container">
@@ -653,7 +683,7 @@ document.write(`
 <p>Most common statistical tests are designed to answer the question: “Do these two groups differ?” This question is answered by comparing the distributions of the two groups.</p>
 </section>
 <section id="side-by-side-box-plots">
-<h3><span class="section-number">3.2.1.2. </span>Side-by-side box plots<a class="headerlink" href="#side-by-side-box-plots" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.1.2. </span>Side-by-side box plots<a class="headerlink" href="#side-by-side-box-plots" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">col</span> <span class="o">=</span> <span class="s2">&quot;Gross domestic product: </span><span class="si">% g</span><span class="s2">rowth : 2016&quot;</span>
@@ -671,15 +701,15 @@ document.write(`
 </section>
 </section>
 <section id="visualizing-relationships">
-<h2><span class="section-number">3.2.2. </span>Visualizing Relationships<a class="headerlink" href="#visualizing-relationships" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.2.2. </span>Visualizing Relationships<a class="headerlink" href="#visualizing-relationships" title="Permalink to this headline">#</a></h2>
 <p>In addition to visualizing the distribution of features, we often want to understand how two features are related.</p>
 <section id="scatter-plots-2-or-more-numeric-features">
-<h3><span class="section-number">3.2.2.1. </span>Scatter Plots (2 or more numeric features)<a class="headerlink" href="#scatter-plots-2-or-more-numeric-features" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.2.1. </span>Scatter Plots (2 or more numeric features)<a class="headerlink" href="#scatter-plots-2-or-more-numeric-features" title="Permalink to this headline">#</a></h3>
 <p>Scatter plots are one of the most useful tools in representing the relationship between two numerical features. They are particularly important in gauging the strength (correlation) of the relationship between features. Knowledge of these relationships can then motivate decisions in our modeling process.</p>
 <p>In Matplotlib, we use the function plt.scatter to generate a scatter plot. Notice that unlike our examples of plotting single-variable distributions, now we specify sequences of values to be plotted along the x axis and the y axis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/data/world_bank.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/fahadsultan/csc272/main/data/world_bank.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">wb</span><span class="p">,</span> \
                      <span class="n">x</span> <span class="o">=</span><span class="s1">&#39;Adult literacy rate: Female: </span><span class="si">% a</span><span class="s1">ges 15 and older: 2005-14&#39;</span><span class="p">,</span> \
@@ -729,7 +759,7 @@ document.write(`
 </div>
 </section>
 <section id="joint-plots-2-or-more-numeric-features">
-<h3><span class="section-number">3.2.2.2. </span>Joint Plots (2 or more numeric features)<a class="headerlink" href="#joint-plots-2-or-more-numeric-features" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.2.2. </span>Joint Plots (2 or more numeric features)<a class="headerlink" href="#joint-plots-2-or-more-numeric-features" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">sns.jointplot</span></code> creates a visualization with three components: a scatter plot, a histogram of the distribution of x values, and a histogram of the distribution of y values.</p>
 <p>A joint plot visualizes both: relationship and distributions.</p>
 <div class="cell docutils container">
@@ -750,7 +780,7 @@ document.write(`
 </div>
 </section>
 <section id="hex-plots">
-<h3><span class="section-number">3.2.2.3. </span>Hex plots<a class="headerlink" href="#hex-plots" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.2.2.3. </span>Hex plots<a class="headerlink" href="#hex-plots" title="Permalink to this headline">#</a></h3>
 <p><strong>Hex plots</strong> can be thought of as a two dimensional histograms that shows the joint distribution between two variables. This is particularly useful working with very dense data. In a hex plot, the x-y plane is binned into hexagons. Hexagons that are darker in color indicate a greater density of data – that is, there are more datapoints that lie in the region enclosed by the hexagon.</p>
 <p>We can generate a hex plot using <code class="docutils literal notranslate"><span class="pre">sns.jointplot</span></code> modified with the kind parameter.</p>
 <div class="cell docutils container">
@@ -773,13 +803,13 @@ document.write(`
 </section>
 </section>
 <section id="temporal-data-line-plot">
-<h2><span class="section-number">3.2.3. </span>Temporal Data: Line Plot<a class="headerlink" href="#temporal-data-line-plot" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.2.3. </span>Temporal Data: Line Plot<a class="headerlink" href="#temporal-data-line-plot" title="Permalink to this headline">#</a></h2>
 <p>If you are trying to visualize the relationship between two numeric variables, and one of those variables is time, then you should use a line plot.</p>
 <p>Line plots are useful for visualizing the relationship between two numeric variables when one of them is time.</p>
 <p>In seaborn, we can create a line plot using the function <strong><code class="docutils literal notranslate"><span class="pre">sns.lineplot</span></code></strong>. We use the <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> parameters to specify the variable to be plotted along the x and y axes, respectively.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/data/elections.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv&#39;</span><span class="p">)</span>
 
 <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s2">&quot;Popular vote&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Result&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">);</span>
 </pre></div>
@@ -792,7 +822,7 @@ document.write(`
 <p>Note that seaborn automatically aggregates the data by taking the mean of each numeric variable at each time point. The shaded region around the line represents the 95% confidence interval for the mean. We’ll talk more about confidence intervals in a later lecture.</p>
 </section>
 <section id="multi-panel-visualizations">
-<h2><span class="section-number">3.2.4. </span>Multi-panel Visualizations<a class="headerlink" href="#multi-panel-visualizations" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.2.4. </span>Multi-panel Visualizations<a class="headerlink" href="#multi-panel-visualizations" title="Permalink to this headline">#</a></h2>
 <p>To create a multi-panel visualization, we can use the <code class="docutils literal notranslate"><span class="pre">sns.FacetGrid</span></code>.</p>
 <p>This class takes in a dataframe, the <strong>names of the variables</strong> that will form the <strong>row, column, or hue dimensions</strong> of the grid, and the <strong>plot type</strong> to be produced for each subset of the data. The plot type is provided as a method of the FacetGrid object.</p>
 <div class="cell docutils container">
@@ -893,7 +923,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3.1. </span>Univariate Visualizations</p>
+        <p class="prev-next-title"><span class="section-number">4.1. </span>Univariate Visualizations</p>
       </div>
     </a>
     <a class="right-next"
@@ -901,7 +931,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.3. </span>Dos and Donts of Visualization</p>
+        <p class="prev-next-title"><span class="section-number">4.3. </span>Dos and Donts of Visualization</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -923,19 +953,19 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-a-numeric-feature-w-r-t-a-categorical-features">3.2.1. Distribution of a numeric feature w.r.t a categorical features</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overlaid-histograms-1-numeric-1-categorical">3.2.1.1. Overlaid Histograms (1 numeric, 1 categorical)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#side-by-side-box-plots">3.2.1.2. Side-by-side box plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distribution-of-a-numeric-feature-w-r-t-a-categorical-features">4.2.1. Distribution of a numeric feature w.r.t a categorical features</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overlaid-histograms-1-numeric-1-categorical">4.2.1.1. Overlaid Histograms (1 numeric, 1 categorical)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#side-by-side-box-plots">4.2.1.2. Side-by-side box plots</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-relationships">3.2.2. Visualizing Relationships</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plots-2-or-more-numeric-features">3.2.2.1. Scatter Plots (2 or more numeric features)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-plots-2-or-more-numeric-features">3.2.2.2. Joint Plots (2 or more numeric features)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hex-plots">3.2.2.3. Hex plots</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-relationships">4.2.2. Visualizing Relationships</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plots-2-or-more-numeric-features">4.2.2.1. Scatter Plots (2 or more numeric features)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#joint-plots-2-or-more-numeric-features">4.2.2.2. Joint Plots (2 or more numeric features)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hex-plots">4.2.2.3. Hex plots</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-data-line-plot">3.2.3. Temporal Data: Line Plot</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-panel-visualizations">3.2.4. Multi-panel Visualizations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#temporal-data-line-plot">4.2.3. Temporal Data: Line Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-panel-visualizations">4.2.4. Multi-panel Visualizations</a></li>
 </ul>
   </nav></div>
 
@@ -959,7 +989,7 @@ By Syed Fahad Sultan
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

@@ -1,0 +1,3296 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>1.4. Pandas IV: Aggregation, Merging and Concatenation &#8212; Data Science for Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-FHTXXD4572"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-FHTXXD4572');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_programming/pandas4';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Encoding and Representation" href="40_modalities.html" />
+    <link rel="prev" title="1.3. Pandas III - Data Manipulation and Wrangling" href="pandas3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    CSC-272 Data Mining (Fall 2024)
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../calendar.html">Calendar</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../syllabus/index.html">Syllabus</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../syllabus/grading.html">Grading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syllabus/textbook.html">Textbooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syllabus/mental_health.html">Mental Health</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syllabus/academic_success.html">Center for Academic Success</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syllabus/accomodations.html">Accomodations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syllabus/integrity.html">Academic Integrity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../syllabus/title_9.html">Nondiscrimination Policy and Sexual Misconduct</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../project/project.html">Course Project</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../project/data.html">Data sets and Project ideas</a></li>
+</ul>
+</li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming for Data Science</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="10_dataops.html">1. Vectorized Operations on Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pandas1.html">1.1. Pandas I: Preliminaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas2.html">1.2. Pandas II: Selection, Filtering and Dropping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas3.html">1.3. Pandas III - Data Manipulation and Wrangling</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.4. Pandas IV: Aggregation, Merging and Concatenation <br/></a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="40_modalities.html">2. Encoding and Representation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="41_types.html">2.1. Feature Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42_formats.html">2.2. Common Data Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="43_modalities.html">2.3. Modalities of Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="30_collecting.html">3. Collecting Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="31_apis.html">3.1. APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_scraping.html">3.2. Web Scraping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="20_visualization.html">4. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="21_univariate.html">4.1. Univariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_multivariate.html">4.2. Multivariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_dosdonts.html">4.3. Dos and Donts of Visualization</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Mathematics for Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">5. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">5.1. Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">5.2. Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">5.3. Logarithms</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">6. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">6.1. Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">6.2. Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">6.3. Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/50_calculus.html">7. Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/51_integral.html">7.1. Integral Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/52_differential.html">7.2. Differential Calculus</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems in Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/40_supervised.html">8. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/41_classification.html">8.6. Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/42_regression.html">8.7. Regression</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/20_unsupervised.html">9. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/21_clustering.html">9.1. Clustering</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../3_problems_in/30_reinforcement.html">10. Reinforcement Learning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Models in Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">11. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">11.1. Naive Bayes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">12. Generalized Linear Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">13. Neural Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithms in Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/em.html">14. Expectation Maximization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/gradient_descent.html">15. Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/backprop.html">16. Backpropogation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems with Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/10_representation.html">17. Representation Matters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/40_feedback.html">18. Positive Feedback Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/20_boundaries.html">19. Decision Boundaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/30_incentives.html">20. Majority Rule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications of Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/40_recommendation.html">21. Recommendation Engine</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/fahadsultan/csc272/blob/main/1_programming/pandas4.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/1_programming/pandas4.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pandas IV: Aggregation, Merging and Concatenation <br/></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-with-groupby">1.4.1. Aggregation with <code class="docutils literal notranslate"><span class="pre">.groupby</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-with-lambda-functions">1.4.1.1. Aggregation with <code class="docutils literal notranslate"><span class="pre">lambda</span></code> Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-groupby-features">1.4.1.2. Other <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-by-group">1.4.1.3. Filtering by Group</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-with-pivot-table">1.4.2. Aggregation with <code class="docutils literal notranslate"><span class="pre">.pivot_table</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-dataframes">1.4.3. Merging DataFrames</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenating-dataframes">1.4.4. Concatenating DataFrames</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pandas-iv-aggregation-merging-and-concatenation-br">
+<h1><span class="section-number">1.4. </span>Pandas IV: Aggregation, Merging and Concatenation <br/><a class="headerlink" href="#pandas-iv-aggregation-merging-and-concatenation-br" title="Permalink to this headline">#</a></h1>
+<p>Up until this point, we have been working with individual rows of DataFrames. As data scientists, we often wish to investigate trends across a larger subset of our data. For example, we may want to compute some summary statistic (the mean, median, sum, etc.) for a group of rows in our DataFrame. To do this, we’ll use pandas GroupBy objects.</p>
+<p>A groupby operation involves some combination of <strong>splitting a DataFrame into grouped subframes</strong>, <strong>applying a function</strong>, and <strong>combining the results</strong>.</p>
+<p>For some arbitrary DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code> below, the code <code class="docutils literal notranslate"><span class="pre">df.groupby(&quot;year&quot;).agg(sum)</span></code> does the following:</p>
+<ul class="simple">
+<li><p><strong>Splits</strong> the DataFrame into sub-DataFrames with rows belonging to the same year.</p></li>
+<li><p><strong>Applies</strong> the <code class="docutils literal notranslate"><span class="pre">sum</span></code> function to each column of each sub-DataFrame.</p></li>
+<li><p><strong>Combines</strong> the results of <code class="docutils literal notranslate"><span class="pre">sum</span></code> into a single DataFrame, indexed by <code class="docutils literal notranslate"><span class="pre">year</span></code>.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/groupby_demo.png"><img alt="groupby_demo" src="../_images/groupby_demo.png" style="width: 600px;" /></a>
+<section id="aggregation-with-groupby">
+<h2><span class="section-number">1.4.1. </span>Aggregation with <code class="docutils literal notranslate"><span class="pre">.groupby</span></code><a class="headerlink" href="#aggregation-with-groupby" title="Permalink to this headline">#</a></h2>
+<p>Let’s say we magically had baby names for all years in a single DataFrame <code class="docutils literal notranslate"><span class="pre">babynames</span></code></p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+
+<span class="c1"># Download data from the web directly</span>
+<span class="n">data_url</span> <span class="o">=</span> <span class="s2">&quot;https://www.ssa.gov/oact/babynames/names.zip&quot;</span>
+<span class="n">local_filename</span> <span class="o">=</span> <span class="s2">&quot;../data/babynames.zip&quot;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">local_filename</span><span class="p">):</span> <span class="c1"># if the data exists don&#39;t download again</span>
+    <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">data_url</span><span class="p">)</span> <span class="k">as</span> <span class="n">resp</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">local_filename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+        
+<span class="c1"># Load data without unzipping the file</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="n">babynames</span> <span class="o">=</span> <span class="p">[]</span> 
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">local_filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zf</span><span class="p">:</span>
+    <span class="n">data_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">zf</span><span class="o">.</span><span class="n">filelist</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">filename</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:]</span> <span class="o">==</span> <span class="s2">&quot;txt&quot;</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">extract_year_from_filename</span><span class="p">(</span><span class="n">fn</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">fn</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">data_files</span><span class="p">:</span>
+        <span class="n">year</span> <span class="o">=</span> <span class="n">extract_year_from_filename</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">zf</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Sex&quot;</span><span class="p">,</span> <span class="s2">&quot;Count&quot;</span><span class="p">])</span>
+            <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">year</span>
+            <span class="n">babynames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">babynames</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">babynames</span><span class="p">)</span>
+
+<span class="n">babynames</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Count</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Mary</td>
+      <td>F</td>
+      <td>7065</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Anna</td>
+      <td>F</td>
+      <td>2604</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Emma</td>
+      <td>F</td>
+      <td>2003</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Elizabeth</td>
+      <td>F</td>
+      <td>1939</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Minnie</td>
+      <td>F</td>
+      <td>1746</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>31532</th>
+      <td>Zyeire</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2021</td>
+    </tr>
+    <tr>
+      <th>31533</th>
+      <td>Zyel</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2021</td>
+    </tr>
+    <tr>
+      <th>31534</th>
+      <td>Zyian</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2021</td>
+    </tr>
+    <tr>
+      <th>31535</th>
+      <td>Zylar</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2021</td>
+    </tr>
+    <tr>
+      <th>31536</th>
+      <td>Zyn</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2021</td>
+    </tr>
+  </tbody>
+</table>
+<p>2052781 rows × 4 columns</p>
+</div></div></div>
+</div>
+<p>Now, if we wanted to aggregate all rows in <code class="docutils literal notranslate"><span class="pre">babynames</span></code> for a given year, we would need <code class="docutils literal notranslate"><span class="pre">babynames.groupby(&quot;Year&quot;)</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">babynames</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;pandas.core.groupby.generic.DataFrameGroupBy object at 0x7f7a30b64bb0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>What does this strange output mean? Calling <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html"><code class="docutils literal notranslate"><span class="pre">.groupby</span></code></a> has generated a <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object. You can imagine this as a set of “mini” sub-DataFrames, where each subframe contains all of the rows from <code class="docutils literal notranslate"><span class="pre">babynames</span></code> that correspond to a particular year.</p>
+<p>The diagram below shows a simplified view of <code class="docutils literal notranslate"><span class="pre">babynames</span></code> to help illustrate this idea.</p>
+<p><img alt="Creating a GroupBy object" src="../_images/gb.png" /></p>
+<p>We can’t work with a <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object directly – that is why you saw that strange output earlier, rather than a standard view of a DataFrame. To actually manipulate values within these “mini” DataFrames, we’ll need to call an <em>aggregation method</em>. This is a method that tells <code class="docutils literal notranslate"><span class="pre">pandas</span></code> how to aggregate the values within the <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object. Once the aggregation is applied, <code class="docutils literal notranslate"><span class="pre">pandas</span></code> will return a normal (now grouped) DataFrame.</p>
+<p>The first aggregation method we’ll consider is <code class="docutils literal notranslate"><span class="pre">.agg</span></code>. The <code class="docutils literal notranslate"><span class="pre">.agg</span></code> method takes in a function as its argument; this function is then applied to each column of a “mini” grouped DataFrame. We end up with a new DataFrame with one aggregated row per subframe. Let’s see this in action by finding the <code class="docutils literal notranslate"><span class="pre">sum</span></code> of all counts for each year in <code class="docutils literal notranslate"><span class="pre">babynames</span></code> – this is equivalent to finding the number of babies born in each year.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">babynames</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1880</th>
+      <td>201484</td>
+    </tr>
+    <tr>
+      <th>1881</th>
+      <td>192690</td>
+    </tr>
+    <tr>
+      <th>1882</th>
+      <td>221533</td>
+    </tr>
+    <tr>
+      <th>1883</th>
+      <td>216944</td>
+    </tr>
+    <tr>
+      <th>1884</th>
+      <td>243461</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can relate this back to the diagram we used above. Remember that the diagram uses a simplified version of <code class="docutils literal notranslate"><span class="pre">babynames</span></code>, which is why we see smaller values for the summed counts.</p>
+<p><img alt="Performing an aggregation" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/agg.png" /></p>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">.agg</span></code> has condensed each subframe back into a single row. This gives us our final output: a DataFrame that is now indexed by <code class="docutils literal notranslate"><span class="pre">&quot;Year&quot;</span></code>, with a single row for each unique year in the original <code class="docutils literal notranslate"><span class="pre">babynames</span></code> DataFrame.</p>
+<p>You may be wondering: where did the <code class="docutils literal notranslate"><span class="pre">&quot;State&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;Sex&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;Name&quot;</span></code> columns go? Logically, it doesn’t make sense to <code class="docutils literal notranslate"><span class="pre">sum</span></code> the string data in these columns (how would we add “Mary” + “Ann”?). Because of this, <code class="docutils literal notranslate"><span class="pre">pandas</span></code> will simply omit these columns when it performs the aggregation on the DataFrame. Since this happens implicitly, without the user specifying that these columns should be ignored, it’s easy to run into troubling situations where columns are removed without the programmer noticing. It is better coding practice to select <em>only</em> the columns we care about before performing the aggregation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Same result, but now we explicitly tell pandas to only consider the &quot;Count&quot; column when summing</span>
+<span class="n">babynames</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)[[</span><span class="s2">&quot;Count&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1880</th>
+      <td>201484</td>
+    </tr>
+    <tr>
+      <th>1881</th>
+      <td>192690</td>
+    </tr>
+    <tr>
+      <th>1882</th>
+      <td>221533</td>
+    </tr>
+    <tr>
+      <th>1883</th>
+      <td>216944</td>
+    </tr>
+    <tr>
+      <th>1884</th>
+      <td>243461</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>There are many different aggregations that can be applied to the grouped data. The primary requirement is that an aggregation function must:</p>
+<ul class="simple">
+<li><p>Take in a <code class="docutils literal notranslate"><span class="pre">Series</span></code> of data (a single column of the grouped subframe)</p></li>
+<li><p>Return a single value that aggregates this <code class="docutils literal notranslate"><span class="pre">Series</span></code></p></li>
+</ul>
+<p>Because of this fairly broad requirement, <code class="docutils literal notranslate"><span class="pre">pandas</span></code> offers many ways of computing an aggregation.</p>
+<p><strong>In-built</strong> Python operations – such as <code class="docutils literal notranslate"><span class="pre">sum</span></code>, <code class="docutils literal notranslate"><span class="pre">max</span></code>, and <code class="docutils literal notranslate"><span class="pre">min</span></code> – are automatically recognized by <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># What is the maximum count for each name in any year?</span>
+<span class="n">babynames</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)[[</span><span class="s2">&quot;Count&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">max</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Aaban</th>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>Aabha</th>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>Aabid</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>Aabidah</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Aabir</th>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># What is the minimum count for each name in any year?</span>
+<span class="n">babynames</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)[[</span><span class="s2">&quot;Count&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">min</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Aaban</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Aabha</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Aabid</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Aabidah</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Aabir</th>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># What is the average count for each name across all years?</span>
+<span class="n">babynames</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)[[</span><span class="s2">&quot;Count&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="s2">&quot;mean&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Aaban</th>
+      <td>10.000000</td>
+    </tr>
+    <tr>
+      <th>Aabha</th>
+      <td>6.375000</td>
+    </tr>
+    <tr>
+      <th>Aabid</th>
+      <td>5.333333</td>
+    </tr>
+    <tr>
+      <th>Aabidah</th>
+      <td>5.000000</td>
+    </tr>
+    <tr>
+      <th>Aabir</th>
+      <td>5.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pandas</span></code> also offers a number of in-built functions. Functions that are native to <code class="docutils literal notranslate"><span class="pre">pandas</span></code> can be referenced using their string name within a call to <code class="docutils literal notranslate"><span class="pre">.agg</span></code>. Some examples include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.agg(&quot;sum&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.agg(&quot;max&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.agg(&quot;min&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.agg(&quot;mean&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.agg(&quot;first&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.agg(&quot;last&quot;)</span></code></p></li>
+</ul>
+<p>The latter two entries in this list – <code class="docutils literal notranslate"><span class="pre">&quot;first&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;last&quot;</span></code> – are unique to <code class="docutils literal notranslate"><span class="pre">pandas</span></code>. They return the first or last entry in a subframe column. Why might this be useful? Consider a case where <em>multiple</em> columns in a group share identical information. To represent this information in the grouped output, we can simply grab the first or last entry, which we know will be identical to all other entries.</p>
+<p>Let’s illustrate this with an example. Say we add a new column to <code class="docutils literal notranslate"><span class="pre">babynames</span></code> that contains the first letter of each name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imagine we had an additional column, &quot;First Letter&quot;. We&#39;ll explain this code next week</span>
+<span class="n">babynames</span><span class="p">[</span><span class="s2">&quot;First Letter&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">babynames</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># We construct a simplified DataFrame containing just a subset of columns</span>
+<span class="n">babynames_new</span> <span class="o">=</span> <span class="n">babynames</span><span class="p">[[</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;First Letter&quot;</span><span class="p">,</span> <span class="s2">&quot;Year&quot;</span><span class="p">]]</span>
+<span class="n">babynames_new</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>First Letter</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Mary</td>
+      <td>M</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Anna</td>
+      <td>A</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Emma</td>
+      <td>E</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Elizabeth</td>
+      <td>E</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Minnie</td>
+      <td>M</td>
+      <td>1880</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>If we form groups for each name in the dataset, <code class="docutils literal notranslate"><span class="pre">&quot;First</span> <span class="pre">Letter&quot;</span></code> will be the same for all members of the group. This means that if we simply select the first entry for <code class="docutils literal notranslate"><span class="pre">&quot;First</span> <span class="pre">Letter&quot;</span></code> in the group, we’ll represent all data in that group.</p>
+<p>We can use a dictionary to apply different aggregation functions to each column during grouping.</p>
+<p><img alt="Aggregating using &quot;first&quot;" src="../_images/first.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">babynames_new</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s2">&quot;First Letter&quot;</span><span class="p">:</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;Year&quot;</span><span class="p">:</span><span class="s2">&quot;max&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>First Letter</th>
+      <th>Year</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Aaban</th>
+      <td>A</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>Aabha</th>
+      <td>A</td>
+      <td>2021</td>
+    </tr>
+    <tr>
+      <th>Aabid</th>
+      <td>A</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>Aabidah</th>
+      <td>A</td>
+      <td>2018</td>
+    </tr>
+    <tr>
+      <th>Aabir</th>
+      <td>A</td>
+      <td>2018</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Some aggregation functions are common enough that <code class="docutils literal notranslate"><span class="pre">pandas</span></code> allows them to be called directly, without the explicit use of <code class="docutils literal notranslate"><span class="pre">.agg</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">babynames</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)[[</span><span class="s2">&quot;Count&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Count</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Aaban</th>
+      <td>10.000000</td>
+    </tr>
+    <tr>
+      <th>Aabha</th>
+      <td>6.375000</td>
+    </tr>
+    <tr>
+      <th>Aabid</th>
+      <td>5.333333</td>
+    </tr>
+    <tr>
+      <th>Aabidah</th>
+      <td>5.000000</td>
+    </tr>
+    <tr>
+      <th>Aabir</th>
+      <td>5.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can also define aggregation functions of our own! This can be done using either a <code class="docutils literal notranslate"><span class="pre">def</span></code> or <code class="docutils literal notranslate"><span class="pre">lambda</span></code> statement. Again, the condition for a custom aggregation function is that it must take in a <code class="docutils literal notranslate"><span class="pre">Series</span></code> and output a single scalar value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ratio_to_peak</span><span class="p">(</span><span class="n">series</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">series</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">series</span><span class="p">)</span>
+
+<span class="n">babynames</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)[[</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="s2">&quot;Count&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">ratio_to_peak</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Count</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Aaban</th>
+      <td>1.0</td>
+      <td>0.375000</td>
+    </tr>
+    <tr>
+      <th>Aabha</th>
+      <td>1.0</td>
+      <td>0.555556</td>
+    </tr>
+    <tr>
+      <th>Aabid</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Aabidah</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Aabir</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Zyvion</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Zyvon</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Zyyanna</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Zyyon</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Zzyzx</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>101338 rows × 2 columns</p>
+</div></div></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">lambda</span></code> functions are a special type of function that can be defined in a single line. They are also often refered to as <em>“anonymous”</em> functions because these functions don’t have a name. They are useful for simple functions that are not used elsewhere in your code.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alternatively, using lambda</span>
+<span class="n">babynames</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)[[</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="s2">&quot;Count&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Count</th>
+    </tr>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Aaban</th>
+      <td>1.0</td>
+      <td>0.375000</td>
+    </tr>
+    <tr>
+      <th>Aabha</th>
+      <td>1.0</td>
+      <td>0.555556</td>
+    </tr>
+    <tr>
+      <th>Aabid</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Aabidah</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Aabir</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Zyvion</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Zyvon</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Zyyanna</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Zyyon</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>Zzyzx</th>
+      <td>1.0</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>101338 rows × 2 columns</p>
+</div></div></div>
+</div>
+<section id="aggregation-with-lambda-functions">
+<h3><span class="section-number">1.4.1.1. </span>Aggregation with <code class="docutils literal notranslate"><span class="pre">lambda</span></code> Functions<a class="headerlink" href="#aggregation-with-lambda-functions" title="Permalink to this headline">#</a></h3>
+<p>We’ll work with the <code class="docutils literal notranslate"><span class="pre">elections</span></code> DataFrame again.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv&quot;</span>
+<span class="n">elections</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">elections</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Candidate</th>
+      <th>Party</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1824</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic-Republican</td>
+      <td>151271</td>
+      <td>loss</td>
+      <td>57.210122</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1824</td>
+      <td>John Quincy Adams</td>
+      <td>Democratic-Republican</td>
+      <td>113142</td>
+      <td>win</td>
+      <td>42.789878</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1828</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>642806</td>
+      <td>win</td>
+      <td>56.203927</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1828</td>
+      <td>John Quincy Adams</td>
+      <td>National Republican</td>
+      <td>500897</td>
+      <td>loss</td>
+      <td>43.796073</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1832</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>702735</td>
+      <td>win</td>
+      <td>54.574789</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>What if we wish to aggregate our DataFrame using a non-standard function – for example, a function of our own design? We can do so by combining <code class="docutils literal notranslate"><span class="pre">.agg</span></code> with <code class="docutils literal notranslate"><span class="pre">lambda</span></code> expressions.</p>
+<p>Let’s first consider a puzzle to jog our memory. We will attempt to find the <code class="docutils literal notranslate"><span class="pre">Candidate</span></code> from each <code class="docutils literal notranslate"><span class="pre">Party</span></code> with the highest <code class="docutils literal notranslate"><span class="pre">%</span></code> of votes.</p>
+<p>A naive approach may be to group by the <code class="docutils literal notranslate"><span class="pre">Party</span></code> column and aggregate by the maximum.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Party&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">max</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Candidate</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
+    </tr>
+    <tr>
+      <th>Party</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>American</th>
+      <td>1976</td>
+      <td>Thomas J. Anderson</td>
+      <td>873053</td>
+      <td>loss</td>
+      <td>21.554001</td>
+    </tr>
+    <tr>
+      <th>American Independent</th>
+      <td>1976</td>
+      <td>Lester Maddox</td>
+      <td>9901118</td>
+      <td>loss</td>
+      <td>13.571218</td>
+    </tr>
+    <tr>
+      <th>Anti-Masonic</th>
+      <td>1832</td>
+      <td>William Wirt</td>
+      <td>100715</td>
+      <td>loss</td>
+      <td>7.821583</td>
+    </tr>
+    <tr>
+      <th>Anti-Monopoly</th>
+      <td>1884</td>
+      <td>Benjamin Butler</td>
+      <td>134294</td>
+      <td>loss</td>
+      <td>1.335838</td>
+    </tr>
+    <tr>
+      <th>Citizens</th>
+      <td>1980</td>
+      <td>Barry Commoner</td>
+      <td>233052</td>
+      <td>loss</td>
+      <td>0.270182</td>
+    </tr>
+    <tr>
+      <th>Communist</th>
+      <td>1932</td>
+      <td>William Z. Foster</td>
+      <td>103307</td>
+      <td>loss</td>
+      <td>0.261069</td>
+    </tr>
+    <tr>
+      <th>Constitution</th>
+      <td>2016</td>
+      <td>Michael Peroutka</td>
+      <td>203091</td>
+      <td>loss</td>
+      <td>0.152398</td>
+    </tr>
+    <tr>
+      <th>Constitutional Union</th>
+      <td>1860</td>
+      <td>John Bell</td>
+      <td>590901</td>
+      <td>loss</td>
+      <td>12.639283</td>
+    </tr>
+    <tr>
+      <th>Democratic</th>
+      <td>2020</td>
+      <td>Woodrow Wilson</td>
+      <td>81268924</td>
+      <td>win</td>
+      <td>61.344703</td>
+    </tr>
+    <tr>
+      <th>Democratic-Republican</th>
+      <td>1824</td>
+      <td>John Quincy Adams</td>
+      <td>151271</td>
+      <td>win</td>
+      <td>57.210122</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This approach is clearly wrong – the DataFrame claims that Woodrow Wilson won the presidency in 2020.</p>
+<p>Why is this happening? Here, the <code class="docutils literal notranslate"><span class="pre">max</span></code> aggregation function is taken over every column <em>independently</em>. Among Democrats, <code class="docutils literal notranslate"><span class="pre">max</span></code> is computing:</p>
+<ul class="simple">
+<li><p>The most recent <code class="docutils literal notranslate"><span class="pre">Year</span></code> a Democratic candidate ran for president (2020)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Candidate</span></code> with the alphabetically “largest” name (“Woodrow Wilson”)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Result</span></code> with the alphabetically “largest” outcome (“win”)</p></li>
+</ul>
+<p>Instead, let’s try a different approach. We will:</p>
+<ol class="arabic simple">
+<li><p>Sort the DataFrame so that rows are in descending order of <code class="docutils literal notranslate"><span class="pre">%</span></code></p></li>
+<li><p>Group by <code class="docutils literal notranslate"><span class="pre">Party</span></code> and select the first row of each sub-DataFrame</p></li>
+</ol>
+<p>While it may seem unintuitive, sorting <code class="docutils literal notranslate"><span class="pre">elections</span></code> by descending order of <code class="docutils literal notranslate"><span class="pre">%</span></code> is extremely helpful. If we then group by <code class="docutils literal notranslate"><span class="pre">Party</span></code>, the first row of each groupby object will contain information about the <code class="docutils literal notranslate"><span class="pre">Candidate</span></code> with the highest voter <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections_sorted_by_percent</span> <span class="o">=</span> <span class="n">elections</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">elections_sorted_by_percent</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Candidate</th>
+      <th>Party</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>114</th>
+      <td>1964</td>
+      <td>Lyndon Johnson</td>
+      <td>Democratic</td>
+      <td>43127041</td>
+      <td>win</td>
+      <td>61.344703</td>
+    </tr>
+    <tr>
+      <th>91</th>
+      <td>1936</td>
+      <td>Franklin Roosevelt</td>
+      <td>Democratic</td>
+      <td>27752648</td>
+      <td>win</td>
+      <td>60.978107</td>
+    </tr>
+    <tr>
+      <th>120</th>
+      <td>1972</td>
+      <td>Richard Nixon</td>
+      <td>Republican</td>
+      <td>47168710</td>
+      <td>win</td>
+      <td>60.907806</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>1920</td>
+      <td>Warren Harding</td>
+      <td>Republican</td>
+      <td>16144093</td>
+      <td>win</td>
+      <td>60.574501</td>
+    </tr>
+    <tr>
+      <th>133</th>
+      <td>1984</td>
+      <td>Ronald Reagan</td>
+      <td>Republican</td>
+      <td>54455472</td>
+      <td>win</td>
+      <td>59.023326</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections_sorted_by_percent</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Party&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Equivalent to the below code</span>
+<span class="c1"># elections_sorted_by_percent.groupby(&quot;Party&quot;).agg(&#39;first&#39;).head(10)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Candidate</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
+    </tr>
+    <tr>
+      <th>Party</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>American</th>
+      <td>1856</td>
+      <td>Millard Fillmore</td>
+      <td>873053</td>
+      <td>loss</td>
+      <td>21.554001</td>
+    </tr>
+    <tr>
+      <th>American Independent</th>
+      <td>1968</td>
+      <td>George Wallace</td>
+      <td>9901118</td>
+      <td>loss</td>
+      <td>13.571218</td>
+    </tr>
+    <tr>
+      <th>Anti-Masonic</th>
+      <td>1832</td>
+      <td>William Wirt</td>
+      <td>100715</td>
+      <td>loss</td>
+      <td>7.821583</td>
+    </tr>
+    <tr>
+      <th>Anti-Monopoly</th>
+      <td>1884</td>
+      <td>Benjamin Butler</td>
+      <td>134294</td>
+      <td>loss</td>
+      <td>1.335838</td>
+    </tr>
+    <tr>
+      <th>Citizens</th>
+      <td>1980</td>
+      <td>Barry Commoner</td>
+      <td>233052</td>
+      <td>loss</td>
+      <td>0.270182</td>
+    </tr>
+    <tr>
+      <th>Communist</th>
+      <td>1932</td>
+      <td>William Z. Foster</td>
+      <td>103307</td>
+      <td>loss</td>
+      <td>0.261069</td>
+    </tr>
+    <tr>
+      <th>Constitution</th>
+      <td>2008</td>
+      <td>Chuck Baldwin</td>
+      <td>199750</td>
+      <td>loss</td>
+      <td>0.152398</td>
+    </tr>
+    <tr>
+      <th>Constitutional Union</th>
+      <td>1860</td>
+      <td>John Bell</td>
+      <td>590901</td>
+      <td>loss</td>
+      <td>12.639283</td>
+    </tr>
+    <tr>
+      <th>Democratic</th>
+      <td>1964</td>
+      <td>Lyndon Johnson</td>
+      <td>43127041</td>
+      <td>win</td>
+      <td>61.344703</td>
+    </tr>
+    <tr>
+      <th>Democratic-Republican</th>
+      <td>1824</td>
+      <td>Andrew Jackson</td>
+      <td>151271</td>
+      <td>loss</td>
+      <td>57.210122</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Here’s an illustration of the process:</p>
+<a class="reference internal image-reference" href="../_images/puzzle_demo.png"><img alt="groupby_demo" src="../_images/puzzle_demo.png" style="width: 600px;" /></a>
+<p>Notice how our code correctly determines that Lyndon Johnson from the Democratic Party has the highest voter <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p>
+<p>More generally, <code class="docutils literal notranslate"><span class="pre">lambda</span></code> functions are used to design custom aggregation functions that aren’t pre-defined by Python. The input parameter <code class="docutils literal notranslate"><span class="pre">x</span></code> to the <code class="docutils literal notranslate"><span class="pre">lambda</span></code> function is a <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object. Therefore, it should make sense why <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">x</span> <span class="pre">:</span> <span class="pre">x.iloc[0]</span></code> selects the first row in each groupby object.</p>
+<p>In fact, there’s a few different ways to approach this problem. Each approach has different tradeoffs in terms of readability, performance, memory consumption, complexity, etc. We’ve given a few examples below.</p>
+<p><strong>Note</strong>: Understanding these alternative solutions is not required. They are given to demonstrate the vast number of problem-solving approaches in <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using the idxmax function</span>
+<span class="n">best_per_party</span> <span class="o">=</span> <span class="n">elections</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">elections</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Party&#39;</span><span class="p">)[</span><span class="s1">&#39;%&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()]</span>
+<span class="n">best_per_party</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Candidate</th>
+      <th>Party</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>22</th>
+      <td>1856</td>
+      <td>Millard Fillmore</td>
+      <td>American</td>
+      <td>873053</td>
+      <td>loss</td>
+      <td>21.554001</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>1968</td>
+      <td>George Wallace</td>
+      <td>American Independent</td>
+      <td>9901118</td>
+      <td>loss</td>
+      <td>13.571218</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1832</td>
+      <td>William Wirt</td>
+      <td>Anti-Masonic</td>
+      <td>100715</td>
+      <td>loss</td>
+      <td>7.821583</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>1884</td>
+      <td>Benjamin Butler</td>
+      <td>Anti-Monopoly</td>
+      <td>134294</td>
+      <td>loss</td>
+      <td>1.335838</td>
+    </tr>
+    <tr>
+      <th>127</th>
+      <td>1980</td>
+      <td>Barry Commoner</td>
+      <td>Citizens</td>
+      <td>233052</td>
+      <td>loss</td>
+      <td>0.270182</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using the .drop_duplicates function</span>
+<span class="n">best_per_party2</span> <span class="o">=</span> <span class="n">elections</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;%&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">([</span><span class="s1">&#39;Party&#39;</span><span class="p">],</span> <span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">)</span>
+<span class="n">best_per_party2</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Candidate</th>
+      <th>Party</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>148</th>
+      <td>1996</td>
+      <td>John Hagelin</td>
+      <td>Natural Law</td>
+      <td>113670</td>
+      <td>loss</td>
+      <td>0.118219</td>
+    </tr>
+    <tr>
+      <th>164</th>
+      <td>2008</td>
+      <td>Chuck Baldwin</td>
+      <td>Constitution</td>
+      <td>199750</td>
+      <td>loss</td>
+      <td>0.152398</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>1956</td>
+      <td>T. Coleman Andrews</td>
+      <td>States' Rights</td>
+      <td>107929</td>
+      <td>loss</td>
+      <td>0.174883</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>1996</td>
+      <td>Howard Phillips</td>
+      <td>Taxpayers</td>
+      <td>184656</td>
+      <td>loss</td>
+      <td>0.192045</td>
+    </tr>
+    <tr>
+      <th>136</th>
+      <td>1988</td>
+      <td>Lenora Fulani</td>
+      <td>New Alliance</td>
+      <td>217221</td>
+      <td>loss</td>
+      <td>0.237804</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="other-groupby-features">
+<h3><span class="section-number">1.4.1.2. </span>Other <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> Features<a class="headerlink" href="#other-groupby-features" title="Permalink to this headline">#</a></h3>
+<p>There are many aggregation methods we can use with <code class="docutils literal notranslate"><span class="pre">.agg</span></code>. Some useful options are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.mean.html#pandas.core.groupby.DataFrameGroupBy.mean"><code class="docutils literal notranslate"><span class="pre">.mean</span></code></a>: creates a new DataFrame with the mean value of each group</p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.sum.html#pandas.core.groupby.DataFrameGroupBy.sum"><code class="docutils literal notranslate"><span class="pre">.sum</span></code></a>: creates a new DataFrame with the sum of each group</p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.max.html#pandas.core.groupby.DataFrameGroupBy.max"><code class="docutils literal notranslate"><span class="pre">.max</span></code></a> and <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.min.html#pandas.core.groupby.DataFrameGroupBy.min"><code class="docutils literal notranslate"><span class="pre">.min</span></code></a>: creates a new DataFrame with the maximum/minimum value of each group</p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.first.html#pandas.core.groupby.DataFrameGroupBy.first"><code class="docutils literal notranslate"><span class="pre">.first</span></code></a> and <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.last.html#pandas.core.groupby.DataFrameGroupBy.last"><code class="docutils literal notranslate"><span class="pre">.last</span></code></a>: creates a new DataFrame with the first/last row in each group</p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.size.html#pandas.core.groupby.DataFrameGroupBy.size"><code class="docutils literal notranslate"><span class="pre">.size</span></code></a>: creates a new <strong>Series</strong> with the number of entries in each group</p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.DataFrameGroupBy.count.html#pandas.core.groupby.DataFrameGroupBy.count"><code class="docutils literal notranslate"><span class="pre">.count</span></code></a>: creates a new <strong>DataFrame</strong> with the number of entries, excluding missing values.</p></li>
+</ul>
+<p>Note the slight difference between <code class="docutils literal notranslate"><span class="pre">.size()</span></code> and <code class="docutils literal notranslate"><span class="pre">.count()</span></code>: while <code class="docutils literal notranslate"><span class="pre">.size()</span></code> returns a Series and counts the number of entries including the missing values, <code class="docutils literal notranslate"><span class="pre">.count()</span></code> returns a DataFrame and counts the number of entries in each column excluding missing values. Here’s an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;letter&#39;</span><span class="p">:[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">],</span> 
+                   <span class="s1">&#39;num&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="kc">None</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> 
+                   <span class="s1">&#39;state&#39;</span><span class="p">:[</span><span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;tx&#39;</span><span class="p">,</span> <span class="s1">&#39;fl&#39;</span><span class="p">,</span> <span class="s1">&#39;hi&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;ak&#39;</span><span class="p">]})</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>letter</th>
+      <th>num</th>
+      <th>state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A</td>
+      <td>1.0</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>A</td>
+      <td>2.0</td>
+      <td>tx</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>B</td>
+      <td>3.0</td>
+      <td>fl</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>C</td>
+      <td>4.0</td>
+      <td>hi</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>C</td>
+      <td>NaN</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>C</td>
+      <td>4.0</td>
+      <td>ak</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;letter&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>letter
+A    2
+B    1
+C    3
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;letter&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>num</th>
+      <th>state</th>
+    </tr>
+    <tr>
+      <th>letter</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A</th>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>You might recall that the <code class="docutils literal notranslate"><span class="pre">value_counts()</span></code> function in the previous note does something similar. It turns out <code class="docutils literal notranslate"><span class="pre">value_counts()</span></code> and <code class="docutils literal notranslate"><span class="pre">groupby.size()</span></code> are the same, except <code class="docutils literal notranslate"><span class="pre">value_counts()</span></code> sorts the resulting Series in descending order automatically.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;letter&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C    3
+A    2
+B    1
+Name: letter, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>hese (and other) aggregation functions are so common that <code class="docutils literal notranslate"><span class="pre">pandas</span></code> allows for writing shorthand. Instead of explicitly stating the use of <code class="docutils literal notranslate"><span class="pre">.agg</span></code>, we can call the function directly on the <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> object.</p>
+<p>For example, the following are equivalent:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">elections.groupby(&quot;Candidate&quot;).agg(mean)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elections.groupby(&quot;Candidate&quot;).mean()</span></code></p></li>
+</ul>
+<p>There are many other methods that <code class="docutils literal notranslate"><span class="pre">pandas</span></code> supports. You can check them out on the <a class="reference external" href="https://pandas.pydata.org/docs/reference/groupby.html"><code class="docutils literal notranslate"><span class="pre">pandas</span></code> documentation</a>.</p>
+<br/>
+<a class="reference internal image-reference" href="../_images/groupby_2.png"><img alt="groupby_demo" src="../_images/groupby_2.png" style="width: 100%;" /></a>
+</section>
+<section id="filtering-by-group">
+<h3><span class="section-number">1.4.1.3. </span>Filtering by Group<a class="headerlink" href="#filtering-by-group" title="Permalink to this headline">#</a></h3>
+<p>Another common use for <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> objects is to filter data by group.</p>
+<p><code class="docutils literal notranslate"><span class="pre">groupby.filter</span></code> takes an argument <span class="math notranslate nohighlight">\(\text{f}\)</span>, where <span class="math notranslate nohighlight">\(\text{f}\)</span> is a function that:</p>
+<ul class="simple">
+<li><p>Takes a DataFrame object as input</p></li>
+<li><p>Returns a single <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> for the each sub-DataFrame</p></li>
+</ul>
+<p>Sub-DataFrames that correspond to <code class="docutils literal notranslate"><span class="pre">True</span></code> are returned in the final result, whereas those with a <code class="docutils literal notranslate"><span class="pre">False</span></code> value are not. Importantly, <code class="docutils literal notranslate"><span class="pre">groupby.filter</span></code> is different from <code class="docutils literal notranslate"><span class="pre">groupby.agg</span></code> in that an <em>entire</em> sub-DataFrame is returned in the final DataFrame, not just a single row. As a result, <code class="docutils literal notranslate"><span class="pre">groupby.filter</span></code> preserves the original indices.</p>
+<p>To illustrate how this happens, consider the following <code class="docutils literal notranslate"><span class="pre">.filter</span></code> function applied on some arbitrary data. Say we want to identify “tight” election years – that is, we want to find all rows that correspond to elections years where all candidates in that year won a similar portion of the total vote. Specifically, let’s find all rows corresponding to a year where no candidate won more than 45% of the total vote.</p>
+<p>In other words, we want to:</p>
+<ul class="simple">
+<li><p>Find the years where the maximum <code class="docutils literal notranslate"><span class="pre">%</span></code> in that year is less than 45%</p></li>
+<li><p>Return all DataFrame rows that correspond to these years</p></li>
+</ul>
+<p>For each year, we need to find the maximum <code class="docutils literal notranslate"><span class="pre">%</span></code> among <em>all</em> rows for that year. If this maximum <code class="docutils literal notranslate"><span class="pre">%</span></code> is lower than 45%, we will tell <code class="docutils literal notranslate"><span class="pre">pandas</span></code> to keep all rows corresponding to that year.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">sf</span><span class="p">:</span> <span class="n">sf</span><span class="p">[</span><span class="s2">&quot;%&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">45</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Candidate</th>
+      <th>Party</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>23</th>
+      <td>1860</td>
+      <td>Abraham Lincoln</td>
+      <td>Republican</td>
+      <td>1855993</td>
+      <td>win</td>
+      <td>39.699408</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>1860</td>
+      <td>John Bell</td>
+      <td>Constitutional Union</td>
+      <td>590901</td>
+      <td>loss</td>
+      <td>12.639283</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>1860</td>
+      <td>John C. Breckinridge</td>
+      <td>Southern Democratic</td>
+      <td>848019</td>
+      <td>loss</td>
+      <td>18.138998</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>1860</td>
+      <td>Stephen A. Douglas</td>
+      <td>Northern Democratic</td>
+      <td>1380202</td>
+      <td>loss</td>
+      <td>29.522311</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>1912</td>
+      <td>Eugene V. Debs</td>
+      <td>Socialist</td>
+      <td>901551</td>
+      <td>loss</td>
+      <td>6.004354</td>
+    </tr>
+    <tr>
+      <th>67</th>
+      <td>1912</td>
+      <td>Eugene W. Chafin</td>
+      <td>Prohibition</td>
+      <td>208156</td>
+      <td>loss</td>
+      <td>1.386325</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>1912</td>
+      <td>Theodore Roosevelt</td>
+      <td>Progressive</td>
+      <td>4122721</td>
+      <td>loss</td>
+      <td>27.457433</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>1912</td>
+      <td>William Taft</td>
+      <td>Republican</td>
+      <td>3486242</td>
+      <td>loss</td>
+      <td>23.218466</td>
+    </tr>
+    <tr>
+      <th>70</th>
+      <td>1912</td>
+      <td>Woodrow Wilson</td>
+      <td>Democratic</td>
+      <td>6296284</td>
+      <td>win</td>
+      <td>41.933422</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>What’s going on here? In this example, we’ve defined our filtering function, <span class="math notranslate nohighlight">\(\text{f}\)</span>, to be <code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">sf:</span> <span class="pre">sf[&quot;%&quot;].max()</span> <span class="pre">&lt;</span> <span class="pre">45</span></code>. This filtering function will find the maximum <code class="docutils literal notranslate"><span class="pre">&quot;%&quot;</span></code> value among all entries in the grouped sub-DataFrame, which we call <code class="docutils literal notranslate"><span class="pre">sf</span></code>. If the maximum value is less than 45, then the filter function will return <code class="docutils literal notranslate"><span class="pre">True</span></code> and all rows in that grouped sub-DataFrame will appear in the final output DataFrame.</p>
+<p>Examine the DataFrame above. Notice how, in this preview of the first 9 rows, all entries from the years 1860 and 1912 appear. This means that in 1860 and 1912, no candidate in that year won more than 45% of the total vote.</p>
+<p>You may ask: how is the <code class="docutils literal notranslate"><span class="pre">groupby.filter</span></code> procedure different to the boolean filtering we’ve seen previously? Boolean filtering considers <em>individual</em> rows when applying a boolean condition. For example, the code <code class="docutils literal notranslate"><span class="pre">elections[elections[&quot;%&quot;]</span> <span class="pre">&lt;</span> <span class="pre">45]</span></code> will check the <code class="docutils literal notranslate"><span class="pre">&quot;%&quot;</span></code> value of every single row in <code class="docutils literal notranslate"><span class="pre">elections</span></code>; if it is less than 45, then that row will be kept in the output. <code class="docutils literal notranslate"><span class="pre">groupby.filter</span></code>, in contrast, applies a boolean condition <em>across</em> all rows in a group. If not all rows in that group satisfy the condition specified by the filter, the entire group will be discarded in the output.</p>
+</section>
+</section>
+<section id="aggregation-with-pivot-table">
+<h2><span class="section-number">1.4.2. </span>Aggregation with <code class="docutils literal notranslate"><span class="pre">.pivot_table</span></code><a class="headerlink" href="#aggregation-with-pivot-table" title="Permalink to this headline">#</a></h2>
+<p>We know now that <code class="docutils literal notranslate"><span class="pre">.groupby</span></code> gives us the ability to group and aggregate data across our DataFrame. The examples above formed groups using just one column in the DataFrame. It’s possible to group by multiple columns at once by passing in a list of column names to <code class="docutils literal notranslate"><span class="pre">.groupby</span></code>.</p>
+<p>Let’s consider the <code class="docutils literal notranslate"><span class="pre">babynames</span></code> dataset. In this problem, we will find the total number of baby names associated with each sex for each year. To do this, we’ll group by <em>both</em> the <code class="docutils literal notranslate"><span class="pre">&quot;Year&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;Sex&quot;</span></code> columns.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">babynames</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Count</th>
+      <th>Year</th>
+      <th>First Letter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Mary</td>
+      <td>F</td>
+      <td>7065</td>
+      <td>1880</td>
+      <td>M</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Anna</td>
+      <td>F</td>
+      <td>2604</td>
+      <td>1880</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Emma</td>
+      <td>F</td>
+      <td>2003</td>
+      <td>1880</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Elizabeth</td>
+      <td>F</td>
+      <td>1939</td>
+      <td>1880</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Minnie</td>
+      <td>F</td>
+      <td>1746</td>
+      <td>1880</td>
+      <td>M</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the total number of baby names associated with each sex for each year in the data</span>
+<span class="n">babynames</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="s2">&quot;Sex&quot;</span><span class="p">])[[</span><span class="s2">&quot;Count&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Count</th>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <th>Sex</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">1880</th>
+      <th>F</th>
+      <td>90994</td>
+    </tr>
+    <tr>
+      <th>M</th>
+      <td>110490</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">1881</th>
+      <th>F</th>
+      <td>91953</td>
+    </tr>
+    <tr>
+      <th>M</th>
+      <td>100737</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">1882</th>
+      <th>F</th>
+      <td>107847</td>
+    </tr>
+    <tr>
+      <th>M</th>
+      <td>113686</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Notice that both <code class="docutils literal notranslate"><span class="pre">&quot;Year&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;Sex&quot;</span></code> serve as the index of the DataFrame (they are both rendered in bold). We’ve created a <em>multi-index</em> DataFrame where two different index values, the year and sex, are used to uniquely identify each row.</p>
+<p>This isn’t the most intuitive way of representing this data – and, because multi-indexed DataFrames have multiple dimensions in their index, they can often be difficult to use.</p>
+<p>Another strategy to aggregate across two columns is to create a pivot table. One set of values is used to create the index of the pivot table; another set is used to define the column names. The values contained in each cell of the table correspond to the aggregated data for each index-column pair.</p>
+<p>The best way to understand pivot tables is to see one in action. Let’s return to our original goal of summing the total number of names associated with each combination of year and sex. We’ll call the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot_table.html"><code class="docutils literal notranslate"><span class="pre">.pivot_table</span></code></a> method to create a new table.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The `pivot_table` method is used to generate a Pandas pivot table</span>
+<span class="n">babynames</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">index</span> <span class="o">=</span> <span class="s2">&quot;Year&quot;</span><span class="p">,</span> 
+    <span class="n">columns</span> <span class="o">=</span> <span class="s2">&quot;Sex&quot;</span><span class="p">,</span> 
+    <span class="n">values</span> <span class="o">=</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span> 
+    <span class="n">aggfunc</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Sex</th>
+      <th>F</th>
+      <th>M</th>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1880</th>
+      <td>90994</td>
+      <td>110490</td>
+    </tr>
+    <tr>
+      <th>1881</th>
+      <td>91953</td>
+      <td>100737</td>
+    </tr>
+    <tr>
+      <th>1882</th>
+      <td>107847</td>
+      <td>113686</td>
+    </tr>
+    <tr>
+      <th>1883</th>
+      <td>112319</td>
+      <td>104625</td>
+    </tr>
+    <tr>
+      <th>1884</th>
+      <td>129019</td>
+      <td>114442</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Looks a lot better! Now, our DataFrame is structured with clear index-column combinations. Each entry in the pivot table represents the summed count of names for a given combination of <code class="docutils literal notranslate"><span class="pre">&quot;Year&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;Sex&quot;</span></code>.</p>
+<p>Let’s take a closer look at the code implemented above.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span> <span class="pre">=</span> <span class="pre">&quot;Year&quot;</span></code> specifies the column name in the original DataFrame that should be used as the index of the pivot table</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">columns</span> <span class="pre">=</span> <span class="pre">&quot;Sex&quot;</span></code> specifies the column name in the original DataFrame that should be used to generate the columns of the pivot table</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">values</span> <span class="pre">=</span> <span class="pre">&quot;Count&quot;</span></code> indicates what values from the original DataFrame should be used to populate the entry for each index-column combination</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">aggfunc</span> <span class="pre">=</span> <span class="pre">sum</span></code> tells <code class="docutils literal notranslate"><span class="pre">pandas</span></code> what function to use when aggregating the data specified by <code class="docutils literal notranslate"><span class="pre">values</span></code>. Here, we are summing the name counts for each pair of <code class="docutils literal notranslate"><span class="pre">&quot;Year&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;Sex&quot;</span></code></p></li>
+</ul>
+<figure class="align-default" id="pivot-table">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/pivot.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/pivot.png" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/pivot.png" style="height: 400px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.24 </span><span class="caption-text">A pivot table is a way of summarizing data in a DataFrame for a particular purpose. It makes heavy use of the aggregation function. A pivot table is itself a DataFrame, where the rows represent one variable that you’re interested in, the columns another, and the cell’s some aggregate value. A pivot table also tends to include marginal values (like sums) for each row and column.</span><a class="headerlink" href="#pivot-table" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>We can even include multiple values in the index or columns of our pivot tables.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">babynames_pivot</span> <span class="o">=</span> <span class="n">babynames</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span>     <span class="c1"># the rows (turned into index)</span>
+    <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Sex&quot;</span><span class="p">,</span>    <span class="c1"># the column values</span>
+    <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Count&quot;</span><span class="p">,</span> <span class="s2">&quot;Name&quot;</span><span class="p">],</span> 
+    <span class="n">aggfunc</span><span class="o">=</span><span class="nb">max</span><span class="p">,</span>   <span class="c1"># group operation</span>
+<span class="p">)</span>
+<span class="n">babynames_pivot</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">Count</th>
+      <th colspan="2" halign="left">Name</th>
+    </tr>
+    <tr>
+      <th>Sex</th>
+      <th>F</th>
+      <th>M</th>
+      <th>F</th>
+      <th>M</th>
+    </tr>
+    <tr>
+      <th>Year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1880</th>
+      <td>7065</td>
+      <td>9655</td>
+      <td>Zula</td>
+      <td>Zeke</td>
+    </tr>
+    <tr>
+      <th>1881</th>
+      <td>6919</td>
+      <td>8769</td>
+      <td>Zula</td>
+      <td>Zeb</td>
+    </tr>
+    <tr>
+      <th>1882</th>
+      <td>8148</td>
+      <td>9557</td>
+      <td>Zula</td>
+      <td>Zed</td>
+    </tr>
+    <tr>
+      <th>1883</th>
+      <td>8012</td>
+      <td>8894</td>
+      <td>Zula</td>
+      <td>Zeno</td>
+    </tr>
+    <tr>
+      <th>1884</th>
+      <td>9217</td>
+      <td>9388</td>
+      <td>Zula</td>
+      <td>Zollie</td>
+    </tr>
+    <tr>
+      <th>1885</th>
+      <td>9128</td>
+      <td>8756</td>
+      <td>Zula</td>
+      <td>Zollie</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="merging-dataframes">
+<h2><span class="section-number">1.4.3. </span>Merging DataFrames<a class="headerlink" href="#merging-dataframes" title="Permalink to this headline">#</a></h2>
+<p>When working on data science projects, we’re unlikely to have absolutely all the data we want contained in a single DataFrame – a real-world data scientist needs to grapple with data coming from multiple sources. If we have access to multiple datasets with related information, we can merge two or more tables into a single DataFrame.</p>
+<p>To put this into practice, we’ll revisit the <code class="docutils literal notranslate"><span class="pre">elections</span></code> dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Candidate</th>
+      <th>Party</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1824</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic-Republican</td>
+      <td>151271</td>
+      <td>loss</td>
+      <td>57.210122</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1824</td>
+      <td>John Quincy Adams</td>
+      <td>Democratic-Republican</td>
+      <td>113142</td>
+      <td>win</td>
+      <td>42.789878</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1828</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>642806</td>
+      <td>win</td>
+      <td>56.203927</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1828</td>
+      <td>John Quincy Adams</td>
+      <td>National Republican</td>
+      <td>500897</td>
+      <td>loss</td>
+      <td>43.796073</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1832</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>702735</td>
+      <td>win</td>
+      <td>54.574789</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Say we want to understand the popularity of the names of each presidential candidate in 2020. To do this, we’ll need the combined data of <code class="docutils literal notranslate"><span class="pre">babynames</span></code> <em>and</em> <code class="docutils literal notranslate"><span class="pre">elections</span></code>.</p>
+<p>We’ll start by creating a new column containing the first name of each presidential candidate. This will help us join each name in <code class="docutils literal notranslate"><span class="pre">elections</span></code> to the corresponding name data in <code class="docutils literal notranslate"><span class="pre">babynames</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This `str` operation splits each candidate&#39;s full name at each </span>
+<span class="c1"># blank space, then takes just the candidiate&#39;s first name</span>
+<span class="n">elections</span><span class="p">[</span><span class="s2">&quot;First Name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">elections</span><span class="p">[</span><span class="s2">&quot;Candidate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">elections</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Candidate</th>
+      <th>Party</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
+      <th>First Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1824</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic-Republican</td>
+      <td>151271</td>
+      <td>loss</td>
+      <td>57.210122</td>
+      <td>Andrew</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1824</td>
+      <td>John Quincy Adams</td>
+      <td>Democratic-Republican</td>
+      <td>113142</td>
+      <td>win</td>
+      <td>42.789878</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1828</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>642806</td>
+      <td>win</td>
+      <td>56.203927</td>
+      <td>Andrew</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1828</td>
+      <td>John Quincy Adams</td>
+      <td>National Republican</td>
+      <td>500897</td>
+      <td>loss</td>
+      <td>43.796073</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1832</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>702735</td>
+      <td>win</td>
+      <td>54.574789</td>
+      <td>Andrew</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here, we&#39;ll only consider `babynames` data from 2020</span>
+<span class="n">babynames_2020</span> <span class="o">=</span> <span class="n">babynames</span><span class="p">[</span><span class="n">babynames</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span><span class="o">==</span><span class="mi">2020</span><span class="p">]</span>
+<span class="n">babynames_2020</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Count</th>
+      <th>Year</th>
+      <th>First Letter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Olivia</td>
+      <td>F</td>
+      <td>17641</td>
+      <td>2020</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Emma</td>
+      <td>F</td>
+      <td>15656</td>
+      <td>2020</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ava</td>
+      <td>F</td>
+      <td>13160</td>
+      <td>2020</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Charlotte</td>
+      <td>F</td>
+      <td>13065</td>
+      <td>2020</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Sophia</td>
+      <td>F</td>
+      <td>13036</td>
+      <td>2020</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now, we’re ready to merge the two tables. <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html"><code class="docutils literal notranslate"><span class="pre">pd.merge</span></code></a> is the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> method used to merge DataFrames together.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span> <span class="o">=</span> <span class="n">elections</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">babynames_2020</span><span class="p">,</span> \
+                  <span class="n">left_on</span> <span class="o">=</span> <span class="s2">&quot;First Name&quot;</span><span class="p">,</span> <span class="n">right_on</span> <span class="o">=</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+<span class="n">merged</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1"># Notice that pandas automatically specifies `Year_x` and `Year_y` </span>
+<span class="c1"># when both merged DataFrames have the same column name to avoid confusion</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year_x</th>
+      <th>Candidate</th>
+      <th>Party</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
+      <th>First Name</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Count</th>
+      <th>Year_y</th>
+      <th>First Letter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1824</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic-Republican</td>
+      <td>151271</td>
+      <td>loss</td>
+      <td>57.210122</td>
+      <td>Andrew</td>
+      <td>Andrew</td>
+      <td>F</td>
+      <td>12</td>
+      <td>2020</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1824</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic-Republican</td>
+      <td>151271</td>
+      <td>loss</td>
+      <td>57.210122</td>
+      <td>Andrew</td>
+      <td>Andrew</td>
+      <td>M</td>
+      <td>6036</td>
+      <td>2020</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1828</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>642806</td>
+      <td>win</td>
+      <td>56.203927</td>
+      <td>Andrew</td>
+      <td>Andrew</td>
+      <td>F</td>
+      <td>12</td>
+      <td>2020</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1828</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>642806</td>
+      <td>win</td>
+      <td>56.203927</td>
+      <td>Andrew</td>
+      <td>Andrew</td>
+      <td>M</td>
+      <td>6036</td>
+      <td>2020</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1832</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>702735</td>
+      <td>win</td>
+      <td>54.574789</td>
+      <td>Andrew</td>
+      <td>Andrew</td>
+      <td>F</td>
+      <td>12</td>
+      <td>2020</td>
+      <td>A</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s take a closer look at the parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code> parameters are used to specify the DataFrames to be merge.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">left_on</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on</span></code> parameters are assigned to the string names of the columns to be used when performing the merge. These two <code class="docutils literal notranslate"><span class="pre">on</span></code> parameters tell <code class="docutils literal notranslate"><span class="pre">pandas</span></code> what values should act as pairing keys to determine which rows to merge across the DataFrames. We’ll talk more about this idea of a pairing key next lecture.</p></li>
+</ul>
+<figure class="align-center">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge1.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge1.png" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge1.png" style="width: 80%;" /></a>
+</figure>
+<hr class="docutils" />
+<figure class="align-center">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge2.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge2.png" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge2.png" style="width: 80%;" /></a>
+</figure>
+<hr class="docutils" />
+<figure class="align-center">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge3.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge3.png" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge3.png" style="width: 80%;" /></a>
+</figure>
+</section>
+<section id="concatenating-dataframes">
+<h2><span class="section-number">1.4.4. </span>Concatenating DataFrames<a class="headerlink" href="#concatenating-dataframes" title="Permalink to this headline">#</a></h2>
+<p>Another way to combine DataFrames is to concatenate them. Concatenation is a bit different from joining. When we join two DataFrames, we are combining them <em>horizontally</em> – that is, we are adding new columns to an existing DataFrame. Concatenation, on the other hand, is <em>generally</em> a <em>vertical</em> operation – we are adding new rows to an existing DataFrame.</p>
+<a class="reference internal image-reference" href="https://pandas.pydata.org/docs/_images/merging_concat_basic.png"><img alt="https://pandas.pydata.org/docs/_images/merging_concat_basic.png" class="align-center" src="https://pandas.pydata.org/docs/_images/merging_concat_basic.png" style="width: 50%;" /></a>
+<p><code class="docutils literal notranslate"><span class="pre">pd.concat</span></code> is the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> method used to concatenate DataFrames together. It takes as input a list of DataFrames to be concatenated and returns a new DataFrame containing all of the rows from each input DataFrame in the input list.</p>
+<p>Let’s say we wanted to concatenate data from two different years in <code class="docutils literal notranslate"><span class="pre">babynames</span></code>. We can do so using the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code class="docutils literal notranslate"><span class="pre">pd.concat</span></code></a> method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="n">url_template</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/fahadsultan/csc272/main/data/names/yob</span><span class="si">%s</span><span class="s2">.txt&quot;</span>
+
+<span class="n">data_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1880</span><span class="p">,</span> <span class="mi">2023</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">url_template</span> <span class="o">%</span> <span class="n">year</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">])</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">year</span>
+    <span class="n">data_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">all_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+<span class="n">all_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>sex</th>
+      <th>count</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Mary</td>
+      <td>F</td>
+      <td>7065</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Anna</td>
+      <td>F</td>
+      <td>2604</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Emma</td>
+      <td>F</td>
+      <td>2003</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Elizabeth</td>
+      <td>F</td>
+      <td>1939</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Minnie</td>
+      <td>F</td>
+      <td>1746</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>31910</th>
+      <td>Zuberi</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2022</td>
+    </tr>
+    <tr>
+      <th>31911</th>
+      <td>Zydn</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2022</td>
+    </tr>
+    <tr>
+      <th>31912</th>
+      <td>Zylon</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2022</td>
+    </tr>
+    <tr>
+      <th>31913</th>
+      <td>Zymeer</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2022</td>
+    </tr>
+    <tr>
+      <th>31914</th>
+      <td>Zymeire</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2022</td>
+    </tr>
+  </tbody>
+</table>
+<p>2085158 rows × 4 columns</p>
+</div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./1_programming"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="pandas3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1.3. </span>Pandas III - Data Manipulation and Wrangling</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="40_modalities.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Encoding and Representation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-with-groupby">1.4.1. Aggregation with <code class="docutils literal notranslate"><span class="pre">.groupby</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-with-lambda-functions">1.4.1.1. Aggregation with <code class="docutils literal notranslate"><span class="pre">lambda</span></code> Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-groupby-features">1.4.1.2. Other <code class="docutils literal notranslate"><span class="pre">GroupBy</span></code> Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-by-group">1.4.1.3. Filtering by Group</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-with-pivot-table">1.4.2. Aggregation with <code class="docutils literal notranslate"><span class="pre">.pivot_table</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-dataframes">1.4.3. Merging DataFrames</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenating-dataframes">1.4.4. Concatenating DataFrames</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Syed Fahad Sultan
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>3.3. Dos and Donts of Visualization &#8212; CSC-272 Data Mining</title>
+    <title>4.3. Dos and Donts of Visualization &#8212; Data Science for Machine Learning</title>
   
   
   
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -72,8 +73,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '1_programming/23_dosdonts';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Prob, Stats and Logs" href="../2_maths/10_prob_stats_log.html" />
-    <link rel="prev" title="3.2. Multivariate Visualizations" href="22_multivariate.html" />
+    <link rel="next" title="5. Prob, Stats and Logs" href="../2_maths/10_prob_stats_log.html" />
+    <link rel="prev" title="4.2. Multivariate Visualizations" href="22_multivariate.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -160,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    CSC-272 Data Mining (Fall 2023)
+                    CSC-272 Data Mining (Fall 2024)
                 </a>
             </li>
         </ul>
@@ -187,9 +188,10 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming for Data Science</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="10_dataops.html">1. Vectorized Operations on Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="pandas1.html">1.1. Pandas I: Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas1.html">1.1. Pandas I: Preliminaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas2.html">1.2. Pandas II: Selection, Filtering and Dropping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pandas3.html">1.3. Pandas III: Aggregation, Merging and Concatenation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas3.html">1.3. Pandas III - Data Manipulation and Wrangling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas4.html">1.4. Pandas IV: Aggregation, Merging and Concatenation <br/></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="40_modalities.html">2. Encoding and Representation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -198,48 +200,76 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="43_modalities.html">2.3. Modalities of Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="20_visualization.html">3. Visualizing Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="21_univariate.html">3.1. Univariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="22_multivariate.html">3.2. Multivariate Visualizations</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.3. Dos and Donts of Visualization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="30_collecting.html">3. Collecting Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="31_apis.html">3.1. APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_scraping.html">3.2. Web Scraping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="20_visualization.html">4. Visualizing Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="21_univariate.html">4.1. Univariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_multivariate.html">4.2. Multivariate Visualizations</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.3. Dos and Donts of Visualization</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mathematics for Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">4. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">4.1. Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">4.2. Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">4.3. Logarithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">5. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">5.1. Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">5.2. Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">5.3. Logarithms</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">5. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">5.1. Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">5.2. Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">5.3. Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">6. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">6.1. Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">6.2. Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">6.3. Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/50_calculus.html">7. Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/51_integral.html">7.1. Integral Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/52_differential.html">7.2. Differential Calculus</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/40_supervised.html">6. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/41_classification.html">6.6. Classification</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/42_regression.html">6.7. Regression</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/40_supervised.html">8. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/41_classification.html">8.6. Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/42_regression.html">8.7. Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/20_unsupervised.html">7. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/21_clustering.html">7.1. Clustering</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/20_unsupervised.html">9. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/21_clustering.html">9.1. Clustering</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../3_problems_in/30_reinforcement.html">10. Reinforcement Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Models in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">8. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">8.1. Naive Bayes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">11. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">11.1. Naive Bayes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">9. Generalized Linear Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">10. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">12. Generalized Linear Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">13. Neural Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithms in Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/em.html">14. Expectation Maximization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/gradient_descent.html">15. Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/backprop.html">16. Backpropogation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems with Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/10_representation.html">17. Representation Matters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/40_feedback.html">18. Positive Feedback Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/20_boundaries.html">19. Decision Boundaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/30_incentives.html">20. Majority Rule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications of Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/40_recommendation.html">21. Recommendation Engine</a></li>
 </ul>
 
     </div>
@@ -294,7 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/fahadsultan/datascience_ml/blob/main/1_programming/23_dosdonts.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/fahadsultan/csc272/blob/main/1_programming/23_dosdonts.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -417,22 +447,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dos">3.3.1. Dos ✅</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximize-data-ink-ratio">3.3.1.1. Maximize data ink-ratio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-1-1-aspect-ratio">3.3.1.2. Use 1:1 Aspect Ratio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-graphs-start-at-0">3.3.1.3. Bar graphs start at 0</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-continuous-scales">3.3.1.4. Use continuous scales</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-right-colors">3.3.1.5. Use the right colors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-your-numerical-axes">3.3.1.6. Order your numerical axes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dos">4.3.1. Dos ✅</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximize-data-ink-ratio">4.3.1.1. Maximize data ink-ratio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-1-1-aspect-ratio">4.3.1.2. Use 1:1 Aspect Ratio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-graphs-start-at-0">4.3.1.3. Bar graphs start at 0</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-continuous-scales">4.3.1.4. Use continuous scales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-right-colors">4.3.1.5. Use the right colors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-your-numerical-axes">4.3.1.6. Order your numerical axes</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#donts">3.3.2. Donts ❌</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forget-to-label">3.3.2.1. Forget to label</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scale-distortion">3.3.2.2. Scale Distortion</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-uneven-ranges">3.3.2.3. Use uneven ranges</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-line-graphs-where-the-x-axis-is-not-time">3.3.2.4. Use line graphs where the x-axis is not time</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-wrong-colors">3.3.2.5. Use the wrong colors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-3d">3.3.2.6. Use 3D</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#donts">4.3.2. Donts ❌</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forget-to-label">4.3.2.1. Forget to label</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scale-distortion">4.3.2.2. Scale Distortion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-uneven-ranges">4.3.2.3. Use uneven ranges</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-line-graphs-where-the-x-axis-is-not-time">4.3.2.4. Use line graphs where the x-axis is not time</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-wrong-colors">4.3.2.5. Use the wrong colors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-3d">4.3.2.6. Use 3D</a></li>
 </ul>
 </li>
 </ul>
@@ -447,14 +477,14 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="dos-and-donts-of-visualization">
-<h1><span class="section-number">3.3. </span>Dos and Donts of Visualization<a class="headerlink" href="#dos-and-donts-of-visualization" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">4.3. </span>Dos and Donts of Visualization<a class="headerlink" href="#dos-and-donts-of-visualization" title="Permalink to this headline">#</a></h1>
 <p>Distinguishing good vs. bad visualizations requires a design aesthetic, and a vocabulary to talk about data representations.</p>
 <p>Here, we will discuss some recommendations for creating effective visualizations, and some common pitfalls to avoid.</p>
 <section id="dos">
-<h2><span class="section-number">3.3.1. </span>Dos ✅<a class="headerlink" href="#dos" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.3.1. </span>Dos ✅<a class="headerlink" href="#dos" title="Permalink to this headline">#</a></h2>
 <p>The following recommendations are Edward Tufte’s Visualization Aesthetic</p>
 <section id="maximize-data-ink-ratio">
-<h3><span class="section-number">3.3.1.1. </span>Maximize data ink-ratio<a class="headerlink" href="#maximize-data-ink-ratio" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.1.1. </span>Maximize data ink-ratio<a class="headerlink" href="#maximize-data-ink-ratio" title="Permalink to this headline">#</a></h3>
 <p>The data ink ratio is the proportion of the plotting area dedicated to displaying the data. It is defined as:</p>
 <p><span class="math notranslate nohighlight">\(\text{Data-Ink Ratio} = \frac{\text{Data Ink}}{\text{Total ink used in graph}}\)</span></p>
 <p>The goal is to maximize the data ink ratio. In other words, we want to maximize the proportion of the plotting area dedicated to displaying the data and minimize the proportion dedicated to non-data ink.</p>
@@ -465,46 +495,46 @@ document.write(`
 Similar to the first example, the data shown in both panels of the figure above is the same. However, the panel on the left has a low data ink ratio because it includes needless icons, grid lines and fancy fonts. The panel on the right cleans up the visualization by minimizing all the non-data ink.
 </section>
 <section id="use-1-1-aspect-ratio">
-<h3><span class="section-number">3.3.1.2. </span>Use 1:1 Aspect Ratio<a class="headerlink" href="#use-1-1-aspect-ratio" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.1.2. </span>Use 1:1 Aspect Ratio<a class="headerlink" href="#use-1-1-aspect-ratio" title="Permalink to this headline">#</a></h3>
 <p>The aspect ratio of the visualization should be 1:1. In other words, the width of the visualization should be equal to the height of the visualization. This ensures that the data is not distorted.</p>
 <p>This is particularly true for line graphs. If the aspect ratio is not 1:1, then the slope of the line will be distorted. The steepness of apparent <em>trends</em> in a line plot is a function of aspect ratio. Aim for 45° lines or Golden ratio (<span class="math notranslate nohighlight">\(\approx 1.618\)</span>) as most interpretable.</p>
 <center>
-<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/aspect1.png">
+<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/aspect1.png">
 </center>
 <!-- <img src="https://miro.medium.com/v2/resize:fit:11998/1*7pfffHqyf4ZnZ91cDMGzrQ.jpeg"> -->
 </section>
 <section id="bar-graphs-start-at-0">
-<h3><span class="section-number">3.3.1.3. </span>Bar graphs start at 0<a class="headerlink" href="#bar-graphs-start-at-0" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.1.3. </span>Bar graphs start at 0<a class="headerlink" href="#bar-graphs-start-at-0" title="Permalink to this headline">#</a></h3>
 <p>Bar graphs should always start at zero. If the bar graph does not start at zero, then the differences between the bars will be distorted.</p>
 <center>
-<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/bars0.jpeg">
+<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/bars0.jpeg">
 </center>
 </section>
 <section id="use-continuous-scales">
-<h3><span class="section-number">3.3.1.4. </span>Use continuous scales<a class="headerlink" href="#use-continuous-scales" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.1.4. </span>Use continuous scales<a class="headerlink" href="#use-continuous-scales" title="Permalink to this headline">#</a></h3>
 <p>The scale of the axes should be continuous. In other words, the scale should be linear or logarithmic. Do not use a scale that is discontinuous or non-linear.</p>
 <center>
-<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/ranges2.png">
+<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/ranges2.png">
 </center>
 </section>
 <section id="use-the-right-colors">
-<h3><span class="section-number">3.3.1.5. </span>Use the right colors<a class="headerlink" href="#use-the-right-colors" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.1.5. </span>Use the right colors<a class="headerlink" href="#use-the-right-colors" title="Permalink to this headline">#</a></h3>
 <p>If the data is categorical, then use qualitative colormaps. If your data ranges from negative to positive values use divergent colormaps. If your data ranges from low to high values, then use sequential colormaps.</p>
 <center><img width="50%" src="https://matplotlib.org/stable/_images/sphx_glr_colormap_reference_002_2_00x.png"></center>
 <center><img width="50%" src="https://matplotlib.org/stable/_images/sphx_glr_colormap_reference_006_2_00x.png"></center>
 <center><img width="50%" src="https://matplotlib.org/stable/_images/sphx_glr_colormap_reference_004_2_00x.png"></center>
 </section>
 <section id="order-your-numerical-axes">
-<h3><span class="section-number">3.3.1.6. </span>Order your numerical axes<a class="headerlink" href="#order-your-numerical-axes" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.1.6. </span>Order your numerical axes<a class="headerlink" href="#order-your-numerical-axes" title="Permalink to this headline">#</a></h3>
 <p>The numerical axes should be ordered. For example, if the x-axis represents time, then the x-axis should be ordered from earliest to latest. If the x-axis represents age, then the x-axis should be ordered from youngest to oldest.</p>
 <p>Othwerwise, the data will be difficult to interpret as the viewer will not know which data point corresponds to which value on the x-axis. Example of an unordered x-axis:</p>
 <center><img width="60%" src="https://i.imgur.com/0qVlR6P.png"></center>
 </section>
 </section>
 <section id="donts">
-<h2><span class="section-number">3.3.2. </span>Donts ❌<a class="headerlink" href="#donts" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">4.3.2. </span>Donts ❌<a class="headerlink" href="#donts" title="Permalink to this headline">#</a></h2>
 <section id="forget-to-label">
-<h3><span class="section-number">3.3.2.1. </span>Forget to label<a class="headerlink" href="#forget-to-label" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.2.1. </span>Forget to label<a class="headerlink" href="#forget-to-label" title="Permalink to this headline">#</a></h3>
 <p>All visualizations should have at minimum contain the following:</p>
 <ol class="arabic simple">
 <li><p>A clear and descriptive <strong>Title</strong>.</p></li>
@@ -514,44 +544,44 @@ Similar to the first example, the data shown in both panels of the figure above 
 </ol>
 <p>Don’t be like this guy:</p>
 <center>
-<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/labels1.png">
+<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/labels1.png">
 </center>
 <br/>
 <p>Note that the figure above is missing axis labels. No, <em>“wave1”</em>, <em>“wave2”</em>, <em>“wave3”</em> and <em>“wave4”</em> are not proper  labels for the x-axis. <em>“Are we stuck?”</em> is also not a very informative title.</p>
 </section>
 <section id="scale-distortion">
-<h3><span class="section-number">3.3.2.2. </span>Scale Distortion<a class="headerlink" href="#scale-distortion" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.2.2. </span>Scale Distortion<a class="headerlink" href="#scale-distortion" title="Permalink to this headline">#</a></h3>
 <p>The scale of the effect in the graphic should match the scale of the effect in the data. In other words, the difference in size of the graphics should be proportional to the difference in values in the data.</p>
 <p><span class="math notranslate nohighlight">\( \text{Scale Distortion} \rightarrow \text{size of effect in graphic} \neq \text{size of effect in data}\)</span></p>
 <center>
-<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/scale0.png">
+<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/scale0.png">
 </center>
 <!-- <center>
-<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/scale1.png">
+<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/scale1.png">
 </center> -->
 </section>
 <section id="use-uneven-ranges">
-<h3><span class="section-number">3.3.2.3. </span>Use uneven ranges<a class="headerlink" href="#use-uneven-ranges" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.2.3. </span>Use uneven ranges<a class="headerlink" href="#use-uneven-ranges" title="Permalink to this headline">#</a></h3>
 <p>If ranges are not equal, then you can essentially tell any story with the data you want. Catching this is difficult, but it is a common trick deliberately used to mislead the viewer.</p>
 <center>
-<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/ranges1.png">
+<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/ranges1.png">
 </center></section>
 <section id="use-line-graphs-where-the-x-axis-is-not-time">
-<h3><span class="section-number">3.3.2.4. </span>Use line graphs where the x-axis is not time<a class="headerlink" href="#use-line-graphs-where-the-x-axis-is-not-time" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.2.4. </span>Use line graphs where the x-axis is not time<a class="headerlink" href="#use-line-graphs-where-the-x-axis-is-not-time" title="Permalink to this headline">#</a></h3>
 <p>Plotting a line graph where the x-axis is not time is confusing. Use a bar graph instead.</p>
 <center>
-<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/line2.png">
+<img width="70%" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/line2.png">
 </center>
 </section>
 <section id="use-the-wrong-colors">
-<h3><span class="section-number">3.3.2.5. </span>Use the wrong colors<a class="headerlink" href="#use-the-wrong-colors" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.2.5. </span>Use the wrong colors<a class="headerlink" href="#use-the-wrong-colors" title="Permalink to this headline">#</a></h3>
 <p>If the data is categorical, then use qualitative colormaps. Do not use sequential colormaps.</p>
 <center>
-<img width="50%" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/scale3.png">
+<img width="50%" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/scale3.png">
 </center>
 </section>
 <section id="use-3d">
-<h3><span class="section-number">3.3.2.6. </span>Use 3D<a class="headerlink" href="#use-3d" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">4.3.2.6. </span>Use 3D<a class="headerlink" href="#use-3d" title="Permalink to this headline">#</a></h3>
 <p>Please. Just. Don’t.</p>
 </section>
 </section>
@@ -594,7 +624,7 @@ Similar to the first example, the data shown in both panels of the figure above 
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3.2. </span>Multivariate Visualizations</p>
+        <p class="prev-next-title"><span class="section-number">4.2. </span>Multivariate Visualizations</p>
       </div>
     </a>
     <a class="right-next"
@@ -602,7 +632,7 @@ Similar to the first example, the data shown in both panels of the figure above 
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Prob, Stats and Logs</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Prob, Stats and Logs</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -624,22 +654,22 @@ Similar to the first example, the data shown in both panels of the figure above 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dos">3.3.1. Dos ✅</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximize-data-ink-ratio">3.3.1.1. Maximize data ink-ratio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-1-1-aspect-ratio">3.3.1.2. Use 1:1 Aspect Ratio</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-graphs-start-at-0">3.3.1.3. Bar graphs start at 0</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-continuous-scales">3.3.1.4. Use continuous scales</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-right-colors">3.3.1.5. Use the right colors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-your-numerical-axes">3.3.1.6. Order your numerical axes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dos">4.3.1. Dos ✅</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximize-data-ink-ratio">4.3.1.1. Maximize data ink-ratio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-1-1-aspect-ratio">4.3.1.2. Use 1:1 Aspect Ratio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-graphs-start-at-0">4.3.1.3. Bar graphs start at 0</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-continuous-scales">4.3.1.4. Use continuous scales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-right-colors">4.3.1.5. Use the right colors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#order-your-numerical-axes">4.3.1.6. Order your numerical axes</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#donts">3.3.2. Donts ❌</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forget-to-label">3.3.2.1. Forget to label</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scale-distortion">3.3.2.2. Scale Distortion</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-uneven-ranges">3.3.2.3. Use uneven ranges</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-line-graphs-where-the-x-axis-is-not-time">3.3.2.4. Use line graphs where the x-axis is not time</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-wrong-colors">3.3.2.5. Use the wrong colors</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-3d">3.3.2.6. Use 3D</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#donts">4.3.2. Donts ❌</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#forget-to-label">4.3.2.1. Forget to label</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scale-distortion">4.3.2.2. Scale Distortion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-uneven-ranges">4.3.2.3. Use uneven ranges</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-line-graphs-where-the-x-axis-is-not-time">4.3.2.4. Use line graphs where the x-axis is not time</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-the-wrong-colors">4.3.2.5. Use the wrong colors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-3d">4.3.2.6. Use 3D</a></li>
 </ul>
 </li>
 </ul>
@@ -665,7 +695,7 @@ By Syed Fahad Sultan
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

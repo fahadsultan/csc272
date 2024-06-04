@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1.1. Pandas I: Data Structures &#8212; CSC-272 Data Mining</title>
+    <title>1.1. Pandas I: Preliminaries &#8212; Data Science for Machine Learning</title>
   
   
   
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -158,7 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    CSC-272 Data Mining (Fall 2023)
+                    CSC-272 Data Mining (Fall 2024)
                 </a>
             </li>
         </ul>
@@ -185,9 +186,10 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming for Data Science</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="10_dataops.html">1. Vectorized Operations on Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.1. Pandas I: Data Structures</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.1. Pandas I: Preliminaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas2.html">1.2. Pandas II: Selection, Filtering and Dropping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pandas3.html">1.3. Pandas III: Aggregation, Merging and Concatenation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas3.html">1.3. Pandas III - Data Manipulation and Wrangling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pandas4.html">1.4. Pandas IV: Aggregation, Merging and Concatenation <br/></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="40_modalities.html">2. Encoding and Representation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -196,48 +198,76 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="43_modalities.html">2.3. Modalities of Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="20_visualization.html">3. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="21_univariate.html">3.1. Univariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="22_multivariate.html">3.2. Multivariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="23_dosdonts.html">3.3. Dos and Donts of Visualization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="30_collecting.html">3. Collecting Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="31_apis.html">3.1. APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="32_scraping.html">3.2. Web Scraping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="20_visualization.html">4. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="21_univariate.html">4.1. Univariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="22_multivariate.html">4.2. Multivariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="23_dosdonts.html">4.3. Dos and Donts of Visualization</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mathematics for Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">4. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">4.1. Probability</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">4.2. Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">4.3. Logarithms</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/10_prob_stats_log.html">5. Prob, Stats and Logs</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/11_probability.html">5.1. Probability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/12_stats.html">5.2. Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/13_log.html">5.3. Logarithms</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">5. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">5.1. Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">5.2. Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">5.3. Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/40_linearalgebra.html">6. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/41_vectors.html">6.1. Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/42_matrices.html">6.2. Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/43_applications.html">6.3. Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../2_maths/50_calculus.html">7. Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/51_integral.html">7.1. Integral Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2_maths/52_differential.html">7.2. Differential Calculus</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/40_supervised.html">6. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/41_classification.html">6.6. Classification</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/42_regression.html">6.7. Regression</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/40_supervised.html">8. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/41_classification.html">8.6. Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/42_regression.html">8.7. Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/20_unsupervised.html">7. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/21_clustering.html">7.1. Clustering</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/20_unsupervised.html">9. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/21_clustering.html">9.1. Clustering</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../3_problems_in/30_reinforcement.html">10. Reinforcement Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Models in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">8. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">8.1. Naive Bayes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">11. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">11.1. Naive Bayes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">9. Generalized Linear Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">10. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">12. Generalized Linear Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">13. Neural Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithms in Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/em.html">14. Expectation Maximization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/gradient_descent.html">15. Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/backprop.html">16. Backpropogation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems with Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/10_representation.html">17. Representation Matters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/40_feedback.html">18. Positive Feedback Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/20_boundaries.html">19. Decision Boundaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/30_incentives.html">20. Majority Rule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications of Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/40_recommendation.html">21. Recommendation Engine</a></li>
 </ul>
 
     </div>
@@ -292,7 +322,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/fahadsultan/datascience_ml/blob/main/1_programming/pandas1.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/fahadsultan/csc272/blob/main/1_programming/pandas1.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -405,7 +435,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Pandas I: Data Structures</h1>
+    <h1>Pandas I: Preliminaries</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -415,20 +445,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabular-data">1.1.1. Tabular Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframes-series-and-indices">1.1.2. DataFrames, Series and Indices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series">1.1.3. Series</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">1.1.4. DataFrame</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-dataframe">1.1.4.1. Creating a DataFrame</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-list-and-column-names">1.1.4.1.1. Using a List and Column Names</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#from-a-dictionary">1.1.4.1.2. From a Dictionary</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#from-a-series">1.1.4.1.3. From a Series</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indices">1.1.5. Indices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-and-data-alignment">1.1.6. Arithmetic and Data Alignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-of-data">1.1.1. Dimensionality of Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabular-2-dimensional-data">1.1.2. Tabular (2-dimensional) Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-data">1.1.3. Reading Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#head-method">1.1.4. <code class="docutils literal notranslate"><span class="pre">.head()</span></code> method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-attribute">1.1.5. <code class="docutils literal notranslate"><span class="pre">.shape</span></code> attribute</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtypes-attribute">1.1.6. <code class="docutils literal notranslate"><span class="pre">.dtypes</span></code> attribute</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-data">1.1.7. Writing Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe-series-and-index">1.1.8. DataFrame, Series and Index</a></li>
 </ul>
             </nav>
         </div>
@@ -440,283 +464,66 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="pandas-i-data-structures">
-<h1><span class="section-number">1.1. </span>Pandas I: Data Structures<a class="headerlink" href="#pandas-i-data-structures" title="Permalink to this headline">#</a></h1>
-<p>Lets dive right into things by having you explore and manipulate real-world data. To do so, we’ll introduce <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, a popular Python library for interacting with tabular data.</p>
-<p><code class="docutils literal notranslate"><span class="pre">pandas</span></code> is generally accepted in the data science community as the industry- and academia-standard tool for manipulating tabular data.</p>
-<section id="tabular-data">
-<h2><span class="section-number">1.1.1. </span>Tabular Data<a class="headerlink" href="#tabular-data" title="Permalink to this headline">#</a></h2>
-<p>Data scientists work with data stored in a variety of formats. The primary focus of this class is in understanding <em>tabular data</em> –– data that is stored in a table.</p>
-<p>Tabular data is one of the most common systems that data scientists use to organize data. This is in large part due to the simplicity and flexibility of tables. Tables allow us to represent each <strong>observation</strong>, or instance of collecting data from an individual, as its own row. We can record distinct characteristics, or <strong>features</strong>, of each observation in separate columns.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="pandas-i-preliminaries">
+<h1><span class="section-number">1.1. </span>Pandas I: Preliminaries<a class="headerlink" href="#pandas-i-preliminaries" title="Permalink to this headline">#</a></h1>
+<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/512px-Pandas_logo.svg.png"><img alt="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/512px-Pandas_logo.svg.png" class="align-right" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/512px-Pandas_logo.svg.png" style="width: 30%;" /></a>
+<p><code class="docutils literal notranslate"><span class="pre">Pandas</span></code> is a powerful Python library that is widely used in data science and data analysis. It provides data structures and functions that make working with tabular data easy and intuitive.</p>
+<p>It is generally accepted in the data science community as the industry- and academia-standard tool for manipulating tabular data.</p>
+<section id="dimensionality-of-data">
+<h2><span class="section-number">1.1.1. </span>Dimensionality of Data<a class="headerlink" href="#dimensionality-of-data" title="Permalink to this headline">#</a></h2>
+<p>Dimensionality, in the context of data, refers to the number of axes or directions in which data can be represented. The most common dimensions are 0, 1, 2, and n.</p>
+<p><strong>Scalars (0-dimensional data; values)</strong> are single numbers. They can be integers, real numbers, or complex numbers. Scalars are the simplest objects in linear algebra.  In Python, we can represent scalars using the built-in <code class="docutils literal notranslate"><span class="pre">int</span></code> and <code class="docutils literal notranslate"><span class="pre">float</span></code> data types. For example, <code class="docutils literal notranslate"><span class="pre">3</span></code> and <code class="docutils literal notranslate"><span class="pre">3.0</span></code> are both scalars.</p>
+<p><strong>Vectors (1-dimensional data, collection of values)</strong> are one-dimensional arrays of scalars. They are used to represent quantities that have both magnitude and direction. In native Python, we can represent vectors using lists or tuples. For example, <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code> is a vector.</p>
+<figure class="align-center" id="linear-algebra">
+<a class="reference internal image-reference" href="../_images/linearalgebra.png"><img alt="../_images/linearalgebra.png" src="../_images/linearalgebra.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.8 </span><span class="caption-text">Data can be represented in different dimensions. The most common dimensions are 0, 1, 2, and n.</span><a class="headerlink" href="#linear-algebra" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Matrices (2-dimensional data, collection of vectors)</strong> are two-dimensional arrays of scalars. They are used to represent linear transformations from one vector space to another. In native Python, we can represent matrices using lists of lists. For example, <code class="docutils literal notranslate"><span class="pre">[[1,</span> <span class="pre">2],</span> <span class="pre">[3,</span> <span class="pre">4]]</span></code> is a matrix.</p>
+<p><strong>Tensors (n-dimensional data, collection of matrices)</strong> are n-dimensional arrays of scalars. They are used to represent multi-dimensional data.</p>
+</section>
+<section id="tabular-2-dimensional-data">
+<h2><span class="section-number">1.1.2. </span>Tabular (2-dimensional) Data<a class="headerlink" href="#tabular-2-dimensional-data" title="Permalink to this headline">#</a></h2>
+<p>Tables are one of the most common ways to organize data. This is in large part due to the simplicity and flexibility of tables. Tables allow us to represent each <strong>observation</strong>, or instance of collecting data from an individual, as its own row. We can record distinct characteristics, or <strong>features</strong>, of each observation in separate columns.</p>
+<figure class="align-center" id="tabular-data">
+<a class="reference internal image-reference" href="https://pandas.pydata.org/docs/_images/01_table_dataframe.svg"><img alt="https://pandas.pydata.org/docs/_images/01_table_dataframe.svg" src="https://pandas.pydata.org/docs/_images/01_table_dataframe.svg" width="50%" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.9 </span><span class="caption-text">A table is a collection of rows and columns. Each <strong><em>row</em></strong> represents an <u>observation</u>, and each <strong><em>column</em></strong> represents a <u>feature</u> of the observation.</span><a class="headerlink" href="#tabular-data" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<!-- 
+<center><img width="50%" src="https://pandas.pydata.org/docs/_images/01_table_dataframe.svg"></center>
+<br/> -->
 <p>To see this in action, we’ll explore the <code class="docutils literal notranslate"><span class="pre">elections</span></code> dataset, which stores information about political candidates who ran for president of the United States in various years.</p>
-<p>This dataset is stored in <strong>Comma Separated Values</strong> (CSV) format. CSV files due to their simplicity and readability are one of the most common ways to store tabular data. Each line in a CSV file (file extension: <code class="docutils literal notranslate"><span class="pre">.csv</span></code>) represents a row in the table. In other words, each row is separated by a newline character <code class="docutils literal notranslate"><span class="pre">\n</span></code>. Within each row, each column is separated by a comma <code class="docutils literal notranslate"><span class="pre">,</span></code>, hence the name Comma Separated Values.</p>
 <p>The first few rows of <code class="docutils literal notranslate"><span class="pre">elections</span></code> dataset in CSV format are as follows:</p>
-<div class="highlight-csv notranslate"><div class="highlight"><pre><span></span>Year,Candidate,Party,Popular vote,Result,%
-1824,Andrew Jackson,Democratic-Republican,151271,loss,57.21012204
-1824,John Quincy Adams,Democratic-Republican,113142,win,42.78987796
-1828,Andrew Jackson,Democratic,642806,win,56.20392707
-1828,John Quincy Adams,National Republican,500897,loss,43.79607293
-1832,Andrew Jackson,Democratic,702735,win,54.57478905
+<div class="highlight-csv notranslate"><div class="highlight"><pre><span></span>Year,Candidate,Party,Popular vote,Result,%\n
+1824,Andrew Jackson,Democratic-Republican,151271,loss,57.21012204\n
+1824,John Quincy Adams,Democratic-Republican,113142,win,42.78987796\n
+1828,Andrew Jackson,Democratic,642806,win,56.20392707\n
+1828,John Quincy Adams,National Republican,500897,loss,43.79607293\n
+1832,Andrew Jackson,Democratic,702735,win,54.57478905\n
 </pre></div>
 </div>
-<p>To begin our studies in <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, we must first import the library into our Python environment. This will allow us to use <code class="docutils literal notranslate"><span class="pre">pandas</span></code> data structures and methods in our code.</p>
+<p>This dataset is stored in <strong>Comma Separated Values</strong> (CSV) format. CSV files due to their simplicity and readability are one of the most common ways to store tabular data. Each line in a CSV file (file extension: <code class="docutils literal notranslate"><span class="pre">.csv</span></code>) represents a row in the table. In other words, each row is separated by a newline character <code class="docutils literal notranslate"><span class="pre">\n</span></code>. Within each row, each column is separated by a comma <code class="docutils literal notranslate"><span class="pre">,</span></code>, hence the name Comma Separated Values.</p>
+</section>
+<section id="reading-data">
+<h2><span class="section-number">1.1.3. </span>Reading Data<a class="headerlink" href="#reading-data" title="Permalink to this headline">#</a></h2>
+<p>To begin our studies in <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, we must first import the library into our Python environment using <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pandas</span> <span class="pre">as</span> <span class="pre">pd</span></code> statement. <code class="docutils literal notranslate"><span class="pre">pd</span></code> is a common alias for <code class="docutils literal notranslate"><span class="pre">pandas</span></code>. The import statement will allow us to use <code class="docutils literal notranslate"><span class="pre">pandas</span></code> data structures and methods in our code.</p>
+<figure class="align-center" id="read-write">
+<a class="reference internal image-reference" href="https://i.ibb.co/ZLK0Zm1/read-csv.png"><img alt="https://i.ibb.co/ZLK0Zm1/read-csv.png" src="https://i.ibb.co/ZLK0Zm1/read-csv.png" style="width: 85%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.10 </span><span class="caption-text">Pandas can read from and to a variety of file formats, including CSV, Excel, and SQL databases.</span><a class="headerlink" href="#read-write" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
 <p>CSV files can be in <code class="docutils literal notranslate"><span class="pre">pandas</span></code> using <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>. The following code cell imports <code class="docutils literal notranslate"><span class="pre">pandas</span></code> as <code class="docutils literal notranslate"><span class="pre">pd</span></code>, the conventional alias for Pandas and then reads the <code class="docutils literal notranslate"><span class="pre">elections.csv</span></code> file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `pd` is the conventional alias for Pandas</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/data/elections.csv&quot;</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Year</th>
-      <th>Candidate</th>
-      <th>Party</th>
-      <th>Popular vote</th>
-      <th>Result</th>
-      <th>%</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1824</td>
-      <td>Andrew Jackson</td>
-      <td>Democratic-Republican</td>
-      <td>151271</td>
-      <td>loss</td>
-      <td>57.210122</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1824</td>
-      <td>John Quincy Adams</td>
-      <td>Democratic-Republican</td>
-      <td>113142</td>
-      <td>win</td>
-      <td>42.789878</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1828</td>
-      <td>Andrew Jackson</td>
-      <td>Democratic</td>
-      <td>642806</td>
-      <td>win</td>
-      <td>56.203927</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1828</td>
-      <td>John Quincy Adams</td>
-      <td>National Republican</td>
-      <td>500897</td>
-      <td>loss</td>
-      <td>43.796073</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1832</td>
-      <td>Andrew Jackson</td>
-      <td>Democratic</td>
-      <td>702735</td>
-      <td>win</td>
-      <td>54.574789</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>177</th>
-      <td>2016</td>
-      <td>Jill Stein</td>
-      <td>Green</td>
-      <td>1457226</td>
-      <td>loss</td>
-      <td>1.073699</td>
-    </tr>
-    <tr>
-      <th>178</th>
-      <td>2020</td>
-      <td>Joseph Biden</td>
-      <td>Democratic</td>
-      <td>81268924</td>
-      <td>win</td>
-      <td>51.311515</td>
-    </tr>
-    <tr>
-      <th>179</th>
-      <td>2020</td>
-      <td>Donald Trump</td>
-      <td>Republican</td>
-      <td>74216154</td>
-      <td>loss</td>
-      <td>46.858542</td>
-    </tr>
-    <tr>
-      <th>180</th>
-      <td>2020</td>
-      <td>Jo Jorgensen</td>
-      <td>Libertarian</td>
-      <td>1865724</td>
-      <td>loss</td>
-      <td>1.177979</td>
-    </tr>
-    <tr>
-      <th>181</th>
-      <td>2020</td>
-      <td>Howard Hawkins</td>
-      <td>Green</td>
-      <td>405035</td>
-      <td>loss</td>
-      <td>0.255731</td>
-    </tr>
-  </tbody>
-</table>
-<p>182 rows × 6 columns</p>
-</div></div></div>
-</div>
-<p>In the <code class="docutils literal notranslate"><span class="pre">elections</span></code> dataset, each row represents one instance of a candidate running for president in a particular year. For example, the first row represents Andrew Jackson running for president in the year 1824. Each column represents one characteristic piece of information about each presidential candidate. For example, the column named <code class="docutils literal notranslate"><span class="pre">Result</span></code> stores whether or not the candidate won the election.</p>
-</section>
-<section id="dataframes-series-and-indices">
-<h2><span class="section-number">1.1.2. </span>DataFrames, Series and Indices<a class="headerlink" href="#dataframes-series-and-indices" title="Permalink to this headline">#</a></h2>
-<p>There are three fundamental data structures in <code class="docutils literal notranslate"><span class="pre">pandas</span></code>:</p>
-<ol class="arabic simple">
-<li><p><strong>Series</strong>: 1D labeled array data; best thought of as columnar data</p></li>
-<li><p><strong>DataFrame</strong>: 2D tabular data with rows and columns</p></li>
-<li><p><strong>Index</strong>: A sequence of row/column labels</p></li>
-</ol>
-<p>DataFrames, Series, and Indices can be represented visually in the following diagram, which considers the first few rows of the <code class="docutils literal notranslate"><span class="pre">elections</span></code> dataset.</p>
-<figure class="align-center" id="id1">
-<a class="reference internal image-reference" href="../_images/data_structure.png"><img alt="../_images/data_structure.png" src="../_images/data_structure.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1.8 </span><span class="caption-text">Three fundamental <code class="docutils literal notranslate"><span class="pre">pandas</span></code> data structures: <strong>Series</strong>, <strong>DataFrame</strong>, <strong>Index</strong></span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>Notice how the <strong>DataFrame</strong> is a two-dimensional object – it contains both rows and columns. The <strong>Series</strong> above is a singular column of this <strong>DataFrame</strong>, namely, the <code class="docutils literal notranslate"><span class="pre">Result</span></code> column. Both contain an <strong>Index</strong>, or a shared list of row labels (here, the integers from 0 to 4, inclusive).</p>
-<figure class="align-center" id="id2">
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/DataFrameSeries.png"><img alt="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/DataFrameSeries.png" src="https://raw.githubusercontent.com/fahadsultan/datascience_ml/main/assets/DataFrameSeries.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1.9 </span><span class="caption-text">Schematic of a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <strong>DataFrame</strong> and  <strong>Series</strong></span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="series">
-<h2><span class="section-number">1.1.3. </span>Series<a class="headerlink" href="#series" title="Permalink to this headline">#</a></h2>
-<p>A Series represents a column of a DataFrame; more generally, it can be any 1-dimensional array-like object containing values of the same type with associated data labels, called its index. In the cell below, we create a Series named <code class="docutils literal notranslate"><span class="pre">s</span></code>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="n">s</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    -1
-1    10
-2     2
-dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">values</span> <span class="c1"># Data contained within the Series</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1, 10,  2])
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">index</span> <span class="c1"># The Index of the Series</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=3, step=1)
-</pre></div>
-</div>
-</div>
-</div>
-<p>By default, the Index of a Series is a sequential list of integers beginning from 0.</p>
-<p>Optionally, a manually-specified list of desired indices can be passed to the <code class="docutils literal notranslate"><span class="pre">index</span></code> argument.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>
-<span class="n">s</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a    -1
-b    10
-c     2
-dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-<p>Indices can also be changed after initialization.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;first&quot;</span><span class="p">,</span> <span class="s2">&quot;second&quot;</span><span class="p">,</span> <span class="s2">&quot;third&quot;</span><span class="p">]</span>
-<span class="n">s</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>first     -1
-second    10
-third      2
-dtype: int64
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="dataframe">
-<h2><span class="section-number">1.1.4. </span>DataFrame<a class="headerlink" href="#dataframe" title="Permalink to this headline">#</a></h2>
-<p>With our new understanding of <code class="docutils literal notranslate"><span class="pre">pandas</span></code> in hand, let’s return to the <code class="docutils literal notranslate"><span class="pre">elections</span></code> dataset from before. Now, we recognize that it is represented as a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> DataFrame.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># `pd` is the conventional alias for Pandas, as `np` is for NumPy</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">elections</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/elections.csv&quot;</span><span class="p">)</span>
-
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv&quot;</span>
+<span class="n">elections</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">elections</span>
 </pre></div>
 </div>
@@ -862,33 +669,22 @@ dtype: int64
 </ol>
 <p>This code stores our DataFrame object in the <code class="docutils literal notranslate"><span class="pre">elections</span></code> variable. We see that our <code class="docutils literal notranslate"><span class="pre">elections</span></code> DataFrame has 182 rows and 6 columns (<code class="docutils literal notranslate"><span class="pre">Year</span></code>, <code class="docutils literal notranslate"><span class="pre">Candidate</span></code>, <code class="docutils literal notranslate"><span class="pre">Party</span></code>, <code class="docutils literal notranslate"><span class="pre">Popular</span> <span class="pre">Vote</span></code>, <code class="docutils literal notranslate"><span class="pre">Result</span></code>, <code class="docutils literal notranslate"><span class="pre">%</span></code>). Each row represents a single record – in our example, a presedential candidate from some particular year. Each column represents a single attribute, or feature of the record.</p>
 <p>In the example above, we constructed a DataFrame object using data from a CSV file. As we’ll explore in the next section, we can also create a DataFrame with data of our own.</p>
-<figure class="align-center" id="id3">
-<a class="reference internal image-reference" href="../_images/df_cols.png"><img alt="../_images/df_cols.png" src="../_images/df_cols.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1.10 </span><span class="caption-text">Each column of a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <strong>DataFrame</strong> <code class="docutils literal notranslate"><span class="pre">df</span></code> is a <strong>Series</strong> <code class="docutils literal notranslate"><span class="pre">s</span></code> where <code class="docutils literal notranslate"><span class="pre">s.index</span> <span class="pre">==</span> <span class="pre">df.index</span></code></span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-center" id="id4">
-<a class="reference internal image-reference" href="../_images/df_rows.png"><img alt="../_images/df_rows.png" src="../_images/df_rows.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1.11 </span><span class="caption-text">Each row of a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <strong>DataFrame</strong> <code class="docutils literal notranslate"><span class="pre">df</span></code> is a <strong>Series</strong> <code class="docutils literal notranslate"><span class="pre">s</span></code> where <code class="docutils literal notranslate"><span class="pre">s.index</span> <span class="pre">==</span> <span class="pre">df.columns</span></code></span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<section id="creating-a-dataframe">
-<h3><span class="section-number">1.1.4.1. </span>Creating a DataFrame<a class="headerlink" href="#creating-a-dataframe" title="Permalink to this headline">#</a></h3>
-<p>There are many ways to create a DataFrame. Here, we will cover the most popular approaches.</p>
-<ol class="arabic simple">
-<li><p>Using a list and column names</p></li>
-<li><p>From a dictionary</p></li>
-<li><p>From a Series</p></li>
-</ol>
-<section id="using-a-list-and-column-names">
-<h4><span class="section-number">1.1.4.1.1. </span>Using a List and Column Names<a class="headerlink" href="#using-a-list-and-column-names" title="Permalink to this headline">#</a></h4>
-<p>Consider the following examples. The first code cell creates a DataFrame with a single column <code class="docutils literal notranslate"><span class="pre">Numbers</span></code>. The second creates a DataFrame with the columns <code class="docutils literal notranslate"><span class="pre">Numbers</span></code> and <code class="docutils literal notranslate"><span class="pre">Description</span></code>. Notice how a 2D list of values is required to initialize the second DataFrame – each nested list represents a single row of data.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">elections</span></code> dataset, each row represents one instance of a candidate running for president in a particular year. For example, the first row represents Andrew Jackson running for president in the year 1824. Each column represents one characteristic piece of information about each presidential candidate. For example, the column named <code class="docutils literal notranslate"><span class="pre">Result</span></code> stores whether or not the candidate won the election.</p>
+<p>Some relevant arguments for <code class="docutils literal notranslate"><span class="pre">read_csv</span></code> are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">filepath_or_buffer</span></code>: The path to the CSV file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sep</span></code>: The character that separates the values in the CSV file. By default, this is a comma <code class="docutils literal notranslate"><span class="pre">,</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">header</span></code>: The row number to use as the column names. By default, this is <code class="docutils literal notranslate"><span class="pre">0</span></code>, which means the first row is used as the column names.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index_col</span></code>: The column to use as the row labels of the DataFrame. By default, this is <code class="docutils literal notranslate"><span class="pre">None</span></code>, which means that the row labels are integers starting from 0.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">error_bad_lines</span></code>: If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the parser will skip lines with too many fields rather than raising an error. By default, this is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+</section>
+<section id="head-method">
+<h2><span class="section-number">1.1.4. </span><code class="docutils literal notranslate"><span class="pre">.head()</span></code> method<a class="headerlink" href="#head-method" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">.head()</span></code> is a method of a DataFrame that returns the first <code class="docutils literal notranslate"><span class="pre">n</span></code> rows of a DataFrame. By default, <code class="docutils literal notranslate"><span class="pre">n</span></code> is 5. This is useful when you want to quickly check the contents of a DataFrame.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_list_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Numbers&quot;</span><span class="p">])</span>
-<span class="n">df_list_1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -911,30 +707,68 @@ dtype: int64
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Numbers</th>
+      <th>Year</th>
+      <th>Candidate</th>
+      <th>Party</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>1</td>
+      <td>1824</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic-Republican</td>
+      <td>151271</td>
+      <td>loss</td>
+      <td>57.210122</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2</td>
+      <td>1824</td>
+      <td>John Quincy Adams</td>
+      <td>Democratic-Republican</td>
+      <td>113142</td>
+      <td>win</td>
+      <td>42.789878</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>3</td>
+      <td>1828</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>642806</td>
+      <td>win</td>
+      <td>56.203927</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1828</td>
+      <td>John Quincy Adams</td>
+      <td>National Republican</td>
+      <td>500897</td>
+      <td>loss</td>
+      <td>43.796073</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1832</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>702735</td>
+      <td>win</td>
+      <td>54.574789</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
+<p>Similarly, calling <code class="docutils literal notranslate"><span class="pre">df.tail(n)</span></code> allows us to extract the last n rows of the DataFrame.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_list_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;one&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;two&quot;</span><span class="p">]],</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Number&quot;</span><span class="p">,</span> <span class="s2">&quot;Description&quot;</span><span class="p">])</span>
-<span class="n">df_list_2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -957,373 +791,146 @@ dtype: int64
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Number</th>
-      <th>Description</th>
+      <th>Year</th>
+      <th>Candidate</th>
+      <th>Party</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>one</td>
+      <th>179</th>
+      <td>2020</td>
+      <td>Donald Trump</td>
+      <td>Republican</td>
+      <td>74216154</td>
+      <td>loss</td>
+      <td>46.858542</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>two</td>
+      <th>180</th>
+      <td>2020</td>
+      <td>Jo Jorgensen</td>
+      <td>Libertarian</td>
+      <td>1865724</td>
+      <td>loss</td>
+      <td>1.177979</td>
+    </tr>
+    <tr>
+      <th>181</th>
+      <td>2020</td>
+      <td>Howard Hawkins</td>
+      <td>Green</td>
+      <td>405035</td>
+      <td>loss</td>
+      <td>0.255731</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
 </section>
-<section id="from-a-dictionary">
-<h4><span class="section-number">1.1.4.1.2. </span>From a Dictionary<a class="headerlink" href="#from-a-dictionary" title="Permalink to this headline">#</a></h4>
-<p>A second (and more common) way to create a DataFrame is with a dictionary. The dictionary keys represent the column names, and the dictionary values represent the column values.</p>
+<section id="shape-attribute">
+<h2><span class="section-number">1.1.5. </span><code class="docutils literal notranslate"><span class="pre">.shape</span></code> attribute<a class="headerlink" href="#shape-attribute" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">.shape</span></code> is an attribute of a DataFrame that returns a tuple representing the dimensions of the DataFrame.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_dict</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;Fruit&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Strawberry&quot;</span><span class="p">,</span> <span class="s2">&quot;Orange&quot;</span><span class="p">],</span> <span class="s2">&quot;Price&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.49</span><span class="p">,</span> <span class="mf">3.99</span><span class="p">]})</span>
-<span class="n">df_dict</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Fruit</th>
-      <th>Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Strawberry</td>
-      <td>5.49</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Orange</td>
-      <td>3.99</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(182, 6)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first element of the tuple is the number of rows, and the second element is the number of columns.</p>
+</section>
+<section id="dtypes-attribute">
+<h2><span class="section-number">1.1.6. </span><code class="docutils literal notranslate"><span class="pre">.dtypes</span></code> attribute<a class="headerlink" href="#dtypes-attribute" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">.dtypes</span></code> is an attribute of a DataFrame that returns the data type of each column. The data types are returned as a Series with the column names as the index labels.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Year              int64
+Candidate        object
+Party            object
+Popular vote      int64
+Result           object
+%               float64
+dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<p>In pandas, <code class="docutils literal notranslate"><span class="pre">object</span></code> is the data type used for string columns, while <code class="docutils literal notranslate"><span class="pre">int64</span></code> and <code class="docutils literal notranslate"><span class="pre">float64</span></code> are used for integer and floating-point columns, respectively.</p>
+</section>
+<section id="writing-data">
+<h2><span class="section-number">1.1.7. </span>Writing Data<a class="headerlink" href="#writing-data" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">pandas</span></code> can also write data to a variety of file formats, including CSV, Excel, and SQL databases. The following code cell writes the <code class="docutils literal notranslate"><span class="pre">elections</span></code> dataset to a CSV file named <code class="docutils literal notranslate"><span class="pre">elections.csv</span></code>.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="https://i.ibb.co/j8Hn4VN/to-csv.png"><img alt="https://i.ibb.co/j8Hn4VN/to-csv.png" src="https://i.ibb.co/j8Hn4VN/to-csv.png" style="width: 85%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.11 </span><span class="caption-text">Pandas can write to a variety of file formats, including CSV, Excel, XML, JSON and SQL. To write to a format, use the <code class="docutils literal notranslate"><span class="pre">to_&lt;format&gt;</span></code> method on a DataFrame with the desired file name as an argument.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;elections_new.csv&#39;</span><span class="p">)</span>
+</pre></div>
 </div>
 </section>
-<section id="from-a-series">
-<h4><span class="section-number">1.1.4.1.3. </span>From a Series<a class="headerlink" href="#from-a-series" title="Permalink to this headline">#</a></h4>
-<p>Earlier, we noted that a Series is usually thought of as a column in a DataFrame. It follows then, that a DataFrame is equivalent to a collection of Series, which all share the same index.</p>
-<p>In fact, we can initialize a DataFrame by merging two or more Series.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Notice how our indices, or row labels, are the same</span>
+<section id="dataframe-series-and-index">
+<h2><span class="section-number">1.1.8. </span>DataFrame, Series and Index<a class="headerlink" href="#dataframe-series-and-index" title="Permalink to this headline">#</a></h2>
+<p>There are three fundamental data structures in <code class="docutils literal notranslate"><span class="pre">pandas</span></code>:</p>
+<ol class="arabic simple">
+<li><p><strong>Series</strong>: 1D labeled array data; best thought of as columnar data</p></li>
+<li><p><strong>DataFrame</strong>: 2D tabular data with rows and columns</p></li>
+<li><p><strong>Index</strong>: A sequence of row/column labels</p></li>
+</ol>
+<p>DataFrames, Series, and Indices can be represented visually in the following diagram, which considers the first few rows of the <code class="docutils literal notranslate"><span class="pre">elections</span></code> dataset.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/data_structure.png"><img alt="../_images/data_structure.png" src="../_images/data_structure.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.12 </span><span class="caption-text">Three fundamental <code class="docutils literal notranslate"><span class="pre">pandas</span></code> data structures: <strong>Series</strong>, <strong>DataFrame</strong>, <strong>Index</strong></span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Notice how the <strong>DataFrame</strong> is a two-dimensional object – it contains both rows and columns. The <strong>Series</strong> above is a singular column of this <strong>DataFrame</strong>, namely, the <code class="docutils literal notranslate"><span class="pre">Result</span></code> column. Both contain an <strong>Index</strong>, or a shared list of row labels (here, the integers from 0 to 4, inclusive).</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/DataFrameSeries.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/DataFrameSeries.png" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/DataFrameSeries.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.13 </span><span class="caption-text">Schematic of a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <strong>DataFrame</strong> and  <strong>Series</strong></span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/df_cols.png"><img alt="../_images/df_cols.png" src="../_images/df_cols.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.14 </span><span class="caption-text">Each column of a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <strong>DataFrame</strong> <code class="docutils literal notranslate"><span class="pre">df</span></code> is a <strong>Series</strong> <code class="docutils literal notranslate"><span class="pre">s</span></code> where <code class="docutils literal notranslate"><span class="pre">s.index</span> <span class="pre">==</span> <span class="pre">df.index</span></code></span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="../_images/df_rows.png"><img alt="../_images/df_rows.png" src="../_images/df_rows.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1.15 </span><span class="caption-text">Each row of a <code class="docutils literal notranslate"><span class="pre">pandas</span></code> <strong>DataFrame</strong> <code class="docutils literal notranslate"><span class="pre">df</span></code> is a <strong>Series</strong> <code class="docutils literal notranslate"><span class="pre">s</span></code> where <code class="docutils literal notranslate"><span class="pre">s.index</span> <span class="pre">==</span> <span class="pre">df.columns</span></code></span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<!--
+### Creating a DataFrame
 
-<span class="n">s_a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;a1&quot;</span><span class="p">,</span> <span class="s2">&quot;a2&quot;</span><span class="p">,</span> <span class="s2">&quot;a3&quot;</span><span class="p">],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;r1&quot;</span><span class="p">,</span> <span class="s2">&quot;r2&quot;</span><span class="p">,</span> <span class="s2">&quot;r3&quot;</span><span class="p">])</span>
-<span class="n">s_b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="s2">&quot;b1&quot;</span><span class="p">,</span> <span class="s2">&quot;b2&quot;</span><span class="p">,</span> <span class="s2">&quot;b3&quot;</span><span class="p">],</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;r1&quot;</span><span class="p">,</span> <span class="s2">&quot;r2&quot;</span><span class="p">,</span> <span class="s2">&quot;r3&quot;</span><span class="p">])</span>
+There are many ways to create a DataFrame. Here, we will cover the most popular approaches.
 
-<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A-column&quot;</span><span class="p">:</span> <span class="n">s_a</span><span class="p">,</span> <span class="s2">&quot;B-column&quot;</span><span class="p">:</span> <span class="n">s_b</span><span class="p">})</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+1. Using a list and column names
+2. From a dictionary
+3. From a Series
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+#### Using a List and Column Names
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A-column</th>
-      <th>B-column</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>r1</th>
-      <td>a1</td>
-      <td>b1</td>
-    </tr>
-    <tr>
-      <th>r2</th>
-      <td>a2</td>
-      <td>b2</td>
-    </tr>
-    <tr>
-      <th>r3</th>
-      <td>a3</td>
-      <td>b3</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-</section>
-</section>
-</section>
-<section id="indices">
-<h2><span class="section-number">1.1.5. </span>Indices<a class="headerlink" href="#indices" title="Permalink to this headline">#</a></h2>
-<p>The major takeaway: we can think of a <strong>DataFrame</strong> as a collection of <strong>Series</strong> that all share the same <strong>Index</strong>.</p>
-<p>On a more technical note, an Index doesn’t have to be an integer, nor does it have to be unique. For example, we can set the index of the <code class="docutils literal notranslate"><span class="pre">elections</span></code> Dataframe to be the name of presidential candidates.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This sets the index to be the &quot;Candidate&quot; column</span>
-<span class="n">elections</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Candidate&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">elections</span><span class="o">.</span><span class="n">index</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Andrew Jackson&#39;, &#39;John Quincy Adams&#39;, &#39;Andrew Jackson&#39;,
-       &#39;John Quincy Adams&#39;, &#39;Andrew Jackson&#39;, &#39;Henry Clay&#39;, &#39;William Wirt&#39;,
-       &#39;Hugh Lawson White&#39;, &#39;Martin Van Buren&#39;, &#39;William Henry Harrison&#39;,
-       ...
-       &#39;Darrell Castle&#39;, &#39;Donald Trump&#39;, &#39;Evan McMullin&#39;, &#39;Gary Johnson&#39;,
-       &#39;Hillary Clinton&#39;, &#39;Jill Stein&#39;, &#39;Joseph Biden&#39;, &#39;Donald Trump&#39;,
-       &#39;Jo Jorgensen&#39;, &#39;Howard Hawkins&#39;],
-      dtype=&#39;object&#39;, name=&#39;Candidate&#39;, length=182)
-</pre></div>
-</div>
-</div>
-</div>
-<p>And, if we’d like, we can revert the index back to the default list of integers.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This resets the index to be the default list of integers</span>
-<span class="n">elections</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
-<span class="n">elections</span><span class="o">.</span><span class="n">index</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RangeIndex(start=0, stop=182, step=1)
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="arithmetic-and-data-alignment">
-<h2><span class="section-number">1.1.6. </span>Arithmetic and Data Alignment<a class="headerlink" href="#arithmetic-and-data-alignment" title="Permalink to this headline">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">pandas</span></code> can make it much simpler to work with objects that have different indexes. For example, when you add objects, if any index pairs are not the same, the respective index in the result will be the union of the index pairs. Let’s look at an example:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">7.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">])</span>
-<span class="n">s1</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a    7.3
-c   -2.5
-d    3.4
-e    1.5
-dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="o">-</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">3.1</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="s2">&quot;g&quot;</span><span class="p">])</span>
-<span class="n">s2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a   -2.1
-c    3.6
-e   -1.5
-f    4.0
-g    3.1
-dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a    5.2
-c    1.1
-d    NaN
-e    0.0
-f    NaN
-g    NaN
-dtype: float64
-</pre></div>
-</div>
-</div>
-</div>
-<p>The internal data alignment introduces missing values in the label locations that don’t overlap. Missing values will then propagate in further arithmetic computations.</p>
-<p>In the case of DataFrame, alignment is performed on both rows and columns:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;B&quot;</span><span class="p">:[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
-<span class="n">df1</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>4</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="s2">&quot;D&quot;</span><span class="p">:[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]})</span>
-<span class="n">df2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>B</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>5</td>
-      <td>7</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>6</td>
-      <td>8</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df1</span> <span class="o">+</span> <span class="n">df2</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>A</th>
-      <th>B</th>
-      <th>D</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>NaN</td>
-      <td>8</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>NaN</td>
-      <td>10</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-</section>
+Consider the following examples. The first code cell creates a DataFrame with a single column `Numbers`. The second creates a DataFrame with the columns `Numbers` and `Description`. Notice how a 2D list of values is required to initialize the second DataFrame – each nested list represents a single row of data. --></section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1393,20 +1000,14 @@ dtype: float64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabular-data">1.1.1. Tabular Data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframes-series-and-indices">1.1.2. DataFrames, Series and Indices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#series">1.1.3. Series</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe">1.1.4. DataFrame</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-dataframe">1.1.4.1. Creating a DataFrame</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-list-and-column-names">1.1.4.1.1. Using a List and Column Names</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#from-a-dictionary">1.1.4.1.2. From a Dictionary</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#from-a-series">1.1.4.1.3. From a Series</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indices">1.1.5. Indices</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-and-data-alignment">1.1.6. Arithmetic and Data Alignment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-of-data">1.1.1. Dimensionality of Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabular-2-dimensional-data">1.1.2. Tabular (2-dimensional) Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-data">1.1.3. Reading Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#head-method">1.1.4. <code class="docutils literal notranslate"><span class="pre">.head()</span></code> method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-attribute">1.1.5. <code class="docutils literal notranslate"><span class="pre">.shape</span></code> attribute</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dtypes-attribute">1.1.6. <code class="docutils literal notranslate"><span class="pre">.dtypes</span></code> attribute</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-data">1.1.7. Writing Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframe-series-and-index">1.1.8. DataFrame, Series and Index</a></li>
 </ul>
   </nav></div>
 
@@ -1430,7 +1031,7 @@ By Syed Fahad Sultan
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>

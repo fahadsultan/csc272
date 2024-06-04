@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>4.2. Statistics &#8212; CSC-272 Data Mining</title>
+    <title>5.2. Statistics &#8212; Data Science for Machine Learning</title>
   
   
   
@@ -35,6 +35,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/myfile.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -72,8 +73,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '2_maths/12_stats';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.3. Logarithms" href="13_log.html" />
-    <link rel="prev" title="4.1. Probability" href="11_probability.html" />
+    <link rel="next" title="5.3. Logarithms" href="13_log.html" />
+    <link rel="prev" title="5.1. Probability" href="11_probability.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -160,7 +161,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    CSC-272 Data Mining (Fall 2023)
+                    CSC-272 Data Mining (Fall 2024)
                 </a>
             </li>
         </ul>
@@ -187,9 +188,10 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming for Data Science</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/10_dataops.html">1. Vectorized Operations on Data</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas1.html">1.1. Pandas I: Data Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas1.html">1.1. Pandas I: Preliminaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas2.html">1.2. Pandas II: Selection, Filtering and Dropping</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas3.html">1.3. Pandas III: Aggregation, Merging and Concatenation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas3.html">1.3. Pandas III - Data Manipulation and Wrangling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/pandas4.html">1.4. Pandas IV: Aggregation, Merging and Concatenation <br/></a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/40_modalities.html">2. Encoding and Representation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -198,48 +200,76 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../1_programming/43_modalities.html">2.3. Modalities of Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/20_visualization.html">3. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/21_univariate.html">3.1. Univariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/22_multivariate.html">3.2. Multivariate Visualizations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../1_programming/23_dosdonts.html">3.3. Dos and Donts of Visualization</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/30_collecting.html">3. Collecting Data</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/31_apis.html">3.1. APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/32_scraping.html">3.2. Web Scraping</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../1_programming/20_visualization.html">4. Visualizing Data</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/21_univariate.html">4.1. Univariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/22_multivariate.html">4.2. Multivariate Visualizations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../1_programming/23_dosdonts.html">4.3. Dos and Donts of Visualization</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Mathematics for Data Science</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="10_prob_stats_log.html">4. Prob, Stats and Logs</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="11_probability.html">4.1. Probability</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.2. Statistics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="13_log.html">4.3. Logarithms</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="10_prob_stats_log.html">5. Prob, Stats and Logs</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="11_probability.html">5.1. Probability</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.2. Statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="13_log.html">5.3. Logarithms</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="40_linearalgebra.html">5. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="41_vectors.html">5.1. Vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="42_matrices.html">5.2. Matrices</a></li>
-<li class="toctree-l2"><a class="reference internal" href="43_applications.html">5.3. Applications</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="40_linearalgebra.html">6. Linear Algebra and Geometry</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="41_vectors.html">6.1. Vectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="42_matrices.html">6.2. Matrices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="43_applications.html">6.3. Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="50_calculus.html">7. Calculus</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="51_integral.html">7.1. Integral Calculus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="52_differential.html">7.2. Differential Calculus</a></li>
 </ul>
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/40_supervised.html">6. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/41_classification.html">6.6. Classification</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/42_regression.html">6.7. Regression</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/40_supervised.html">8. Supervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/41_classification.html">8.6. Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/42_regression.html">8.7. Regression</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/20_unsupervised.html">7. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/21_clustering.html">7.1. Clustering</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../3_problems_in/20_unsupervised.html">9. Unsupervised Learning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../3_problems_in/21_clustering.html">9.1. Clustering</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../3_problems_in/30_reinforcement.html">10. Reinforcement Learning</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Models in Data Science</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">8. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">8.1. Naive Bayes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../4_models/graphical.html">11. Graphical Models</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../4_models/41_naivebayes.html">11.1. Naive Bayes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">9. Generalized Linear Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">10. Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/generalized.html">12. Generalized Linear Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../4_models/nn.html">13. Neural Networks</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algorithms in Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/em.html">14. Expectation Maximization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/gradient_descent.html">15. Gradient Descent</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../5_algos/backprop.html">16. Backpropogation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Problems with Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/10_representation.html">17. Representation Matters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/40_feedback.html">18. Positive Feedback Loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/20_boundaries.html">19. Decision Boundaries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../6_problems_with/30_incentives.html">20. Majority Rule</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Applications of Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../7_applications/40_recommendation.html">21. Recommendation Engine</a></li>
 </ul>
 
     </div>
@@ -294,7 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/fahadsultan/datascience_ml/blob/main/2_maths/12_stats.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/fahadsultan/csc272/blob/main/2_maths/12_stats.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -417,17 +447,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-statistical-distributions">4.2.1. Categorical Statistical Distributions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bernoulli">4.2.1.1. Bernoulli 🪙</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical">4.2.1.2. Categorical 🎲</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binomial">4.2.1.3. Binomial 🪙 🪙 🪙</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial">4.2.1.4. Multinomial 🎲 🎲 🎲</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">4.2.1.5. Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-statistical-distributions">5.2.1. Categorical Statistical Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bernoulli">5.2.1.1. Bernoulli 🪙</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical">5.2.1.2. Categorical 🎲</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binomial">5.2.1.3. Binomial 🪙 🪙 🪙</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial">5.2.1.4. Multinomial 🎲 🎲 🎲</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">5.2.1.5. Summary</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation">4.2.2. Maximum Likelihood Estimation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-large-numbers">4.2.3. Law of Large Numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-dogma-of-statistics">4.2.4. Central Dogma of Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation">5.2.2. Maximum Likelihood Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-large-numbers">5.2.3. Law of Large Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-dogma-of-statistics">5.2.4. Central Dogma of Statistics</a></li>
 </ul>
             </nav>
         </div>
@@ -440,7 +470,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="statistics">
-<h1><span class="section-number">4.2. </span>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">5.2. </span>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">#</a></h1>
 <p>Every variable we observe in the data has a particular frequency distribution and in turn a probability distribution. These exact distribtions are unique to the variable under consideration. However, the shapes of these distributions are not unique. There are a few common shapes that we see over and over again. In other words, <strong>the world’s rich variety of data appears only in a small number of classical shapes</strong>. Once abstracted from specific data observations, they become <em>probability distributions</em>, worthy of independent study.</p>
 <p>These classical distributions have two nice properties:</p>
 <ol class="arabic simple">
@@ -456,9 +486,9 @@ document.write(`
 <a class="reference internal image-reference" href="../_images/probstats2.png"><img alt="../_images/probstats2.png" class="align-center" src="../_images/probstats2.png" style="width: 90%;" /></a>
 <p>Below we will look at some of the most common distributions for categorical variables, focusing specifically on the parameters that define them. Once we have estimated parameters, we have a complete description of the probability distribution that can be used to reason about the world.</p>
 <section id="categorical-statistical-distributions">
-<h2><span class="section-number">4.2.1. </span>Categorical Statistical Distributions<a class="headerlink" href="#categorical-statistical-distributions" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.2.1. </span>Categorical Statistical Distributions<a class="headerlink" href="#categorical-statistical-distributions" title="Permalink to this headline">#</a></h2>
 <section id="bernoulli">
-<h3><span class="section-number">4.2.1.1. </span>Bernoulli 🪙<a class="headerlink" href="#bernoulli" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">5.2.1.1. </span>Bernoulli 🪙<a class="headerlink" href="#bernoulli" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><strong>Number of possible outcomes <span class="math notranslate nohighlight">\(k = 2\)</span></strong></p></li>
 <li><p><strong>Number of trials <span class="math notranslate nohighlight">\(n = 1\)</span></strong></p></li>
@@ -502,7 +532,7 @@ p &amp; \text{if } x = 1 \\
 <hr>
 </section>
 <section id="categorical">
-<h3><span class="section-number">4.2.1.2. </span>Categorical 🎲<a class="headerlink" href="#categorical" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">5.2.1.2. </span>Categorical 🎲<a class="headerlink" href="#categorical" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><strong>Number of possible outcomes <span class="math notranslate nohighlight">\(k &gt; 2\)</span></strong></p></li>
 <li><p><strong>Number of trials <span class="math notranslate nohighlight">\(n = 1\)</span></strong></p></li>
@@ -557,7 +587,7 @@ p_k &amp; \text{if } x = k
 <hr>
 </section>
 <section id="binomial">
-<h3><span class="section-number">4.2.1.3. </span>Binomial 🪙 🪙 🪙<a class="headerlink" href="#binomial" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">5.2.1.3. </span>Binomial 🪙 🪙 🪙<a class="headerlink" href="#binomial" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p><strong>Number of possible outcomes <span class="math notranslate nohighlight">\(k = 2\)</span></strong></p></li>
 <li><p><strong>Number of trials <span class="math notranslate nohighlight">\(n &gt; 1\)</span></strong></p></li>
@@ -602,7 +632,7 @@ P(X=x) = \binom{n}{x} p^x(1-p)^{n-x}
 <hr/>
 </section>
 <section id="multinomial">
-<h3><span class="section-number">4.2.1.4. </span>Multinomial 🎲 🎲 🎲<a class="headerlink" href="#multinomial" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">5.2.1.4. </span>Multinomial 🎲 🎲 🎲<a class="headerlink" href="#multinomial" title="Permalink to this headline">#</a></h3>
 <!-- # ⚀ = 2, # ⚁ = 1, # ⚂ = 3, # ⚃ = 0, # ⚄ = 0, # ⚅ = 0 -->
 <ul class="simple">
 <li><p><strong>Number of possible outcomes <span class="math notranslate nohighlight">\(k &gt; 2\)</span></strong></p></li>
@@ -638,7 +668,7 @@ P(X=\{x_1, x_2, \ldots x_k \}) = \frac{n!}{x_1!x_2!\ldots x_k!} p_1^{x_1}p_2^{x_
 <hr/>
 </section>
 <section id="summary">
-<h3><span class="section-number">4.2.1.5. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">5.2.1.5. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h3>
 <p>The following table presents a summary and comparison of the categorical statistical distributions:</p>
 <table class="colwidths-auto table">
 <thead>
@@ -684,7 +714,7 @@ P(X=\{x_1, x_2, \ldots x_k \}) = \frac{n!}{x_1!x_2!\ldots x_k!} p_1^{x_1}p_2^{x_
 </section>
 </section>
 <section id="maximum-likelihood-estimation">
-<h2><span class="section-number">4.2.2. </span>Maximum Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.2.2. </span>Maximum Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Permalink to this headline">#</a></h2>
 <p>Maximum likelihood estimation (MLE) is a method of estimating the parameters of a probability distribution by maximizing a likelihood function, so that under the assumed statistical model the observed data is most probable. The point in the parameter space that maximizes the likelihood function is called the maximum likelihood estimate.</p>
 <p>Likelihood function is the probability of observing the data given the parameters.</p>
 <p>Maximum likelihood estimate of Bernoulli distribution’s only parameter <span class="math notranslate nohighlight">\(p\)</span>, given data, is:</p>
@@ -702,7 +732,7 @@ P(X=\{x_1, x_2, \ldots x_k \}) = \frac{n!}{x_1!x_2!\ldots x_k!} p_1^{x_1}p_2^{x_
 <p>Note that the maximum likelihood estimate of the parameters of the Binomial and Multinomial distributions are not as simple as the Bernoulli and Categorical distributions and require multiple samples. However, since there is a Bernoulli distribution for each trial of the Binomial distribution and a Categorical distribution for each trial of the Multinomial distribution, we can use the maximum likelihood estimates of the Bernoulli and Categorical distributions to estimate the parameters of the Binomial and Multinomial distributions.</p>
 </section>
 <section id="law-of-large-numbers">
-<h2><span class="section-number">4.2.3. </span>Law of Large Numbers<a class="headerlink" href="#law-of-large-numbers" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.2.3. </span>Law of Large Numbers<a class="headerlink" href="#law-of-large-numbers" title="Permalink to this headline">#</a></h2>
 <p>The law of large numbers states that as the number of trials of a random experiment increases, the average of the observed outcomes approaches the expected value.</p>
 <p>For example, if we toss a fair coin 10 times, we might expect to observe 5 heads but may or may not get 5. However,  if we toss a fair coin 1,000,000 times, we can confidently expect to observe nearabouts 500,000 heads, if the coin is indeed fair.</p>
 <p>The law of large numbers is the basis for the frequentist approach to statistics. The frequentist approach to statistics is based on the idea that the probability of an event is the long-run relative frequency of the event. In other words, the probability of an event is the proportion of times the event occurs in a large number of trials.</p>
@@ -731,9 +761,9 @@ P(X=\{x_1, x_2, \ldots x_k \}) = \frac{n!}{x_1!x_2!\ldots x_k!} p_1^{x_1}p_2^{x_
 </div>
 </section>
 <section id="central-dogma-of-statistics">
-<h2><span class="section-number">4.2.4. </span>Central Dogma of Statistics<a class="headerlink" href="#central-dogma-of-statistics" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">5.2.4. </span>Central Dogma of Statistics<a class="headerlink" href="#central-dogma-of-statistics" title="Permalink to this headline">#</a></h2>
 <p>The central dogma of data science, simply put, is that general claims about a population can be made from a sample of data.</p>
-<a class="reference internal image-reference" href="https://fahadsultan.com/datascience_ml/_images/dogma.png"><img alt="https://fahadsultan.com/datascience_ml/_images/dogma.png" class="align-center" src="https://fahadsultan.com/datascience_ml/_images/dogma.png" style="width: 80%;" /></a>
+<a class="reference internal image-reference" href="https://fahadsultan.com/csc272/_images/dogma.png"><img alt="https://fahadsultan.com/csc272/_images/dogma.png" class="align-center" src="https://fahadsultan.com/csc272/_images/dogma.png" style="width: 80%;" /></a>
 <p>This raises concerns about the sampling process such as the representativeness of the sample, the size of the sample, the sampling bias, etc. Which in turn raises concerns about potential negative effects of the claims made based on questionable data.</p>
 <hr/>
 <a class="reference internal image-reference" href="https://pbs.twimg.com/media/Dv3SAKYU0AAgbJ3?format=jpg&amp;name=large"><img alt="https://pbs.twimg.com/media/Dv3SAKYU0AAgbJ3?format=jpg&amp;name=large" class="align-right" src="https://pbs.twimg.com/media/Dv3SAKYU0AAgbJ3?format=jpg&amp;name=large" style="width: 45%;" /></a>
@@ -781,7 +811,7 @@ P(X=\{x_1, x_2, \ldots x_k \}) = \frac{n!}{x_1!x_2!\ldots x_k!} p_1^{x_1}p_2^{x_
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4.1. </span>Probability</p>
+        <p class="prev-next-title"><span class="section-number">5.1. </span>Probability</p>
       </div>
     </a>
     <a class="right-next"
@@ -789,7 +819,7 @@ P(X=\{x_1, x_2, \ldots x_k \}) = \frac{n!}{x_1!x_2!\ldots x_k!} p_1^{x_1}p_2^{x_
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4.3. </span>Logarithms</p>
+        <p class="prev-next-title"><span class="section-number">5.3. </span>Logarithms</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -811,17 +841,17 @@ P(X=\{x_1, x_2, \ldots x_k \}) = \frac{n!}{x_1!x_2!\ldots x_k!} p_1^{x_1}p_2^{x_
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-statistical-distributions">4.2.1. Categorical Statistical Distributions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bernoulli">4.2.1.1. Bernoulli 🪙</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical">4.2.1.2. Categorical 🎲</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binomial">4.2.1.3. Binomial 🪙 🪙 🪙</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial">4.2.1.4. Multinomial 🎲 🎲 🎲</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">4.2.1.5. Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical-statistical-distributions">5.2.1. Categorical Statistical Distributions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bernoulli">5.2.1.1. Bernoulli 🪙</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#categorical">5.2.1.2. Categorical 🎲</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binomial">5.2.1.3. Binomial 🪙 🪙 🪙</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial">5.2.1.4. Multinomial 🎲 🎲 🎲</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">5.2.1.5. Summary</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation">4.2.2. Maximum Likelihood Estimation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-large-numbers">4.2.3. Law of Large Numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-dogma-of-statistics">4.2.4. Central Dogma of Statistics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-likelihood-estimation">5.2.2. Maximum Likelihood Estimation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#law-of-large-numbers">5.2.3. Law of Large Numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#central-dogma-of-statistics">5.2.4. Central Dogma of Statistics</a></li>
 </ul>
   </nav></div>
 
@@ -845,7 +875,7 @@ By Syed Fahad Sultan
     
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2024.
       <br/>
     
   </p>
