@@ -24,6 +24,8 @@ parts:
     
   - caption: 
     chapters:
+    # - file: mathematical_notation
+    # - file: preface
     - file: intro
 
   - caption: Programming for Data Science
@@ -34,20 +36,22 @@ parts:
           - file: 1_programming/pandas1
           - file: 1_programming/pandas2
           - file: 1_programming/pandas3
+          - file: 1_programming/pandas4
+          
+          # - file: 1_programming/13_notes
+          # - file: 1_programming/14_exercises
       #   - file: 1_programming/11_python
       #   - file: 1_programming/12_pandas
-        # - file: 1_programming/13_notes
-        # - file: 1_programming/14_exercises
     - file: 1_programming/40_modalities
       sections: 
         - file: 1_programming/41_types
         - file: 1_programming/42_formats
         - file: 1_programming/43_modalities
-    # - file: 1_programming/30_collecting
-      # sections: 
-      #   - file: 1_programming/31_apis
-      #   - file: 1_programming/32_scraping
-      #   - file: 1_programming/33_notes
+    - file: 1_programming/30_collecting
+      sections: 
+        - file: 1_programming/31_apis
+        - file: 1_programming/32_scraping
+        - file: 1_programming/33_notes
     - file: 1_programming/20_visualization
       sections: 
         - file: 1_programming/21_univariate
@@ -74,10 +78,10 @@ parts:
         - file: 2_maths/41_vectors
         - file: 2_maths/42_matrices
         - file: 2_maths/43_applications
-    # - file: 2_maths/50_calculus.ipynb
-      # sections: 
-        # - file: 2_maths/51_integral
-        # - file: 2_maths/52_differential
+    - file: 2_maths/50_calculus.ipynb
+      sections: 
+        - file: 2_maths/51_integral
+        - file: 2_maths/52_differential
       #   - file: 2_maths/53_calculus_notes
   - caption: Problems in Data Science
     numbered: true
@@ -90,7 +94,7 @@ parts:
     - file: 3_problems_in/20_unsupervised
       sections: 
         - file: 3_problems_in/21_clustering
-    # - file: 3_problems_in/30_reinforcement
+    - file: 3_problems_in/30_reinforcement
   - caption: Models in Data Science
     numbered: true
     chapters:
@@ -103,32 +107,32 @@ parts:
         # - file: 3_problems_in/31_linear
         # - file: 3_problems_in/42_perceptron
       - file: 4_models/nn
-  # - caption: Algorithms in Data Science
-  #   numbered: true
-  #   chapters:
-  #     - file: 5_algos/em
-  #     - file: 5_algos/gradient_descent
-  #     - file: 5_algos/backprop
-  # - caption: Problems with Data Science
-  #   numbered: true
-  #   chapters:
-  #   - file: 6_problems_with/10_representation
-  #   - file: 6_problems_with/40_feedback
-  #   - file: 6_problems_with/20_boundaries
-  #   - file: 6_problems_with/30_incentives
-  # - caption: Applications of Data Science
-  #   numbered: true
-  #   chapters:
-  #   - file: 7_applications/40_recommendation
-    # - file: 5_applications/10_text
-  #     sections: 
-  #       - file: 5_applications/11_sentiment
-  #       - file: 5_applications/12_genre
-  #   - file: 5_applications/30_timeseries
-  #     sections: 
-  #       - file: 5_applications/31_sentiment
-  #       - file: 5_applications/32_genre
-  #   - file: 5_applications/40_feedback
-  #     sections: 
-  #       - file: 5_applications/41_sentiment
-  #       - file: 5_applications/42_genre
+  - caption: Algorithms in Data Science
+    numbered: true
+    chapters:
+      - file: 5_algos/em
+      - file: 5_algos/gradient_descent
+      - file: 5_algos/backprop
+  - caption: Problems with Data Science
+    numbered: true
+    chapters:
+    - file: 6_problems_with/10_representation
+    - file: 6_problems_with/40_feedback
+    - file: 6_problems_with/20_boundaries
+    - file: 6_problems_with/30_incentives
+  - caption: Applications of Data Science
+    numbered: true
+    chapters:
+    - file: 7_applications/40_recommendation
+    - file: 5_applications/10_text
+      sections: 
+        - file: 5_applications/11_sentiment
+        - file: 5_applications/12_genre
+    - file: 5_applications/30_timeseries
+      sections: 
+        - file: 5_applications/31_sentiment
+        - file: 5_applications/32_genre
+    - file: 5_applications/40_feedback
+      sections: 
+        - file: 5_applications/41_sentiment
+        - file: 5_applications/42_genre
