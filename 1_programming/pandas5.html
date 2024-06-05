@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1. Vectorized Operations on Data &#8212; Data Science for Machine Learning</title>
+    <title>1.5. Pandas V: Concatenation and Merging &#8212; Data Science for Machine Learning</title>
   
   
   
@@ -68,11 +68,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '1_programming/10_dataops';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '1_programming/pandas5';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1.1. Pandas I: Preliminaries" href="pandas1.html" />
-    <link rel="prev" title="Introduction" href="../intro.html" />
+    <link rel="next" title="2. Encoding and Representation" href="40_modalities.html" />
+    <link rel="prev" title="1.4. Pandas IV: Aggregation" href="pandas4.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -185,12 +185,12 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming for Data Science</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">1. Vectorized Operations on Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="10_dataops.html">1. Vectorized Operations on Data</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="pandas1.html">1.1. Pandas I: Preliminaries</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas2.html">1.2. Pandas II - Data Manipulation and Wrangling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas3.html">1.3. Pandas III: Selection, Filtering and Dropping</a></li>
 <li class="toctree-l2"><a class="reference internal" href="pandas4.html">1.4. Pandas IV: Aggregation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pandas5.html">1.5. Pandas V: Concatenation and Merging</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.5. Pandas V: Concatenation and Merging</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="40_modalities.html">2. Encoding and Representation</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -323,7 +323,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/fahadsultan/csc272/blob/main/1_programming/10_dataops.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/fahadsultan/csc272/blob/main/1_programming/pandas5.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -354,7 +354,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/1_programming/10_dataops.ipynb" target="_blank"
+      <li><a href="../_sources/1_programming/pandas5.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -423,7 +423,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -434,11 +436,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Vectorized Operations on Data</h1>
+    <h1>Pandas V: Concatenation and Merging</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenating-dataframes">1.5.1. Concatenating DataFrames</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-dataframes">1.5.2. Merging DataFrames</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -448,154 +459,556 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="vectorized-operations-on-data">
-<h1><span class="section-number">1. </span>Vectorized Operations on Data<a class="headerlink" href="#vectorized-operations-on-data" title="Permalink to this headline">#</a></h1>
-<p>Computer Science is all about getting computers to perform tasks for us efficiently, reliably and correctly.</p>
-<p>When we talk about efficiency, we are talking both space (memory) and time (speed).</p>
-<p>Given we are living through the data deluge of the 21st century, when working with data, the issues of time and space are particularly relevant.</p>
-<p>Let’s talk about speed first.</p>
-<p><strong>Time Complexity</strong></p>
-<p>Computer scientists are a little paranoid when it comes to speed. We always assume the worst!</p>
-<p>Wait, how do we even measure speed?</p>
-<p>And what are we even measuring the speed of?</p>
-<p>Should we be measuring the amount of time it takes for our code to run?</p>
-<p>We know computers are much faster today then they were only a few years ago and my Dad’s computer today is much slower than mine.</p>
-<figure class="align-center" id="id1">
-<a class="reference internal image-reference" href="../_images/processors.png"><img alt="../_images/processors.png" src="../_images/processors.png" style="width: 60%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1.1 </span><span class="caption-text">Improvement in Processors over the years</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>So if we are measuring the speed of a computer program, whose computer should we measure the speed on?</p>
-<p>Should we measure speed on an “average computer” available to buy in the market today? Identifying such an average computer sounds like a lot of work!</p>
-<p>What do we do when newer faster computers come out in the future?</p>
-<p>We also know some programming languages are faster than others.</p>
-<p>It sounds like what we need is an abstract theoretical framework for measuring speed that is independent of any particular hardware specifications and any programming language.</p>
-<p>Thankfully, this is a solved problem.</p>
-<p>Computer Scientists long ago decided to measure speed of an algorithm, as opposed to any particular program in any programming language. An Algorithm if you recall is simply a sequence of instructions that maps inputs to outputs.</p>
-<p>Five basic instructions of an algorithm:</p>
-<ol class="arabic simple">
-<li><p>Input</p></li>
-<li><p>Output</p></li>
-<li><p>Math</p></li>
-<li><p>Branching</p></li>
-<li><p>Repetition</p></li>
-</ol>
-<p>Guess which of the five above is most relevant to measuring speed of an algorithm?</p>
-<p>It is number 5: Repetitions! Also known as LOOPS!</p>
-<p>That is, in computer science, we measure the speed of an algorithm in terms of iterations of a loop.</p>
-<p>If an algorithm does not have any loops in it, it is said to be a <strong>constant time algorithm</strong>, even if that has a million input/output/math/branching instructions. Algorithms are classified using the big <strong>Big O-Notation</strong>. A constant time algorithm in O(1).</p>
-<p>Your average algorithm has atleast one loop that iterates over some particular data structure. So what label do we give to an algorithm with one loop that follows the basic template:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="pandas-v-concatenation-and-merging">
+<h1><span class="section-number">1.5. </span>Pandas V: Concatenation and Merging<a class="headerlink" href="#pandas-v-concatenation-and-merging" title="Permalink to this headline">#</a></h1>
+<section id="concatenating-dataframes">
+<h2><span class="section-number">1.5.1. </span>Concatenating DataFrames<a class="headerlink" href="#concatenating-dataframes" title="Permalink to this headline">#</a></h2>
+<p>Another way to combine DataFrames is to concatenate them. Concatenation is a bit different from joining. When we join two DataFrames, we are combining them <em>horizontally</em> – that is, we are adding new columns to an existing DataFrame. Concatenation, on the other hand, is <em>generally</em> a <em>vertical</em> operation – we are adding new rows to an existing DataFrame.</p>
+<a class="reference internal image-reference" href="https://pandas.pydata.org/docs/_images/08_concat_row.svg"><img alt="https://pandas.pydata.org/docs/_images/08_concat_row.svg" class="align-center" src="https://pandas.pydata.org/docs/_images/08_concat_row.svg" width="70%" /></a>
+<a class="reference internal image-reference" href="https://pandas.pydata.org/docs/_images/merging_concat_basic.png"><img alt="https://pandas.pydata.org/docs/_images/merging_concat_basic.png" class="align-center" src="https://pandas.pydata.org/docs/_images/merging_concat_basic.png" style="width: 50%;" /></a>
+<p><code class="docutils literal notranslate"><span class="pre">pd.concat</span></code> is the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> method used to concatenate DataFrames together. It takes as input a list of DataFrames to be concatenated and returns a new DataFrame containing all of the rows from each input DataFrame in the input list.</p>
+<p>Let’s say we wanted to concatenate data from two different years in <code class="docutils literal notranslate"><span class="pre">babynames</span></code>. We can do so using the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code class="docutils literal notranslate"><span class="pre">pd.concat</span></code></a> method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sequence</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> 
-<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
-    <span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> 
+<span class="n">url_template</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/fahadsultan/csc272/main/data/names/yob</span><span class="si">%s</span><span class="s2">.txt&quot;</span>
+
+<span class="n">data_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1880</span><span class="p">,</span> <span class="mi">2023</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">url_template</span> <span class="o">%</span> <span class="n">year</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">])</span>
+    <span class="n">data</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">year</span>
+    <span class="n">data_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">all_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">data_list</span><span class="p">)</span>
+<span class="n">all_data</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 [5, 1, 4, 1, 5, 9, 2, 6, 5]
-1 [5, 3, 4, 1, 5, 9, 2, 6, 5]
-2 [5, 3, 6, 1, 5, 9, 2, 6, 5]
-3 [5, 3, 6, 3, 5, 9, 2, 6, 5]
-4 [5, 3, 6, 3, 7, 9, 2, 6, 5]
-5 [5, 3, 6, 3, 7, 11, 2, 6, 5]
-6 [5, 3, 6, 3, 7, 11, 4, 6, 5]
-7 [5, 3, 6, 3, 7, 11, 4, 8, 5]
-8 [5, 3, 6, 3, 7, 11, 4, 8, 7]
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>sex</th>
+      <th>count</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Mary</td>
+      <td>F</td>
+      <td>7065</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Anna</td>
+      <td>F</td>
+      <td>2604</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Emma</td>
+      <td>F</td>
+      <td>2003</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Elizabeth</td>
+      <td>F</td>
+      <td>1939</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Minnie</td>
+      <td>F</td>
+      <td>1746</td>
+      <td>1880</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>31910</th>
+      <td>Zuberi</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2022</td>
+    </tr>
+    <tr>
+      <th>31911</th>
+      <td>Zydn</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2022</td>
+    </tr>
+    <tr>
+      <th>31912</th>
+      <td>Zylon</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2022</td>
+    </tr>
+    <tr>
+      <th>31913</th>
+      <td>Zymeer</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2022</td>
+    </tr>
+    <tr>
+      <th>31914</th>
+      <td>Zymeire</td>
+      <td>M</td>
+      <td>5</td>
+      <td>2022</td>
+    </tr>
+  </tbody>
+</table>
+<p>2085158 rows × 4 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="merging-dataframes">
+<h2><span class="section-number">1.5.2. </span>Merging DataFrames<a class="headerlink" href="#merging-dataframes" title="Permalink to this headline">#</a></h2>
+<p>When working on data science projects, we’re unlikely to have absolutely all the data we want contained in a single DataFrame – a real-world data scientist needs to grapple with data coming from multiple sources. If we have access to multiple datasets with related information, we can merge two or more tables into a single DataFrame.</p>
+<p>To put this into practice, we’ll revisit the <code class="docutils literal notranslate"><span class="pre">elections</span></code> dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">elections</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</div>
-<!-- 
-<center>
-<img src="../assets/serial.png" alt="serial" class="bg-primary" width="50%"> 
-</center> -->
-<figure class="align-center" id="id2">
-<a class="reference internal image-reference" href="../_images/serial.png"><img alt="../_images/serial.png" src="../_images/serial.png" style="width: 60%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1.2 </span><span class="caption-text">Serial execution of loops: each iteration must wait for the previous one to finish.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>Such algorithms are given the label linear time or, in Big-O notation, O(n).</p>
-<p>The letter n here is the size of the data structure i.e. <code class="docutils literal notranslate"><span class="pre">len(arr)</span></code>. Length of a data structure also happens to be the number of iterations of the loop.</p>
-<p>In summary, we measure the speed of an algorithm in relation to:</p>
-<ul class="simple">
-<li><p>size of data</p></li>
-<li><p>number of iterations in all loops in the algorithm</p></li>
-</ul>
-<!-- <center><img src="../assets/serial2.png" alt="serial2" class="bg-primary" width="50%"></center> -->
-<figure class="align-center" id="id3">
-<a class="reference internal image-reference" href="../_images/serial2.png"><img alt="../_images/serial2.png" src="../_images/serial2.png" style="width: 60%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1.3 </span><span class="caption-text">If an iteration takes time <em>t</em>, then the total time taken by the algorithm is <em>n*t</em> where <em>n</em> is length of data</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>This is a good theoretical framework because it measures how the algorithm’s speed independent of hardware considerations.</p>
-<p><strong>Space Complexity</strong></p>
-<p>I don’t have a lot to say on the issue of space or memory consumption but it is critical.</p>
-<p>Improving speed of an algorithm often comes at the cost of more memory consumption. That is, improving speed of an algorithm often necessitates creation or use of data structures that allow faster data retrieval and processing times. In that sense, speed and memory have an inherent tension in Computer Science. In this course, we are going to use such data structures that are going to result in very fast code. But the price we have to pay as a result is that we can only work with data sets that can fit within our memory. For most people it is going to be on the order of 8-16 GB.</p>
-<p>Datasets of today are often much larger than this and require alternative paradigms of computer programming such as Distributed Computing, Parallel Programming, Concurrent Programming etc.</p>
-<p><strong>Vectorization</strong></p>
-<p>Vectorization is the process of applying operations to entire arrays at once, rather than their individual elements sequentially. Vectorization is also called Array Programming. It is usually much faster than using loops.</p>
-<p>In this course, we will be minimizing the use of loops.</p>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="text-center head"><p></p></th>
-<th class="text-center head"><p></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p><a class="bg-primary reference internal" href="../_images/serial2.png"><img alt="fishy" class="bg-primary" src="../_images/serial2.png" style="width: 70%;" /></a></p></td>
-<td class="text-center"><p><a class="bg-primary reference internal" href="../_images/vectorized.png"><img alt="fishy" class="bg-primary" src="../_images/vectorized.png" style="width: 70%;" /></a></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p><a class="bg-primary reference internal" href="https://img.buzzfeed.com/buzzfeed-static/static/2016-09/19/21/enhanced/buzzfeed-prod-fastlane01/anigif_original-grid-image-14646-1474334269-6.gif?crop=408:270;38,0"><img alt="https://img.buzzfeed.com/buzzfeed-static/static/2016-09/19/21/enhanced/buzzfeed-prod-fastlane01/anigif_original-grid-image-14646-1474334269-6.gif?crop=408:270;38,0" class="bg-primary" src="https://img.buzzfeed.com/buzzfeed-static/static/2016-09/19/21/enhanced/buzzfeed-prod-fastlane01/anigif_original-grid-image-14646-1474334269-6.gif?crop=408:270;38,0" style="width: 30%;" /></a></p></td>
-<td class="text-center"><p><a class="bg-primary reference internal" href="https://odditymall.com/includes/content/upload/prepworks-vegetable-chopping-box-dices-veggies-in-seconds-2008.gif"><img alt="https://odditymall.com/includes/content/upload/prepworks-vegetable-chopping-box-dices-veggies-in-seconds-2008.gif" class="bg-primary" src="https://odditymall.com/includes/content/upload/prepworks-vegetable-chopping-box-dices-veggies-in-seconds-2008.gif" style="width: 100%;" /></a></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>1. Serial / Sequential Operations</p></td>
-<td class="text-center"><p>2. Vectorized Operations</p></td>
-</tr>
-</tbody>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Candidate</th>
+      <th>Party</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1824</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic-Republican</td>
+      <td>151271</td>
+      <td>loss</td>
+      <td>57.210122</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1824</td>
+      <td>John Quincy Adams</td>
+      <td>Democratic-Republican</td>
+      <td>113142</td>
+      <td>win</td>
+      <td>42.789878</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1828</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>642806</td>
+      <td>win</td>
+      <td>56.203927</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1828</td>
+      <td>John Quincy Adams</td>
+      <td>National Republican</td>
+      <td>500897</td>
+      <td>loss</td>
+      <td>43.796073</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1832</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>702735</td>
+      <td>win</td>
+      <td>54.574789</td>
+    </tr>
+  </tbody>
 </table>
-<p>Vectorization can only be applied in situations when operations at individual elements are independent of each other. For example, if we want to add two arrays, we can do so by adding each element of the first array to the corresponding element of the second array. This is a vectorized operation.</p>
-<!-- <img src="../assets/vectorized_sum.png" alt="vectorized2" class="bg-primary" width="20%">  -->
-<figure class="align-center" id="id4">
-<a class="reference internal image-reference" href="../_images/vectorized_sum.png"><img alt="../_images/vectorized_sum.png" src="../_images/vectorized_sum.png" style="width: 30%;" /></a>
+</div></div></div>
+</div>
+<p>Say we want to understand the popularity of the names of each presidential candidate in 2020. To do this, we’ll need the combined data of <code class="docutils literal notranslate"><span class="pre">names</span></code> <em>and</em> <code class="docutils literal notranslate"><span class="pre">elections</span></code>.</p>
+<figure class="align-center" id="merge">
+<a class="reference internal image-reference" href="https://i.ibb.co/sKWBPM0/merge.png"><img alt="https://i.ibb.co/sKWBPM0/merge.png" src="https://i.ibb.co/sKWBPM0/merge.png" style="width: 100%;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 1.4 </span><span class="caption-text">Adding two arrays</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<p>However, for problems such as the Fibonacci sequence, where the value of an element depends on the values of the previous two elements, we cannot vectorize the operation. Similarly, finding minimum or maximum of an array cannot be vectorized.</p>
-<figure class="align-center" id="id5">
-<a class="reference internal image-reference" href="../_images/vectorized2.png"><img alt="../_images/vectorized2.png" src="../_images/vectorized2.png" style="width: 20%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1.5 </span><span class="caption-text">Vectorized operations, more generally, can be application of any function <em>f</em> to each element of an array.</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 1.30 </span><span class="caption-text">Merging two DataFrames</span><a class="headerlink" href="#merge" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <!-- 
-<img src="../assets/vectorized3.png" alt="vectorized3" class="bg-primary" width="20%">  -->
-<figure class="align-center" id="id6">
-<a class="reference internal image-reference" href="../_images/simd2.png"><img alt="../_images/simd2.png" src="../_images/simd2.png" style="width: 50%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1.6 </span><span class="caption-text">Vectorized operations are also known as SIMD (Single Instruction Multiple Data) operations in the context of computer architecture. In contrast, scalar operations are known as SISD (Single Instruction Single Data) operations.</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<!-- <img src="../assets/simd.png" alt="vectorized3" class="bg-primary" width="20%">  -->
-<p>Filtering certain entries in a vectorized array is also very easy using boolean indexing or boolean maps of the same length. Elements corresponding to <code class="docutils literal notranslate"><span class="pre">True</span></code> values are kept, while elements corresponding to <code class="docutils literal notranslate"><span class="pre">False</span></code> values are discarded.</p>
-<figure class="align-center" id="id7">
-<a class="reference internal image-reference" href="../_images/filter.png"><img alt="../_images/filter.png" src="../_images/filter.png" style="width: 50%;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1.7 </span><span class="caption-text">Filtering a vectorized array using a boolean map</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
-</figcaption>
-</figure>
-<!-- <img src="../assets/filter.png" alt="filter" class="bg-primary" width="20%">  -->
-<p><code class="docutils literal notranslate"><span class="pre">pandas</span></code> and pretty much all modern data science and AI libraries heavily rely on Vectorized operations to process and operate on large datasets.</p>
-<div class="toctree-wrapper compound">
+``` {figure} https://i.ibb.co/0rnCMXG/merge1.png
+---
+width: 60%
+name: merge1
+align: center
+---
+Merge operation on two DataFrames
+``` -->
+<p>We’ll start by creating a new column containing the first name of each presidential candidate. This will help us join each name in <code class="docutils literal notranslate"><span class="pre">elections</span></code> to the corresponding name data in <code class="docutils literal notranslate"><span class="pre">names</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># This `str` operation splits each candidate&#39;s full name at each </span>
+<span class="c1"># blank space, then takes just the candidiate&#39;s first name</span>
+<span class="n">elections</span><span class="p">[</span><span class="s2">&quot;First Name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">elections</span><span class="p">[</span><span class="s2">&quot;Candidate&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">elections</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year</th>
+      <th>Candidate</th>
+      <th>Party</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
+      <th>First Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1824</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic-Republican</td>
+      <td>151271</td>
+      <td>loss</td>
+      <td>57.210122</td>
+      <td>Andrew</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1824</td>
+      <td>John Quincy Adams</td>
+      <td>Democratic-Republican</td>
+      <td>113142</td>
+      <td>win</td>
+      <td>42.789878</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1828</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>642806</td>
+      <td>win</td>
+      <td>56.203927</td>
+      <td>Andrew</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1828</td>
+      <td>John Quincy Adams</td>
+      <td>National Republican</td>
+      <td>500897</td>
+      <td>loss</td>
+      <td>43.796073</td>
+      <td>John</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1832</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>702735</td>
+      <td>win</td>
+      <td>54.574789</td>
+      <td>Andrew</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here, we&#39;ll only consider `names` data from 2020</span>
+<span class="n">names_2020</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="n">names</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span><span class="o">==</span><span class="mi">2020</span><span class="p">]</span>
+<span class="n">names_2020</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Count</th>
+      <th>Year</th>
+      <th>First Letter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Olivia</td>
+      <td>F</td>
+      <td>17641</td>
+      <td>2020</td>
+      <td>O</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Emma</td>
+      <td>F</td>
+      <td>15656</td>
+      <td>2020</td>
+      <td>E</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Ava</td>
+      <td>F</td>
+      <td>13160</td>
+      <td>2020</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Charlotte</td>
+      <td>F</td>
+      <td>13065</td>
+      <td>2020</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Sophia</td>
+      <td>F</td>
+      <td>13036</td>
+      <td>2020</td>
+      <td>S</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Now, we’re ready to merge the two tables. <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html"><code class="docutils literal notranslate"><span class="pre">pd.merge</span></code></a> is the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> method used to merge DataFrames together.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">left</span> <span class="o">=</span> <span class="n">elections</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">names_2020</span><span class="p">,</span> \
+                  <span class="n">left_on</span> <span class="o">=</span> <span class="s2">&quot;First Name&quot;</span><span class="p">,</span> <span class="n">right_on</span> <span class="o">=</span> <span class="s2">&quot;Name&quot;</span><span class="p">)</span>
+<span class="n">merged</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1"># Notice that pandas automatically specifies `Year_x` and `Year_y` </span>
+<span class="c1"># when both merged DataFrames have the same column name to avoid confusion</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Year_x</th>
+      <th>Candidate</th>
+      <th>Party</th>
+      <th>Popular vote</th>
+      <th>Result</th>
+      <th>%</th>
+      <th>First Name</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Count</th>
+      <th>Year_y</th>
+      <th>First Letter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1824</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic-Republican</td>
+      <td>151271</td>
+      <td>loss</td>
+      <td>57.210122</td>
+      <td>Andrew</td>
+      <td>Andrew</td>
+      <td>F</td>
+      <td>12</td>
+      <td>2020</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1824</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic-Republican</td>
+      <td>151271</td>
+      <td>loss</td>
+      <td>57.210122</td>
+      <td>Andrew</td>
+      <td>Andrew</td>
+      <td>M</td>
+      <td>6036</td>
+      <td>2020</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1828</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>642806</td>
+      <td>win</td>
+      <td>56.203927</td>
+      <td>Andrew</td>
+      <td>Andrew</td>
+      <td>F</td>
+      <td>12</td>
+      <td>2020</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1828</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>642806</td>
+      <td>win</td>
+      <td>56.203927</td>
+      <td>Andrew</td>
+      <td>Andrew</td>
+      <td>M</td>
+      <td>6036</td>
+      <td>2020</td>
+      <td>A</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1832</td>
+      <td>Andrew Jackson</td>
+      <td>Democratic</td>
+      <td>702735</td>
+      <td>win</td>
+      <td>54.574789</td>
+      <td>Andrew</td>
+      <td>Andrew</td>
+      <td>F</td>
+      <td>12</td>
+      <td>2020</td>
+      <td>A</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Let’s take a closer look at the parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code> parameters are used to specify the DataFrames to be merge.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">left_on</span></code> and <code class="docutils literal notranslate"><span class="pre">right_on</span></code> parameters are assigned to the string names of the columns to be used when performing the merge. These two <code class="docutils literal notranslate"><span class="pre">on</span></code> parameters tell <code class="docutils literal notranslate"><span class="pre">pandas</span></code> what values should act as pairing keys to determine which rows to merge across the DataFrames. We’ll talk more about this idea of a pairing key next lecture.</p></li>
+</ul>
+<figure class="align-center">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge1.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge1.png" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge1.png" style="width: 80%;" /></a>
+</figure>
+<hr class="docutils" />
+<figure class="align-center">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge2.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge2.png" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge2.png" style="width: 80%;" /></a>
+</figure>
+<hr class="docutils" />
+<figure class="align-center">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge3.png"><img alt="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge3.png" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/merge3.png" style="width: 80%;" /></a>
+</figure>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -630,20 +1043,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../intro.html"
+       href="pandas4.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Introduction</p>
+        <p class="prev-next-title"><span class="section-number">1.4. </span>Pandas IV: Aggregation</p>
       </div>
     </a>
     <a class="right-next"
-       href="pandas1.html"
+       href="40_modalities.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1.1. </span>Pandas I: Preliminaries</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Encoding and Representation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -656,6 +1069,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenating-dataframes">1.5.1. Concatenating DataFrames</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merging-dataframes">1.5.2. Merging DataFrames</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
