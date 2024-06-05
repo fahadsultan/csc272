@@ -37,6 +37,7 @@ parts:
           - file: 1_programming/pandas2
           - file: 1_programming/pandas3
           - file: 1_programming/pandas4
+          - file: 1_programming/pandas5
           
           # - file: 1_programming/13_notes
           # - file: 1_programming/14_exercises
