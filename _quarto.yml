@@ -22,6 +22,8 @@ website:
         href: https://courses.furman.edu/course/view.php?id=18728
       - text: "Office Hours"
         href: syllabus/appointment.md
+      # - text: "TA"
+      #   href: ta.qmd
   sidebar:
     - id: syllabus
       title: "Syllabus"
