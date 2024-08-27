@@ -1,0 +1,79 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  favicon: favicon.png
+  navbar:
+    logo: logo.png
+    background: dark
+    search: true
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Calendar"
+        href: calendar.qmd
+      - sidebar:syllabus
+      - text: "Project"
+        href: project/project.qmd
+      - text: "Datasets"
+        href: project/data.qmd
+      - text: "Moodle Page"
+        href: https://courses.furman.edu/course/view.php?id=18728
+      - text: "Office Hours"
+        href: syllabus/appointment.md
+  sidebar:
+    - id: syllabus
+      title: "Syllabus"
+      background: light
+      collapse-level: 2
+      contents:
+        - syllabus/about.qmd
+        - syllabus/grading.qmd
+        - syllabus/academic_success.md
+        - syllabus/textbook.md
+        - syllabus/integrity.md
+        - syllabus/mental_health.md
+        - syllabus/accomodations.md
+        - syllabus/title_9.md
+    - id: content
+      background: "#2d2d2d"
+      style: "floating"
+      search: true
+      contents:
+        - text: "Home"
+          href: index.qmd
+        - text: "Introduction"
+          href: intro.qmd
+        - section: 
+          href: pandas/pandas0.qmd
+          contents:
+            - pandas/pandas1.ipynb
+            - pandas/pandas2.ipynb
+            - pandas/pandas3.ipynb
+            - pandas/pandas4.ipynb
+            - pandas/pandas5.ipynb
+        # - section:
+        #   href: linearalgebra/linalg0.qmd
+        #   contents:
+        #     - linearalgebra/nearestneighbor.qmd
+        # - section:
+        #   href: probability/prob0.qmd
+        #   contents:
+        #     - probability/bayestheorem.qmd
+        # - section:
+        #   href: calculus/calculus0.qmd
+        #   contents:
+        #     - calculus/linearregression.qmd
+format:
+  html:
+    theme:
+      - darkly
+      - custom.scss
+    css: style.css
+    toc: true
+    # monobackgroundcolor: "#CCCCFF"
+    monobackgroundcolor: "black"
+    highlight-style: monokai #atom-one, github, dracula, monokai
+
+

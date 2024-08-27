@@ -1,0 +1,20 @@
+---
+title: "CSC-272: Data Mining"
+toc: true
+---
+
+Hi! Welcome to the CSC-272 Introduction to Data Mining course website 👋🏾
+
+I am excited to talk math 🔢, programming 💻 and all-things data 📊 in this course with you!
+
+From the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you should be able to navigate to any topic relevant to the course. If that does not help, there should also be a search icon 🔍 in the top left corner ↗️
+
+👇🏾 Below, you can find important links and important announcements.
+
+
+::: {.callout-tip}
+## Open-Door Policy
+I have an Open-Door Policy and am in my office (Riley Hall 200-D) between 9 AM - 5 PM most weekdays. Please drop by with your questions or just to say hi!
+
+Alternatively, send me an email or schedule an appointment
+:::

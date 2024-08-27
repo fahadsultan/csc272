@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introduction</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./calendar.html"> 
+<span class="menu-text">Calendar</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-syllabus" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Syllabus</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-syllabus">    
+        <li>
+    <a class="dropdown-item" href="./syllabus/about.html">
+ <span class="dropdown-text">Course Description and Goals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./syllabus/grading.html">
+ <span class="dropdown-text">Grading</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./syllabus/academic_success.html">
+ <span class="dropdown-text">Center for Academic Success</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./syllabus/textbook.html">
+ <span class="dropdown-text">Textbooks &amp; Other Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./syllabus/integrity.html">
+ <span class="dropdown-text">Academic Integrity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./syllabus/mental_health.html">
+ <span class="dropdown-text">Mental Health Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./syllabus/accomodations.html">
+ <span class="dropdown-text">Accomodations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./syllabus/title_9.html">
+ <span class="dropdown-text">Nondiscrimination Policy and Sexual Misconduct</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./project/project.html"> 
+<span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./project/data.html"> 
+<span class="menu-text">Datasets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://courses.furman.edu/course/view.php?id=18728"> 
+<span class="menu-text">Moodle Page</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./syllabus/appointment.html"> 
+<span class="menu-text">Office Hours</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html">Introduction</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./pandas/pandas0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VECTORIZED OPERATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pandas/pandas1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preliminaries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pandas/pandas2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation and Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pandas/pandas3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selection, Filtering and Dropping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pandas/pandas4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./pandas/pandas5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concatenation and Merging</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#about-me" id="toc-about-me" class="nav-link active" data-scroll-target="#about-me">About Me</a>
+  <ul class="collapse">
+  <li><a href="#how-to-reach-me" id="toc-how-to-reach-me" class="nav-link" data-scroll-target="#how-to-reach-me">How to Reach Me</a></li>
+  <li><a href="#about-the-course" id="toc-about-the-course" class="nav-link" data-scroll-target="#about-the-course">About the Course</a>
+  <ul class="collapse">
+  <li><a href="#how-to-knowledge-what-is-knowledge" id="toc-how-to-knowledge-what-is-knowledge" class="nav-link" data-scroll-target="#how-to-knowledge-what-is-knowledge">How-to knowledge &gt; What-is knowledge</a></li>
+  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
+  <li><a href="#class-participation" id="toc-class-participation" class="nav-link" data-scroll-target="#class-participation">Class Participation</a></li>
+  <li><a href="#exams" id="toc-exams" class="nav-link" data-scroll-target="#exams">Exams</a></li>
+  <li><a href="#giant-asterisk" id="toc-giant-asterisk" class="nav-link" data-scroll-target="#giant-asterisk">Giant Asterisk *</a></li>
+  </ul></li>
+  <li><a href="#what-is-data-mining" id="toc-what-is-data-mining" class="nav-link" data-scroll-target="#what-is-data-mining">What is <em>Data Mining</em>?</a></li>
+  <li><a href="#expect-lots-of-programming-and-lots-of-math" id="toc-expect-lots-of-programming-and-lots-of-math" class="nav-link" data-scroll-target="#expect-lots-of-programming-and-lots-of-math">Expect lots of Programming and lots of Math!</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Introduction</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="about-me" class="level1">
+<h1>About Me</h1>
+<p><span style="font-size: 2.0em; font-weight: bold;"> Syed Fahad Sultan سید فہد سلطان </span></p>
+<p><strong>Pronunciation</strong>: <a href="https://en.wikipedia.org/wiki/Sayyid">Saiyyudh</a> <a href="https://en.wikipedia.org/wiki/Fahd">Fahad</a> <a href="https://en.wikipedia.org/wiki/Sultan">Sool-tahn</a></p>
+<p><em>Just call me <strong>“Dr.&nbsp;Sultan”</strong></em> (click on the speaker for a short audio clip: <a href="https://upload.wikimedia.org/wikipedia/commons/c/cd/LL-Q9292_%28aze%29-Azerbaijani_audiorecordings-sultan.wav">🔈</a>)</p>
+<br>
+<center>
+<img style="filter:invert(1)" width="80%" src="assets/name.png">
+</center>
+<p><br></p>
+<p>I am originally from <strong><a href="https://en.wikipedia.org/wiki/Lahore">Lahore, Pakistan</a></strong> and joined <strong>Furman University</strong> in Fall 2022 after earning my Ph.D.&nbsp;in Computer Science from <strong>State University of New York at Stony Brook</strong>.</p>
+<br>
+<center>
+<img width="70%" src="https://i.ibb.co/wJGFKqB/badshahi-mosque.png">
+</center>
+<p><br></p>
+<p>Fresh out of college, I worked as a professional video game developer for a startup that later got acquired by the Japanese gaming giant <strong>DeNA</strong>. During this time, I was part of the team that built <strong>TapFish</strong>, the top-grossing game worldwide, for two weeks in 2011, on both the App Store and Google Play.</p>
+<p><br></p>
+<center>
+</center><table>
+<tbody><tr>
+<td>
+<img src="https://fahadsultan.com/csc272_f23/_images/tapfish.jpeg" alt="tapfish" height="175px">
+</td>
+<td>
+<img src="https://fahadsultan.com/csc272_f23/_images/mobility.gif" alt="mobility" height="175px">
+</td>
+<td>
+<img src="https://fahadsultan.com/csc272_f23/_images/neuroimaging2.jpeg" alt="neuroimaging2" height="175px">
+</td>
+</tr>
+<tr>
+<td>
+<ol type="1">
+<li>Video games development
+</li></ol></td>
+<td>
+<ol start="2" type="1">
+<li>Urban Sensing
+</li></ol></td>
+<td>
+<ol start="3" type="1">
+<li>Computational Neuroscience
+</li></ol></td>
+
+</tr>
+</tbody></table>
+<br>
+
+
+
+<p>I then went on to work at <strong>Technology for People Initiative</strong>, an applied research lab in my where I mined social media and cell phone data for proxies of socio-economic indicators that allowed more inclusive policy-making for marginalized communities. During these years, I also dabbled in data journalism and helped organize a boot camp on using data for journalists with the support of the International Center for Journalists (ICFJ) and the Knight Foundation.</p>
+<p><img align="right" width="30%" src="https://i.ibb.co/j6XJkn8/Screen-Shot-2024-05-03-at-12-54-31-PM.png"></p>
+<p>In 2015, I moved to <strong>Mecca, Saudi Arabia</strong> to work for the GIS Innovation Center (now Wadi Makkah). There I worked on innovative <strong>urban sensing</strong> techniques for better crowd control during the annual pilgrimage to the city, the largest human gathering in the world every year.</p>
+<p>During my PhD, I worked at the intersection of <strong>computational neuroscience, bioinformatics and machine learning</strong>. My work focused on identifying neurological and genetic biomarkers linking type-2 diabetes with cognitive disorders such as Alzheimer’s and other dementias.</p>
+<p>I live in Travelers Rest with my wife and cat.</p>
+<section id="how-to-reach-me" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-reach-me">How to Reach Me</h3>
+<p><strong>Office</strong>: Riley Hall 200-D</p>
+<p><strong>Email</strong>: fahad.sultan@furman.edu</p>
+<p>My office hours this semester are <strong>10 - 11:30 AM</strong> on <strong>Mondays</strong> and <strong>Wednesdays</strong>.</p>
+<p>I have an <strong>Open door policy</strong>. I am in my office during work hours most weekdays and my door is only closed if I am in a class or in a meeting. So please drop by.</p>
+<p>You can also <strong>schedule a meeting <a href="https://calendly.com/ssultan-dpq/">using this link</a></strong> if you want to absolutely make sure that I am available.</p>
+<center>
+<img width="60%" style="filter:invert(1)" src="assets/office.png">
+</center>
+</section>
+<section id="about-the-course" class="level2">
+<h2 class="anchored" data-anchor-id="about-the-course">About the Course</h2>
+<p>Course website: <strong><a href="https://fahadsultan.com/csc223">https://fahadsultan.com/csc223</a></strong></p>
+<p>The <strong><a href="https://fahadsultan.com/csc223/syllabus/index.html">Syllabus</a></strong> is available on the course website. In particular, please make sure to read the <strong><a href="https://fahadsultan.com/csc223/syllabus/grading.html">Grading</a></strong>, <strong><a href="https://fahadsultan.com/csc223/syllabus/integrity.html">Academic Integrity</a></strong> and <strong><a href="https://fahadsultan.com/csc223/syllabus/textbook.html">Textbook and other Resources</a></strong> sections carefully.</p>
+<p>All of the course content will be posted on this website.</p>
+<p>Important announcements will be made on both the course website homepage and in class.</p>
+<p>You are to submit assignments and exams on <strong><a href="https://courses.furman.edu/course/view.php?id=18720">the course Moodle page</a></strong>. I will also upload all of your grades there.</p>
+<section id="how-to-knowledge-what-is-knowledge" class="level3">
+<h3 class="anchored" data-anchor-id="how-to-knowledge-what-is-knowledge">How-to knowledge &gt; What-is knowledge</h3>
+<p><img align="right" style="filter:invert(1)" src="https://enchantedyankee.files.wordpress.com/2012/03/chess-cheat-sheet.jpg?w=921" width="30%"></p>
+<p><strong>Declarative knowledge</strong> is knowledge about facts. It is knowledge that answers the <strong>“What is” questions</strong>. Most courses outside Computer Science are about declarative knowledge.</p>
+<p>In contrast, <strong>Imperative knowledge</strong> is knowledge about how to do things. It is knowledge that answers the <strong>“How to” questions</strong>.</p>
+<p>While we will spend a non-trivial amount of time in this course on declarative knowledge, the overwhelming majority of this course will focus on imperative knowledge. Your grade in this course will be determined by your ability to apply declarative and more importantly imperative knowledge to solve problems.</p>
+<p><img src="https://www.justinkownacki.com/wp-content/uploads/2020/11/QueensGambit_1200.jpg" width="50%" align="right"></p>
+<p>Research shows that there is only one way to acquire imperative knowledge: <strong>Practice, Practice, Practice !</strong>. Practice combined with feedback is the only way to achieve mastery.</p>
+<p>In this course, you will be given ample opportunities to practice along with regular feedback.</p>
+</section>
+<section id="assignments" class="level3">
+<h3 class="anchored" data-anchor-id="assignments">Assignments</h3>
+<p>Approach assignments purely as <strong>opportunities to learn</strong>, prepare for exams and to prepare for your career.</p>
+<p><img align="right" style="filter:invert(0.87)" src="https://theteachingdelusioncom.files.wordpress.com/2021/12/practice-feedback-loop.jpg?w=1024" width="40%"></p>
+<p>It is <strong>not worth cheating</strong> on assignments. Just come talk to me if you are struggling with an assignment. I will literally just tell you the answer.</p>
+<p>On assignments, expect <strong>near maximal flexibility</strong> from me. Every assignment will be due 10 days calendar after it is posted.</p>
+<p>You can schedule a time to get your assignments graded <a href="https://calendly.com/ssultan-dpq/15-minute-meeting">using this link</a>.</p>
+<p><u><strong>Written Assignments:</strong></u></p>
+<p>Written assignments are to help you build a deeper understanding of algorithms and math covered in class.</p>
+<p>These could simply be math problems or involve tracing algorithms and dry-runs.</p>
+<p>Both handwritten or typed submissions are acceptable. Submissions, as always, on Moodle.</p>
+<p><u><strong>Programming Assignments:</strong></u></p>
+<p>Programming assignments are going to be posted at the start of the lab session each week and will be due in 10 days, unless otherwise specified.</p>
+<p>All <strong>Programming assignments</strong> will be graded through an <strong>in-person code review</strong>. You are to give a walkthrough of your code and be able to answer questions about it.</p>
+<p>During these code review, you will be given feedback on how to improve your code and avoid common mistakes.</p>
+<p>You should expect questions in the exams similar to assignments.</p>
+</section>
+<section id="class-participation" class="level3">
+<h3 class="anchored" data-anchor-id="class-participation">Class Participation</h3>
+<p>I have created 10 graded items under class participation on Moodle. In class, you will be asked to answer a question or solve a problem. You will be graded on the basis of your participation. It is your responsibility to make sure you have 10 points by the end of the semester.</p>
+<p>There are 10 graded items under class participation on Moodle. In class, you will be asked to answer a question or solve a problem. You will be graded on the basis of your participation. It is your responsibility to make sure you have 10 points by the end of the semester.</p>
+<p><span class="math display">\[\frac{24~\text{students} \times 10~\text{points needed by each student}}{15~\text{weeks} \times 2~\text{classes per week}} = 8~\text{points given out class, on average}\]</span></p>
+<p>I will give out class participation points in every class class for answering or asking a question.</p>
+<p>Given the glut of information accessible online and otherwise in this day and age, <strong>meaningful interactions with your peers and teachers is essentially why you are paying your college tuition</strong>.</p>
+<p>Please come to class, labs and office hours</p>
+<p>Please ask questions during class</p>
+<p>Please answer questions and participate in discussions during class</p>
+</section>
+<section id="exams" class="level3">
+<h3 class="anchored" data-anchor-id="exams">Exams</h3>
+<p>There will be <strong>three</strong> exams in the course, including the final. The final exam will be cumulative. Exams constitute <strong>60%</strong> of your course grade.</p>
+<p><strong>All exams will be on computer, with a large programming component</strong>. Questions will be posted on Moodle and you will have to submit your solutions on Moodle, just like assignments.</p>
+<p>You will be evaluated on your ability to apply knowledge to new problems and not just on your ability to retain and recall information.</p>
+<p>The exams, more than the assignments, are going to determine your grade.</p>
+<p>All exams are going to be cumulative, with focus on the topics covered since last exam.</p>
+<p>Diligent work on the homework and assignments will be rewarded here.</p>
+</section>
+<section id="giant-asterisk" class="level3">
+<h3 class="anchored" data-anchor-id="giant-asterisk">Giant Asterisk *</h3>
+<p><i><u><strong>Everything is tentative and subject to change</strong></u></i></p>
+<p><img style="filter:invert(1)" src="assets/complaints.jpeg" width="25%" align="right"></p>
+<p>This is my first teaching this course. <strong>Any and all feedback</strong> is welcome!</p>
+<p>I have created an anonymous feedback poll on <strong>Moodle</strong>. Please use this to <strong>anonymously</strong> share any feedback.</p>
+<p>Share <strong>any changes</strong> you want me to make in the course, <strong>at any point in the semester</strong>. You can submit multiple times over the span of the semester.</p>
+<p>Think of it as a <em>Complaints Box</em> for the course.</p>
+</section>
+</section>
+<section id="what-is-data-mining" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-data-mining">What is <em>Data Mining</em>?</h2>
+<p>“Data Mining” is a term from the 1990s, back when it was an exciting and popular new field. Around 2010, people instead started to speak of “big data”. Today, the popular term is “data science”. There are some who even regard data mining as synonymous with machine learning. There is no question that some data mining appropriately uses algorithms from machine learning. However, during all this time, the concept remained the same: use the most powerful hardware, the most powerful programming systems, and the most efficient algorithms to solve problems in science, commerce, healthcare, government, the humanities, and many other fields of human endeavor.</p>
+<center>
+<img src="assets/venn.png" width="50%" style="filter:invert(1)">
+</center>
+<p>From the Venn Diagram, the course content is going to cover ✅ Hacking Skills and ✅ Math &amp; Statistics in detail but not ☐ Substantive Expertise. For that missing piece, I strongly encourage you to bring in knowledge from your GERs and other Non-CS department courses into this class and the term project in particular. Nothing would make me happier than to see projects that combines CS with your other interests.</p>
+</section>
+<section id="expect-lots-of-programming-and-lots-of-math" class="level2">
+<h2 class="anchored" data-anchor-id="expect-lots-of-programming-and-lots-of-math">Expect lots of Programming and lots of Math!</h2>
+<p><em>“But wait, I am not a Math Person!”</em> you say!</p>
+<p>There is no such thing as a “<em>Math Person</em>”. I do recognize, however, that <strong>Math Anxiety</strong> is a real thing and is very common. It is a feeling of fear based on a belief that one is not good at math or that math is inherently difficult.</p>
+<p>Please use this course as an opportunity to overcome your Math anxiety!</p>
+<p>In this course, the code you write will be mostly math. Most modern <em>“AI”</em> is just that: math, in code.</p>
+<p>This presents a unique opportunity for you to overcome your Math anxiety. You will be able to see the math in action, be able to visualize the results and have a conversation with it.</p>
+<p>Trust me, there is a tremendous amount of beauty and joy to be found in mathematics. And if beauty and joy aren’t really your thing, then let me also assure you there is a lot of money to be made these days by being good at coding math. Either way, the rewards are well worth the effort!</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,205 @@
+---
+title: Introduction
+toc: true
+---
+
+
+# About Me
+
+<span style="font-size: 2.0em; font-weight: bold;">
+Syed Fahad Sultan سید فہد سلطان </span> 
+
+**Pronunciation**:  <a href="https://en.wikipedia.org/wiki/Sayyid">Saiyyudh</a> <a href="https://en.wikipedia.org/wiki/Fahd">Fahad</a> <a href="https://en.wikipedia.org/wiki/Sultan">Sool-tahn</a>
+
+_Just call me **“Dr. Sultan”**_ (click on the speaker for a short audio clip: [🔈](https://upload.wikimedia.org/wikipedia/commons/c/cd/LL-Q9292_%28aze%29-Azerbaijani_audiorecordings-sultan.wav))
+
+<br/>
+<center><img style="filter:invert(1)" width="80%" src="assets/name.png"></center>
+<br/>
+
+I am originally from **[Lahore, Pakistan](https://en.wikipedia.org/wiki/Lahore)** and joined **Furman University** in Fall 2022 after earning my Ph.D. in Computer Science from **State University of New York at Stony Brook**.
+
+<br/>
+<center><img width="70%" src="https://i.ibb.co/wJGFKqB/badshahi-mosque.png"></center>
+<br/>
+
+
+Fresh out of college, I worked as a professional video game developer for a startup that later got acquired by the Japanese gaming giant **DeNA**. During this time, I was part of the team that built **TapFish**, the top-grossing game worldwide, for two weeks in 2011, on both the App Store and Google Play.
+
+<br/>
+
+<table>
+<tr> 
+    <td> <img src="https://fahadsultan.com/csc272_f23/_images/tapfish.jpeg" alt="tapfish" height="175px"> </td>
+    <td> <img src="https://fahadsultan.com/csc272_f23/_images/mobility.gif" alt="mobility" height="175px"> </td>
+    <td> <img src="https://fahadsultan.com/csc272_f23/_images/neuroimaging2.jpeg" alt="neuroimaging2" height="175px"> </td>
+</tr>
+<tr> 
+    <center><td>1. Video games development</td><td> 2. Urban Sensing </td><td> 3. Computational Neuroscience </td></center>
+</tr>
+</table>
+<br/>
+
+I then went on to work at **Technology for People Initiative**, an applied research lab in my where I mined social media and cell phone data for proxies of socio-economic indicators that allowed more inclusive policy-making for marginalized communities. During these years, I also dabbled in data journalism and helped organize a boot camp on using data for journalists with the support of the International Center for Journalists (ICFJ) and the Knight Foundation.
+
+
+
+<img align="right" width="30%" src="https://i.ibb.co/j6XJkn8/Screen-Shot-2024-05-03-at-12-54-31-PM.png">
+
+
+In 2015, I moved to **Mecca, Saudi Arabia** to work for the GIS Innovation Center (now Wadi Makkah). There I worked on innovative **urban sensing** techniques for better crowd control during the annual pilgrimage to the city, the largest human gathering in the world every year.
+
+During my PhD, I worked at the intersection of **computational neuroscience, bioinformatics and machine learning**. My work focused on identifying neurological and genetic biomarkers linking type-2 diabetes with cognitive disorders such as Alzheimer's and other dementias.
+
+I live in Travelers Rest with my wife and cat. 
+
+
+### How to Reach Me
+
+**Office**: Riley Hall 200-D
+
+**Email**: fahad.sultan@furman.edu
+
+My office hours this semester are **10 - 11:30 AM** on **Mondays** and **Wednesdays**.
+
+I have an **Open door policy**. I am in my office during work hours most weekdays and my door is only closed if I am in a class or in a meeting. So please drop by. 
+
+You can also **schedule a meeting [using this link](https://calendly.com/ssultan-dpq/)** if you want to absolutely make sure that I am available.
+
+<center>
+<img width="60%" style="filter:invert(1)" src="assets/office.png"></img>
+</center>
+
+
+## About the Course
+ 
+Course website: **[https://fahadsultan.com/csc223](https://fahadsultan.com/csc223)**
+
+The **[Syllabus](https://fahadsultan.com/csc223/syllabus/index.html)** is available on the course website. In particular, please make sure to read the **[Grading](https://fahadsultan.com/csc223/syllabus/grading.html)**, **[Academic Integrity](https://fahadsultan.com/csc223/syllabus/integrity.html)** and **[Textbook and other Resources](https://fahadsultan.com/csc223/syllabus/textbook.html)** sections carefully.
+
+All of the course content will be posted on this website.
+
+Important announcements will be made on both the course website homepage and in class. 
+
+You are to submit assignments and exams on **[the course Moodle page](https://courses.furman.edu/course/view.php?id=18720)**. I will also upload all of your grades there.
+
+
+### How-to knowledge > What-is knowledge
+
+<img align="right" style="filter:invert(1)" src="https://enchantedyankee.files.wordpress.com/2012/03/chess-cheat-sheet.jpg?w=921" width="30%">
+
+**Declarative knowledge** is knowledge about facts. It is knowledge that answers the **"What is" questions**. Most courses outside Computer Science are about declarative knowledge.  
+
+In contrast, **Imperative knowledge** is knowledge about how to do things. It is knowledge that answers the **"How to" questions**. 
+
+While we will spend a non-trivial amount of time in this course on declarative knowledge, the overwhelming majority of this course will focus on imperative knowledge. Your grade in this course will be determined by your ability to apply declarative and more importantly imperative knowledge to solve problems. 
+
+<img src="https://www.justinkownacki.com/wp-content/uploads/2020/11/QueensGambit_1200.jpg" width="50%" align="right">
+
+Research shows that there is only one way to acquire imperative knowledge: **Practice, Practice, Practice !**. Practice combined with feedback is the only way to achieve mastery.
+
+In this course, you will be given ample opportunities to practice along with regular feedback.
+
+### Assignments 
+
+Approach assignments purely as **opportunities to learn**, prepare for exams and to prepare for your career.
+
+<img align="right" style="filter:invert(0.87)" src="https://theteachingdelusioncom.files.wordpress.com/2021/12/practice-feedback-loop.jpg?w=1024" width="40%">
+
+It is **not worth cheating** on assignments. Just come talk to me if you are struggling with an assignment. I will literally just tell you the answer. 
+
+On assignments, expect **near maximal flexibility** from me. Every assignment will be due 10 days calendar after it is posted. 
+
+You can schedule a time to get your assignments graded [using this link](https://calendly.com/ssultan-dpq/15-minute-meeting). 
+
+<u>**Written Assignments:**</u>
+
+Written assignments are to help you build a deeper understanding of algorithms and math covered in class.  
+
+These could simply be math problems or involve tracing algorithms and dry-runs. 
+
+Both handwritten or typed submissions are acceptable. Submissions, as always, on Moodle. 
+
+<u>**Programming Assignments:**</u>
+
+Programming assignments are going to be posted at the start of the lab session each week and will be due in 10 days, unless otherwise specified.
+
+All **Programming assignments** will be graded through an **in-person code review**. You are to give a walkthrough of your code and be able to answer questions about it. 
+
+During these code review, you will be given feedback on how to improve your code and avoid common mistakes.
+
+You should expect questions in the exams similar to assignments.
+
+### Class Participation
+
+I have created 10 graded items under class participation on Moodle. In class, you will be asked to answer a question or solve a problem. You will be graded on the basis of your participation. It is your responsibility to make sure you have 10 points by the end of the semester.
+
+There are 10 graded items under class participation on Moodle. In class, you will be asked to answer a question or solve a problem. You will be graded on the basis of your participation. It is your responsibility to make sure you have 10 points by the end of the semester.
+
+$$\frac{24~\text{students} \times 10~\text{points needed by each student}}{15~\text{weeks} \times 2~\text{classes per week}} = 8~\text{points given out class, on average}$$
+
+
+I will give out class participation points in every class class for answering or asking a question. 
+
+Given the glut of information accessible online and otherwise in this day and age, **meaningful interactions with your peers and teachers is essentially why you are paying your college tuition**. 
+
+Please come to class, labs and office hours 
+
+Please ask questions during class
+
+Please answer questions and participate in discussions during class
+
+### Exams 
+
+There will be **three** exams in the course, including the final. The final exam will be cumulative. Exams constitute **60%** of your course grade.
+
+**All exams will be on computer, with a large programming component**. Questions will be posted on Moodle and you will have to submit your solutions on Moodle, just like assignments.
+
+You will be evaluated on your ability to apply knowledge to new problems and not just on your ability to retain and recall information.
+
+The exams, more than the assignments, are going to determine your grade.
+
+All exams are going to be cumulative, with focus on the topics covered since last exam. 
+
+Diligent work on the homework and assignments will be rewarded here. 
+
+
+### Giant Asterisk * 
+
+<i><u>**Everything is tentative and subject to change**</u></i>
+
+
+<img style="filter:invert(1)" src="assets/complaints.jpeg" width="25%" align="right">
+
+This is my first teaching this course. **Any and all feedback** is welcome! 
+
+I have created an anonymous feedback poll on **Moodle**. Please use this to **anonymously** share any feedback. 
+ 
+Share **any changes** you want me to make in the course, **at any point in the semester**. You can submit multiple times over the span of the semester.  
+
+Think of it as a _Complaints Box_ for the course.
+
+
+
+## What is _Data Mining_?
+
+"Data Mining" is a term from the 1990s, back when it was an exciting and popular new field. Around 2010, people instead started to speak of "big data". Today, the popular term is "data science". There are some who even regard data mining as synonymous with machine learning. There is no question that some data mining appropriately uses algorithms from machine learning. However, during all this time, the concept remained the same: use the most powerful hardware, the most powerful programming systems, and the most efficient algorithms to solve problems in science, commerce, healthcare, government, the humanities, and many other fields of human endeavor. 
+
+<center><img src="assets/venn.png" width="50%" style="filter:invert(1)"></center>
+
+From the Venn Diagram, the course content is going to cover ✅ Hacking Skills and ✅ Math & Statistics in detail but not ☐ Substantive Expertise. For that missing piece, I strongly encourage you to bring in knowledge from your GERs and other Non-CS department courses into this class and the term project in particular. Nothing would make me happier than to see projects that combines CS with your other interests.
+
+## Expect lots of Programming and lots of Math! 
+
+_"But wait, I am not a Math Person!"_ you say!  
+
+There is no such thing as a "_Math Person_". I do recognize, however, that **Math Anxiety** is a real thing and is very common. It is a feeling of fear based on a belief that one is not good at math or that math is inherently difficult. 
+
+Please use this course as an opportunity to overcome your Math anxiety!
+
+In this course, the code you write will be mostly math. Most modern _"AI"_ is just that: math, in code.
+
+This presents a unique opportunity for you to overcome your Math anxiety. You will be able to see the math in action, be able to visualize the results and have a conversation with it. 
+
+Trust me, there is a tremendous amount of beauty and joy to be found in mathematics. And if beauty and joy aren't really your thing, then let me also assure you there is a lot of money to be made these days by being good at coding math. Either way, the rewards are well worth the effort! 
+

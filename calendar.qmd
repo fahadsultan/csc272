@@ -1,0 +1,45 @@
+# Calendar {.unnumbered}
+
+::: {.callout-caution}
+Please note that this is a tentative plan and is subject to change.
+:::
+
+| # | TOPIC | READING | MEETING 1 | MEETING 2 | WRITTEN  ASSIGNMENT | PROGRAMMING ASSIGNMENT |
+|---|----|---|---|---|---|---|
+| 1 | Introduction | Skiena Ch.1 |    |  | | |
+| 2 | Pandas 1 | McKinney Ch.5, 8, 10 |  |  | | |
+| 3 | Pandas 2 |McKinney Ch.5, 8, 10    |  |  | | |
+| 4 | Pandas 3 | McKinney Ch.5, 8, 10 |  |  | | |
+
+<center>
+_Project phase 1 due_ \
+_EXAM 1_
+</center>
+
+<br/>
+
+| # | TOPIC | READING | MEETING 1 | MEETING 2 | WRITTEN  ASSIGNMENT | PROGRAMMING ASSIGNMENT |
+|---|----|---|---|---|---|---|
+| 5 | Encoding and Representation | McKinney Ch.7 |  |  | | |
+| 6 | Data Visualization | McKinney Ch.7 |  |  | | |
+| 7 | Probability + Stats | Skiena Ch.2 |  |  | | |
+| 8 | Naive Bayes | SLP 3rd edition Ch.4 |  |  | | |
+
+<center>
+_Project phase 2 due_ \
+_EXAM 2_
+</center>
+
+<br/>
+
+| # | TOPIC | READING | MEETING 1 | MEETING 2 | WRITTEN  ASSIGNMENT | PROGRAMMING ASSIGNMENT |
+|---|----|---|---|---|---|---|
+| 9 | Nearest Neighbor | Skiena Ch. 8 and Ch. 10 |  |  | | |
+| 10 | Clustering | Skiena Ch.10 (10.5) |  |  | | |
+| 11 | Linear Models 1 | Skiena Ch.9 (9.1-9.5) |  |  | | |
+| 12 | Linear Models 2 | Skiena Ch.9 (9.1-9.5)|  |  | | |
+
+<center>
+_Project phase 3 due_ \
+_FINAL EXAM_
+</center>

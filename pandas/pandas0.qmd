@@ -1,0 +1,22 @@
+
+# VECTORIZED OPERATIONS
+
+Vector based programming (also known as array based programming) is a programming paradigm that uses operations on arrays to execute tasks. This is in contrast to scalar based programming where operations are performed on individual elements of an array.
+
+<center>
+<img style="filter:invert(1)" width="80%" src="https://www.illustratedbytes.com/blog/series_what_is_kinetica/01-vectorize/assets/sequential.gif">  <img width="80%" style="filter:invert(1)" src="https://www.illustratedbytes.com/blog/series_what_is_kinetica/01-vectorize/assets/vectorize-2.gif">
+</center>
+
+Vectorization operates at the level of individual instructions sent to a processor within each node. For instance, in the illustration shown here, the instruction is to add 5 to a column of numbers and copy the results to a new column B. With vectorization, all the data elements in that column are transformed simultaneously, i.e. the instruction to add 5 is applied to multiple pieces of data at the same time. This paradigm is sometimes referred to as Single Instruction Multiple Data (or SIMD).
+
+We can think of vectorization as subdividing the work into smaller chunks that can be handled independently by different computational units at the same time.
+
+This is orders of magnitude faster than the conventional sequential model where each piece of data is handled one after the other in sequence.
+
+With vectorization, performing the same operation on a modern intel CPU is 16 times faster than the sequential mode. The performance gains on GPUs with thousands of computational cores is even greater. However, despite these remarkable performance benefits, most analytical code out there is written in the slower sequential mode. This is not a surprise, since until about a decade ago, CPU and GPU hardware could not really support vectorization for data analysis. So most implementations had to be sequential.
+
+The last 10 years, however, have seen the rise of new technologies like CUDA from NVidia and advanced vector extensions from Intel that have dramatically shifted our ability to apply vectorization. Because of the power of vectorization, some traditional vendors now make claims about including vectorization in their offerings. But shifting to this new vectorized paradigm is not easy, since all of your code needs to be written from scratch to utilize these capabilities. Unlike Kinetica, these traditional databases incorporate only partial vectorization, limited to specific operations such as filters or some aggregations and continue to use outdated and less performant modes of computation for other analytical tasks. These solutions also only leverage vectorization on the CPUs.
+
+<center>
+<img width="100%" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iGGVWf_CDfkE/v2/pidjEfPlU1QWZop3vfGKsrX.ke8XuWirGYh1PKgEw44kE/-1x-1.png" style="filter:invert(1)">  
+</center>

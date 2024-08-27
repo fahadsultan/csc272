@@ -1,0 +1,41 @@
+
+# Grading
+
+## Breakdown
+
+| Component | Percentage |
+|---------|------|
+| Written Assignments | 10% |
+| Programming Assignments | 10% |
+| Class Participation | 10% | 
+| Exam 1  | 10% |
+| Exam 2  | 15% |
+| Final Exam  | 25% |
+| Project | 20% |
+
+## Scale 
+(+/- at instructor's discretion)
+
+| Letter Grade | Range |
+|---------|------|
+| A  | > 90 % |
+| B  | 80 - 90 % |
+| C  | 70 - 80 % |
+| D  | 60 - 70 % |
+| F  | < 60 % |
+
+## Passing Requirements
+
+In order to pass this class, you must
+
+1. Earn $\geq$ 60% of the total points
+
+2. Attend $\geq$ 80% of the lectures and labs. 
+
+3. Submit $\geq$ 80% of written and programmming assignments. 
+
+4. Take ALL tests and final! 
+
+5. Earn $\geq$ 50% in each of the 7 components above.  In other words, you cannot blow off an entire aspect of the course and pass this class! 
+
+Note that this basic requirement is necessary but not sufficient to pass the class.
