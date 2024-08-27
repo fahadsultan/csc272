@@ -73,9 +73,9 @@ You can also **schedule a meeting [using this link](https://calendly.com/ssultan
 
 ## About the Course
  
-Course website: **[https://fahadsultan.com/csc223](https://fahadsultan.com/csc223)**
+Course website: **[https://fahadsultan.com/csc272](https://fahadsultan.com/csc272)**
 
-The **[Syllabus](https://fahadsultan.com/csc223/syllabus/index.html)** is available on the course website. In particular, please make sure to read the **[Grading](https://fahadsultan.com/csc223/syllabus/grading.html)**, **[Academic Integrity](https://fahadsultan.com/csc223/syllabus/integrity.html)** and **[Textbook and other Resources](https://fahadsultan.com/csc223/syllabus/textbook.html)** sections carefully.
+The **[Syllabus]()** is available on the course website. In particular, please make sure to read the **[Grading]()**, **[Academic Integrity]()** and **[Textbook and other Resources]()** sections carefully.
 
 All of the course content will be posted on this website.
 
