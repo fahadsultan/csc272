@@ -22,8 +22,8 @@ website:
         href: https://courses.furman.edu/course/view.php?id=18728
       - text: "Office Hours"
         href: syllabus/appointment.md
-      # - text: "TA"
-      #   href: ta.qmd
+      - text: "TA"
+        href: ta.qmd
   sidebar:
     - id: syllabus
       title: "Syllabus"
@@ -50,9 +50,19 @@ website:
         - section: 
           href: pandas/pandas0.qmd
           contents:
-            - pandas/pandas1.ipynb
+            - section:
+              href: pandas/pandas1.ipynb
+              contents: 
+                - pandas/formats.ipynb
+                - pandas/read_data.ipynb
+                - pandas/write_data.ipynb
+            - section:
+              href: pandas/pandas3.ipynb
+              contents: 
+                - pandas/extraction.ipynb
+                - pandas/selection.ipynb
+                - pandas/filtering.ipynb
             - pandas/pandas2.ipynb
-            - pandas/pandas3.ipynb
             - pandas/pandas4.ipynb
             - pandas/pandas5.ipynb
         # - section:

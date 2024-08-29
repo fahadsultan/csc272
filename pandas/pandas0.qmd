@@ -1,5 +1,7 @@
-
-# VECTORIZED OPERATIONS
+---
+title: VECTORIZED OPERATIONS
+toc: true
+---
 
 Vector based programming (also known as array based programming) is a programming paradigm that uses operations on arrays to execute tasks. This is in contrast to scalar based programming where operations are performed on individual elements of an array.
 

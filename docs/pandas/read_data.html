@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>project</title>
+<title>Reading Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,10 +20,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -67,12 +101,15 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -90,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -137,7 +174,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="../project/project.html" aria-current="page"> 
+    <a class="nav-link" href="../project/project.html"> 
 <span class="menu-text">Project</span></a>
   </li>  
   <li class="nav-item">
@@ -162,30 +199,160 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas0.html">VECTORIZED OPERATIONS</a></li><li class="breadcrumb-item"><a href="../pandas/pandas1.html">Preliminaries</a></li><li class="breadcrumb-item"><a href="../pandas/read_data.html">Reading Data</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/pandas0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VECTORIZED OPERATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/pandas1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preliminaries</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/formats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Common Data Formats</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/read_data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Reading Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/write_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/pandas3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selection, Filtering and Dropping</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/extraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extracting values</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/filtering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Filtering</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/pandas2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation and Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/pandas4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/pandas5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concatenation and Merging</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#groups" id="toc-groups" class="nav-link active" data-scroll-target="#groups">Groups</a></li>
-  <li><a href="#data-science-lifecycle" id="toc-data-science-lifecycle" class="nav-link" data-scroll-target="#data-science-lifecycle">Data Science Lifecycle</a></li>
-  <li><a href="#ask-a-question-and-obtain-data" id="toc-ask-a-question-and-obtain-data" class="nav-link" data-scroll-target="#ask-a-question-and-obtain-data">1. Ask a Question <em>and</em> Obtain Data</a></li>
-  <li><a href="#understand-the-data" id="toc-understand-the-data" class="nav-link" data-scroll-target="#understand-the-data">2. Understand the Data</a></li>
-  <li><a href="#understand-the-world" id="toc-understand-the-world" class="nav-link" data-scroll-target="#understand-the-world">3. Understand the World</a></li>
+  <li><a href="#arguments" id="toc-arguments" class="nav-link active" data-scroll-target="#arguments">Arguments</a>
+  <ul class="collapse">
+  <li><a href="#separator" id="toc-separator" class="nav-link" data-scroll-target="#separator">Separator</a></li>
+  <li><a href="#header-row-column-labels" id="toc-header-row-column-labels" class="nav-link" data-scroll-target="#header-row-column-labels">Header row (column labels)</a></li>
+  <li><a href="#index-column-row-labels" id="toc-index-column-row-labels" class="nav-link" data-scroll-target="#index-column-row-labels">Index column (row labels)</a></li>
+  <li><a href="#ignore-erroneous-lines" id="toc-ignore-erroneous-lines" class="nav-link" data-scroll-target="#ignore-erroneous-lines">Ignore erroneous lines</a></li>
+  <li><a href="#skip-first-k-rows" id="toc-skip-first-k-rows" class="nav-link" data-scroll-target="#skip-first-k-rows">Skip first k rows</a></li>
+  <li><a href="#read-only-k-rows" id="toc-read-only-k-rows" class="nav-link" data-scroll-target="#read-only-k-rows">Read only k rows</a></li>
+  <li><a href="#read-only-subset-of-columns" id="toc-read-only-subset-of-columns" class="nav-link" data-scroll-target="#read-only-subset-of-columns">Read only subset of columns</a></li>
+  <li><a href="#character-encoding" id="toc-character-encoding" class="nav-link" data-scroll-target="#character-encoding">Character Encoding</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas0.html">VECTORIZED OPERATIONS</a></li><li class="breadcrumb-item"><a href="../pandas/pandas1.html">Preliminaries</a></li><li class="breadcrumb-item"><a href="../pandas/read_data.html">Reading Data</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Course Project</h1>
+<h1 class="title">Reading Data</h1>
 </div>
 
 
@@ -202,232 +369,209 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In this course, you are expected to plan, execute, and present the results of a semester-long group project of your choosing.</p>
-<p>Take the time to investigate multiple options during the proposal phase. You should have gotten some preliminary results by then, enough to provide confidence you will be able to successfully complete the project.</p>
-<section id="groups" class="level2">
-<h2 class="anchored" data-anchor-id="groups">Groups</h2>
-<p>Working alone on the project is strongly discouraged. Group sizes should range from <strong>two to three students</strong>. It is possible for multiple groups working on the same data set. However, such groups must work independently and are not allowed to share code or results. Each dataset leaves enough room to pursue different directions so I expect to see variety among the submissions from each group.</p>
-<hr>
-<p>To ensure consistent progress, there is a <strong>project deadline roughly every month, before each of the four exams</strong>. This will allow you to apply the techniques you learn in class to your project in a timely manner.</p>
-</section>
-<section id="data-science-lifecycle" class="level2">
-<h2 class="anchored" data-anchor-id="data-science-lifecycle">Data Science Lifecycle</h2>
-<p>The steps of your project are to mirror the general data science lifecycle pipeline.</p>
-<p>The data science lifecycle is a high-level overview of the data science workflow. It’s a cycle of stages that a data scientist should explore as they conduct a thorough analysis of a data-driven problem.</p>
-<p>There are many variations of the key ideas present in the data science lifecycle. Here, we visualize the stages of the lifecycle using a flow diagram.</p>
+<p>To begin our studies in <code>pandas</code>, we must first import the library into our Python environment using <code>import pandas as pd</code> statement. <code>pd</code> is a common alias for <code>pandas</code>. The import statement will allow us to use <code>pandas</code> data structures and methods in our code.</p>
+<br><br>
 <center>
-<img src="../assets/data_life_cycle.png" width="50%" style="filter:invert(1)">
+<img src="https://i.ibb.co/ZLK0Zm1/read-csv.png" width="85%" style="filter:invert(1)">
 </center>
-</section>
-<section id="ask-a-question-and-obtain-data" class="level2">
-<h2 class="anchored" data-anchor-id="ask-a-question-and-obtain-data">1. Ask a Question <em>and</em> Obtain Data</h2>
-<pre class="{important}"><code> **Due before Exam 1**</code></pre>
-<p>Whether by curiosity or necessity, data scientists will constantly ask questions. For example, in the business world, data scientists may be interested in predicting the profit generated by a certain investment. In the field of medicine, they may ask whether some patients are more likely than others to benefit from a treatment.</p>
-<p>Posing questions is one of the primary ways the data science lifecycle begins. It helps to fully define the question. Here are some things you should ask yourself before framing a question.</p>
-<ul>
-<li>What do we want to know?
-<ul>
-<li>A question that is too ambiguous may lead to confusion.</li>
-</ul></li>
-<li>What problems are we trying to solve?
-<ul>
-<li>The goal of asking a question should be clear in order to justify your efforts to stakeholders.</li>
-</ul></li>
-<li>What are the hypotheses we want to test?
-<ul>
-<li>This gives a clear perspective from which to analyze final results.</li>
-</ul></li>
-<li>What are the metrics for our success?
-<ul>
-<li>This gives a clear point to know when to finish the project.</li>
-</ul></li>
-</ul>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><img src="https://raw.githubusercontent.com/fahadsultan/csc272_f23/main/assets/ask_question.png" alt="fishy" class="bg-primary" width="100%" style="filter:invert(1)"></td>
-<td style="text-align: center;"><img src="../assets/data_acquisition.png" alt="fishy" class="bg-primary" width="100%" style="filter:invert(1)"></td>
-</tr>
-</tbody>
-</table>
-<p>| 1. Ask a Question | 2. Obtain Data |</p>
-<p>The second entry point to the lifecycle is by obtaining data. A careful analysis of any problem requires the use of data. Data may be readily available to us, or we may have to embark on a process to collect it. When doing so, its crucial to ask the following:</p>
-<ul>
-<li>What data do we have and what data do we need?
-<ul>
-<li>Define the units of the data (people, cities, points in time, etc.) and what features to measure.</li>
-</ul></li>
-<li>How will we sample more data?
-<ul>
-<li>Scrape the web, collect manually, etc.</li>
-</ul></li>
-<li>Is our data representative of the population we want to study?
-<ul>
-<li>If our data is not representative of our population of interest, then we can come to incorrect conclusions.</li>
-</ul></li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<strong><em>Project Phase 1</em></strong>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Identify or collect a <em>publicly available</em> data set that you will use for your project. A list of possible datasets and project ideas are <a href="../project/data.html">provided here</a> but you are allowed to propose your own project and data set. Just be mindful of the scale of the data: it should be large enough to be appropriate for usage in Machine Learning, but not so large that it is unwieldy.</p>
-<p>Key procedures: <strong>Data Acquisition</strong>, <strong>Data Cleaning</strong></p>
-</div>
-</div>
-</section>
-<section id="understand-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="understand-the-data">2. Understand the Data</h2>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Due before Exam 2</strong></p>
-</div>
-</div>
-<p>Raw data itself is not inherently useful. It’s impossible to discern all the patterns and relationships between variables without carefully investigating them. Therefore, translating pure data to actionable insights is a key job of a data scientist. For example, we may choose to ask:</p>
-<ul>
-<li>How is our data organized and what does it contain?
-<ul>
-<li>Knowing what the data says about the world helps us better understand the world.</li>
-</ul></li>
-<li>Do we have relevant data?
-<ul>
-<li>If the data we have collected is not useful to the question at hand, then we must collected more data.</li>
-</ul></li>
-<li>What are the biases, anomalies, or other issues with the data?
-<ul>
-<li>These can lead to many false conclusions if ignored, so data scientists must always be aware of these issues.</li>
-</ul></li>
-<li>How do we transform the data to enable effective analysis?
-<ul>
-<li>Data is not always easy to interpret at first glance, so a data scientist should reveal these hidden insights.</li>
-</ul></li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<em>Project Phase 2</em>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Perform some exploratory analysis to help you get acquainted with the data. This may include data visualization and basic preliminary analysis. Identify interesting aspects of the data set that would be useful for downstream prediction: correlations, outliers, missing values, etc.</p>
-<p>Key procedures: <strong>Exploratory data analysis</strong>, <strong>Data visualization</strong>.</p>
-</div>
-</div>
-</section>
-<section id="understand-the-world" class="level2">
-<h2 class="anchored" data-anchor-id="understand-the-world">3. Understand the World</h2>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Due before Final Exam</strong></p>
-</div>
-</div>
-<p>After observing the patterns in our data, we can begin answering our question. This may require that we predict a quantity (machine learning), or measure the effect of some treatment (inference).</p>
-<p>From here, we may choose to report our results, or possibly conduct more analysis. We may not be satisfied by our findings, or our initial exploration may have brought up new questions that require a new data.</p>
-<ul>
-<li>What does the data say about the world?
-<ul>
-<li>Given our models, the data will lead us to certain conclusions about the real world.<br>
-</li>
-</ul></li>
-<li>Does it answer our questions or accurately solve the problem?
-<ul>
-<li>If our model and data can not accomplish our goals, then we must reform our question, model, or both.<br>
-</li>
-</ul></li>
-<li>How robust are our conclusions and can we trust the predictions?
-<ul>
-<li>Inaccurate models can lead to untrue conclusions.</li>
-</ul></li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Project Phase 3
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Preprocess data to change raw feature vectors into a representation that is more suitable for the downstream analysis. This may include data cleaning, calculating derivative or second-order variables, feature extraction, and feature selection.</p>
-<p>Implement baseline models covered in class and report their performance.</p>
-<p>Identify, implement and apply as many models as relevant from class to predict some aspect of the data. This must be a supervised learning model. This may include, model selection, and model evaluation.</p>
-<p>You must compare your results to a number of baselines, including random predictor, major class classifier and/or autocorrelation model. An example table is shown below:</p>
-<table class="caption-top table">
+<p><br><br></p>
+<p>CSV files can be in <code>pandas</code> using <code>read_csv</code>. The following code cell imports <code>pandas</code> as <code>pd</code>, the conventional alias for Pandas and then reads the <code>elections.csv</code> file.</p>
+<div id="cell-2" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># `pd` is the conventional alias for Pandas</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>elections <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>elections</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
-<th>Model</th>
-<th>Accuracy</th>
-<th>Precision</th>
-<th>Recall</th>
-<th>F1-score</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Candidate</th>
+<th data-quarto-table-cell-role="th">Party</th>
+<th data-quarto-table-cell-role="th">Popular vote</th>
+<th data-quarto-table-cell-role="th">Result</th>
+<th data-quarto-table-cell-role="th">%</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Random baseline</td>
-<td>0.5</td>
-<td>0.52</td>
-<td>0.55</td>
-<td>0.53</td>
+<td data-quarto-table-cell-role="th">0</td>
+<td>1824</td>
+<td>Andrew Jackson</td>
+<td>Democratic-Republican</td>
+<td>151271</td>
+<td>loss</td>
+<td>57.210122</td>
 </tr>
 <tr class="even">
-<td>Majority class / Autocorrelation</td>
-<td>0.75</td>
-<td>0.5</td>
-<td>1</td>
-<td>0.66</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>1824</td>
+<td>John Quincy Adams</td>
+<td>Democratic-Republican</td>
+<td>113142</td>
+<td>win</td>
+<td>42.789878</td>
 </tr>
 <tr class="odd">
-<td>Model 1</td>
-<td>0.77</td>
-<td>0.72</td>
-<td>0.74</td>
-<td>0.73</td>
+<td data-quarto-table-cell-role="th">2</td>
+<td>1828</td>
+<td>Andrew Jackson</td>
+<td>Democratic</td>
+<td>642806</td>
+<td>win</td>
+<td>56.203927</td>
 </tr>
 <tr class="even">
-<td>Model 2</td>
-<td><strong>0.85</strong></td>
-<td><strong>0.79</strong></td>
-<td><strong>0.89</strong></td>
-<td><strong>0.88</strong></td>
+<td data-quarto-table-cell-role="th">3</td>
+<td>1828</td>
+<td>John Quincy Adams</td>
+<td>National Republican</td>
+<td>500897</td>
+<td>loss</td>
+<td>43.796073</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1832</td>
+<td>Andrew Jackson</td>
+<td>Democratic</td>
+<td>702735</td>
+<td>win</td>
+<td>54.574789</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">177</td>
+<td>2016</td>
+<td>Jill Stein</td>
+<td>Green</td>
+<td>1457226</td>
+<td>loss</td>
+<td>1.073699</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">178</td>
+<td>2020</td>
+<td>Joseph Biden</td>
+<td>Democratic</td>
+<td>81268924</td>
+<td>win</td>
+<td>51.311515</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">179</td>
+<td>2020</td>
+<td>Donald Trump</td>
+<td>Republican</td>
+<td>74216154</td>
+<td>loss</td>
+<td>46.858542</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">180</td>
+<td>2020</td>
+<td>Jo Jorgensen</td>
+<td>Libertarian</td>
+<td>1865724</td>
+<td>loss</td>
+<td>1.177979</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">181</td>
+<td>2020</td>
+<td>Howard Hawkins</td>
+<td>Green</td>
+<td>405035</td>
+<td>loss</td>
+<td>0.255731</td>
 </tr>
 </tbody>
 </table>
-<p>Discuss the results of your analysis. This must include stating the assumptions of the model, the limitations of the model, a thorough error analysis and future directions.</p>
-<p>Key procedures: <strong>Model Creation</strong>, <strong>Prediction</strong>, <strong>Inference</strong>, <strong>Model Selection</strong>, <strong>Error Analysis</strong>.</p>
+
+<p>182 rows × 6 columns</p>
 </div>
 </div>
+</div>
+<p>Let’s dissect the code above.</p>
+<ol type="1">
+<li><p>We first import the <code>pandas</code> library into our Python environment, using the alias <code>pd</code>.  <code>import pandas as pd</code></p></li>
+<li><p>There are a number of ways to read data into a DataFrame. In this course, our datasets are typically stored in a CSV (comma-seperated values) file format. We can import a CSV file into a DataFrame by passing the data path as an argument to the following <code>pandas</code> function.  <code>pd.read_csv("data/elections.csv")</code></p></li>
+</ol>
+<p>This code stores our DataFrame object in the <code>elections</code> variable. We see that our <code>elections</code> DataFrame has 182 rows and 6 columns (<code>Year</code>, <code>Candidate</code>, <code>Party</code>, <code>Popular Vote</code>, <code>Result</code>, <code>%</code>). Each row represents a single record – in our example, a presedential candidate from some particular year. Each column represents a single attribute, or feature of the record.</p>
+<p>In the example above, we constructed a DataFrame object using data from a CSV file. As we’ll explore in the next section, we can also create a DataFrame with data of our own.</p>
+<p>In the <code>elections</code> dataset, each row represents one instance of a candidate running for president in a particular year. For example, the first row represents Andrew Jackson running for president in the year 1824. Each column represents one characteristic piece of information about each presidential candidate. For example, the column named <code>Result</code> stores whether or not the candidate won the election.</p>
+<p>Some relevant arguments for <code>read_csv</code> are:</p>
+<ul>
+<li><code>filepath_or_buffer</code>: The path to the CSV file.</li>
+<li><code>sep</code>: The character that separates the values in the CSV file. By default, this is a comma <code>,</code>.</li>
+<li><code>header</code>: The row number to use as the column names. By default, this is <code>0</code>, which means the first row is used as the column names.</li>
+<li><code>index_col</code>: The column to use as the row labels of the DataFrame. By default, this is <code>None</code>, which means that the row labels are integers starting from 0.</li>
+<li><code>error_bad_lines</code>: If <code>True</code>, the parser will skip lines with too many fields rather than raising an error. By default, this is <code>False</code>.</li>
+</ul>
+<p><br><br></p>
+<section id="arguments" class="level2">
+<h2 class="anchored" data-anchor-id="arguments">Arguments</h2>
+<section id="separator" class="level3">
+<h3 class="anchored" data-anchor-id="separator">Separator</h3>
+<p>The <code>sep</code> argument specifies the character used to separate the values in the CSV file. By default, this is a comma <code>,</code>. However, some CSV files use other characters, such as tabs or semicolons, to separate values. In such cases, we can specify the separator character using the <code>sep</code> argument.</p>
+<p><br></p>
+</section>
+<section id="header-row-column-labels" class="level3">
+<h3 class="anchored" data-anchor-id="header-row-column-labels">Header row (column labels)</h3>
+<p>The <code>header</code> argument specifies the row number to use as the column names. By default, this is <code>0</code>, which means the first row is used as the column names. If the CSV file does not have a header row, we can set <code>header=None</code> to use the default column names.</p>
+<p><br></p>
+</section>
+<section id="index-column-row-labels" class="level3">
+<h3 class="anchored" data-anchor-id="index-column-row-labels">Index column (row labels)</h3>
+<p>The <code>index_col</code> argument specifies the column to use as the row labels of the DataFrame. By default, this is <code>None</code>, which means that the row labels are integers starting from 0. If we want to use one of the columns as the row labels, we can specify the column name or index using the <code>index_col</code> argument.</p>
+<p><br></p>
+</section>
+<section id="ignore-erroneous-lines" class="level3">
+<h3 class="anchored" data-anchor-id="ignore-erroneous-lines">Ignore erroneous lines</h3>
+<p>The <code>error_bad_lines</code> argument specifies whether the parser should skip lines with too many fields rather than raising an error. By default, this is <code>False</code>, which means that the parser will raise an error if it encounters a line with too many fields. If we want the parser to skip such lines, we can set <code>error_bad_lines=True</code>.</p>
+<p><br></p>
+</section>
+<section id="skip-first-k-rows" class="level3">
+<h3 class="anchored" data-anchor-id="skip-first-k-rows">Skip first k rows</h3>
+<p>The <code>skiprows</code> argument specifies the number of rows to skip at the beginning of the CSV file. By default, this is <code>None</code>, which means that no rows are skipped. If we want to skip a certain number of rows at the beginning of the file, we can specify the number of rows using the <code>skiprows</code> argument.</p>
+<p><br></p>
+</section>
+<section id="read-only-k-rows" class="level3">
+<h3 class="anchored" data-anchor-id="read-only-k-rows">Read only k rows</h3>
+<p>The <code>nrows</code> argument specifies the number of rows to read from the CSV file. By default, this is <code>None</code>, which means that all rows are read. If we want to read only a certain number of rows from the file, we can specify the number of rows using the <code>nrows</code> argument.</p>
+<p><br></p>
+</section>
+<section id="read-only-subset-of-columns" class="level3">
+<h3 class="anchored" data-anchor-id="read-only-subset-of-columns">Read only subset of columns</h3>
+<p>The <code>usecols</code> argument specifies the columns to read from the CSV file. By default, this is <code>None</code>, which means that all columns are read. If we want to read only certain columns from the file, we can specify the column names or indices using the <code>usecols</code> argument.</p>
+<p><br></p>
+</section>
+<section id="character-encoding" class="level3">
+<h3 class="anchored" data-anchor-id="character-encoding">Character Encoding</h3>
+<p>The <code>encoding</code> argument specifies the character encoding to use when reading the CSV file. By default, this is <code>None</code>, which means that the encoding is detected automatically. If the CSV file uses a different character encoding, we can specify the encoding using the <code>encoding</code> argument. Some common character encodings are:</p>
+<ul>
+<li><code>utf-8</code>: Unicode Transformation Format 8-bit</li>
+<li><code>latin1</code> or <code>iso-8859-1</code>: ISO 8859-1 supports many languages, including English, French, German, Spanish, and Portuguese.</li>
+<li><code>cp1252</code>: The cp1252 encoding is similar to the latin1 encoding, but it includes additional characters that are not present in latin1. The cp1252 encoding is commonly used in Windows operating systems.</li>
+<li><code>ascii</code>: The ASCII encoding is a 7-bit encoding that supports English characters and some special characters, such as punctuation marks and symbols.</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

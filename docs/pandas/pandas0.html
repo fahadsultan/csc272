@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>pandas0</title>
+<title>VECTORIZED OPERATIONS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -152,6 +152,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="../syllabus/appointment.html"> 
 <span class="menu-text">Office Hours</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../ta.html"> 
+<span class="menu-text">TA</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -204,22 +208,68 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/pandas1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preliminaries</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/pandas1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preliminaries</span></a>
+  <a href="../pandas/formats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Common Data Formats</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/read_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/write_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/pandas3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selection, Filtering and Dropping</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/extraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extracting values</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/filtering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Filtering</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/pandas2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Manipulation and Wrangling</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pandas/pandas3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Selection, Filtering and Dropping</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -241,23 +291,31 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#vectorized-operations" id="toc-vectorized-operations" class="nav-link active" data-scroll-target="#vectorized-operations">VECTORIZED OPERATIONS</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">VECTORIZED OPERATIONS</h1>
+</div>
 
 
 
-<section id="vectorized-operations" class="level1">
-<h1>VECTORIZED OPERATIONS</h1>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <p>Vector based programming (also known as array based programming) is a programming paradigm that uses operations on arrays to execute tasks. This is in contrast to scalar based programming where operations are performed on individual elements of an array.</p>
 <center>
 <img style="filter:invert(1)" width="80%" src="https://www.illustratedbytes.com/blog/series_what_is_kinetica/01-vectorize/assets/sequential.gif"> <img width="80%" style="filter:invert(1)" src="https://www.illustratedbytes.com/blog/series_what_is_kinetica/01-vectorize/assets/vectorize-2.gif">
@@ -302,7 +360,6 @@ ul.task-list li input[type="checkbox"] {
 <p>However, for problems such as the Fibonacci sequence, where the value of an element depends on the values of the previous two elements, we cannot vectorize the operation. Similarly, finding minimum or maximum of an array cannot be vectorized.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

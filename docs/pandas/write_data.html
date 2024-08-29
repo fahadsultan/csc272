@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>project</title>
+<title>Writing Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -72,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../style.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -90,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -137,7 +171,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="../project/project.html" aria-current="page"> 
+    <a class="nav-link" href="../project/project.html"> 
 <span class="menu-text">Project</span></a>
   </li>  
   <li class="nav-item">
@@ -162,30 +196,144 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas0.html">VECTORIZED OPERATIONS</a></li><li class="breadcrumb-item"><a href="../pandas/pandas1.html">Preliminaries</a></li><li class="breadcrumb-item"><a href="../pandas/write_data.html">Writing Data</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#groups" id="toc-groups" class="nav-link active" data-scroll-target="#groups">Groups</a></li>
-  <li><a href="#data-science-lifecycle" id="toc-data-science-lifecycle" class="nav-link" data-scroll-target="#data-science-lifecycle">Data Science Lifecycle</a></li>
-  <li><a href="#ask-a-question-and-obtain-data" id="toc-ask-a-question-and-obtain-data" class="nav-link" data-scroll-target="#ask-a-question-and-obtain-data">1. Ask a Question <em>and</em> Obtain Data</a></li>
-  <li><a href="#understand-the-data" id="toc-understand-the-data" class="nav-link" data-scroll-target="#understand-the-data">2. Understand the Data</a></li>
-  <li><a href="#understand-the-world" id="toc-understand-the-world" class="nav-link" data-scroll-target="#understand-the-world">3. Understand the World</a></li>
-  </ul>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/pandas0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VECTORIZED OPERATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/pandas1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preliminaries</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/formats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Common Data Formats</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/read_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/write_data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Writing Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/pandas3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selection, Filtering and Dropping</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/extraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extracting values</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/filtering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Filtering</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/pandas2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation and Wrangling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/pandas4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/pandas5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concatenation and Merging</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas0.html">VECTORIZED OPERATIONS</a></li><li class="breadcrumb-item"><a href="../pandas/pandas1.html">Preliminaries</a></li><li class="breadcrumb-item"><a href="../pandas/write_data.html">Writing Data</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Course Project</h1>
+<h1 class="title">Writing Data</h1>
 </div>
 
 
@@ -202,233 +350,18 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In this course, you are expected to plan, execute, and present the results of a semester-long group project of your choosing.</p>
-<p>Take the time to investigate multiple options during the proposal phase. You should have gotten some preliminary results by then, enough to provide confidence you will be able to successfully complete the project.</p>
-<section id="groups" class="level2">
-<h2 class="anchored" data-anchor-id="groups">Groups</h2>
-<p>Working alone on the project is strongly discouraged. Group sizes should range from <strong>two to three students</strong>. It is possible for multiple groups working on the same data set. However, such groups must work independently and are not allowed to share code or results. Each dataset leaves enough room to pursue different directions so I expect to see variety among the submissions from each group.</p>
-<hr>
-<p>To ensure consistent progress, there is a <strong>project deadline roughly every month, before each of the four exams</strong>. This will allow you to apply the techniques you learn in class to your project in a timely manner.</p>
-</section>
-<section id="data-science-lifecycle" class="level2">
-<h2 class="anchored" data-anchor-id="data-science-lifecycle">Data Science Lifecycle</h2>
-<p>The steps of your project are to mirror the general data science lifecycle pipeline.</p>
-<p>The data science lifecycle is a high-level overview of the data science workflow. It’s a cycle of stages that a data scientist should explore as they conduct a thorough analysis of a data-driven problem.</p>
-<p>There are many variations of the key ideas present in the data science lifecycle. Here, we visualize the stages of the lifecycle using a flow diagram.</p>
-<center>
-<img src="../assets/data_life_cycle.png" width="50%" style="filter:invert(1)">
-</center>
-</section>
-<section id="ask-a-question-and-obtain-data" class="level2">
-<h2 class="anchored" data-anchor-id="ask-a-question-and-obtain-data">1. Ask a Question <em>and</em> Obtain Data</h2>
-<pre class="{important}"><code> **Due before Exam 1**</code></pre>
-<p>Whether by curiosity or necessity, data scientists will constantly ask questions. For example, in the business world, data scientists may be interested in predicting the profit generated by a certain investment. In the field of medicine, they may ask whether some patients are more likely than others to benefit from a treatment.</p>
-<p>Posing questions is one of the primary ways the data science lifecycle begins. It helps to fully define the question. Here are some things you should ask yourself before framing a question.</p>
-<ul>
-<li>What do we want to know?
-<ul>
-<li>A question that is too ambiguous may lead to confusion.</li>
-</ul></li>
-<li>What problems are we trying to solve?
-<ul>
-<li>The goal of asking a question should be clear in order to justify your efforts to stakeholders.</li>
-</ul></li>
-<li>What are the hypotheses we want to test?
-<ul>
-<li>This gives a clear perspective from which to analyze final results.</li>
-</ul></li>
-<li>What are the metrics for our success?
-<ul>
-<li>This gives a clear point to know when to finish the project.</li>
-</ul></li>
-</ul>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><img src="https://raw.githubusercontent.com/fahadsultan/csc272_f23/main/assets/ask_question.png" alt="fishy" class="bg-primary" width="100%" style="filter:invert(1)"></td>
-<td style="text-align: center;"><img src="../assets/data_acquisition.png" alt="fishy" class="bg-primary" width="100%" style="filter:invert(1)"></td>
-</tr>
-</tbody>
-</table>
-<p>| 1. Ask a Question | 2. Obtain Data |</p>
-<p>The second entry point to the lifecycle is by obtaining data. A careful analysis of any problem requires the use of data. Data may be readily available to us, or we may have to embark on a process to collect it. When doing so, its crucial to ask the following:</p>
-<ul>
-<li>What data do we have and what data do we need?
-<ul>
-<li>Define the units of the data (people, cities, points in time, etc.) and what features to measure.</li>
-</ul></li>
-<li>How will we sample more data?
-<ul>
-<li>Scrape the web, collect manually, etc.</li>
-</ul></li>
-<li>Is our data representative of the population we want to study?
-<ul>
-<li>If our data is not representative of our population of interest, then we can come to incorrect conclusions.</li>
-</ul></li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<strong><em>Project Phase 1</em></strong>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Identify or collect a <em>publicly available</em> data set that you will use for your project. A list of possible datasets and project ideas are <a href="../project/data.html">provided here</a> but you are allowed to propose your own project and data set. Just be mindful of the scale of the data: it should be large enough to be appropriate for usage in Machine Learning, but not so large that it is unwieldy.</p>
-<p>Key procedures: <strong>Data Acquisition</strong>, <strong>Data Cleaning</strong></p>
-</div>
-</div>
-</section>
-<section id="understand-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="understand-the-data">2. Understand the Data</h2>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Due before Exam 2</strong></p>
-</div>
-</div>
-<p>Raw data itself is not inherently useful. It’s impossible to discern all the patterns and relationships between variables without carefully investigating them. Therefore, translating pure data to actionable insights is a key job of a data scientist. For example, we may choose to ask:</p>
-<ul>
-<li>How is our data organized and what does it contain?
-<ul>
-<li>Knowing what the data says about the world helps us better understand the world.</li>
-</ul></li>
-<li>Do we have relevant data?
-<ul>
-<li>If the data we have collected is not useful to the question at hand, then we must collected more data.</li>
-</ul></li>
-<li>What are the biases, anomalies, or other issues with the data?
-<ul>
-<li>These can lead to many false conclusions if ignored, so data scientists must always be aware of these issues.</li>
-</ul></li>
-<li>How do we transform the data to enable effective analysis?
-<ul>
-<li>Data is not always easy to interpret at first glance, so a data scientist should reveal these hidden insights.</li>
-</ul></li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<em>Project Phase 2</em>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Perform some exploratory analysis to help you get acquainted with the data. This may include data visualization and basic preliminary analysis. Identify interesting aspects of the data set that would be useful for downstream prediction: correlations, outliers, missing values, etc.</p>
-<p>Key procedures: <strong>Exploratory data analysis</strong>, <strong>Data visualization</strong>.</p>
-</div>
-</div>
-</section>
-<section id="understand-the-world" class="level2">
-<h2 class="anchored" data-anchor-id="understand-the-world">3. Understand the World</h2>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Caution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Due before Final Exam</strong></p>
-</div>
-</div>
-<p>After observing the patterns in our data, we can begin answering our question. This may require that we predict a quantity (machine learning), or measure the effect of some treatment (inference).</p>
-<p>From here, we may choose to report our results, or possibly conduct more analysis. We may not be satisfied by our findings, or our initial exploration may have brought up new questions that require a new data.</p>
-<ul>
-<li>What does the data say about the world?
-<ul>
-<li>Given our models, the data will lead us to certain conclusions about the real world.<br>
-</li>
-</ul></li>
-<li>Does it answer our questions or accurately solve the problem?
-<ul>
-<li>If our model and data can not accomplish our goals, then we must reform our question, model, or both.<br>
-</li>
-</ul></li>
-<li>How robust are our conclusions and can we trust the predictions?
-<ul>
-<li>Inaccurate models can lead to untrue conclusions.</li>
-</ul></li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Project Phase 3
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Preprocess data to change raw feature vectors into a representation that is more suitable for the downstream analysis. This may include data cleaning, calculating derivative or second-order variables, feature extraction, and feature selection.</p>
-<p>Implement baseline models covered in class and report their performance.</p>
-<p>Identify, implement and apply as many models as relevant from class to predict some aspect of the data. This must be a supervised learning model. This may include, model selection, and model evaluation.</p>
-<p>You must compare your results to a number of baselines, including random predictor, major class classifier and/or autocorrelation model. An example table is shown below:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Model</th>
-<th>Accuracy</th>
-<th>Precision</th>
-<th>Recall</th>
-<th>F1-score</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Random baseline</td>
-<td>0.5</td>
-<td>0.52</td>
-<td>0.55</td>
-<td>0.53</td>
-</tr>
-<tr class="even">
-<td>Majority class / Autocorrelation</td>
-<td>0.75</td>
-<td>0.5</td>
-<td>1</td>
-<td>0.66</td>
-</tr>
-<tr class="odd">
-<td>Model 1</td>
-<td>0.77</td>
-<td>0.72</td>
-<td>0.74</td>
-<td>0.73</td>
-</tr>
-<tr class="even">
-<td>Model 2</td>
-<td><strong>0.85</strong></td>
-<td><strong>0.79</strong></td>
-<td><strong>0.89</strong></td>
-<td><strong>0.88</strong></td>
-</tr>
-</tbody>
-</table>
-<p>Discuss the results of your analysis. This must include stating the assumptions of the model, the limitations of the model, a thorough error analysis and future directions.</p>
-<p>Key procedures: <strong>Model Creation</strong>, <strong>Prediction</strong>, <strong>Inference</strong>, <strong>Model Selection</strong>, <strong>Error Analysis</strong>.</p>
-</div>
-</div>
+<p><code>pandas</code> can also write data to a variety of file formats, including CSV, Excel, and SQL databases. The following code cell writes the <code>elections</code> dataset to a CSV file named <code>elections.csv</code>.</p>
+<p><img style="filter:invert(1)" src="https://i.ibb.co/j8Hn4VN/to-csv.png" width="85%" align="center"></p>
+<p>To write a DataFrame to a CSV file, use the <code>df.to_csv()</code> function. The first input to <code>df.to_csv()</code> is the filename or filepath that you want to write to.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pd.to_csv(<span class="st">'elections_new.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Other important parameters of the <code>df.to_csv()</code> function are:</p>
+<ol type="1">
+<li><p><code>sep</code>: (default: <code>sep=','</code>) specifies the separator used to separate columns. Default is <code>,</code> which means the columns are separated by a comma.</p></li>
+<li><p><code>header</code>: (default: <code>header=True</code>) specifies whether to write the header row. Default is <code>True</code> which means the header row is written. If you don’t want to write the header row, then <code>header=False</code> should be used.</p></li>
+<li><p><code>index</code>: (default: <code>index=True</code>) specifies whether to write the index column. Default is <code>True</code> which means the index column is written. If you don’t want to write the index column, then <code>index=False</code> should be used. data.to_csv(‘elections.csv’)</p></li>
+</ol>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
