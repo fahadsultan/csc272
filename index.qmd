@@ -11,6 +11,13 @@ From the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you
 
 👇🏾 Below, you can find important links and important announcements.
 
+::: {.callout-caution}
+
+## Written Assignment 1 
+Please note that the [Written Assignment 1](https://docs.google.com/document/d/1-V69jP6oYPr6TiiSsxq93TnL8xLxElhHIrCkQyicbzc/edit?usp=sharing) is due on 09/05/24 at 11:59 PM.
+
+Assigned Reading: [_Weapons of Math Destruction_ (Introduction) by Cathy O'Neil](assets/WMD_Introduction.pdf)
+:::
 
 ::: {.callout-tip}
 ## Open-Door Policy
