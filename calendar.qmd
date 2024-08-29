@@ -6,7 +6,7 @@ Please note that this is a tentative plan and is subject to change.
 
 | # | TOPIC | READING | MEETING 1 | MEETING 2 | WRITTEN  ASSIGNMENT | PROGRAMMING ASSIGNMENT |
 |---|----|---|---|---|---|---|
-| 1 | Introduction | McKinney Ch.5, 8, 10 |  [WA1](https://docs.google.com/document/d/1-V69jP6oYPr6TiiSsxq93TnL8xLxElhHIrCkQyicbzc/edit?usp=sharing)  |  | | |
+| 1 | Introduction | [McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics) |  [Intro](intro.qmd)  | [Pandas Intro](pandas/pandas1.ipynb) | [WA1](https://docs.google.com/document/d/1-V69jP6oYPr6TiiSsxq93TnL8xLxElhHIrCkQyicbzc/edit?usp=sharing) | |
 | 2 | Pandas 1 | McKinney Ch.5, 8, 10 |  |  | | |
 | 3 | Pandas 2 |McKinney Ch.5, 8, 10    |  |  | | |
 | 4 | Pandas 3 | McKinney Ch.5, 8, 10 |  |  | | |
