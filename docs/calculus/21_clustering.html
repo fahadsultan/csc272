@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Expectation Maximization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../calendar.html"> 
+<span class="menu-text">Calendar</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-syllabus" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Syllabus</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-syllabus">    
+        <li>
+    <a class="dropdown-item" href="../syllabus/about.html">
+ <span class="dropdown-text">Course Description and Goals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/grading.html">
+ <span class="dropdown-text">Grading</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/academic_success.html">
+ <span class="dropdown-text">Center for Academic Success</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/textbook.html">
+ <span class="dropdown-text">Textbooks &amp; Other Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/integrity.html">
+ <span class="dropdown-text">Academic Integrity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/mental_health.html">
+ <span class="dropdown-text">Mental Health Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/accomodations.html">
+ <span class="dropdown-text">Accomodations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/title_9.html">
+ <span class="dropdown-text">Nondiscrimination Policy and Sexual Misconduct</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../project/project.html"> 
+<span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../project/data.html"> 
+<span class="menu-text">Datasets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://courses.furman.edu/course/view.php?id=18728"> 
+<span class="menu-text">Moodle Page</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus/appointment.html"> 
+<span class="menu-text">Office Hours</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../ta.html"> 
+<span class="menu-text">TA</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../calculus/calculus0.html">CALCULUS</a></li><li class="breadcrumb-item"><a href="../calculus/21_clustering.html">Expectation Maximization</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/pandas0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VECTORIZED OPERATIONS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/pandas1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preliminaries</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/formats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Common Data Formats</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/read_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/view_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Viewing Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/write_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/pandas3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selection, Filtering and Dropping</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/extraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extracting values</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/filtering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Filtering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/dropping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dropping</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/pandas2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation and Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/apply.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">User-Defined Functions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/aggregation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/grouping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grouping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/pivot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation with <code>.pivot_table</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/pandas5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concatenation and Merging</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../encoding/encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ENCODING AND REPRESENTATION</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Feature Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../encoding/modalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modalities of Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Text</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/sound.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Audio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/spatial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geographic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../linearalgebra/linalg0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LINEAR ALGEBRA</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/41_vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/42_matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/nearestneighbor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nearest Neighbor</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../probability/probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PROBABILTY</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/11_probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/joint_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joint Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/conditional_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Naive Bayes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../calculus/calculus0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CALCULUS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/52_differential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Differential Calculus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/21_clustering.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Expectation Maximization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/41_classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/42_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#k-means" id="toc-k-means" class="nav-link active" data-scroll-target="#k-means">K-means</a></li>
+  <li><a href="#dbscan" id="toc-dbscan" class="nav-link" data-scroll-target="#dbscan">DBSCAN</a></li>
+  <li><a href="#comparing-dbscan-and-k-means" id="toc-comparing-dbscan-and-k-means" class="nav-link" data-scroll-target="#comparing-dbscan-and-k-means">Comparing DBSCAN and K-means</a></li>
+  <li><a href="#limitations-of-clustering" id="toc-limitations-of-clustering" class="nav-link" data-scroll-target="#limitations-of-clustering">Limitations of Clustering</a></li>
+  <li><a href="#relationship-between-clusters-and-labels" id="toc-relationship-between-clusters-and-labels" class="nav-link" data-scroll-target="#relationship-between-clusters-and-labels">Relationship between Clusters and Labels</a></li>
+  <li><a href="#silhouette-score-to-identify-k-epsilon-and-min_samples" id="toc-silhouette-score-to-identify-k-epsilon-and-min_samples" class="nav-link" data-scroll-target="#silhouette-score-to-identify-k-epsilon-and-min_samples">Silhouette Score to identify <span class="math inline">\(k\)</span>, <span class="math inline">\(\epsilon\)</span> and <code>min_samples</code></a></li>
+  <li><a href="#plotting-silhouette-score-to-find-k" id="toc-plotting-silhouette-score-to-find-k" class="nav-link" data-scroll-target="#plotting-silhouette-score-to-find-k">Plotting Silhouette score to find <code>k</code></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../calculus/calculus0.html">CALCULUS</a></li><li class="breadcrumb-item"><a href="../calculus/21_clustering.html">Expectation Maximization</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Expectation Maximization</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Clustering is the most well-known unsupervised learning technique. The goal of clustering is to discover groups in observations. The groups are called clusters.</p>
+<p>The data points in the same cluster are similar to each other, compared to points in different clusters, which are relatively dissimilar.</p>
+<p>There are many clustering algorithms. In this notebook, we will focus on two of them: 1. One that requires the <strong>number of clusters</strong> (<span class="math inline">\(k\)</span>) to be specified: <strong>K-means</strong>. 2. And another that does <em>NOT</em> require the <strong>number of clusters</strong> to be specified: <strong>DBSCAN</strong>.</p>
+<p>To compare the performance of the clustering algorithms, in the code below we will use the same six datasets capturing a wide variety of patterns and structures.</p>
+<div id="cell-4" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/clusters/"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>fnames <span class="op">=</span> [<span class="st">"aniso"</span>, <span class="st">"blobs"</span>, <span class="st">"no_structure"</span>, <span class="st">"noisy_circles"</span>, <span class="st">"noisy_moons"</span>, <span class="st">"varied"</span>]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>datasets <span class="op">=</span> {}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="bu">len</span>(fnames), figsize<span class="op">=</span>(<span class="dv">17</span>, <span class="dv">3</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, fname <span class="kw">in</span> <span class="bu">enumerate</span>(fnames):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(url <span class="op">+</span> fname <span class="op">+</span> <span class="st">".csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    df.columns <span class="op">=</span> [<span class="st">'x1'</span>, <span class="st">'x2'</span>]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'x1'</span>, y<span class="op">=</span><span class="st">'x2'</span>, ax<span class="op">=</span>axs[i])<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(title<span class="op">=</span>fname)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    datasets[fname] <span class="op">=</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_clustering_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that the data sets are <strong>not labeled</strong>. Also note that unsupervised learning algorithms do not work only with 2-dimensional data but with data of any dimensionality. Here we use 2-dimensional data only to be able to visualize the results.</p>
+<section id="k-means" class="level3">
+<h3 class="anchored" data-anchor-id="k-means">K-means</h3>
+<p>The k-means algorithm is a simple and popular clustering algorithm. It is an iterative algorithm that partitions the data points into a pre-specified <span class="math inline">\(k\)</span> number of clusters.</p>
+<p>The algorithm works as follows: 1. <strong>Start</strong>: Select <span class="math inline">\(k\)</span> random points as the initial centroids. 2. <strong>Update Cluster Assignments</strong>: Assign each data point to the cluster with the nearest centroid. 3. <strong>Update Cluster Centers</strong>: Update the centroids of the clusters by taking the average of the data points in each cluster. 4. Repeat steps 2 and 3 until the centroids do not change.</p>
+The animation below visualizes the algorithm:
+<center>
+<img width="50%" src="https://miro.medium.com/v2/resize:fit:960/1*h2WdqGZD6WsNcUdwZDqsFA.gif">
+</center>
+<p>The algorithm is guaranteed to converge to a result. However, the result may not be the optimal one.</p>
+<p>Because of random initialization, the algorithm converges to different results on different runs. Such algorithms or processes, where there is an element of randomness but with some bounds of predictability, are called <strong>stochastic</strong> algorithms or processes.</p>
+<section id="before-clustering" class="level4">
+<h4 class="anchored" data-anchor-id="before-clustering">Before Clustering</h4>
+<p>Let’s try the k-means algorithm on the blobs dataset first. Note that the raw data has just two features (<code>x1</code> and <code>x2</code>) but no labels.</p>
+<div id="cell-9" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> datasets[<span class="st">'blobs'</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>X.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">x1</th>
+<th data-quarto-table-cell-role="th">x2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>-5.730354</td>
+<td>-7.583286</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1.942992</td>
+<td>1.918875</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>6.829682</td>
+<td>1.164871</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>-2.901306</td>
+<td>7.550771</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5.841093</td>
+<td>1.565094</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The code below plots the raw data as a scatter plot.</p>
+<div id="cell-11" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>X, x<span class="op">=</span><span class="st">'x1'</span>, y<span class="op">=</span><span class="st">'x2'</span>)<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Blobs dataset"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_clustering_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that there are clearly three clusters in the data where the points within each cluster are closer to each other compared to points across clusters.</p>
+</section>
+<section id="clustering" class="level4">
+<h4 class="anchored" data-anchor-id="clustering">Clustering</h4>
+<p>We will use the <code>KMeans</code> class from the <code>sklearn.cluster</code> module.</p>
+<p>The constructor of the <code>KMeans</code> class takes the number of clusters <span class="math inline">\(k\)</span> as input.</p>
+<p>The <code>KMeans</code> class has a <code>fit()</code> method that takes the data as input and runs the k-means algorithm on it.</p>
+<p>After we fit the model to the data, we can use the <code>.labels_</code> attribute to get the discovered labels of the clusters assigned to each data point.</p>
+<p>Below we add a third feature <code>label</code> to the data, which is the cluster label assigned to each data point by the k-means algorithm.</p>
+<div id="cell-14" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>kmeans.fit(X)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>X[<span class="st">'label'</span>] <span class="op">=</span> kmeans.labels_</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>X.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">x1</th>
+<th data-quarto-table-cell-role="th">x2</th>
+<th data-quarto-table-cell-role="th">label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>-5.730354</td>
+<td>-7.583286</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1.942992</td>
+<td>1.918875</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>6.829682</td>
+<td>1.164871</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>-2.901306</td>
+<td>7.550771</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5.841093</td>
+<td>1.565094</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="after-clustering" class="level4">
+<h4 class="anchored" data-anchor-id="after-clustering">After Clustering</h4>
+<p>The code below plots the data again, but this time with the cluster labels.</p>
+<div id="cell-17" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>X, x<span class="op">=</span><span class="st">'x1'</span>, y<span class="op">=</span><span class="st">'x2'</span>, hue<span class="op">=</span><span class="st">'label'</span>, palette<span class="op">=</span><span class="st">'viridis'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_clustering_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that the k-means algorithm has perfectly discovered the three blobs in the data.</p>
+</section>
+<section id="limitations-of-k-means" class="level4">
+<h4 class="anchored" data-anchor-id="limitations-of-k-means">Limitations of K-means</h4>
+<p>K-means is a simple and popular clustering algorithm. However, it has some limitations:</p>
+<ol type="1">
+<li><p>It requires the number of clusters <span class="math inline">\(k\)</span> to be specified. If the number of clusters is not known in advance, then we need to try different values of <span class="math inline">\(k\)</span> and select the one that gives the best results.</p></li>
+<li><p>It is sensitive to the initial random selection of centroids. The algorithm may converge to different results on different runs.</p></li>
+<li><p>Since k-means is reliant on averages, it is sensitive to outliers. Outliers can significantly affect the location of the centroids and hence the clusters.</p></li>
+<li><p><strong>Most importantly</strong>, k-means does not work well with clusters of different sizes and densities. <strong>It assumes that the clusters are spherical and of similar size</strong>.</p></li>
+</ol>
+<p>To illustrate this limitation, let’s try the k-means algorithm on a dataset that does not satisfy the assumptions of the algorithm.</p>
+<div id="cell-21" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> datasets[<span class="st">'noisy_circles'</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.head())</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>X, x<span class="op">=</span><span class="st">'x1'</span>, y<span class="op">=</span><span class="st">'x2'</span>)<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>kmeans.fit(X)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>X, x<span class="op">=</span><span class="st">'x1'</span>, y<span class="op">=</span><span class="st">'x2'</span>, hue<span class="op">=</span>kmeans.labels_, palette<span class="op">=</span><span class="st">'viridis'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         x1        x2
+0 -0.469276  0.210118
+1 -0.164164  0.986075
+2 -0.471454  0.019974
+3 -0.670347 -0.657977
+4 -0.826468  0.594071</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_clustering_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note how the k-means algorithm fails to discover the two clusters in the data. This is because the clusters are a) not spherical and b) of different sizes.</p>
+<p>Such failures of a clustering algorithm can only be detected by either visualizing the results or computing internal cluster validation metrics such as the silhouette score.</p>
+<section id="silhouette-score" class="level5">
+<h5 class="anchored" data-anchor-id="silhouette-score">Silhouette Score</h5>
+<p>The Silhouette Score is calculated using the <strong>mean intra-cluster distance (<span class="math inline">\(a\)</span>)</strong> and the <strong>mean nearest-cluster distance (<span class="math inline">\(b\)</span>)</strong> for each sample. The Silhouette Coefficient for a sample is</p>
+<p><span class="math display">\[\text{Silhouette Coefficient} = \frac{(b - a)}{\text{max}(a, b)}\]</span></p>
+<p>where <span class="math inline">\(b\)</span> is the distance between a sample and the nearest cluster that the sample is not a part of.</p>
+<p>Note that Silhouette Coefficient is only defined if number of labels is 2 &lt;= n_labels &lt;= n_samples - 1.</p>
+<p><code>sklearn.metrics.silhouette_score</code> function returns the mean Silhouette Coefficient over all samples. To obtain the values for each sample, use <code>silhouette_samples</code>.</p>
+<p><strong>The best value is 1 and the worst value is -1. Values near 0 indicate overlapping clusters</strong>. Negative values generally indicate that a sample has been assigned to the wrong cluster, as a different cluster is more similar.</p>
+<p>A score of 1 indicates that the object is far away from the neighboring clusters. A score of 0 indicates that the object is close to the decision boundary between two neighboring clusters. A score of -1 indicates that the object may have been assigned to the wrong cluster.</p>
+<div id="cell-23" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>silhouette_score(X, kmeans.labels_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>0.355318252897544</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="dbscan" class="level3">
+<h3 class="anchored" data-anchor-id="dbscan">DBSCAN</h3>
+<p>DBSCAN stands for Density-Based Spatial Clustering of Applications with Noise. It is a density-based clustering algorithm. It is a popular clustering algorithm because it does not require the number of clusters to be specified. It can discover clusters of arbitrary shapes. It can also identify outliers in the data.</p>
+<p>The algorithm has <strong>two parameters</strong>:</p>
+<ol type="1">
+<li><strong><span class="math inline">\(\epsilon\)</span></strong>: maximum distance between two points for them to be considered as in the same neighborhood.</li>
+<li><strong><span class="math inline">\(m\)</span></strong>: minimum number of points required to form a dense region.</li>
+</ol>
+<p>The algorithm works as follows:</p>
+<ol type="1">
+<li>It starts with an arbitrary point in the data set that has not been visited.</li>
+<li>It finds all of the points in the neighborhood of the point, using a distance measure <span class="math inline">\(\epsilon\)</span>.</li>
+<li>If there are at least <span class="math inline">\(m\)</span> points in the neighborhood, it starts a cluster with the initial point as its first member. It also visits all of the points in the neighborhood and adds them to the cluster.</li>
+<li>If there are less than <span class="math inline">\(m\)</span> points in the neighborhood, the point is labeled as noise.</li>
+<li>If a point is part of a cluster, its neighborhood is also part of that cluster. Hence, all of the points in the neighborhood are added to the cluster.</li>
+<li>The algorithm repeats steps 1 to 5 until all of the points have been visited.</li>
+</ol>
+<center>
+<img src="https://cdn-images-1.medium.com/v2/resize:fit:640/1*tc8UF-h0nQqUfLC8-0uInQ.gif">
+</center>
+<p><br></p>
+<p>Note that despite the random initialization, DBSCAN is a deterministic algorithm. That is, it always produces the same result on the same data set.</p>
+<section id="before-clustering-1" class="level4">
+<h4 class="anchored" data-anchor-id="before-clustering-1">Before Clustering</h4>
+<div id="cell-26" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> datasets[<span class="st">'noisy_circles'</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.head())</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>X, x<span class="op">=</span><span class="st">'x1'</span>, y<span class="op">=</span><span class="st">'x2'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         x1        x2
+0 -0.469276  0.210118
+1 -0.164164  0.986075
+2 -0.471454  0.019974
+3 -0.670347 -0.657977
+4 -0.826468  0.594071</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_clustering_files/figure-html/cell-9-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="clustering-1" class="level4">
+<h4 class="anchored" data-anchor-id="clustering-1">Clustering</h4>
+<p>DBSCAN is implemented in the <code>DBSCAN</code> class from the <code>sklearn.cluster</code> module.</p>
+<p>The constructor of the <code>DBSCAN</code> class takes the two parameters <span class="math inline">\(\epsilon\)</span> and <span class="math inline">\(m\)</span> as input.</p>
+<p>Similar to <code>KMeans</code>, the <code>DBSCAN</code> class has a <code>fit()</code> method that takes the data as input and runs the DBSCAN algorithm on it.</p>
+<p>After we fit the model to the data, we can use the <code>.labels_</code> attribute to get the discovered labels of the clusters assigned to each data point.</p>
+<div id="cell-29" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> DBSCAN</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>dbscan <span class="op">=</span> DBSCAN(eps<span class="op">=</span><span class="fl">0.2</span>, min_samples<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>dbscan.fit(X)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>X[<span class="st">'label'</span>] <span class="op">=</span> dbscan.labels_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="after-clustering-1" class="level4">
+<h4 class="anchored" data-anchor-id="after-clustering-1">After clustering</h4>
+<p>The code below plots the data again, but this time with the cluster labels.</p>
+<div id="cell-32" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.head())</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>X, x<span class="op">=</span><span class="st">'x1'</span>, y<span class="op">=</span><span class="st">'x2'</span>, hue<span class="op">=</span><span class="st">'label'</span>, palette<span class="op">=</span><span class="st">'viridis'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         x1        x2  label
+0 -0.469276  0.210118      0
+1 -0.164164  0.986075      1
+2 -0.471454  0.019974      0
+3 -0.670347 -0.657977      1
+4 -0.826468  0.594071      1</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_clustering_files/figure-html/cell-11-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Just because DBSCAN does better than k-means on the circles dataset, it does not mean that DBSCAN is always better than k-means. Each clustering algorithm has its own strengths and weaknesses.</p>
+</section>
+</section>
+<section id="comparing-dbscan-and-k-means" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-dbscan-and-k-means">Comparing DBSCAN and K-means</h3>
+<div id="cell-35" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fnames <span class="op">=</span> [<span class="st">"aniso"</span>, <span class="st">"blobs"</span>, <span class="st">"no_structure"</span>, <span class="st">"noisy_circles"</span>, <span class="st">"noisy_moons"</span>, <span class="st">"varied"</span>]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>datasets <span class="op">=</span> {}</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="bu">len</span>(fnames), figsize<span class="op">=</span>(<span class="dv">17</span>, <span class="dv">10</span>))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, fname <span class="kw">in</span> <span class="bu">enumerate</span>(fnames):</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(url <span class="op">+</span> fname <span class="op">+</span> <span class="st">".csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    df.columns <span class="op">=</span> [<span class="st">'x1'</span>, <span class="st">'x2'</span>]</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    kmeans.fit(df)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    kmeans_labels <span class="op">=</span> kmeans.labels_</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    dbscan <span class="op">=</span> DBSCAN(eps<span class="op">=</span><span class="fl">0.2</span>, min_samples<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    dbscan.fit(df)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    dbscan_labels <span class="op">=</span> dbscan.labels_</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'x1'</span>, y<span class="op">=</span><span class="st">'x2'</span>, ax<span class="op">=</span>axs[<span class="dv">0</span>][i])<span class="op">;</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(title<span class="op">=</span>fname)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'x1'</span>, y<span class="op">=</span><span class="st">'x2'</span>, hue<span class="op">=</span>kmeans_labels, ax<span class="op">=</span>axs[<span class="dv">1</span>][i],  palette<span class="op">=</span><span class="st">'viridis'</span>)<span class="op">;</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'x1'</span>, y<span class="op">=</span><span class="st">'x2'</span>, hue<span class="op">=</span>dbscan_labels, ax<span class="op">=</span>axs[<span class="dv">2</span>][i],  palette<span class="op">=</span><span class="st">'viridis'</span>)<span class="op">;</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    axs[<span class="dv">0</span>][<span class="dv">0</span>].<span class="bu">set</span>(title<span class="op">=</span>fname, ylabel<span class="op">=</span><span class="st">'No Clustering'</span>)</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>    axs[<span class="dv">1</span>][<span class="dv">0</span>].<span class="bu">set</span>(ylabel<span class="op">=</span><span class="st">'KMeans (k=3)'</span>)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    axs[<span class="dv">2</span>][<span class="dv">0</span>].<span class="bu">set</span>(ylabel<span class="op">=</span><span class="st">'DBSCAN (eps=0.2, min_samples=5)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_clustering_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that the two algorithms work better on different datasets.</p>
+<p>Furthermore, the parameters of the two algorithms (<span class="math inline">\(k\)</span> for nearest neighbor and <span class="math inline">\(\epsilon\)</span> and <span class="math inline">\(m\)</span> for DBSCAN) need to be tuned to get the best results for an individual datasets.</p>
+</section>
+<section id="limitations-of-clustering" class="level3">
+<h3 class="anchored" data-anchor-id="limitations-of-clustering">Limitations of Clustering</h3>
+<p>Note that not all data sets are suitable for clustering. Some data sets do not have a well-defined cluster structure.</p>
+<p>For example, below we try the k-means algorithm on the sentiments dataset. We know that the data set has three classes: positive, negative, and neutral. However, the k-means algorithm fails to discover the three classes. This is because the data set does not have a well-defined cluster structure.</p>
+<div id="cell-39" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/fahadsultan/csc272/main/data/chat_dataset.csv'</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">message</th>
+<th data-quarto-table-cell-role="th">sentiment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>I really enjoyed the movie</td>
+<td>positive</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>The food was terrible</td>
+<td>negative</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>I'm not sure how I feel about this</td>
+<td>neutral</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>The service was excellent</td>
+<td>positive</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>I had a bad experience</td>
+<td>negative</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-40" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>vocab <span class="op">=</span> <span class="st">' '</span>.join(data[<span class="st">'message'</span>].values).lower().split()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>vocab <span class="op">=</span> <span class="bu">list</span>(<span class="bu">set</span>(vocab))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>bow <span class="op">=</span> pd.DataFrame(<span class="dv">0</span>, columns<span class="op">=</span>vocab, index<span class="op">=</span>data.index)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word <span class="kw">in</span> vocab:</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    bow[word] <span class="op">=</span> data[<span class="st">'message'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.lower().split().count(word))</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> l2_norm(x):</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="bu">sum</span>(x<span class="op">**</span><span class="dv">2</span>))<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>bow <span class="op">=</span> bow.<span class="bu">apply</span>(<span class="kw">lambda</span> x: x<span class="op">/</span>l2_norm(x), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>kmeans.fit(bow)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'label'</span>] <span class="op">=</span> kmeans.labels_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-41" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'label'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>1    201
+2    199
+0    184
+Name: label, dtype: int64</code></pre>
+</div>
+</div>
+<div id="cell-42" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data.groupby([<span class="st">'label'</span>, <span class="st">'sentiment'</span>]).size()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>label  sentiment
+0      negative      50
+       neutral       72
+       positive      62
+1      negative      69
+       neutral       70
+       positive      62
+2      negative      28
+       neutral      117
+       positive      54
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="relationship-between-clusters-and-labels" class="level3">
+<h3 class="anchored" data-anchor-id="relationship-between-clusters-and-labels">Relationship between Clusters and Labels</h3>
+<p>Please take caution in comparing the discovered clusters with any available labels for a dataset.</p>
+<p>In clustering, the label ‘values’ are arbitrary. For example, if we have a dataset with three classes, we can label them as 0, 1, and 2 or as 1, 2, and 3 or as 100, 200, and 300.</p>
+<div id="cell-45" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> load_iris(as_frame<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>X    <span class="op">=</span> data[<span class="st">'data'</span>]</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>kmeans.fit(X)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>cluster_labels <span class="op">=</span> kmeans.labels_</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>y    <span class="op">=</span> data[<span class="st">'target'</span>]</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(cluster_labels <span class="op">==</span> y)<span class="op">/</span><span class="bu">len</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>0.24</code></pre>
+</div>
+</div>
+<div id="cell-46" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>X, <span class="op">\</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                x<span class="op">=</span><span class="st">'sepal length (cm)'</span>, <span class="op">\</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                y<span class="op">=</span><span class="st">'sepal width (cm)'</span>, <span class="op">\</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                hue<span class="op">=</span>y, <span class="op">\</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>                palette<span class="op">=</span><span class="st">'viridis'</span>, ax<span class="op">=</span>axs[<span class="dv">0</span>])<span class="op">;</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"True labels"</span>)<span class="op">;</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>X, <span class="op">\</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>                x<span class="op">=</span><span class="st">'sepal length (cm)'</span>, <span class="op">\</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>                y<span class="op">=</span><span class="st">'sepal width (cm)'</span>, <span class="op">\</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>                hue<span class="op">=</span>cluster_labels, <span class="op">\</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>                palette<span class="op">=</span><span class="st">'viridis'</span>, ax<span class="op">=</span>axs[<span class="dv">1</span>])<span class="op">;</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Cluster labels"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_clustering_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="silhouette-score-to-identify-k-epsilon-and-min_samples" class="level3">
+<h3 class="anchored" data-anchor-id="silhouette-score-to-identify-k-epsilon-and-min_samples">Silhouette Score to identify <span class="math inline">\(k\)</span>, <span class="math inline">\(\epsilon\)</span> and <code>min_samples</code></h3>
+<div id="cell-48" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> datasets[<span class="st">'noisy_circles'</span>]</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>X, x<span class="op">=</span><span class="st">'x1'</span>, y<span class="op">=</span><span class="st">'x2'</span>)<span class="op">;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Noisy Circles"</span>)<span class="op">;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>plt.figure()<span class="op">;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> datasets[<span class="st">'blobs'</span>]</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>X, x<span class="op">=</span><span class="st">'x1'</span>, y<span class="op">=</span><span class="st">'x2'</span>)<span class="op">;</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Blobs"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_clustering_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_clustering_files/figure-html/cell-19-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="plotting-silhouette-score-to-find-k" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-silhouette-score-to-find-k">Plotting Silhouette score to find <code>k</code></h3>
+<div id="cell-50" class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>sscores <span class="op">=</span> {<span class="st">'noisy_circles'</span>:[], <span class="st">'blobs'</span>:[]}</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ks <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>]</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/clusters/"</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> [<span class="st">'noisy_circles'</span>, <span class="st">'blobs'</span>]:</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> pd.read_csv(url <span class="op">+</span> name <span class="op">+</span> <span class="st">".csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> ks:</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>k, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>        kmeans.fit(X)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>        score <span class="op">=</span> silhouette_score(X, kmeans.labels_)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>        sscores[name].append(score)</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.lineplot(x<span class="op">=</span>ks, y<span class="op">=</span>sscores[<span class="st">'noisy_circles'</span>], marker<span class="op">=</span><span class="st">'s'</span>)<span class="op">;</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.lineplot(x<span class="op">=</span>ks, y<span class="op">=</span>sscores[<span class="st">'blobs'</span>], marker<span class="op">=</span><span class="st">'s'</span>)<span class="op">;</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">'k'</span>, ylabel<span class="op">=</span><span class="st">'silhouette_score'</span>)<span class="op">;</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'noisy_circles'</span>, <span class="st">'blobs'</span>])<span class="op">;</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Because K-Means does not work for `noisy circles` data, </span><span class="ch">\n</span><span class="st">Silhouette Score never reaches close to 1 for any `k`'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_clustering_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-51" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> DBSCAN</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> silhouette_score, davies_bouldin_score, calinski_harabasz_score</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>epsilons <span class="op">=</span> [<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>]</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="bu">len</span>(epsilons), figsize<span class="op">=</span>(<span class="dv">17</span>, <span class="dv">3</span>))</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> datasets[<span class="st">'blobs'</span>]</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>sscores <span class="op">=</span> []</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, e <span class="kw">in</span> <span class="bu">enumerate</span>(epsilons):</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    dbscan <span class="op">=</span> DBSCAN(eps<span class="op">=</span>e, min_samples<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    dbscan.fit(X[[<span class="st">'x1'</span>, <span class="st">'x2'</span>]])</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> silhouette_score(X, dbscan.labels_)</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    sscores.append(score)</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sns.scatterplot(data=X, x='x1', y='x2', hue=dbscan.labels_)</span></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>    axs[i].scatter(X[<span class="st">'x1'</span>], X[<span class="st">'x2'</span>], c<span class="op">=</span>dbscan.labels_)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    axs[i].set_title(<span class="st">"epsilon = "</span><span class="op">+</span> <span class="bu">str</span>(e))</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>plt.figure()<span class="op">;</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.lineplot(x<span class="op">=</span>epsilons, y<span class="op">=</span>sscores, marker<span class="op">=</span><span class="st">'s'</span>)<span class="op">;</span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">'eps'</span>, ylabel<span class="op">=</span><span class="st">'Silhouette Score'</span>)<span class="op">;</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'noisy_circles'</span>])<span class="op">;</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Because K-Means does not work for `noisy circles` data, </span><span class="ch">\n</span><span class="st">Silhouette Score never reaches close to 1 for any `k`'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_clustering_files/figure-html/cell-21-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21_clustering_files/figure-html/cell-21-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-52" class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sscores <span class="op">=</span> {<span class="st">'noisy_circles'</span>:[], <span class="st">'blobs'</span>:[]}</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>epsilons <span class="op">=</span> [<span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>, <span class="fl">0.5</span>, <span class="fl">1.0</span>, <span class="fl">1.5</span>]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># epsilons = [0.1, 0.15, 0.2]</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> datasets[<span class="st">'blobs'</span>]</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># del X['label']</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> e <span class="kw">in</span> epsilons:</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    dbscan <span class="op">=</span> DBSCAN(eps<span class="op">=</span>e, min_samples<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    dbscan.fit(X)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(name, e, <span class="bu">len</span>(<span class="bu">set</span>(dbscan.labels_)))</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> silhouette_score(X, dbscan.labels_)</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    sscores[name].append(score)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ax = sns.lineplot(x=epsilons, y=sscores['noisy_circles'], marker='s');</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.lineplot(x<span class="op">=</span>epsilons, y<span class="op">=</span>sscores[<span class="st">'blobs'</span>], marker<span class="op">=</span><span class="st">'s'</span>)<span class="op">;</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">'eps'</span>, ylabel<span class="op">=</span><span class="st">'Silhouette Score'</span>)<span class="op">;</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'noisy_circles'</span>, <span class="st">'blobs'</span>])<span class="op">;</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'For Circles dataset, Silhouette Score never reaches close to 1 for either KMeans or DBSCAN'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

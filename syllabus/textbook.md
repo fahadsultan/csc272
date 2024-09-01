@@ -5,7 +5,7 @@ toc: true
 ---
 
 ::: {.callout-caution}
-Please note that the following textbooks are _NOT_ strictly <b><s>required</s></b> for this course, but they are strongly <b><u>recommended</u></b> for those whoprefer to have a physical reference.
+Please note that the following textbooks are _NOT_ strictly <b><s>required</s></b> for this course, but they are strongly <b><u>recommended</u></b> for those who prefer to have a physical reference.
 :::
 
 

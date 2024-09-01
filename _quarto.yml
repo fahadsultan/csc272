@@ -48,35 +48,67 @@ website:
         - text: "Introduction"
           href: intro.qmd
         - section: 
-          href: pandas/pandas0.qmd
+          href: pandas/linalg.ipynb
           contents:
             - section:
-              href: pandas/pandas1.ipynb
+              href: pandas/preliminaries.ipynb
               contents: 
-                - pandas/formats.ipynb
                 - pandas/read_data.ipynb
+                - pandas/view_data.ipynb
                 - pandas/write_data.ipynb
+                - encoding/types.ipynb
             - section:
-              href: pandas/pandas3.ipynb
+              href: pandas/select_filter.ipynb
               contents: 
                 - pandas/extraction.ipynb
                 - pandas/selection.ipynb
                 - pandas/filtering.ipynb
-            - pandas/pandas2.ipynb
-            - pandas/pandas4.ipynb
-            - pandas/pandas5.ipynb
-        # - section:
-        #   href: linearalgebra/linalg0.qmd
-        #   contents:
-        #     - linearalgebra/nearestneighbor.qmd
-        # - section:
-        #   href: probability/prob0.qmd
+                - pandas/dropping.ipynb
+            - section:
+              href: pandas/wrangling.ipynb
+              contents: 
+                - pandas/apply.ipynb
+                - pandas/concat_merge.ipynb
+            - section:
+              href: encoding/encoding.ipynb
+              contents:
+                - encoding/text.ipynb
+                - encoding/network.ipynb
+                - encoding/sound.ipynb
+                - encoding/images.ipynb
+                - encoding/spatial.ipynb
+                - encoding/time.ipynb
+            - section:
+              href: linearalgebra/vectors.ipynb
+              contents:
+                - linearalgebra/matrices.ipynb
+                - linearalgebra/nearestneighbor.qmd
+        - section:
+          href: stats/stats.ipynb
+          contents:
+            - stats/summary.ipynb
+            - stats/distributions.ipynb
+            - section:
+              href: pandas/aggregation.ipynb
+              contents: 
+                - pandas/grouping.ipynb
+                - pandas/pivot.ipynb
+        - section:
+          href: probability/probability.ipynb
+          contents:
+            - href: probability/joint_prob.ipynb
+            - href: probability/conditional_prob.ipynb
+            - href: probability/naivebayes.ipynb
         #   contents:
         #     - probability/bayestheorem.qmd
-        # - section:
-        #   href: calculus/calculus0.qmd
-        #   contents:
-        #     - calculus/linearregression.qmd
+        - section:
+          href: calculus/calculus0.qmd
+          contents:
+            - calculus/52_differential.ipynb
+            - calculus/41_classification.ipynb
+            - calculus/em.ipynb
+            - calculus/gradientdescent.ipynb
+
 format:
   html:
     theme:
@@ -87,5 +119,8 @@ format:
     # monobackgroundcolor: "#CCCCFF"
     monobackgroundcolor: "black"
     highlight-style: monokai #atom-one, github, dracula, monokai
+    anchor-sections: true
+    smooth-scroll: true
+    # number-sections: true
 
 

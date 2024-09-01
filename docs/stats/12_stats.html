@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistical Distributions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../calendar.html"> 
+<span class="menu-text">Calendar</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-syllabus" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Syllabus</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-syllabus">    
+        <li>
+    <a class="dropdown-item" href="../syllabus/about.html">
+ <span class="dropdown-text">Course Description and Goals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/grading.html">
+ <span class="dropdown-text">Grading</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/academic_success.html">
+ <span class="dropdown-text">Center for Academic Success</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/textbook.html">
+ <span class="dropdown-text">Textbooks &amp; Other Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/integrity.html">
+ <span class="dropdown-text">Academic Integrity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/mental_health.html">
+ <span class="dropdown-text">Mental Health Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/accomodations.html">
+ <span class="dropdown-text">Accomodations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/title_9.html">
+ <span class="dropdown-text">Nondiscrimination Policy and Sexual Misconduct</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../project/project.html"> 
+<span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../project/data.html"> 
+<span class="menu-text">Datasets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://courses.furman.edu/course/view.php?id=18728"> 
+<span class="menu-text">Moodle Page</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus/appointment.html"> 
+<span class="menu-text">Office Hours</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../ta.html"> 
+<span class="menu-text">TA</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/stats.html">STATISTICS</a></li><li class="breadcrumb-item"><a href="../stats/12_stats.html">Statistical Distributions</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/linalg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LINEAR ALGEBRA</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/preliminaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading and Writing Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/read_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/view_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Viewing Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/write_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/select_filter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selection, Filtering and Dropping</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/extraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extracting values</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selection: subset of columns</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/filtering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Filtering: subset of rows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/dropping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dropping</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Feature Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation and Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/apply.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">User-Defined Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/concat_merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concatenation and Merging</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../encoding/encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Encoding</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Text</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/sound.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Audio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/spatial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geographic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../linearalgebra/vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geometric Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/nearestneighbor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nearest Neighbor</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../stats/stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">STATISTICS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/12_stats.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Statistical Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/aggregation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/grouping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grouping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/pivot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation with <code>.pivot_table</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../probability/probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PROBABILTY</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/joint_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joint Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/conditional_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Naive Bayes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../calculus/calculus0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CALCULUS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/52_differential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Differential Calculus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/41_classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/em.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Expectation Maximization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/gradientdescent.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gradient Descent</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#categorical-statistical-distributions" id="toc-categorical-statistical-distributions" class="nav-link active" data-scroll-target="#categorical-statistical-distributions">Categorical Statistical Distributions</a>
+  <ul class="collapse">
+  <li><a href="#bernoulli" id="toc-bernoulli" class="nav-link" data-scroll-target="#bernoulli">Bernoulli 🪙</a></li>
+  <li><a href="#categorical" id="toc-categorical" class="nav-link" data-scroll-target="#categorical">Categorical 🎲</a></li>
+  <li><a href="#binomial" id="toc-binomial" class="nav-link" data-scroll-target="#binomial">Binomial 🪙 🪙 🪙</a></li>
+  <li><a href="#multinomial" id="toc-multinomial" class="nav-link" data-scroll-target="#multinomial">Multinomial 🎲 🎲 🎲</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
+  <li><a href="#maximum-likelihood-estimation" id="toc-maximum-likelihood-estimation" class="nav-link" data-scroll-target="#maximum-likelihood-estimation">Maximum Likelihood Estimation</a></li>
+  <li><a href="#law-of-large-numbers" id="toc-law-of-large-numbers" class="nav-link" data-scroll-target="#law-of-large-numbers">Law of Large Numbers</a></li>
+  <li><a href="#central-dogma-of-statistics" id="toc-central-dogma-of-statistics" class="nav-link" data-scroll-target="#central-dogma-of-statistics">Central Dogma of Statistics</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/stats.html">STATISTICS</a></li><li class="breadcrumb-item"><a href="../stats/12_stats.html">Statistical Distributions</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Statistical Distributions</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Every variable we observe in the data has a particular frequency distribution and in turn a probability distribution. These exact distribtions are unique to the variable under consideration. However, the shapes of these distributions are not unique. There are a few common shapes that we see over and over again. In other words, <strong>the world’s rich variety of data appears only in a small number of classical shapes</strong>. Once abstracted from specific data observations, they become <em>probability distributions</em>, worthy of independent study.</p>
+<p>These classical distributions have two nice properties:</p>
+<ol type="1">
+<li>They describe the frequency distributions that often arise in practice.</li>
+<li>More importantly, they <strong>can be described as a mathematical function P(X) with very few parameters</strong> (unknowns).</li>
+</ol>
+<p>As indicated in the <a href="./10_prob_stats_log.html">previous section</a>, probability provides a way to express and reason about uncertainty. In other words, once you have probability distributions, you can use them to reason about the world. However, in the real world, we don’t know the probability distributions. We have to estimate them from data.</p>
+<p>This is where statistics comes in. Statistics allows us to look at data and intelligently guess what the underlying probability distributions might be in the following two steps:</p>
+<ol type="1">
+<li><p>Pick or assume an underlying probability distribution that we think might have generated the data.</p></li>
+<li><p>Estimate the parameters of the assumed probability distribution from the data.</p></li>
+</ol>
+<p><img align="center" width="90%" src="../assets/probstats2.png"></p>
+<p>Below we will look at some of the most common distributions for categorical variables, focusing specifically on the parameters that define them. Once we have estimated parameters, we have a complete description of the probability distribution that can be used to reason about the world.</p>
+<section id="categorical-statistical-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="categorical-statistical-distributions">Categorical Statistical Distributions</h2>
+<section id="bernoulli" class="level3">
+<h3 class="anchored" data-anchor-id="bernoulli">Bernoulli 🪙</h3>
+<ul>
+<li><strong>Number of possible outcomes <span class="math inline">\(k = 2\)</span></strong></li>
+<li><strong>Number of trials <span class="math inline">\(n = 1\)</span></strong></li>
+<li><strong>Example</strong>: Coin toss (Heads/Tails), yes/no, true/false, success/failure</li>
+<li><strong>Number of parameters</strong>: <span class="math inline">\(1\)</span></li>
+<li><strong>Parameter</strong>: Probability of success <span class="math inline">\(p\)</span></li>
+</ul>
+<p><strong>Bernoulli Distribution</strong> is a discrete probability distribution used to model a <strong>single trial <span class="math inline">\(n=1\)</span> of a binary random that can have two possible outcomes <span class="math inline">\(k=2\)</span></strong>.</p>
+<p>For instance, if we were interested in <strong>probability of observing a head in a single coin toss</strong>, we would use the Bernoulli distribution, where “1” is defined to mean “heads” and “0” is defined to mean “tails”.</p>
+<p>The Bernoulli distribution has a single parameter, the probability of success, which we will call <span class="math inline">\(p\)</span>. The probability of observing a head is <span class="math inline">\(p\)</span> and the probability of observing a tail is <span class="math inline">\(q=1-p\)</span>. The probability function of the Bernoulli distribution is:</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(x) &amp;= p^x(1-p)^{1-x} \\
+&amp;= \begin{cases}
+p &amp; \text{if } x = 1 \\
+1-p &amp; \text{if } x = 0
+\end{cases}
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(x\)</span> is the outcome of the coin toss.</p>
+<p>If we observe a head, then <span class="math inline">\(x=1\)</span> and the probability function is <span class="math inline">\(P(1) = p\)</span>. If we observe a tail, then <span class="math inline">\(x=0\)</span> and the likelihood function is <span class="math inline">\(P(0) = 1-p\)</span>.</p>
+<p>If a variable <span class="math inline">\(X\)</span> follows Bernoulli distribtion with <span class="math inline">\(p=0.5\)</span>, it is denoted as <span class="math inline">\(X \sim \text{Bernoulli}(p)\)</span>.</p>
+<div id="cell-3" class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"X"</span>] <span class="op">=</span> [<span class="st">"Heads"</span>, <span class="st">"Tails"</span>]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"P(X)"</span>] <span class="op">=</span> [<span class="fl">0.5</span>, <span class="fl">0.5</span>]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.barplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">"X"</span>, y<span class="op">=</span><span class="st">"P(X)"</span>, color<span class="op">=</span><span class="st">"lightblue"</span>)<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>axs.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Bernoulli Distribution of a Fair Coin Flip </span><span class="ch">\n</span><span class="st"> $X </span><span class="ch">\\</span><span class="st">sim Bernoulli(0.5)$"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="12_stats_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="categorical" class="level3">
+<h3 class="anchored" data-anchor-id="categorical">Categorical 🎲</h3>
+<ul>
+<li><strong>Number of possible outcomes <span class="math inline">\(k &gt; 2\)</span></strong></li>
+<li><strong>Number of trials <span class="math inline">\(n = 1\)</span></strong></li>
+<li><strong>Example</strong>: Rolling a die, choosing a color, choosing a letter</li>
+<li><strong>Number of parameters</strong>: <span class="math inline">\(k\)</span></li>
+<li><strong>Parameter</strong>: Probability of each outcome <span class="math inline">\(p_1, p_2, \ldots, p_k\)</span></li>
+</ul>
+<p>The categorical distribution is a generalization of the Bernoulli distribution. It models the <strong>probability of observing a particular outcome from a set of <span class="math inline">\(k &gt; 2\)</span> outcomes in a single trials</strong>.</p>
+<p>For example, it models the <strong>probability of observing a particular face when rolling a k-sided die once</strong>.</p>
+<p>The probability mass function of the categorical distribution is:</p>
+<p><span class="math display">\[
+f(x) = \begin{cases}
+p_1 &amp; \text{if } x = 1 \\
+p_2 &amp; \text{if } x = 2 \\
+\vdots \\
+p_k &amp; \text{if } x = k
+\end{cases}
+\]</span></p>
+<p>where <span class="math inline">\(p_1, p_2, \ldots, p_k\)</span> are the probabilities of observing each of the <span class="math inline">\(k\)</span> outcomes. The probabilities must sum to 1.</p>
+<div id="cell-5" class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cat_data <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cat_data[<span class="st">'X'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">7</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>cat_data[<span class="st">'Y'</span>] <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">6</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.barplot(data<span class="op">=</span>cat_data, x<span class="op">=</span><span class="st">"X"</span>, y<span class="op">=</span><span class="st">"Y"</span>, color<span class="op">=</span><span class="st">"lightblue"</span>)<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>axs.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Categorical Distribution of a Fair Die Roll"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="12_stats_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-6" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> categorical</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>binom_data <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>binom_data[<span class="st">'X'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">51</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>binom_data[<span class="st">'Y'</span>] <span class="op">=</span> binom.pmf(binom_data[<span class="st">'X'</span>], n, p)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.lineplot(data<span class="op">=</span>binom_data, x<span class="op">=</span>binom_data[<span class="st">'X'</span>], y<span class="op">=</span>binom_data[<span class="st">'Y'</span>])<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>axs.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Binomial Distribution of 50 Flips of a Fair Coin </span><span class="ch">\n</span><span class="st"> $X </span><span class="ch">\\</span><span class="st">sim Binomial(n=50, p=0.5)$"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="binomial" class="level3">
+<h3 class="anchored" data-anchor-id="binomial">Binomial 🪙 🪙 🪙</h3>
+<ul>
+<li><strong>Number of possible outcomes <span class="math inline">\(k = 2\)</span></strong></li>
+<li><strong>Number of trials <span class="math inline">\(n &gt; 1\)</span></strong></li>
+<li><strong>Example:</strong> <u>Count of Heads</u> in <span class="math inline">\(n\)</span> coin tosses</li>
+<li><strong>Number of parameters</strong>: <span class="math inline">\(2\)</span></li>
+<li><strong>Parameters</strong>: Probability of success <span class="math inline">\(p\)</span> and number of trials <span class="math inline">\(n\)</span> <!-- * **Sample Space**: $\Omega = \{0, 1, 2, \ldots, N\}$ --></li>
+</ul>
+<p>The binomial distribution is the discrete probability distribution of the <strong>number of successes in a sequence of <span class="math inline">\(n\)</span> independent trials, each asking a yes–no question, and each with its own boolean-valued outcome: success/yes/true/one (with probability <span class="math inline">\(p\)</span>)</strong> or failure/no/false/zero (with probability <span class="math inline">\(q = 1 − p\)</span>).</p>
+<p>For example, if we were interested in <strong>probability of observing a head in <span class="math inline">\(n\)</span> coin tosses</strong>, we would use the binomial distribution, where “1” is defined to mean “heads” and “0” is defined to mean “tails”.</p>
+<p>The probability function of the binomial distribution is:</p>
+<p><span class="math display">\[
+P(X=x) = \binom{n}{x} p^x(1-p)^{n-x}
+\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the number of trials and <span class="math inline">\(p\)</span> is the probability of success. The binomial coefficient <span class="math inline">\(\binom{n}{x}\)</span> is the number of ways to choose <span class="math inline">\(x\)</span> items from a set of <span class="math inline">\(n\)</span> items. The binomial coefficient is defined as:</p>
+<p><span class="math display">\[
+\binom{n}{x} = \frac{n!}{x!(n-x)!}
+\]</span></p>
+<p>where <span class="math inline">\(n!\)</span> is the factorial of <span class="math inline">\(n\)</span>.</p>
+<div id="cell-8" class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binom</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>binom_data <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>binom_data[<span class="st">'X'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">51</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>binom_data[<span class="st">'Y'</span>] <span class="op">=</span> binom.pmf(binom_data[<span class="st">'X'</span>], n, p)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.lineplot(data<span class="op">=</span>binom_data, x<span class="op">=</span>binom_data[<span class="st">'X'</span>], y<span class="op">=</span>binom_data[<span class="st">'Y'</span>])<span class="op">;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>axs.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Binomial Distribution of 50 Flips of a Fair Coin </span><span class="ch">\n</span><span class="st"> $X </span><span class="ch">\\</span><span class="st">sim Binomial(n=50, p=0.5)$"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="12_stats_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="multinomial" class="level3">
+<h3 class="anchored" data-anchor-id="multinomial">Multinomial 🎲 🎲 🎲</h3>
+<!-- # ⚀ = 2, # ⚁ = 1, # ⚂ = 3, # ⚃ = 0, # ⚄ = 0, # ⚅ = 0 -->
+<ul>
+<li><strong>Number of possible outcomes <span class="math inline">\(k &gt; 2\)</span></strong></li>
+<li><strong>Number of trials <span class="math inline">\(n &gt; 1\)</span></strong></li>
+<li><strong>Example</strong>: As a result of <span class="math inline">\(n=9\)</span> rolls of a die, <br> Count of 1-face ⚀ = 2 <span class="math inline">\(\wedge\)</span> <br> Count of 2-face ⚁ = 1 <span class="math inline">\(\wedge\)</span> <br> Count of 3-face ⚂ = 2 <span class="math inline">\(\wedge\)</span> <br> Count of 4-face ⚃ = 1 <span class="math inline">\(\wedge\)</span> <br> Count of 5-face ⚄ = 2 <span class="math inline">\(\wedge\)</span> <br> Count of 6-face ⚅ = 1</li>
+<li><strong>Number of parameters</strong>: <span class="math inline">\(k + 2\)</span></li>
+<li><strong>Parameters</strong>: <span class="math inline">\(n\)</span>, <span class="math inline">\(k\)</span> and probability of each outcome <span class="math inline">\(p_1, p_2, \ldots, p_k\)</span> such that <span class="math inline">\(\sum_{i=1}^k p_i = 1\)</span> <!-- * **Sample Space**: $\Omega = \{0, 1, 2, \ldots, N\}$ --></li>
+</ul>
+<p>Multinomial distribution is a multivariate generalization of the binomial distribution. It models the <strong>probability of observing a particular count for each of <span class="math inline">\(k &gt; 2\)</span> outcomes in <span class="math inline">\(n &gt; 1\)</span> trials</strong>.</p>
+<p>For example, it models the <strong>probability of counts for rolling a k-sided die n times</strong>.</p>
+<p>The probability function of the multinomial distribution is:</p>
+<p><span class="math display">\[
+P(X=\{x_1, x_2, \ldots x_k \}) = \frac{n!}{x_1!x_2!\ldots x_k!} p_1^{x_1}p_2^{x_2}\ldots p_k^{x_k}
+\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the number of trials, <span class="math inline">\(k\)</span> is the number of outcomes, <span class="math inline">\(n_1, n_2, \ldots, n_k\)</span> are the counts for each outcome, and <span class="math inline">\(p_1, p_2, \ldots, p_k\)</span> are the probabilities of each outcome. The probabilities must sum to 1 and the counts must sum to <span class="math inline">\(n\)</span> i.e.&nbsp;<span class="math inline">\(\sum_{i=1}^k p_i = 1\)</span> and <span class="math inline">\(\sum_{i=1}^k x_i = n\)</span>.</p>
+<p>For instance, using Multinomial distribution, as a result of rolling a die 9 times, we can calculate the probability of observing each even-sided face 2 times and each odd-sided face 1 times as follows :</p>
+<p><span class="math display">\[P(\#⚀ = 1, \#⚁ = 2, \#⚂ = 1, \#⚃ = 2, \#⚄ = 1, \#⚅ = 2) = \frac{9!}{1!2!1!2!1!2!} \left(\frac{1}{6}\right)^9\]</span></p>
+<p><span class="math display">\[ = \frac{362880}{8} \times \left(\frac{1}{6}\right)^9\]</span></p>
+<p><span class="math display">\[ = 0.0045 \]</span></p>
+<p>Visualizing the probability distribution of the Multinomial distribution is hard. The following figure shows the probability distribution of the Multinomial distribution for <span class="math inline">\(n=5\)</span>, <span class="math inline">\(k=3\)</span>, <span class="math inline">\(p_1=0.5\)</span>, <span class="math inline">\(p_2=0.3\)</span> and <span class="math inline">\(p_3=0.2\)</span>.</p>
+<p><img align="center" width="80%" src="https://miro.medium.com/v2/resize:fit:1400/1*yuiduGxcrHKlLwl4y6TiDA.png"></p>
+<hr>
+</section>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>The following table presents a summary and comparison of the categorical statistical distributions:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Distribution</th>
+<th style="text-align: center;">Number of Trials <span class="math inline">\(n\)</span></th>
+<th style="text-align: center;">Number of Outomes <span class="math inline">\(k\)</span></th>
+<th style="text-align: center;">Number of parameters</th>
+<th style="text-align: center;">Parameters</th>
+<th style="text-align: center;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Bernoulli</td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(p\)</span></td>
+<td style="text-align: center;">A single coin toss</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Categorical</td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(&gt;2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(k\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(p_1, p_2, \ldots, p_k\)</span></td>
+<td style="text-align: center;">A single roll of a die</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Binomial</td>
+<td style="text-align: center;"><span class="math inline">\(&gt;1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(n, p\)</span></td>
+<td style="text-align: center;"><u>Count of heads</u> in <span class="math inline">\(n\)</span> coin tosses</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Multinomial</td>
+<td style="text-align: center;"><span class="math inline">\(&gt;1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(&gt;2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(k+2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(n, k, p_1, p_2, \ldots, p_k\)</span></td>
+<td style="text-align: center;"><u>Count of each face</u> in <span class="math inline">\(n\)</span> rolls of a die</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="maximum-likelihood-estimation" class="level2">
+<h2 class="anchored" data-anchor-id="maximum-likelihood-estimation">Maximum Likelihood Estimation</h2>
+<p>Maximum likelihood estimation (MLE) is a method of estimating the parameters of a probability distribution by maximizing a likelihood function, so that under the assumed statistical model the observed data is most probable. The point in the parameter space that maximizes the likelihood function is called the maximum likelihood estimate.</p>
+<p>Likelihood function is the probability of observing the data given the parameters.</p>
+<p>Maximum likelihood estimate of Bernoulli distribution’s only parameter <span class="math inline">\(p\)</span>, given data, is:</p>
+<p><span class="math display">\[ \hat{p} = \frac{\text{Number of successes}}{\text{Number of observations}} \]</span></p>
+<p>Similarly, Maximum likelihood estimate of <span class="math inline">\(k\)</span> parameters of Categorical distribution is:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{p}_i &amp;= \frac{\text{Number of observations of outcome i}}{\text{Number of observations}} \\
+\\
+\hat{n} &amp;= \text{Number of observations}
+\end{aligned}
+\]</span></p>
+<p>Note that the maximum likelihood estimate of the parameters of the Binomial and Multinomial distributions are not as simple as the Bernoulli and Categorical distributions and require multiple samples. However, since there is a Bernoulli distribution for each trial of the Binomial distribution and a Categorical distribution for each trial of the Multinomial distribution, we can use the maximum likelihood estimates of the Bernoulli and Categorical distributions to estimate the parameters of the Binomial and Multinomial distributions.</p>
+</section>
+<section id="law-of-large-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="law-of-large-numbers">Law of Large Numbers</h2>
+<p>The law of large numbers states that as the number of trials of a random experiment increases, the average of the observed outcomes approaches the expected value.</p>
+<p>For example, if we toss a fair coin 10 times, we might expect to observe 5 heads but may or may not get 5. However, if we toss a fair coin 1,000,000 times, we can confidently expect to observe nearabouts 500,000 heads, if the coin is indeed fair.</p>
+<p>The law of large numbers is the basis for the frequentist approach to statistics. The frequentist approach to statistics is based on the idea that the probability of an event is the long-run relative frequency of the event. In other words, the probability of an event is the proportion of times the event occurs in a large number of trials.</p>
+<p>In the context of MLE, the law of large numbers implies that as the number of observations increases, the maximum likelihood estimate of the parameters approaches the true parameters of the distribution.</p>
+<div id="cell-14" class="cell" data-execution_count="150">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy.random <span class="im">import</span> choice </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">500</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'X'</span>] <span class="op">=</span> choice([<span class="dv">0</span>, <span class="dv">1</span>], size<span class="op">=</span>n)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'trials'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, n<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'p_hat'</span>] <span class="op">=</span> data[<span class="st">'X'</span>].cumsum() <span class="op">/</span> data[<span class="st">'trials'</span>]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'trials'</span>, y<span class="op">=</span><span class="st">'p_hat'</span>, label<span class="op">=</span><span class="st">'estimated p'</span>)<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.lineplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'trials'</span>, y<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'true p'</span>)<span class="op">;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>axs.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Estimating the Probability of Heads $</span><span class="ch">\\</span><span class="st">hat</span><span class="sc">{p}</span><span class="st"> = </span><span class="ch">\\</span><span class="st">frac{Count(x=1)}</span><span class="sc">{n}</span><span class="st">$ </span><span class="ch">\n</span><span class="st"> "</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>              <span class="st">"$X </span><span class="ch">\\</span><span class="st">sim Bernoulli(p)$ </span><span class="ch">\n</span><span class="st"> Note "</span>, xlabel<span class="op">=</span><span class="st">'Number of Trials'</span>, ylabel<span class="op">=</span><span class="st">'Estimated Probability of Heads'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="12_stats_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="central-dogma-of-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="central-dogma-of-statistics">Central Dogma of Statistics</h2>
+<p>The central dogma of data science, simply put, is that general claims about a population can be made from a sample of data.</p>
+<p><img width="80%" align="center" src="https://fahadsultan.com/csc272/_images/dogma.png"></p>
+<p>This raises concerns about the sampling process such as the representativeness of the sample, the size of the sample, the sampling bias, etc. Which in turn raises concerns about potential negative effects of the claims made based on questionable data.</p>
+<hr>
+<p><img width="45%" align="right" src="https://pbs.twimg.com/media/Dv3SAKYU0AAgbJ3?format=jpg&amp;name=large"></p>
+<p>Issues with sampling and underrepresentative data are not new. In 1936, the <strong>Literary Digest</strong> magazine conducted a poll to predict the outcome of the presidential election. The poll was based on a <strong>sample of 2.4 million people</strong>. The poll predicted that Alf Landon would win the election with 57% of the vote. However, the actual election results were the opposite. Franklin D. Roosevelt won the election with 62% of the vote.</p>
+<p>The reason for the failure of the poll was that the sample was not representative of the population. The sample was biased towards the wealthy and the educated. The poll was also conducted by sending out postcards to people who subscribed to the Literary Digest magazine. In 1936, only the wealthy and the educated subscribed to magazines.</p>
+<p>The Literary Digest magazine went bankrupt soon after the election. George Gallup, who correctly predicted the outcome of the election, went on to found the American Institute of Public Opinion, which later became the Gallup Poll.</p>
+<p>The big takeaway from this story is that <strong>size alone is not enough</strong>. In other words, <strong>large sample sizes is a necessary but not sufficient condition</strong> for making general claims about a population.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,51 @@
+,id,zip,phone,lat,lng,type,score,risk,violation
+0,70064,94103,14155654366.0,,,Routine - Unscheduled,75.0,High Risk,Improper reheating of food
+1,90039,94103,,,,Routine - Unscheduled,81.0,High Risk,High risk food holding temperature
+2,89059,94115,14153685768.0,,,Complaint,,,
+3,91044,94112,,,,Routine - Unscheduled,84.0,Moderate Risk,Inadequate and inaccessible handwashing facilities
+4,62768,94122,,37.765421,-122.477256,Routine - Unscheduled,90.0,Low Risk,Food safety certificate or food handler card not available
+5,3972,94103,,37.786476,-122.404852,Reinspection/Followup,,,
+6,95188,94133,,,,New Construction,,,
+7,94103,94102,,,,New Ownership,,,
+8,94542,94132,,,,Routine - Unscheduled,92.0,Moderate Risk,Inadequate and inaccessible handwashing facilities
+9,93615,94107,14155743604.0,,,Routine - Unscheduled,100.0,,
+10,1296,94112,14155588745.0,37.761743,-122.421492,Routine - Unscheduled,83.0,Low Risk,Unclean or degraded floors walls or ceilings
+11,35221,94133,,37.796026,-122.406202,Routine - Unscheduled,90.0,Moderate Risk,Foods not protected from contamination
+12,38808,94122,,37.763603,-122.477497,Routine - Unscheduled,69.0,Low Risk,Unclean nonfood contact surfaces
+13,85947,94103,14150217929.0,,,Routine - Unscheduled,84.0,Moderate Risk,Foods not protected from contamination
+14,96936,94103,14155279880.0,,,New Ownership,,High Risk,Unclean or unsanitary food contact surfaces
+15,76914,94111,,,,Routine - Unscheduled,83.0,Moderate Risk,Insufficient hot water or running water
+16,1830,94133,,37.801616,-122.412137,Reinspection/Followup,,,
+17,6619,94133,,37.795788,-122.408834,Routine - Unscheduled,86.0,Moderate Risk,Moderate risk vermin infestation
+18,83524,94109,14155503357.0,,,Routine - Unscheduled,100.0,,
+19,21583,94109,14159444099.0,37.787448,-122.415243,Routine - Unscheduled,96.0,Moderate Risk,Inadequately cleaned or sanitized food contact surfaces
+20,80451,94114,14155297866.0,,,Reinspection/Followup,,,
+21,88340,94127,14155331919.0,,,Routine - Unscheduled,75.0,Low Risk,Inadequate or unsanitary refuse containers or area or no garbage service
+22,90008,94110,14155405458.0,,,Routine - Unscheduled,91.0,High Risk,Unclean or unsanitary food contact surfaces
+23,87517,94110,14155825852.0,,,Routine - Unscheduled,81.0,Low Risk,Permit license or inspection report not posted
+24,80495,94118,14155388648.0,,,Routine - Unscheduled,79.0,Low Risk,No person in charge of food facility
+25,89196,94134,,,,Complaint,,Moderate Risk,Inadequately cleaned or sanitized food contact surfaces
+26,65350,94112,,37.713426,-122.436347,Routine - Unscheduled,86.0,Moderate Risk,Moderate risk vermin infestation
+27,89981,94122,14155666408.0,,,New Ownership,,,
+28,100603,94123,14155991709.0,,,Routine - Unscheduled,96.0,Low Risk,Improper food storage
+29,3621,94110,14155286020.0,37.758271,-122.419081,Reinspection/Followup,,,
+30,80081,94108,,,,Reinspection/Followup,,,
+31,67565,94116,,37.742703,-122.482819,Routine - Unscheduled,88.0,Low Risk,Improper food storage
+32,3623,94110,14155280283.0,37.751554,-122.418376,Routine - Unscheduled,85.0,High Risk,Improper cooling methods
+33,78779,94102,,,,Routine - Unscheduled,88.0,Low Risk,Wiping cloths not clean or properly stored or inadequate sanitizer
+34,71530,94117,,,,Routine - Unscheduled,96.0,Low Risk,Wiping cloths not clean or properly stored or inadequate sanitizer
+35,1598,94109,,37.788587,-122.413795,Routine - Unscheduled,92.0,Low Risk,Improper food storage
+36,101670,94110,14155550557.0,,,New Ownership,,Moderate Risk,Moderate risk vermin infestation
+37,34352,94102,,37.787978,-122.410904,Routine - Unscheduled,100.0,,
+38,100993,94122,14152669990.0,,,New Construction,,,
+39,473,94133,,37.79886,-122.408204,Routine - Unscheduled,90.0,Low Risk,Unapproved or unmaintained equipment or utensils
+40,4894,94117,,37.771748,-122.433493,Routine - Unscheduled,85.0,Low Risk,Unclean unmaintained or improperly constructed toilet facilities
+41,3392,94118,,37.782103,-122.449132,Routine - Unscheduled,85.0,Moderate Risk,Insufficient hot water or running water
+42,2749,94110,14155551414.0,37.745433,-122.419945,Routine - Unscheduled,92.0,Low Risk,Unapproved or unmaintained equipment or utensils
+43,90213,,14155605048.0,,,Routine - Unscheduled,96.0,Low Risk,Other low risk violation
+44,70521,94104,,,,Reinspection/Followup,,,
+45,81522,94102,,,,Reinspection/Followup,,,
+46,5849,94117,14155758490.0,37.774333,-122.450327,Routine - Unscheduled,100.0,,
+47,88942,94111,14155988855.0,,,Routine - Unscheduled,96.0,Moderate Risk,Inadequate and inaccessible handwashing facilities
+48,82407,94102,,,,Routine - Unscheduled,100.0,,
+49,6734,94133,,37.797178,-122.408477,Routine - Unscheduled,84.0,Low Risk,Unclean or degraded floors walls or ceilings

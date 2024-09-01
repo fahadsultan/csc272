@@ -203,3 +203,10 @@ This presents a unique opportunity for you to overcome your Math anxiety. You wi
 
 Trust me, there is a tremendous amount of beauty and joy to be found in mathematics. And if beauty and joy aren't really your thing, then let me also assure you there is a lot of money to be made these days by being good at coding math. Either way, the rewards are well worth the effort! 
 
+## Pandas
+
+<img style="filter:invert(1)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/512px-Pandas_logo.svg.png" width="30%" align="right">
+
+`Pandas` is a powerful Python library that is widely used in data science and data analysis. It provides data structures and functions that make working with tabular data easy and intuitive.
+
+It is generally accepted in the data science community as the industry- and academia-standard tool for manipulating tabular data.

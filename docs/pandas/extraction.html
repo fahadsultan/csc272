@@ -101,6 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="../style.css">
@@ -201,7 +202,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas0.html">VECTORIZED OPERATIONS</a></li><li class="breadcrumb-item"><a href="../pandas/pandas3.html">Selection, Filtering and Dropping</a></li><li class="breadcrumb-item"><a href="../pandas/extraction.html">Extracting values</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/linalg.html">LINEAR ALGEBRA</a></li><li class="breadcrumb-item"><a href="../pandas/select_filter.html">Selection, Filtering and Dropping</a></li><li class="breadcrumb-item"><a href="../pandas/extraction.html">Extracting values</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -235,8 +236,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../pandas/pandas0.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">VECTORIZED OPERATIONS</span></a>
+            <a href="../pandas/linalg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LINEAR ALGEBRA</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -244,8 +245,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../pandas/pandas1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preliminaries</span></a>
+            <a href="../pandas/preliminaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading and Writing Data</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,14 +254,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Common Data Formats</span></a>
+  <a href="../pandas/read_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/read_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reading Data</span></a>
+  <a href="../pandas/view_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Viewing Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -273,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../pandas/pandas3.html" class="sidebar-item-text sidebar-link">
+            <a href="../pandas/select_filter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Selection, Filtering and Dropping</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -298,24 +299,215 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Filtering</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/dropping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dropping</span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/pandas2.html" class="sidebar-item-text sidebar-link">
+  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Feature Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/wrangling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Manipulation and Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/pandas4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aggregation</span></a>
+  <a href="../pandas/apply.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">User-Defined Functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/pandas5.html" class="sidebar-item-text sidebar-link">
+  <a href="../pandas/concat_merge.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Concatenation and Merging</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/aggregation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/grouping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grouping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/pivot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation with <code>.pivot_table</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../linearalgebra/vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geometric Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/nearestneighbor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nearest Neighbor</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../encoding/encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ENCODING AND REPRESENTATION</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../encoding/modalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modalities of Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Text</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/sound.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Audio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/spatial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geographic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../probability/probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PROBABILTY</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/joint_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joint Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/conditional_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Naive Bayes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../calculus/calculus0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CALCULUS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/52_differential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Differential Calculus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/41_classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/em.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Expectation Maximization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/gradientdescent.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gradient Descent</span></a>
   </div>
 </li>
       </ul>
@@ -330,18 +522,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#extracting-subset-of-values" id="toc-extracting-subset-of-values" class="nav-link active" data-scroll-target="#extracting-subset-of-values">Extracting subset of values</a>
-  <ul class="collapse">
-  <li><a href="#locrow_labels-col_labels" id="toc-locrow_labels-col_labels" class="nav-link" data-scroll-target="#locrow_labels-col_labels"><code>.loc[row_labels, col_labels]</code></a></li>
+  <li><a href="#locrow_labels-col_labels" id="toc-locrow_labels-col_labels" class="nav-link active" data-scroll-target="#locrow_labels-col_labels"><code>.loc[row_labels, col_labels]</code></a></li>
   <li><a href="#ilocrow_indices-col_indices" id="toc-ilocrow_indices-col_indices" class="nav-link" data-scroll-target="#ilocrow_indices-col_indices"><code>.iloc[row_indices, col_indices]</code></a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas0.html">VECTORIZED OPERATIONS</a></li><li class="breadcrumb-item"><a href="../pandas/pandas3.html">Selection, Filtering and Dropping</a></li><li class="breadcrumb-item"><a href="../pandas/extraction.html">Extracting values</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/linalg.html">LINEAR ALGEBRA</a></li><li class="breadcrumb-item"><a href="../pandas/select_filter.html">Selection, Filtering and Dropping</a></li><li class="breadcrumb-item"><a href="../pandas/extraction.html">Extracting values</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Extracting values</h1>
 </div>
@@ -360,15 +549,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="extracting-subset-of-values" class="level2">
-<h2 class="anchored" data-anchor-id="extracting-subset-of-values">Extracting subset of values</h2>
 <p>To extract a subset of values, we can use <code>.loc[]</code> or <code>.iloc[]</code> with row and column indices and labels respectively.</p>
 <center>
 <img src="https://pandas.pydata.org/docs/_images/03_subset_columns_rows.svg" width="85%" style="filter:invert(1)">
 </center>
 <p>The <code>.loc[]</code> method is used to access a group of rows and columns by labels or a boolean array.</p>
+<p><br><br></p>
 <section id="locrow_labels-col_labels" class="level3">
 <h3 class="anchored" data-anchor-id="locrow_labels-col_labels"><code>.loc[row_labels, col_labels]</code></h3>
+<p><br></p>
 <p>The <code>.loc</code> operator selects rows and columns in a DataFrame by their row and column label(s), respectively. The <strong>row labels</strong> (commonly referred to as the <strong>indices</strong>) are the bold text on the far <em>left</em> of a DataFrame, while the <strong>column labels</strong> are the column names found at the <em>top</em> of a DataFrame.</p>
 <center>
 <img src="../assets/loc.png" width="85%" style="filter:invert(1)">
@@ -388,9 +577,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There are a couple of things we should note. Firstly, unlike conventional Python, Pandas allows us to slice string values (in our example, the column labels). Secondly, slicing with <code>.loc</code> is <em>inclusive</em>. Notice how our resulting DataFrame includes every row and column between and including the slice labels we specified.</p>
 <p>Equivalently, we can use a list to obtain multiple rows and columns in our <code>elections</code> DataFrame. elections.loc[[0, 1, 2, 3], [‘Year’, ‘Candidate’, ‘Party’, ‘Popular vote’]]</p>
 <p>Lastly, we can interchange list and slicing notation. elections.loc[[0, 1, 2, 3], :]</p>
+<p><br><br></p>
 </section>
 <section id="ilocrow_indices-col_indices" class="level3">
 <h3 class="anchored" data-anchor-id="ilocrow_indices-col_indices"><code>.iloc[row_indices, col_indices]</code></h3>
+<p><br></p>
 <p>The <code>.iloc[]</code> method is used to access a group of rows and columns by integer position.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -428,7 +619,6 @@ Caution
 <p>This discussion begs the question: when should we use <code>.loc</code> vs <code>.iloc</code>? In most cases, <code>.loc</code> is generally safer to use. You can imagine <code>.iloc</code> may return incorrect values when applied to a dataset where the ordering of data can change.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -857,4 +1047,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

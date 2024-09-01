@@ -101,6 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -204,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas0.html">VECTORIZED OPERATIONS</a></li><li class="breadcrumb-item"><a href="../pandas/pandas1.html">Preliminaries</a></li><li class="breadcrumb-item"><a href="../pandas/formats.html">Common Data Formats</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/linalg.html">LINEAR ALGEBRA</a></li><li class="breadcrumb-item"><a href="../pandas/preliminaries.html">Reading and Writing Data</a></li><li class="breadcrumb-item"><a href="../pandas/formats.html">Common Data Formats</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -238,8 +239,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../pandas/pandas0.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">VECTORIZED OPERATIONS</span></a>
+            <a href="../pandas/linalg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LINEAR ALGEBRA</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -247,8 +248,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../pandas/pandas1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preliminaries</span></a>
+            <a href="../pandas/preliminaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading and Writing Data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -268,6 +269,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../pandas/view_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Viewing Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../pandas/write_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Writing Data</span></a>
   </div>
@@ -276,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../pandas/pandas3.html" class="sidebar-item-text sidebar-link">
+            <a href="../pandas/select_filter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Selection, Filtering and Dropping</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -301,24 +308,210 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Filtering</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/dropping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dropping</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Manipulation and Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/apply.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">User-Defined Functions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/aggregation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/grouping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grouping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/pivot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation with <code>.pivot_table</code></span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/pandas2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Manipulation and Wrangling</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../pandas/pandas4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aggregation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../pandas/pandas5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Concatenation and Merging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/nearestneighbor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nearest Neighbor</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../encoding/encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ENCODING AND REPRESENTATION</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Feature Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../encoding/modalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modalities of Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Text</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/sound.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Audio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/spatial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geographic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../probability/probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PROBABILTY</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/joint_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joint Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/conditional_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Naive Bayes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../calculus/calculus0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CALCULUS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/52_differential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Differential Calculus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/41_classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/em.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Expectation Maximization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/gradientdescent.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gradient Descent</span></a>
   </div>
 </li>
       </ul>
@@ -349,7 +542,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas0.html">VECTORIZED OPERATIONS</a></li><li class="breadcrumb-item"><a href="../pandas/pandas1.html">Preliminaries</a></li><li class="breadcrumb-item"><a href="../pandas/formats.html">Common Data Formats</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/linalg.html">LINEAR ALGEBRA</a></li><li class="breadcrumb-item"><a href="../pandas/preliminaries.html">Reading and Writing Data</a></li><li class="breadcrumb-item"><a href="../pandas/formats.html">Common Data Formats</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Common Data Formats</h1>
 </div>
@@ -369,6 +562,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Format is a term used to describe the way data is stored. For example, a single image is stored as a 2D array of pixels. A video is stored as a sequence of images. A sound is stored as a 1D array of samples. A text is stored as a sequence of characters.</p>
+<p><img src="../assets/hierarchy_flat.png" width="100%" style="filter:invert(1)"></p>
 <section id="flat-formats" class="level2">
 <h2 class="anchored" data-anchor-id="flat-formats">Flat Formats</h2>
 <p>Flat data formats are native to <code>pandas</code> and are the simplest and the most ubiquitous file formats in general.</p>
@@ -1475,4 +1669,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

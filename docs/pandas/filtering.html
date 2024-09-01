@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Filtering</title>
+<title>Filtering: subset of rows</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,6 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -204,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas0.html">VECTORIZED OPERATIONS</a></li><li class="breadcrumb-item"><a href="../pandas/pandas3.html">Selection, Filtering and Dropping</a></li><li class="breadcrumb-item"><a href="../pandas/filtering.html">Filtering</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/linalg.html">LINEAR ALGEBRA</a></li><li class="breadcrumb-item"><a href="../pandas/select_filter.html">Selection, Filtering and Dropping</a></li><li class="breadcrumb-item"><a href="../pandas/filtering.html">Filtering: subset of rows</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -238,8 +239,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../pandas/pandas0.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">VECTORIZED OPERATIONS</span></a>
+            <a href="../pandas/linalg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LINEAR ALGEBRA</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -247,8 +248,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../pandas/pandas1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preliminaries</span></a>
+            <a href="../pandas/preliminaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading and Writing Data</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -256,14 +257,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Common Data Formats</span></a>
+  <a href="../pandas/read_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/read_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Reading Data</span></a>
+  <a href="../pandas/view_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Viewing Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -276,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../pandas/pandas3.html" class="sidebar-item-text sidebar-link">
+            <a href="../pandas/select_filter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Selection, Filtering and Dropping</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -292,33 +293,230 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/selection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Selection</span></a>
+ <span class="menu-text">Selection: subset of columns</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/filtering.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Filtering</span></a>
+ <span class="menu-text">Filtering: subset of rows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/dropping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dropping</span></a>
   </div>
 </li>
       </ul>
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/pandas2.html" class="sidebar-item-text sidebar-link">
+  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Feature Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/wrangling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Manipulation and Wrangling</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/pandas4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aggregation</span></a>
+  <a href="../pandas/apply.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">User-Defined Functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/pandas5.html" class="sidebar-item-text sidebar-link">
+  <a href="../pandas/concat_merge.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Concatenation and Merging</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../encoding/encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Encoding</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Text</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Networks</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/sound.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Audio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Images</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/spatial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geographic</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Time Series</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../linearalgebra/vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geometric Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/nearestneighbor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nearest Neighbor</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../stats/stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">STATISTICS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/12_stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/aggregation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/grouping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grouping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/pivot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation with <code>.pivot_table</code></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../probability/probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PROBABILTY</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/joint_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joint Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/conditional_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Naive Bayes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../calculus/calculus0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CALCULUS</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/52_differential.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Differential Calculus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/41_classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/em.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Expectation Maximization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../calculus/gradientdescent.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gradient Descent</span></a>
   </div>
 </li>
       </ul>
@@ -333,17 +531,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#a-filtering-condition" id="toc-a-filtering-condition" class="nav-link active" data-scroll-target="#a-filtering-condition">A Filtering Condition</a></li>
-  <li><a href="#filtering-subset-of-rows" id="toc-filtering-subset-of-rows" class="nav-link" data-scroll-target="#filtering-subset-of-rows"><strong>Filtering</strong>: subset of rows</a></li>
+  <li><a href="#filtering-by-position-start-position-end-position" id="toc-filtering-by-position-start-position-end-position" class="nav-link active" data-scroll-target="#filtering-by-position-start-position-end-position">Filtering by position <code>[start position : end position]</code></a></li>
+  <li><a href="#filtering-by-condition" id="toc-filtering-by-condition" class="nav-link" data-scroll-target="#filtering-by-condition">Filtering by condition</a>
+  <ul class="collapse">
+  <li><a href="#step-1.-a-filtering-condition" id="toc-step-1.-a-filtering-condition" class="nav-link" data-scroll-target="#step-1.-a-filtering-condition">Step 1. A Filtering Condition</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas0.html">VECTORIZED OPERATIONS</a></li><li class="breadcrumb-item"><a href="../pandas/pandas3.html">Selection, Filtering and Dropping</a></li><li class="breadcrumb-item"><a href="../pandas/filtering.html">Filtering</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/linalg.html">LINEAR ALGEBRA</a></li><li class="breadcrumb-item"><a href="../pandas/select_filter.html">Selection, Filtering and Dropping</a></li><li class="breadcrumb-item"><a href="../pandas/filtering.html">Filtering: subset of rows</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Filtering</h1>
+<h1 class="title">Filtering: subset of rows</h1>
 </div>
 
 
@@ -360,13 +561,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="a-filtering-condition" class="level2">
-<h2 class="anchored" data-anchor-id="a-filtering-condition">A Filtering Condition</h2>
+<p>Extracting a subset of rows from a <code>DataFrame</code> is called filtering.</p>
+<p>We can filter rows based on a <b><u>boolean condition</u></b>, similar to conditional statements (e.g., <code>if</code>, <code>else</code>) in Python.</p>
+<center>
+<img src="https://pandas.pydata.org/docs/_images/03_subset_rows.svg" width="85%" style="filter:invert(1)">
+</center>
+<p>For example, to filter rows of candidates who ran for elections since 2010, we can use the following code:</p>
+<section id="filtering-by-position-start-position-end-position" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-by-position-start-position-end-position">Filtering by position <code>[start position : end position]</code></h2>
+<p>The <code>[]</code> selection operator is the most baffling of all, yet the most commonly used. It only takes a single argument: A slice of row numbers</p>
+<p>Say we wanted the first four rows of our <code>elections</code> DataFrame.</p>
+<div id="cell-4" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>elections[<span class="dv">0</span>:<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Candidate</th>
+<th data-quarto-table-cell-role="th">Party</th>
+<th data-quarto-table-cell-role="th">Popular vote</th>
+<th data-quarto-table-cell-role="th">Result</th>
+<th data-quarto-table-cell-role="th">%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1824</td>
+<td>Andrew Jackson</td>
+<td>Democratic-Republican</td>
+<td>151271</td>
+<td>loss</td>
+<td>57.210122</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1824</td>
+<td>John Quincy Adams</td>
+<td>Democratic-Republican</td>
+<td>113142</td>
+<td>win</td>
+<td>42.789878</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1828</td>
+<td>Andrew Jackson</td>
+<td>Democratic</td>
+<td>642806</td>
+<td>win</td>
+<td>56.203927</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1828</td>
+<td>John Quincy Adams</td>
+<td>National Republican</td>
+<td>500897</td>
+<td>loss</td>
+<td>43.796073</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="filtering-by-condition" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-by-condition">Filtering by condition</h2>
+<section id="step-1.-a-filtering-condition" class="level3">
+<h3 class="anchored" data-anchor-id="step-1.-a-filtering-condition">Step 1. A Filtering Condition</h3>
 <p>Perhaps the most interesting (and useful) method of selecting data from a Series is with a filtering condition.</p>
 <p>First, we apply a boolean condition to the Series. This create <strong>a new Series of boolean values</strong>.</p>
-<div id="cell-3" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> pd.Series({<span class="st">'a'</span>: <span class="dv">1</span>, <span class="st">'b'</span>: <span class="dv">2</span>, <span class="st">'c'</span>: <span class="dv">3</span>, <span class="st">'d'</span>: <span class="dv">4</span>})</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>series <span class="op">&gt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>series <span class="op">=</span> pd.Series({<span class="st">'a'</span>: <span class="dv">1</span>, <span class="st">'b'</span>: <span class="dv">2</span>, <span class="st">'c'</span>: <span class="dv">3</span>, <span class="st">'d'</span>: <span class="dv">4</span>})</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>series <span class="op">&gt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>a    False
 b    False
@@ -379,27 +654,18 @@ dtype: bool</code></pre>
 <img src="https://fahadsultan.com/csc272_f23/_images/filter.png" width="50%" style="filter:invert(1)">
 </center>
 <p>We then use this boolean condition to index into our original Series. pandas will select only the entries in the original Series that satisfy the condition.</p>
-<div id="cell-6" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>series[series <span class="op">&gt;</span> <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-11" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>series[series <span class="op">&gt;</span> <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>c    3
 d    4
 dtype: int64</code></pre>
 </div>
 </div>
-</section>
-<section id="filtering-subset-of-rows" class="level2">
-<h2 class="anchored" data-anchor-id="filtering-subset-of-rows"><strong>Filtering</strong>: subset of rows</h2>
-<p>Extracting a subset of rows from a <code>DataFrame</code> is called filtering.</p>
-<p>We can filter rows based on a <b><u>boolean condition</u></b>, similar to conditional statements (e.g., <code>if</code>, <code>else</code>) in Python.</p>
-<center>
-<img src="https://pandas.pydata.org/docs/_images/03_subset_rows.svg" width="85%" style="filter:invert(1)">
-</center>
-<p>For example, to filter rows of candidates who ran for elections since 2010, we can use the following code:</p>
-<div id="cell-8" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>condition <span class="op">=</span> election[<span class="st">'Year'</span>] <span class="op">&gt;</span> <span class="dv">2010</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>election[condition]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-13" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>condition <span class="op">=</span> election[<span class="st">'Year'</span>] <span class="op">&gt;</span> <span class="dv">2010</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>election[condition]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -551,10 +817,10 @@ dtype: int64</code></pre>
 </div>
 <p>To filter rows based on <strong>multiple conditions</strong>, we can use the <code>&amp;</code> operator for <code>AND</code> and the <code>|</code> operator for <code>OR</code>.</p>
 <p>For example, to filter rows of candidates who won the elections with less than 50% of the votes, we can use the following code:</p>
-<div id="cell-10" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>condition <span class="op">=</span> (election[<span class="st">'Result'</span>] <span class="op">==</span> <span class="st">'win'</span>) <span class="op">&amp;</span> (election[<span class="st">'%'</span>] <span class="op">&lt;</span> <span class="dv">50</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>election[condition]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-15" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>condition <span class="op">=</span> (election[<span class="st">'Result'</span>] <span class="op">==</span> <span class="st">'win'</span>) <span class="op">&amp;</span> (election[<span class="st">'%'</span>] <span class="op">&lt;</span> <span class="dv">50</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>election[condition]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -733,6 +999,7 @@ dtype: int64</code></pre>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1161,4 +1428,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
