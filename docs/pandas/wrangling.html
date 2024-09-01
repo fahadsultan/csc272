@@ -534,11 +534,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#data-alignment" id="toc-data-alignment" class="nav-link active" data-scroll-target="#data-alignment">Data Alignment</a></li>
   <li><a href="#math-operations" id="toc-math-operations" class="nav-link" data-scroll-target="#math-operations">Math Operations</a></li>
   <li><a href="#creating-new-columns" id="toc-creating-new-columns" class="nav-link" data-scroll-target="#creating-new-columns">Creating new columns</a></li>
-  <li><a href="#sort_values" id="toc-sort_values" class="nav-link" data-scroll-target="#sort_values"><code>.sort_values()</code></a></li>
-  <li><a href="#set_index" id="toc-set_index" class="nav-link" data-scroll-target="#set_index"><code>.set_index()</code></a></li>
-  <li><a href="#reset_index" id="toc-reset_index" class="nav-link" data-scroll-target="#reset_index"><code>.reset_index()</code></a></li>
-  <li><a href="#rename" id="toc-rename" class="nav-link" data-scroll-target="#rename"><code>.rename()</code></a></li>
-  <li><a href="#other-handy-utility-functions" id="toc-other-handy-utility-functions" class="nav-link" data-scroll-target="#other-handy-utility-functions">Other Handy Utility Functions</a></li>
+  <li><a href="#renaming-columns" id="toc-renaming-columns" class="nav-link" data-scroll-target="#renaming-columns">Renaming columns</a></li>
+  <li><a href="#converting-column-to-index" id="toc-converting-column-to-index" class="nav-link" data-scroll-target="#converting-column-to-index">Converting column to index</a></li>
+  <li><a href="#converting-index-to-column" id="toc-converting-index-to-column" class="nav-link" data-scroll-target="#converting-index-to-column">Converting index to column</a></li>
+  <li><a href="#sorting-data" id="toc-sorting-data" class="nav-link" data-scroll-target="#sorting-data">Sorting Data</a></li>
   </ul>
 </nav>
     </div>
@@ -607,10 +606,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.DataFrame({<span class="st">"B"</span>: [<span class="dv">5</span>, <span class="dv">6</span>], <span class="st">"D"</span>:[<span class="dv">7</span>, <span class="dv">8</span>]})</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">+</span> df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><br></p>
 </section>
 <section id="math-operations" class="level2">
 <h2 class="anchored" data-anchor-id="math-operations">Math Operations</h2>
 <p>In native Python, we have a number of operators that we can use to manipulate data. Most, if not all, of these operators can be used with Pandas Series and DataFrames and are applied element-wise in parallel. A summary of the operators supported by Pandas is shown below:</p>
+<p><br></p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -671,8 +672,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+<p><br></p>
 <p>The most significant difference is that <u><b>logical operators <code>and</code>, <code>or</code>, and <code>not</code> are NOT used with Pandas Series and DataFrames</b></u>. Instead, we use <code>&amp;</code>, <code>|</code>, and <code>~</code> respectively.</p>
 <p>Membership operators <code>in</code> and <code>not in</code> are also not used with Pandas Series and DataFrames. Instead, we use the <code>isin()</code> method.</p>
+<p><br></p>
 </section>
 <section id="creating-new-columns" class="level2">
 <h2 class="anchored" data-anchor-id="creating-new-columns">Creating new columns</h2>
@@ -852,12 +855,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </center>
 <p>These element-wise operations are vectorized and are very efficient.</p>
 </section>
-<section id="sort_values" class="level2">
-<h2 class="anchored" data-anchor-id="sort_values"><code>.sort_values()</code></h2>
-<p>Ordering a <code>DataFrame</code> can be useful for isolating extreme values. For example, the first 5 entries of a row sorted in descending order (that is, from highest to lowest) are the largest 5 values. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html"><code>.sort_values</code></a> allows us to order a <code>DataFrame</code> or <code>Series</code> by a specified column. We can choose to either receive the rows in <code>ascending</code> order (default) or <code>descending</code> order.</p>
+<section id="renaming-columns" class="level2">
+<h2 class="anchored" data-anchor-id="renaming-columns">Renaming columns</h2>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rename.html"><code>.rename()</code></a> method is used to rename the columns or index labels of a DataFrame.</p>
 <div id="cell-17" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the "Count" column from highest to lowest</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>elections.sort_values(by <span class="op">=</span> <span class="st">"%"</span>, ascending<span class="op">=</span><span class="va">False</span>).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>elections.rename(columns<span class="op">=</span>{<span class="st">"Candidate"</span>:<span class="st">"Name"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -867,7 +869,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">Year</th>
-<th data-quarto-table-cell-role="th">Candidate</th>
+<th data-quarto-table-cell-role="th">Name</th>
 <th data-quarto-table-cell-role="th">Party</th>
 <th data-quarto-table-cell-role="th">Popular vote</th>
 <th data-quarto-table-cell-role="th">Result</th>
@@ -876,75 +878,117 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">114</td>
-<td>1964</td>
-<td>Lyndon Johnson</td>
-<td>Democratic</td>
-<td>43127041</td>
-<td>win</td>
-<td>61.344703</td>
+<td data-quarto-table-cell-role="th">0</td>
+<td>1824</td>
+<td>Andrew Jackson</td>
+<td>Democratic-Republican</td>
+<td>151271</td>
+<td>loss</td>
+<td>57.210122</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">91</td>
-<td>1936</td>
-<td>Franklin Roosevelt</td>
-<td>Democratic</td>
-<td>27752648</td>
+<td data-quarto-table-cell-role="th">1</td>
+<td>1824</td>
+<td>John Quincy Adams</td>
+<td>Democratic-Republican</td>
+<td>113142</td>
 <td>win</td>
-<td>60.978107</td>
+<td>42.789878</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">120</td>
-<td>1972</td>
-<td>Richard Nixon</td>
-<td>Republican</td>
-<td>47168710</td>
+<td data-quarto-table-cell-role="th">2</td>
+<td>1828</td>
+<td>Andrew Jackson</td>
+<td>Democratic</td>
+<td>642806</td>
 <td>win</td>
-<td>60.907806</td>
+<td>56.203927</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">79</td>
-<td>1920</td>
-<td>Warren Harding</td>
-<td>Republican</td>
-<td>16144093</td>
-<td>win</td>
-<td>60.574501</td>
+<td data-quarto-table-cell-role="th">3</td>
+<td>1828</td>
+<td>John Quincy Adams</td>
+<td>National Republican</td>
+<td>500897</td>
+<td>loss</td>
+<td>43.796073</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">133</td>
-<td>1984</td>
-<td>Ronald Reagan</td>
-<td>Republican</td>
-<td>54455472</td>
+<td data-quarto-table-cell-role="th">4</td>
+<td>1832</td>
+<td>Andrew Jackson</td>
+<td>Democratic</td>
+<td>702735</td>
 <td>win</td>
-<td>59.023326</td>
+<td>54.574789</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">177</td>
+<td>2016</td>
+<td>Jill Stein</td>
+<td>Green</td>
+<td>1457226</td>
+<td>loss</td>
+<td>1.073699</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">178</td>
+<td>2020</td>
+<td>Joseph Biden</td>
+<td>Democratic</td>
+<td>81268924</td>
+<td>win</td>
+<td>51.311515</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">179</td>
+<td>2020</td>
+<td>Donald Trump</td>
+<td>Republican</td>
+<td>74216154</td>
+<td>loss</td>
+<td>46.858542</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">180</td>
+<td>2020</td>
+<td>Jo Jorgensen</td>
+<td>Libertarian</td>
+<td>1865724</td>
+<td>loss</td>
+<td>1.177979</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">181</td>
+<td>2020</td>
+<td>Howard Hawkins</td>
+<td>Green</td>
+<td>405035</td>
+<td>loss</td>
+<td>0.255731</td>
 </tr>
 </tbody>
 </table>
 
+<p>182 rows × 6 columns</p>
 </div>
-</div>
-</div>
-<p>We do not need to explicitly specify the column used for sorting when calling <code>.value_counts()</code> on a <code>Series</code>. We can still specify the ordering paradigm – that is, whether values are sorted in ascending or descending order.</p>
-<div id="cell-19" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the "Name" Series alphabetically</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">"Candidate"</span>].sort_values(ascending<span class="op">=</span><span class="va">True</span>).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>75     Aaron S. Watkins
-27      Abraham Lincoln
-23      Abraham Lincoln
-108     Adlai Stevenson
-105     Adlai Stevenson
-Name: Candidate, dtype: object</code></pre>
 </div>
 </div>
 </section>
-<section id="set_index" class="level2">
-<h2 class="anchored" data-anchor-id="set_index"><code>.set_index()</code></h2>
+<section id="converting-column-to-index" class="level2">
+<h2 class="anchored" data-anchor-id="converting-column-to-index">Converting column to index</h2>
 <p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.set_index.html"><code>.set_index()</code></a> method is used to set the DataFrame index using existing columns.</p>
-<div id="cell-21" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>elections.set_index(<span class="st">"Candidate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-19" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>elections.set_index(<span class="st">"Candidate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
 <div>
 
@@ -1065,11 +1109,11 @@ Name: Candidate, dtype: object</code></pre>
 </div>
 </div>
 </section>
-<section id="reset_index" class="level2">
-<h2 class="anchored" data-anchor-id="reset_index"><code>.reset_index()</code></h2>
+<section id="converting-index-to-column" class="level2">
+<h2 class="anchored" data-anchor-id="converting-index-to-column">Converting index to column</h2>
 <p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reset_index.html"><code>.reset_index()</code></a> method is used to reset the index of a DataFrame. By default, the original index is stored in a new column called <code>index</code>.</p>
-<div id="cell-23" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>elections.reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-21" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>elections.reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
 <div>
 
@@ -1206,12 +1250,13 @@ Name: Candidate, dtype: object</code></pre>
 </div>
 </div>
 </section>
-<section id="rename" class="level2">
-<h2 class="anchored" data-anchor-id="rename"><code>.rename()</code></h2>
-<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rename.html"><code>.rename()</code></a> method is used to rename the columns or index labels of a DataFrame.</p>
-<div id="cell-25" class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>elections.rename(columns<span class="op">=</span>{<span class="st">"Candidate"</span>:<span class="st">"Name"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="42">
+<section id="sorting-data" class="level2">
+<h2 class="anchored" data-anchor-id="sorting-data">Sorting Data</h2>
+<p>Ordering a <code>DataFrame</code> can be useful for isolating extreme values. For example, the first 5 entries of a row sorted in descending order (that is, from highest to lowest) are the largest 5 values. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html"><code>.sort_values</code></a> allows us to order a <code>DataFrame</code> or <code>Series</code> by a specified column. We can choose to either receive the rows in <code>ascending</code> order (default) or <code>descending</code> order.</p>
+<div id="cell-23" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the "Count" column from highest to lowest</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>elections.sort_values(by <span class="op">=</span> <span class="st">"%"</span>, ascending<span class="op">=</span><span class="va">False</span>).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
 <div>
 
 
@@ -1220,7 +1265,7 @@ Name: Candidate, dtype: object</code></pre>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">Year</th>
-<th data-quarto-table-cell-role="th">Name</th>
+<th data-quarto-table-cell-role="th">Candidate</th>
 <th data-quarto-table-cell-role="th">Party</th>
 <th data-quarto-table-cell-role="th">Popular vote</th>
 <th data-quarto-table-cell-role="th">Result</th>
@@ -1229,128 +1274,69 @@ Name: Candidate, dtype: object</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1824</td>
-<td>Andrew Jackson</td>
-<td>Democratic-Republican</td>
-<td>151271</td>
-<td>loss</td>
-<td>57.210122</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>1824</td>
-<td>John Quincy Adams</td>
-<td>Democratic-Republican</td>
-<td>113142</td>
-<td>win</td>
-<td>42.789878</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1828</td>
-<td>Andrew Jackson</td>
+<td data-quarto-table-cell-role="th">114</td>
+<td>1964</td>
+<td>Lyndon Johnson</td>
 <td>Democratic</td>
-<td>642806</td>
+<td>43127041</td>
 <td>win</td>
-<td>56.203927</td>
+<td>61.344703</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>1828</td>
-<td>John Quincy Adams</td>
-<td>National Republican</td>
-<td>500897</td>
-<td>loss</td>
-<td>43.796073</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>1832</td>
-<td>Andrew Jackson</td>
+<td data-quarto-table-cell-role="th">91</td>
+<td>1936</td>
+<td>Franklin Roosevelt</td>
 <td>Democratic</td>
-<td>702735</td>
+<td>27752648</td>
 <td>win</td>
-<td>54.574789</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
+<td>60.978107</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">177</td>
-<td>2016</td>
-<td>Jill Stein</td>
-<td>Green</td>
-<td>1457226</td>
-<td>loss</td>
-<td>1.073699</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">178</td>
-<td>2020</td>
-<td>Joseph Biden</td>
-<td>Democratic</td>
-<td>81268924</td>
-<td>win</td>
-<td>51.311515</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">179</td>
-<td>2020</td>
-<td>Donald Trump</td>
+<td data-quarto-table-cell-role="th">120</td>
+<td>1972</td>
+<td>Richard Nixon</td>
 <td>Republican</td>
-<td>74216154</td>
-<td>loss</td>
-<td>46.858542</td>
+<td>47168710</td>
+<td>win</td>
+<td>60.907806</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">180</td>
-<td>2020</td>
-<td>Jo Jorgensen</td>
-<td>Libertarian</td>
-<td>1865724</td>
-<td>loss</td>
-<td>1.177979</td>
+<td data-quarto-table-cell-role="th">79</td>
+<td>1920</td>
+<td>Warren Harding</td>
+<td>Republican</td>
+<td>16144093</td>
+<td>win</td>
+<td>60.574501</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">181</td>
-<td>2020</td>
-<td>Howard Hawkins</td>
-<td>Green</td>
-<td>405035</td>
-<td>loss</td>
-<td>0.255731</td>
+<td data-quarto-table-cell-role="th">133</td>
+<td>1984</td>
+<td>Ronald Reagan</td>
+<td>Republican</td>
+<td>54455472</td>
+<td>win</td>
+<td>59.023326</td>
 </tr>
 </tbody>
 </table>
 
-<p>182 rows × 6 columns</p>
 </div>
 </div>
 </div>
-</section>
-<section id="other-handy-utility-functions" class="level2">
-<h2 class="anchored" data-anchor-id="other-handy-utility-functions">Other Handy Utility Functions</h2>
-<p><code>pandas</code> contains an extensive library of functions that can help shorten the process of setting and getting information from its data structures. In the following section, we will give overviews of each of the main utility functions that will help us in in this course.</p>
-<p>Discussing all functionality offered by <code>pandas</code> could take an entire semester! We will walk you through the most commonly-used functions, and encourage you to explore and experiment on your own.</p>
-<ul>
-<li><code>.shape</code></li>
-<li><code>.size</code></li>
-<li><code>.dtypes</code></li>
-<li><code>.astype()</code></li>
-<li><code>.describe()</code></li>
-<li><code>.sample()</code></li>
-<li><code>.value_counts()</code></li>
-<li><code>.unique()</code></li>
-<li><code>.sort_values()</code></li>
-</ul>
-<p>The <code>pandas</code> <a href="https://pandas.pydata.org/docs/reference/index.html">documentation</a> will be a valuable resource.</p>
+<p>We do not need to explicitly specify the column used for sorting when calling <code>.value_counts()</code> on a <code>Series</code>. We can still specify the ordering paradigm – that is, whether values are sorted in ascending or descending order.</p>
+<div id="cell-25" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the "Name" Series alphabetically</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">"Candidate"</span>].sort_values(ascending<span class="op">=</span><span class="va">True</span>).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>75     Aaron S. Watkins
+27      Abraham Lincoln
+23      Abraham Lincoln
+108     Adlai Stevenson
+105     Adlai Stevenson
+Name: Candidate, dtype: object</code></pre>
+</div>
+</div>
 
 
 </section>
