@@ -945,7 +945,7 @@
     "href": "index.html",
     "title": "CSC-272: Data Mining",
     "section": "",
-    "text": "Hi! Welcome to the CSC-272 Introduction to Data Mining course website 👋🏾\nI am excited to talk math 🔢, programming 💻 and all-things data 📊 in this course with you!\nFrom the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you should be able to navigate to any topic relevant to the course. If that does not help, there should also be a search icon 🔍 in the top left corner ↗️\n👇🏾 Below, you can find important links and important announcements.\n\n\n\n\n\n\nWritten Assignment 1\n\n\n\nPlease note that the Written Assignment 1 is due on 09/05/24 at 11:59 PM.\nAssigned Reading: Weapons of Math Destruction (Introduction) by Cathy O’Neil\n\n\n\n\n\n\n\n\nOpen-Door Policy\n\n\n\nI have an Open-Door Policy and am in my office (Riley Hall 200-D) between 9 AM - 5 PM most weekdays. Please drop by with your questions or just to say hi!\nAlternatively, send me an email or schedule an appointment",
+    "text": "Hi! Welcome to the CSC-272 Introduction to Data Mining course website 👋🏾\nI am excited to talk math 🔢, programming 💻 and all-things data 📊 in this course with you!\nFrom the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you should be able to navigate to any topic relevant to the course. If that does not help, there should also be a search icon 🔍 in the top left corner ↗️\n👇🏾 Below, you can find important links and important announcements.\n\n\n\n\n\n\nWritten Assignment 1\n\n\n\nPlease note that the Written Assignment 1 is due this Thursday at 11:59 PM.\nAssigned Reading: Weapons of Math Destruction (Introduction) by Cathy O’Neil\n\n\n\n\n\n\n\n\nProgramming Assignment 1\n\n\n\nPlease note that the Programming Assignment 1 is due this Friday at 11:59 PM.\n\n\n\n\n\n\n\n\nOpen-Door Policy\n\n\n\nI have an Open-Door Policy and am in my office (Riley Hall 200-D) between 9 AM - 5 PM most weekdays. Please drop by with your questions or just to say hi!\nAlternatively, send me an email or schedule an appointment",
     "crumbs": [
       "Home"
     ]
@@ -1638,6 +1638,16 @@
       "STATISTICS",
       "Aggregation",
       "Pivot table"
+    ]
+  },
+  {
+    "objectID": "index.html#programming-assignment-1",
+    "href": "index.html#programming-assignment-1",
+    "title": "CSC-272: Data Mining",
+    "section": "Programming Assignment 1",
+    "text": "Programming Assignment 1\nPlease note that the Programming Assignment 1 is due this Friday at 11:59 PM.",
+    "crumbs": [
+      "Home"
     ]
   }
 ]
