@@ -264,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/view_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Viewing Data</span></a>
+ <span class="menu-text">Index and Columns</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -292,12 +292,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Extracting values</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../pandas/selection.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Selection: subset of columns</span></a>
   </div>
@@ -306,6 +300,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../pandas/filtering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Filtering: subset of rows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/extraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extracting values</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -450,7 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/pivot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aggregation with <code>.pivot_table</code></span></a>
+ <span class="menu-text">Pivot table</span></a>
   </div>
 </li>
       </ul>
@@ -532,8 +532,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><code>[]</code></a></li>
-  <li><a href="#drop_duplicates" id="toc-drop_duplicates" class="nav-link" data-scroll-target="#drop_duplicates"><code>.drop_duplicates()</code></a></li>
-  <li><a href="#sample" id="toc-sample" class="nav-link" data-scroll-target="#sample"><code>.sample()</code></a></li>
   </ul>
 </nav>
     </div>
@@ -564,9 +562,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="https://pandas.pydata.org/docs/_images/03_subset_columns.svg" width="85%" style="filter:invert(1)">
 </center>
 <p>For example, to select a column named <code>Candidate</code> from the <code>election</code> DataFrame, we can use the following code:</p>
-<div id="cell-2" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>candidates <span class="op">=</span> elections[<span class="st">'Candidate'</span>]</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(candidates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>elections <span class="op">=</span> pd.read_csv(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-3" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>candidates <span class="op">=</span> elections[<span class="st">'Candidate'</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(candidates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0         Andrew Jackson
 1      John Quincy Adams
@@ -583,15 +588,15 @@ Name: Candidate, Length: 182, dtype: object</code></pre>
 </div>
 </div>
 <p>This extracts a single column as a <code>Series</code>. We can confirm this by checking the type of the output.</p>
-<div id="cell-4" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(candidates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-5" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(candidates)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>pandas.core.series.Series</code></pre>
 </div>
 </div>
 <p>To select multiple columns, we can pass a list of column names. For example, to select both <code>Candidate</code> and <code>Votes</code> columns from the <code>election</code> DataFrame, we can use the following line of code:</p>
-<div id="cell-6" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>elections[[<span class="st">'Candidate'</span>, <span class="st">'Party'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-7" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>elections[[<span class="st">'Candidate'</span>, <span class="st">'Party'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -668,336 +673,18 @@ Name: Candidate, Length: 182, dtype: object</code></pre>
 </div>
 </div>
 <p>This extracts multiple columns as a <code>DataFrame</code>. We can confirm as well this by checking the type of the output.</p>
-<div id="cell-8" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(elections[[<span class="st">'Candidate'</span>, <span class="st">'Party'</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-9" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(elections[[<span class="st">'Candidate'</span>, <span class="st">'Party'</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This is how we can select columns in a <code>DataFrame</code>. Next, let’s learn how to filter rows.</p>
 <section id="section" class="level3">
 <h3 class="anchored" data-anchor-id="section"><code>[]</code></h3>
 <p>The <code>[]</code> selection operator is the most baffling of all, yet the most commonly used. It only takes a single argument, which may be one of the following:</p>
 <ol type="1">
-<li>A slice of row numbers</li>
 <li>A list of column labels</li>
 <li>A single column label</li>
 </ol>
-<p>That is, <code>[]</code> is <em>context dependent</em>. Let’s see some examples.</p>
 <p>Say we wanted the first four rows of our <code>elections</code> DataFrame.</p>
-<div id="cell-11" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>elections[<span class="dv">0</span>:<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Year</th>
-<th data-quarto-table-cell-role="th">Candidate</th>
-<th data-quarto-table-cell-role="th">Party</th>
-<th data-quarto-table-cell-role="th">Popular vote</th>
-<th data-quarto-table-cell-role="th">Result</th>
-<th data-quarto-table-cell-role="th">%</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1824</td>
-<td>Andrew Jackson</td>
-<td>Democratic-Republican</td>
-<td>151271</td>
-<td>loss</td>
-<td>57.210122</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>1824</td>
-<td>John Quincy Adams</td>
-<td>Democratic-Republican</td>
-<td>113142</td>
-<td>win</td>
-<td>42.789878</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1828</td>
-<td>Andrew Jackson</td>
-<td>Democratic</td>
-<td>642806</td>
-<td>win</td>
-<td>56.203927</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>1828</td>
-<td>John Quincy Adams</td>
-<td>National Republican</td>
-<td>500897</td>
-<td>loss</td>
-<td>43.796073</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
-<section id="drop_duplicates" class="level3">
-<h3 class="anchored" data-anchor-id="drop_duplicates"><code>.drop_duplicates()</code></h3>
-<p>If we have a DataFrame with many repeated rows, then <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html"><code>.drop_duplicates()</code></a> can be used to remove the repeated rows.</p>
-<p>Where <code>.unique()</code> only works with individual columns (Series) and returns an array of unique values, <code>.drop_duplicates()</code> can be used with multiple columns (DataFrame) and returns a DataFrame with the repeated rows removed.</p>
-<div id="cell-13" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>elections[[<span class="st">'Candidate'</span>, <span class="st">'Party'</span>]].drop_duplicates()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Candidate</th>
-<th data-quarto-table-cell-role="th">Party</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>Andrew Jackson</td>
-<td>Democratic-Republican</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>John Quincy Adams</td>
-<td>Democratic-Republican</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>Andrew Jackson</td>
-<td>Democratic</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>John Quincy Adams</td>
-<td>National Republican</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">5</td>
-<td>Henry Clay</td>
-<td>National Republican</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">174</td>
-<td>Evan McMullin</td>
-<td>Independent</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">176</td>
-<td>Hillary Clinton</td>
-<td>Democratic</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">178</td>
-<td>Joseph Biden</td>
-<td>Democratic</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">180</td>
-<td>Jo Jorgensen</td>
-<td>Libertarian</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">181</td>
-<td>Howard Hawkins</td>
-<td>Green</td>
-</tr>
-</tbody>
-</table>
-
-<p>141 rows × 2 columns</p>
-</div>
-</div>
-</div>
-</section>
-<section id="sample" class="level3">
-<h3 class="anchored" data-anchor-id="sample"><code>.sample()</code></h3>
-<p>As we will see later in the semester, random processes are at the heart of many data science techniques (for example, train-test splits, bootstrapping, and cross-validation). <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sample.html"><code>.sample()</code></a> lets us quickly select random entries (a row if called from a DataFrame, or a value if called from a Series).</p>
-<p>By default, <code>.sample()</code> selects entries <em>without</em> replacement. Pass in the argument <code>replace=True</code> to sample with replacement.</p>
-<div id="cell-15" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample a single row</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>elections.sample()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Year</th>
-<th data-quarto-table-cell-role="th">Candidate</th>
-<th data-quarto-table-cell-role="th">Party</th>
-<th data-quarto-table-cell-role="th">Popular vote</th>
-<th data-quarto-table-cell-role="th">Result</th>
-<th data-quarto-table-cell-role="th">%</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">135</td>
-<td>1988</td>
-<td>George H. W. Bush</td>
-<td>Republican</td>
-<td>48886597</td>
-<td>win</td>
-<td>53.518845</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div id="cell-16" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample 5 random rows</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>elections.sample(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Year</th>
-<th data-quarto-table-cell-role="th">Candidate</th>
-<th data-quarto-table-cell-role="th">Party</th>
-<th data-quarto-table-cell-role="th">Popular vote</th>
-<th data-quarto-table-cell-role="th">Result</th>
-<th data-quarto-table-cell-role="th">%</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">155</td>
-<td>2000</td>
-<td>Ralph Nader</td>
-<td>Green</td>
-<td>2882955</td>
-<td>loss</td>
-<td>2.741176</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">134</td>
-<td>1984</td>
-<td>Walter Mondale</td>
-<td>Democratic</td>
-<td>37577352</td>
-<td>loss</td>
-<td>40.729429</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">39</td>
-<td>1884</td>
-<td>Grover Cleveland</td>
-<td>Democratic</td>
-<td>4914482</td>
-<td>win</td>
-<td>48.884933</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">84</td>
-<td>1928</td>
-<td>Herbert Hoover</td>
-<td>Republican</td>
-<td>21427123</td>
-<td>win</td>
-<td>58.368524</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">177</td>
-<td>2016</td>
-<td>Jill Stein</td>
-<td>Green</td>
-<td>1457226</td>
-<td>loss</td>
-<td>1.073699</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div id="cell-17" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Randomly sample 4 names from the year 2000, with replacement</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>elections[elections[<span class="st">"Result"</span>] <span class="op">==</span> <span class="st">"win"</span>].sample(<span class="dv">4</span>, replace <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Year</th>
-<th data-quarto-table-cell-role="th">Candidate</th>
-<th data-quarto-table-cell-role="th">Party</th>
-<th data-quarto-table-cell-role="th">Popular vote</th>
-<th data-quarto-table-cell-role="th">Result</th>
-<th data-quarto-table-cell-role="th">%</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">53</td>
-<td>1896</td>
-<td>William McKinley</td>
-<td>Republican</td>
-<td>7112138</td>
-<td>win</td>
-<td>51.213817</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">131</td>
-<td>1980</td>
-<td>Ronald Reagan</td>
-<td>Republican</td>
-<td>43903230</td>
-<td>win</td>
-<td>50.897944</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1828</td>
-<td>Andrew Jackson</td>
-<td>Democratic</td>
-<td>642806</td>
-<td>win</td>
-<td>56.203927</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">168</td>
-<td>2012</td>
-<td>Barack Obama</td>
-<td>Democratic</td>
-<td>65915795</td>
-<td>win</td>
-<td>51.258484</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
 
 
 </section>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>pivot</title>
+<title>Pivot table</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -205,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/stats.html">STATISTICS</a></li><li class="breadcrumb-item"><a href="../pandas/aggregation.html">Aggregation</a></li><li class="breadcrumb-item"><a href="../pandas/pivot.html">Aggregation with <code>.pivot_table</code></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/stats.html">STATISTICS</a></li><li class="breadcrumb-item"><a href="../pandas/aggregation.html">Aggregation</a></li><li class="breadcrumb-item"><a href="../pandas/pivot.html">Pivot table</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -264,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/view_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Viewing Data</span></a>
+ <span class="menu-text">Index and Columns</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -292,12 +292,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Extracting values</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../pandas/selection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Selection: subset of columns</span></a>
   </div>
@@ -306,6 +300,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../pandas/filtering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Filtering: subset of rows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/extraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extracting values</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -450,7 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/pivot.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Aggregation with <code>.pivot_table</code></span></a>
+ <span class="menu-text">Pivot table</span></a>
   </div>
 </li>
       </ul>
@@ -526,26 +526,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#aggregation-with-.pivot_table" id="toc-aggregation-with-.pivot_table" class="nav-link active" data-scroll-target="#aggregation-with-.pivot_table">Aggregation with <code>.pivot_table</code></a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/stats.html">STATISTICS</a></li><li class="breadcrumb-item"><a href="../pandas/aggregation.html">Aggregation</a></li><li class="breadcrumb-item"><a href="../pandas/pivot.html">Pivot table</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Pivot table</h1>
+</div>
 
 
 
-<section id="aggregation-with-.pivot_table" class="level2">
-<h2 class="anchored" data-anchor-id="aggregation-with-.pivot_table">Aggregation with <code>.pivot_table</code></h2>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <p>We know now that <code>.groupby</code> gives us the ability to group and aggregate data across our DataFrame. The examples above formed groups using just one column in the DataFrame. It’s possible to group by multiple columns at once by passing in a list of column names to <code>.groupby</code>.</p>
 <p>Let’s consider the <code>names</code> dataset. In this problem, we will find the total number of baby names associated with each sex for each year. To do this, we’ll group by <em>both</em> the <code>"Year"</code> and <code>"Sex"</code> columns.</p>
-<div id="cell-2" class="cell">
+<div id="cell-1" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>names.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -609,7 +617,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="cell-3" class="cell">
+<div id="cell-2" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the total number of baby names associated with each sex for each year in the data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>names.groupby([<span class="st">"Year"</span>, <span class="st">"Sex"</span>])[[<span class="st">"Count"</span>]].<span class="bu">sum</span>().head(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -667,7 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This isn’t the most intuitive way of representing this data – and, because multi-indexed DataFrames have multiple dimensions in their index, they can often be difficult to use.</p>
 <p>Another strategy to aggregate across two columns is to create a pivot table. One set of values is used to create the index of the pivot table; another set is used to define the column names. The values contained in each cell of the table correspond to the aggregated data for each index-column pair.</p>
 <p>The best way to understand pivot tables is to see one in action. Let’s return to our original goal of summing the total number of names associated with each combination of year and sex. We’ll call the <code>pandas</code> <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot_table.html"><code>.pivot_table</code></a> method to create a new table.</p>
-<div id="cell-5" class="cell">
+<div id="cell-4" class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The `pivot_table` method is used to generate a Pandas pivot table</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>names.pivot_table(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    index <span class="op">=</span> <span class="st">"Year"</span>, </span>
@@ -735,7 +743,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <img src="https://raw.githubusercontent.com/fahadsultan/csc272_f23/main/assets/pivot.png" alt="first" width="100%" style="filter:invert(1)">
 </center>
 <!-- 
-```prkkzdzm https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/pivot.png
+```ylarzgyk https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/pivot.png
 ---
 height: 400px
 name: pivot_table
@@ -743,7 +751,7 @@ name: pivot_table
 A pivot table is a way of summarizing data in a DataFrame for a particular purpose. It makes heavy use of the aggregation function. A pivot table is itself a DataFrame, where the rows represent one variable that you're interested in, the columns another, and the cell's some aggregate value. A pivot table also tends to include marginal values (like sums) for each row and column.
 ``` -->
 <p>We can even include multiple values in the index or columns of our pivot tables.</p>
-<div id="cell-7" class="cell">
+<div id="cell-6" class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>names_pivot <span class="op">=</span> names.pivot_table(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span><span class="st">"Year"</span>,     <span class="co"># the rows (turned into index)</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    columns<span class="op">=</span><span class="st">"Sex"</span>,    <span class="co"># the column values</span></span>
@@ -828,7 +836,6 @@ A pivot table is a way of summarizing data in a DataFrame for a particular purpo
 </div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
