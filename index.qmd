@@ -21,7 +21,7 @@ Assigned Reading: [_Weapons of Math Destruction_ (Introduction) by Cathy O'Neil]
 
 ::: {.callout-caution}
 ## Programming Assignment 1 
-Please note that the [Programming Assignment 1](https://colab.research.google.com/drive/1UeK2EkDkRmLPyVbJ65_ild-kzeswaOgT?usp=sharing) is due this Friday at 11:59 PM.
+Please note that the [Programming Assignment 1](https://colab.research.google.com/drive/1UeK2EkDkRmLPyVbJ65_ild-kzeswaOgT?usp=sharing) is due this Monday at 2:30 PM.
 :::
 
 ::: {.callout-tip}
