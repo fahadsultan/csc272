@@ -561,7 +561,9 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#column-wise-axis0-default" id="toc-column-wise-axis0-default" class="nav-link" data-scroll-target="#column-wise-axis0-default">Column-wise: <code>axis=0</code> (default)</a></li>
   <li><a href="#row-wise-axis1" id="toc-row-wise-axis1" class="nav-link" data-scroll-target="#row-wise-axis1">Row-wise: <code>axis=1</code></a></li>
+  <li><a href="#anonymous-functions" id="toc-anonymous-functions" class="nav-link" data-scroll-target="#anonymous-functions">Anonymous functions</a></li>
   </ul></li>
+  <li><a href="#anonymous-functions-with-.apply" id="toc-anonymous-functions-with-.apply" class="nav-link" data-scroll-target="#anonymous-functions-with-.apply">Anonymous functions with <code>.apply</code></a></li>
   </ul>
 </nav>
     </div>
@@ -662,9 +664,35 @@ dtype: int64</code></pre>
 Length: 182, dtype: int64</code></pre>
 </div>
 </div>
-
-
 </section>
+<section id="anonymous-functions" class="level3">
+<h3 class="anchored" data-anchor-id="anonymous-functions">Anonymous functions</h3>
+<p>Anonymous functions are functions that are defined without a name.</p>
+<p>In Python, we use the <code>lambda</code> keyword to create anonymous functions.</p>
+<p>The syntax of a lambda function is:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">lambda</span> arguments: expression</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Lambda functions can have any number of arguments but only one expression, which is evaluated and returned, without using the <code>return</code> keyword.</p>
+<p>They are useful when we need a simple function that we will only use once.</p>
+<p>For example, let’s say we wanted to add 1 to each element in a DataFrame. We could use an anonymous function to do this:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>double <span class="op">=</span> <span class="kw">lambda</span> x: x <span class="op">*</span> <span class="dv">2</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>double(<span class="dv">5</span>) <span class="co"># returns 10</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>multiplyby2 <span class="op">=</span> double </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>multiplyby2(<span class="dv">5</span>) <span class="co"># returns 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that in the above example, <code>double</code> is not a function name per se. It is a variable that refers to the anonymous function <code>lambda x: x * 2</code>.</p>
+</section>
+</section>
+<section id="anonymous-functions-with-.apply" class="level2">
+<h2 class="anchored" data-anchor-id="anonymous-functions-with-.apply">Anonymous functions with <code>.apply</code></h2>
+<p>We can use anonymous functions with <code>.apply</code> to apply a function to each column or row of a DataFrame.</p>
+<p>For example, let’s say we wanted to find the number of unique values in each column of a DataFrame <code>data</code>. We could use the following code:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data.<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.nunique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Let’s say we wanted to count the total number of voters in an election. We can use <code>.apply</code> to answer that question using the following formula:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Popular vote'</span>] <span class="op">=</span> data.<span class="bu">apply</span>(<span class="kw">lambda</span> row: row[<span class="st">'total'</span>] <span class="op">*</span> row[<span class="st">'%'</span>] <span class="op">/</span> <span class="dv">100</span>, axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
 </section>
 
 </main> <!-- /main -->
