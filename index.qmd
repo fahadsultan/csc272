@@ -11,17 +11,15 @@ From the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you
 
 👇🏾 Below, you can find important links and important announcements.
 
+
 ::: {.callout-caution}
 
-## Written Assignment 1 
-Please note that the [Written Assignment 1](https://docs.google.com/document/d/1-V69jP6oYPr6TiiSsxq93TnL8xLxElhHIrCkQyicbzc/edit?usp=sharing) is due this Thursday at 11:59 PM.
-
-Assigned Reading: [_Weapons of Math Destruction_ (Introduction) by Cathy O'Neil](assets/WMD_Introduction.pdf)
+Please note that the [Written Assignment 2](https://courses.furman.edu/mod/feedback/view.php?id=726353) is due on Sept 12th (Thursday) at 11:59 PM.
 :::
 
 ::: {.callout-caution}
-## Programming Assignment 1 
-Please note that the [Programming Assignment 1](https://colab.research.google.com/drive/1UeK2EkDkRmLPyVbJ65_ild-kzeswaOgT?usp=sharing) is due this Monday at 2:30 PM.
+## Programming Assignment 2
+Please note that the [Programming Assignment 2](https://colab.research.google.com/drive/1Ak7a1FzXVPUqVzcxgqWNlyXNk3OK5TKG?usp=sharing) is due on Sept 16th (Monday) at 2:30 PM.
 :::
 
 ::: {.callout-tip}
@@ -30,3 +28,4 @@ I have an Open-Door Policy and am in my office (Riley Hall 200-D) between 9 AM -
 
 Alternatively, send me an email or schedule an appointment
 :::
+
