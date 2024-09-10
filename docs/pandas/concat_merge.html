@@ -327,14 +327,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/apply.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">User-Defined Functions</span></a>
+  <a href="../pandas/concat_merge.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Concatenation and Merging</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/concat_merge.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Concatenation and Merging</span></a>
+  <a href="../pandas/apply.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">User-Defined Functions</span></a>
   </div>
 </li>
       </ul>
@@ -561,12 +561,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="concatenating-dataframes" class="level2">
 <h2 class="anchored" data-anchor-id="concatenating-dataframes">Concatenating DataFrames</h2>
 <p>Another way to combine DataFrames is to concatenate them. Concatenation is a bit different from joining. When we join two DataFrames, we are combining them <em>horizontally</em> – that is, we are adding new columns to an existing DataFrame. Concatenation, on the other hand, is <em>generally</em> a <em>vertical</em> operation – we are adding new rows to an existing DataFrame.</p>
+<p><br></p>
 <center>
 <img src="https://pandas.pydata.org/docs/_images/08_concat_row.svg" alt="first" width="70%" style="filter:invert(1)">
 </center>
+<p><br></p>
 <center>
 <img src="https://pandas.pydata.org/docs/_images/merging_concat_basic.png" alt="first" width="50%" style="filter:invert(1)">
 </center>
+<p><br></p>
 <p><code>pd.concat</code> is the <code>pandas</code> method used to concatenate DataFrames together. It takes as input a list of DataFrames to be concatenated and returns a new DataFrame containing all of the rows from each input DataFrame in the input list.</p>
 <p>Let’s say we wanted to concatenate data from two different years in <code>babynames</code>. We can do so using the <a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code>pd.concat</code></a> method.</p>
 <div id="651c0361" class="cell">
@@ -684,6 +687,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="merging-dataframes" class="level2">
 <h2 class="anchored" data-anchor-id="merging-dataframes">Merging DataFrames</h2>
 <p>When working on data science projects, we’re unlikely to have absolutely all the data we want contained in a single DataFrame – a real-world data scientist needs to grapple with data coming from multiple sources. If we have access to multiple datasets with related information, we can merge two or more tables into a single DataFrame.</p>
+<p><br></p>
+<center>
+<img src="https://i.ibb.co/sKWBPM0/merge.png" alt="first" width="100%" style="filter:invert(1)">
+</center>
+<p><br></p>
 <p>To put this into practice, we’ll revisit the <code>elections</code> dataset.</p>
 <div id="08a04240" class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>elections.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -756,11 +764,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Say we want to understand the popularity of the names of each presidential candidate in 2020. To do this, we’ll need the combined data of <code>names</code> <em>and</em> <code>elections</code>.</p>
-<center>
-<img src="https://i.ibb.co/sKWBPM0/merge.png" alt="first" width="70%" style="filter:invert(1)">
-</center>
 <!-- 
-``` qclpbqrw https://i.ibb.co/0rnCMXG/merge1.png
+``` fkusefbw https://i.ibb.co/0rnCMXG/merge1.png
 ---
 width: 60%
 name: merge1
@@ -770,10 +775,8 @@ Merge operation on two DataFrames
 ``` -->
 <p>We’ll start by creating a new column containing the first name of each presidential candidate. This will help us join each name in <code>elections</code> to the corresponding name data in <code>names</code>.</p>
 <div id="b71b66be" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This `str` operation splits each candidate's full name at each </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># blank space, then takes just the candidiate's first name</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">"First Name"</span>] <span class="op">=</span> elections[<span class="st">"Candidate"</span>].<span class="bu">str</span>.split().<span class="bu">str</span>[<span class="dv">0</span>]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>elections.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">"First Name"</span>] <span class="op">=</span> elections[<span class="st">"Candidate"</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.split()[<span class="dv">0</span>])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>elections.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 

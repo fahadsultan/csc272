@@ -67,8 +67,8 @@ website:
             - section:
               href: pandas/wrangling.ipynb
               contents: 
-                - pandas/apply.ipynb
                 - pandas/concat_merge.ipynb
+                - pandas/apply.ipynb
             - section:
               href: encoding/encoding.ipynb
               contents:

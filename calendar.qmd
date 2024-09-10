@@ -8,7 +8,7 @@ Please note that this is a tentative plan and is subject to change.
 | # | TOPIC | READING | MEETING 1 | MEETING 2 | WRITTEN  ASSIGNMENT | PROGRAMMING ASSIGNMENT |
 |---|----|---|---|---|---|---|
 | 1 | Introduction | [McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics) |  [Intro](intro.qmd)  | [Pandas Intro](pandas/preliminaries.ipynb) | [WA1](https://docs.google.com/document/d/1-V69jP6oYPr6TiiSsxq93TnL8xLxElhHIrCkQyicbzc/edit?usp=sharing) | **[PA 1](https://colab.research.google.com/drive/1UeK2EkDkRmLPyVbJ65_ild-kzeswaOgT?usp=sharing)** |
-| 2 | Pandas 2 | [McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics) | [Selection, Filtering and Dropping](pandas/select_filter.ipynb) |  | [WA2](https://courses.furman.edu/mod/feedback/view.php?id=726353) | **[PA 2](https://colab.research.google.com/drive/1Ak7a1FzXVPUqVzcxgqWNlyXNk3OK5TKG?usp=sharing)** |
+| 2 | Pandas 1 | [McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics) | [Selection, Filtering and Dropping](pandas/select_filter.ipynb) | [Data Manipulation and Wrangling](pandas/wrangling.ipynb) | [WA2](https://courses.furman.edu/mod/feedback/view.php?id=726353) | **[PA 2](https://colab.research.google.com/drive/1Ak7a1FzXVPUqVzcxgqWNlyXNk3OK5TKG?usp=sharing)** |
 | 3 | Pandas 2 |[McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics)    |  |  | | |
 | 4 | Pandas 3 | [McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics) |  |  | | | 
 
