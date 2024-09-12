@@ -24,6 +24,8 @@ website:
         href: syllabus/appointment.md
       - text: "TA"
         href: ta.qmd
+      - text: "Set an Appointment"
+        href: https://calendly.com/ssultan-dpq/
   sidebar:
     - id: syllabus
       title: "Syllabus"

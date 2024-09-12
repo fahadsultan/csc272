@@ -194,6 +194,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../ta.html"> 
 <span class="menu-text">TA</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://calendly.com/ssultan-dpq/"> 
+<span class="menu-text">Set an Appointment</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -532,7 +536,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#concatenating-dataframes" id="toc-concatenating-dataframes" class="nav-link active" data-scroll-target="#concatenating-dataframes">Concatenating DataFrames</a></li>
-  <li><a href="#merging-dataframes" id="toc-merging-dataframes" class="nav-link" data-scroll-target="#merging-dataframes">Merging DataFrames</a></li>
+  <li><a href="#merging-dataframes" id="toc-merging-dataframes" class="nav-link" data-scroll-target="#merging-dataframes">Merging DataFrames</a>
+  <ul class="collapse">
+  <li><a href="#types-of-merges" id="toc-types-of-merges" class="nav-link" data-scroll-target="#types-of-merges">Types of Merges</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -765,7 +772,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Say we want to understand the popularity of the names of each presidential candidate in 2020. To do this, we’ll need the combined data of <code>names</code> <em>and</em> <code>elections</code>.</p>
 <!-- 
-``` fkusefbw https://i.ibb.co/0rnCMXG/merge1.png
+``` huerviik https://i.ibb.co/0rnCMXG/merge1.png
 ---
 width: 60%
 name: merge1
@@ -1044,8 +1051,77 @@ Merge operation on two DataFrames
 <center>
 <img src="https://raw.githubusercontent.com/fahadsultan/csc272_f23/main/assets/merge3.png" alt="first" width="80%" style="filter:invert(1)">
 </center>
+<section id="types-of-merges" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-merges">Types of Merges</h3>
+<p>There are five types of merges in <code>pandas</code>. The type of merge is determined by the <code>how</code> parameter in the <code>pd.merge</code> method. The five types of merges are:</p>
+<br>
+<center>
+<img src="https://data36.com/wp-content/uploads/2018/08/4-pandas-merge-inner-outer-left-right-1024x771.png" width="70%" style="filter:invert(1)">
+</center>
+<p><br></p>
+<ol type="1">
+<li><strong>Inner Merge</strong> (Default) <code>how='inner'</code>: This is the default type of merge in <code>pandas</code>. It returns only the rows that have matching values in both DataFrames.</li>
+</ol>
+<p><br></p>
+<center>
+<img src="https://pandas.pydata.org/docs/_images/merging_merge_on_key_inner.png" alt="first" width="100%" style="filter:invert(1)">
+</center>
+<br>
+<center>
+<img src="https://datacomy.com/data_analysis/pandas/merge/pandas-merge-inner-2.png" alt="first" width="40%" style="filter:invert(1)">
+</center>
+<p><br></p>
+<ol start="2" type="1">
+<li><strong>Outer Merge</strong> <code>how='outer'</code>: This merge returns all rows from both DataFrames. If a row has no match in the other DataFrame, the missing values are filled with <code>NaN</code>.</li>
+</ol>
+<p><br></p>
+<center>
+<img src="https://pandas.pydata.org/docs/_images/merging_merge_on_key_outer.png" alt="first" width="100%" style="filter:invert(1)">
+</center>
+<br>
+<center>
+<img src="https://datacomy.com/data_analysis/pandas/merge/pandas-merge-outer-2.png" alt="first" width="40%" style="filter:invert(1)">
+</center>
+<p><br></p>
+<ol start="3" type="1">
+<li><strong>Left Merge</strong> <code>how='left'</code>: This merge returns all rows from the left DataFrame and the matched rows from the right DataFrame. The result is <code>NaN</code> for the right DataFrame if there is no match.</li>
+</ol>
+<p><br></p>
+<center>
+<img src="https://pandas.pydata.org/docs/_images/merging_merge_on_key_left.png" alt="first" width="100%" style="filter:invert(1)">
+</center>
+<br>
+<center>
+<img src="https://datacomy.com/data_analysis/pandas/merge/pandas-merge-left-2.png" alt="first" width="40%" style="filter:invert(1)">
+</center>
+<p><br></p>
+<ol start="4" type="1">
+<li><strong>Right Merge</strong> <code>how='right'</code>: This merge returns all rows from the right DataFrame and the matched rows from the left DataFrame. The result is <code>NaN</code> for the left DataFrame if there is no match.</li>
+</ol>
+<p><br></p>
+<center>
+<img src="https://pandas.pydata.org/docs/_images/merging_merge_on_key_right.png" alt="first" width="100%" style="filter:invert(1)">
+</center>
+<br>
+<center>
+<img src="https://datacomy.com/data_analysis/pandas/merge/pandas-merge-outer-2.png" alt="first" width="40%" style="filter:invert(1)">
+</center>
+<p><br></p>
+<ol start="5" type="1">
+<li><strong>Cross Merge</strong> <code>how='cross'</code>: This merge returns the Cartesian product of the two DataFrames. That is, it returns all possible combinations of rows from both DataFrames.</li>
+</ol>
+<p><br></p>
+<center>
+<img src="https://pandas.pydata.org/docs/_images/merging_merge_cross.png" alt="first" width="100%" style="filter:invert(1)">
+</center>
+<p><br></p>
+<center>
+<img src="https://miro.medium.com/v2/resize:fit:1400/0*8Fsy94YE9M6stkT2.png" alt="first" width="50%" style="filter:invert(1)">
+</center>
+<p><br></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
