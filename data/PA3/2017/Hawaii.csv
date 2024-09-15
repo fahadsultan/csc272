@@ -1,6 +1,6 @@
-CountyId,State,County,TotalPop,Men,Women,Hispanic,White,Black,Native,Asian,Pacific,VotingAgeCitizen,Income,IncomeErr,IncomePerCap,IncomePerCapErr,Poverty,ChildPoverty,Professional,Service,Office,Construction,Production,Drive,Carpool,Transit,Walk,OtherTransp,WorkAtHome,MeanCommute,Employed,PrivateWork,PublicWork,SelfEmployed,FamilyWork,Unemployment
-15001,Hawaii,Hawaii County,196325,97677,98648,12.5,30.3,0.6,0.2,21.5,11.4,143220,56395,1657,26959,738,17.4,23.7,32.0,23.7,24.8,11.5,8.0,73.8,12.6,1.2,2.2,1.9,8.4,25.3,84962,69.7,19.5,10.5,0.3,6.8
-15003,Hawaii,Honolulu County,990060,498993,491067,9.6,18.7,2.2,0.1,41.8,8.7,707144,80078,978,33776,295,9.1,11.3,35.9,21.3,25.3,8.9,8.6,64.0,14.3,8.6,5.4,4.0,3.7,29.1,467165,72.4,21.8,5.6,0.1,4.5
-15005,Hawaii,Kalawao County,86,41,45,4.7,20.9,0.0,0.0,29.1,33.7,84,61750,11280,46024,7959,12.7,,22.2,38.1,20.6,0.0,19.0,32.8,9.4,0.0,40.6,10.9,6.3,6.6,63,34.9,61.9,3.2,0.0,0.0
-15007,Hawaii,Kauai County,71093,35337,35756,10.8,29.6,0.7,0.3,32.9,8.5,50395,72330,3242,30515,1027,9.1,8.3,28.7,29.6,22.7,10.5,8.5,80.0,9.0,0.8,2.9,1.3,6.1,22.4,35783,74.0,15.8,10.0,0.1,4.4
-15009,Hawaii,Maui County,164094,81933,82161,11.0,30.5,0.5,0.1,28.5,10.0,115625,72762,1654,32379,737,10.0,11.8,29.0,28.4,23.6,10.4,8.6,73.3,13.2,2.7,2.5,2.7,5.6,21.2,83785,76.0,15.2,8.4,0.4,4.9
+CountyId,County,TotalPop,Men,Women,Hispanic,White,Black,Native,Asian,Pacific,VotingAgeCitizen,Income,IncomeErr,IncomePerCapErr,Poverty,ChildPoverty,Professional,Service,Office,Construction,Production,Drive,Carpool,Transit,Walk,OtherTransp,WorkAtHome,MeanCommute,Employed,PrivateWork,PublicWork,SelfEmployed,FamilyWork,Unemployment
+15001,Hawaii County,196325,97677,98648,12.5,30.3,0.6,0.2,21.5,11.4,143220,56395,1657,738,17.4,23.7,32.0,23.7,24.8,11.5,8.0,73.8,12.6,1.2,2.2,1.9,8.4,25.3,84962,69.7,19.5,10.5,0.3,6.8
+15003,Honolulu County,990060,498993,491067,9.6,18.7,2.2,0.1,41.8,8.7,707144,80078,978,295,9.1,11.3,35.9,21.3,25.3,8.9,8.6,64.0,14.3,8.6,5.4,4.0,3.7,29.1,467165,72.4,21.8,5.6,0.1,4.5
+15005,Kalawao County,86,41,45,4.7,20.9,0.0,0.0,29.1,33.7,84,61750,11280,7959,12.7,,22.2,38.1,20.6,0.0,19.0,32.8,9.4,0.0,40.6,10.9,6.3,6.6,63,34.9,61.9,3.2,0.0,0.0
+15007,Kauai County,71093,35337,35756,10.8,29.6,0.7,0.3,32.9,8.5,50395,72330,3242,1027,9.1,8.3,28.7,29.6,22.7,10.5,8.5,80.0,9.0,0.8,2.9,1.3,6.1,22.4,35783,74.0,15.8,10.0,0.1,4.4
+15009,Maui County,164094,81933,82161,11.0,30.5,0.5,0.1,28.5,10.0,115625,72762,1654,737,10.0,11.8,29.0,28.4,23.6,10.4,8.6,73.3,13.2,2.7,2.5,2.7,5.6,21.2,83785,76.0,15.2,8.4,0.4,4.9
