@@ -1,0 +1,2 @@
+CensusId,State,County,TotalPop,Men,Women,Hispanic,White,Black,Native,Asian,Pacific,Citizen,Income,IncomeErr,IncomePerCap,IncomePerCapErr,Poverty,ChildPoverty,Professional,Service,Office,Construction,Production,Drive,Carpool,Transit,Walk,OtherTransp,WorkAtHome,MeanCommute,Employed,PrivateWork,PublicWork,SelfEmployed,FamilyWork,Unemployment
+11001,District of Columbia,District of Columbia,647484,306674,340810,10.2,35.6,48.0,0.2,3.6,0.0,485116,70848.0,843.0,47675,568,18.0,26.7,60.9,15.2,17.4,2.9,3.7,33.7,5.7,37.4,12.9,5.2,5.0,29.7,337815,70.0,25.4,4.4,0.1,9.6

@@ -1,0 +1,4 @@
+CountyId,State,County,TotalPop,Men,Women,Hispanic,White,Black,Native,Asian,Pacific,VotingAgeCitizen,Income,IncomeErr,IncomePerCap,IncomePerCapErr,Poverty,ChildPoverty,Professional,Service,Office,Construction,Production,Drive,Carpool,Transit,Walk,OtherTransp,WorkAtHome,MeanCommute,Employed,PrivateWork,PublicWork,SelfEmployed,FamilyWork,Unemployment
+10001,Delaware,Kent County,173145,83544,89601,6.8,62.7,24.1,0.6,2.0,0.0,128114,57647,1456,27420,778,13.0,18.4,33.5,19.8,22.9,9.9,13.8,82.1,9.6,1.2,1.8,1.1,4.2,26.3,78078,74.7,21.1,4.0,0.2,6.7
+10003,Delaware,New Castle County,555036,268818,286218,9.6,58.5,24.1,0.2,5.4,0.0,403642,68336,1106,34541,543,11.9,15.9,43.9,17.0,23.4,7.1,8.7,80.5,7.7,4.0,2.4,1.1,4.2,25.7,269164,84.7,12.0,3.2,0.1,6.5
+10005,Delaware,Sussex County,215551,104514,111037,9.2,74.9,12.1,0.4,1.2,0.0,165573,57901,1291,31874,737,12.0,20.8,33.3,18.7,24.0,11.2,12.8,83.4,7.3,0.7,1.6,1.3,5.6,25.3,94271,79.3,14.8,5.8,0.1,6.1
