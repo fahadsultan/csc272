@@ -958,7 +958,7 @@
     "href": "index.html",
     "title": "CSC-272: Data Mining",
     "section": "",
-    "text": "Hi! Welcome to the CSC-272 Introduction to Data Mining course website 👋🏾\nI am excited to talk math 🔢, programming 💻 and all-things data 📊 in this course with you!\nFrom the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you should be able to navigate to any topic relevant to the course. If that does not help, there should also be a search icon 🔍 in the top left corner ↗️\n👇🏾 Below, you can find important links and important announcements.\n\n\n\n\n\n\nCaution\n\n\n\nPlease note that my office is now in Riley Hall 200-H ✅, previously it was 200-D❌.\n\n\n\n\n\n\n\n\nCaution\n\n\n\nPlease note that the Written Assignment 2 is due on Sept 12th (Thursday) at 11:59 PM.\n\n\n\n\n\n\n\n\nProgramming Assignment 2\n\n\n\nPlease note that the Programming Assignment 2 is due on Sept 16th (Monday) at 2:30 PM.\n\n\n\n\n\n\n\n\nOpen-Door Policy\n\n\n\nI have an Open-Door Policy and am in my office (Riley Hall 200-D) between 9 AM - 5 PM most weekdays. Please drop by with your questions or just to say hi!\nAlternatively, send me an email or schedule an appointment",
+    "text": "Hi! Welcome to the CSC-272 Introduction to Data Mining course website 👋🏾\nI am excited to talk math 🔢, programming 💻 and all-things data 📊 in this course with you!\nFrom the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you should be able to navigate to any topic relevant to the course. If that does not help, there should also be a search icon 🔍 in the top left corner ↗️\n👇🏾 Below, you can find important links and important announcements.\n\n\n\n\n\n\nCaution\n\n\n\nPlease note that the Written Assignment 2 is due on Sept 12th (Thursday) at 11:59 PM.\n\n\n\n\n\n\n\n\nProgramming Assignment 2\n\n\n\nPlease note that the Programming Assignment 2 is due on Sept 16th (Monday) at 2:30 PM.\n\n\n\n\n\n\n\n\nOpen-Door Policy\n\n\n\nI have an Open-Door Policy and am in my office (Riley Hall 200-D) between 9 AM - 5 PM most weekdays. Please drop by with your questions or just to say hi!\nAlternatively, send me an email or schedule an appointment",
     "crumbs": [
       "Home"
     ]
@@ -1652,5 +1652,12 @@
       "Aggregation",
       "Pivot table"
     ]
+  },
+  {
+    "objectID": "WA/wa2.html",
+    "href": "WA/wa2.html",
+    "title": "",
+    "section": "",
+    "text": "pd.read_csv(fname) return an object of type\n\n\npd.DataFrame (n, d)\npd.Series (1-dimensional)\nscalar (0-dimensional)\nNone of the above\n\nAnswer: A\n\nheader=None in pd.read_csv(fname, header=None) means\n\n\nthe first row of the file being read is not a header (column names)\nthe first row of the file being read is a header (column names)\nthe first row of the file being read is a header (column names) and should be skipped\nNone of the above\n\nAnswer: A\n\nIn the names dataset, df[condition] where condition = (df['name']=='Fahad') & (df['sex']=='M') returns an object of type\n\n\npd.DataFrame with one or more rows that satisfy the condition\npd.Series: one row that satisfies the condition\nscalar: one value that satisfies the condition\nNone of the above\n\nAnswer: A\n\ndf.iloc[0] return an object of type\ndf.iloc[0:2] return an object of type\n\n\npd.DataFrame with only first two rows (2, d)\na list of two pd.Series objects, each of length d\na list of two pd.Series objects, each of length n\nNone of the above\n\n\ndf['col'] return an object of type pd.Series"
   }
 ]

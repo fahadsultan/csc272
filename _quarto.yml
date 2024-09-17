@@ -58,7 +58,6 @@ website:
                 - pandas/read_data.ipynb
                 - pandas/view_data.ipynb
                 - pandas/write_data.ipynb
-                - encoding/types.ipynb
             - section:
               href: pandas/select_filter.ipynb
               contents: 
@@ -74,6 +73,7 @@ website:
             - section:
               href: encoding/encoding.ipynb
               contents:
+                - encoding/types.ipynb
                 - encoding/text.ipynb
                 - encoding/network.ipynb
                 - encoding/sound.ipynb

@@ -1,4 +1,4 @@
-CensusId,County,TotalPop,Men,Women,Hispanic,White,Black,Native,Asian,Pacific,Citizen,Income,IncomeErr,IncomePerCapErr,Poverty,ChildPoverty,Professional,Service,Office,Construction,Production,Drive,Carpool,Transit,Walk,OtherTransp,WorkAtHome,MeanCommute,Employed,PrivateWork,PublicWork,SelfEmployed,FamilyWork,Unemployment
-10001,Kent,169509,81716,87793,6.5,63.7,23.4,0.6,2.1,0.0,125094,54976.0,1350.0,515,13.5,19.7,32.7,19.8,23.4,10.4,13.7,82.9,9.6,1.2,1.7,1.0,3.6,26.1,75246,73.4,22.4,3.9,0.3,8.4
-10003,New Castle,549643,265915,283728,9.2,59.8,23.6,0.2,5.0,0.0,398536,65476.0,783.0,435,11.4,15.4,42.6,17.3,24.6,6.9,8.7,80.0,8.3,4.3,2.3,1.0,4.1,25.5,268331,84.5,12.3,3.1,0.1,7.4
-10005,Sussex,207302,100782,106520,9.2,74.8,12.4,0.3,1.1,0.0,157976,53751.0,1168.0,532,12.6,21.6,30.5,21.0,23.5,11.7,13.3,82.7,7.7,0.9,2.2,1.6,4.9,25.0,90239,78.8,14.7,6.4,0.1,8.0
+CensusId,County,TotalPop,Men,Women,Hispanic,White,Black,Native,Asian,Pacific,Citizen,Income,IncomeErr,Poverty,ChildPoverty,Professional,Service,Office,Construction,Production,Drive,Carpool,Transit,Walk,OtherTransp,WorkAtHome,MeanCommute,Employed,PrivateWork,PublicWork,SelfEmployed,FamilyWork,Unemployment
+10001,Kent,169509,81716,87793,6.5,63.7,23.4,0.6,2.1,0.0,125094,54976.0,1350.0,13.5,19.7,32.7,19.8,23.4,10.4,13.7,82.9,9.6,1.2,1.7,1.0,3.6,26.1,75246,73.4,22.4,3.9,0.3,8.4
+10003,New Castle,549643,265915,283728,9.2,59.8,23.6,0.2,5.0,0.0,398536,65476.0,783.0,11.4,15.4,42.6,17.3,24.6,6.9,8.7,80.0,8.3,4.3,2.3,1.0,4.1,25.5,268331,84.5,12.3,3.1,0.1,7.4
+10005,Sussex,207302,100782,106520,9.2,74.8,12.4,0.3,1.1,0.0,157976,53751.0,1168.0,12.6,21.6,30.5,21.0,23.5,11.7,13.3,82.7,7.7,0.9,2.2,1.6,4.9,25.0,90239,78.8,14.7,6.4,0.1,8.0
