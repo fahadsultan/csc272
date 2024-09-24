@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -302,6 +331,58 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
+            <a href="./plotting/basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualizing Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plotting/anatomy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Anatomy of a Plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plotting/lineplots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Line Plots (Temporal Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plotting/scatter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Scatter Plots (<span class="math inline">\(\geq\)</span> 2 numeric variables)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./linearalgebra/vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Geometric Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linearalgebra/matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linearalgebra/nearestneighbor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nearest Neighbor</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
             <a href="./encoding/encoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Encoding</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
@@ -349,29 +430,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./encoding/time.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Time Series</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="./linearalgebra/vectors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geometric Interpretation</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./linearalgebra/matrices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Matrices</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./linearalgebra/nearestneighbor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Nearest Neighbor</span></a>
   </div>
 </li>
       </ul>
@@ -528,11 +586,11 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Caution
+Exam 1
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Please note that my office is now in Riley Hall <strong>200-H</strong> ✅, previously it was <s>200-D</s>❌.</p>
+<p>The first exam is on <strong>Monday, October 7th</strong> from 2:30 - 4:30 PM. The exam will be held in the Riley Hall labs. Please make sure to bring your laptop and charger.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -545,7 +603,7 @@ Caution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Please note that the <a href="https://courses.furman.edu/mod/feedback/view.php?id=726353">Written Assignment 2</a> is due on Sept 12th (Thursday) at 11:59 PM.</p>
+<p>Please note that the <a href="https://docs.google.com/document/d/1n8M6qgJDjavnEMseZcPBTyJiAgOeXKt5RZPnknGsNK8/edit?usp=sharing">Written Assignment 3</a> is due on Sept 30th (Monday) at 11:59 PM.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -558,7 +616,7 @@ Programming Assignment 2
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Please note that the <a href="https://colab.research.google.com/drive/1Ak7a1FzXVPUqVzcxgqWNlyXNk3OK5TKG?usp=sharing">Programming Assignment 2</a> is due on Sept 16th (Monday) at 2:30 PM.</p>
+<p>Please note that the <a href="https://colab.research.google.com/drive/1mh6c5G73v8DiE8vUSsKowesd493lACRw?usp=sharing">Programming Assignment 4</a> is due on Sept 30th (Monday) at 2:30 PM.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">

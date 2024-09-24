@@ -9,11 +9,11 @@ Please note that this is a tentative plan and is subject to change.
 |---|----|---|---|---|---|---|
 | 1 | Introduction | [McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics) |  [Intro](intro.qmd)  | [Pandas Intro](pandas/preliminaries.ipynb) | [WA1](https://docs.google.com/document/d/1-V69jP6oYPr6TiiSsxq93TnL8xLxElhHIrCkQyicbzc/edit?usp=sharing) | **[PA 1](https://colab.research.google.com/drive/1UeK2EkDkRmLPyVbJ65_ild-kzeswaOgT?usp=sharing)** |
 | 2 | Pandas 1 | [McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics) | [Selection, Filtering and Dropping](pandas/select_filter.ipynb) | [Data Manipulation and Wrangling](pandas/wrangling.ipynb) | [WA2](https://courses.furman.edu/mod/feedback/view.php?id=726353) | **[PA 2](https://colab.research.google.com/drive/1Ak7a1FzXVPUqVzcxgqWNlyXNk3OK5TKG?usp=sharing)** |
-| 3 | Pandas 2 |[McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics)    | [Concatenation](pandas/concat_merge.ipynb#concatenating-dataframes) | [Merging](pandas/concat_merge.ipynb#merging-dataframes) | | |
-| 4 | Pandas 3 | [McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics) |  |  | | | 
+| 3 | Pandas 2 |[McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics)    | [Concatenation](pandas/concat_merge.ipynb#concatenating-dataframes) | [Merging](pandas/concat_merge.ipynb#merging-dataframes) | --- |[PA3](https://colab.research.google.com/drive/1ueg6ymvboNdV61IFJf0CCkFgzuGB1STu?usp=sharing) |
+| 4 | Pandas 3 | [McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics) | [Apply](pandas/apply.html) | [Apply](pandas/apply.html) | [WA3](https://docs.google.com/document/d/1n8M6qgJDjavnEMseZcPBTyJiAgOeXKt5RZPnknGsNK8/edit?usp=sharing) | [PA4](https://colab.research.google.com/drive/1mh6c5G73v8DiE8vUSsKowesd493lACRw?usp=sharing) | 
 
 <center>
-_Project phase 1 due_ \
+<!-- _Project phase 1 due_ \ -->
 _EXAM 1_
 </center>
 
@@ -27,9 +27,9 @@ _EXAM 1_
 | 8 | Naive Bayes | SLP 3rd edition Ch.4 |  |  | | |
 
 <center>
-_Project phase 2 due_ \
+<!-- _Project phase 2 due_ \ -->
 _EXAM 2_
-</center>
+</center> 
 
 <br/>
 
@@ -41,6 +41,6 @@ _EXAM 2_
 | 12 | Linear Models 2 | Skiena Ch.9 (9.1-9.5)|  |  | | |
 
 <center>
-_Project phase 3 due_ \
+<!-- _Project phase 3 due_ \ -->
 _FINAL EXAM_
 </center>

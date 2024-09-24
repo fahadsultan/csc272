@@ -71,6 +71,17 @@ website:
                 - pandas/concat_merge.ipynb
                 - pandas/apply.ipynb
             - section:
+              href: plotting/basics.ipynb
+              contents:
+                - plotting/anatomy.ipynb
+                - plotting/lineplots.ipynb
+                - plotting/scatter.ipynb
+            - section:
+              href: linearalgebra/vectors.ipynb
+              contents:
+                - linearalgebra/matrices.ipynb
+                - linearalgebra/nearestneighbor.qmd
+            - section:
               href: encoding/encoding.ipynb
               contents:
                 - encoding/types.ipynb
@@ -80,11 +91,6 @@ website:
                 - encoding/images.ipynb
                 - encoding/spatial.ipynb
                 - encoding/time.ipynb
-            - section:
-              href: linearalgebra/vectors.ipynb
-              contents:
-                - linearalgebra/matrices.ipynb
-                - linearalgebra/nearestneighbor.qmd
         - section:
           href: stats/stats.ipynb
           contents:

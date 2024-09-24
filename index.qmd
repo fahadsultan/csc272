@@ -12,18 +12,18 @@ From the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you
 👇🏾 Below, you can find important links and important announcements.
 
 ::: {.callout-caution}
-
-Please note that my office is now in Riley Hall **200-H** ✅, previously it was <s>200-D</s>❌.
+# Exam 1
+The first exam is on **Monday, October 7th** from 2:30 - 4:30 PM. The exam will be held in the Riley Hall labs. Please make sure to bring your laptop and charger.
 :::
 
 ::: {.callout-caution}
 
-Please note that the [Written Assignment 2](https://courses.furman.edu/mod/feedback/view.php?id=726353) is due on Sept 12th (Thursday) at 11:59 PM.
+Please note that the [Written Assignment 3](https://docs.google.com/document/d/1n8M6qgJDjavnEMseZcPBTyJiAgOeXKt5RZPnknGsNK8/edit?usp=sharing) is due on Sept 30th (Monday) at 11:59 PM.
 :::
 
 ::: {.callout-caution}
 ## Programming Assignment 2
-Please note that the [Programming Assignment 2](https://colab.research.google.com/drive/1Ak7a1FzXVPUqVzcxgqWNlyXNk3OK5TKG?usp=sharing) is due on Sept 16th (Monday) at 2:30 PM.
+Please note that the [Programming Assignment 4](https://colab.research.google.com/drive/1mh6c5G73v8DiE8vUSsKowesd493lACRw?usp=sharing) is due on Sept 30th (Monday) at 2:30 PM.
 :::
 
 ::: {.callout-tip}
