@@ -13,7 +13,10 @@ From the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you
 
 ::: {.callout-caution}
 # Exam 1
-The first exam is on **Monday, October 7th** from 2:30 - 4:30 PM. The exam will be held in the Riley Hall labs. Please make sure to bring your laptop and charger.
+
+The first exam is on **Monday, October 7th** from 2:30 - 4:30 PM. The exam will be held in the Riley Hall labs. 
+
+Please make sure to bring your laptop and charger.
 :::
 
 ::: {.callout-caution}

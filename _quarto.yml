@@ -80,7 +80,7 @@ website:
               href: linearalgebra/vectors.ipynb
               contents:
                 - linearalgebra/matrices.ipynb
-                - linearalgebra/nearestneighbor.qmd
+                - linearalgebra/nearestneighbor.ipynb
             - section:
               href: encoding/encoding.ipynb
               contents:

@@ -585,8 +585,23 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#creating-a-scatter-plot" id="toc-creating-a-scatter-plot" class="nav-link active" data-scroll-target="#creating-a-scatter-plot">Creating a Scatter Plot</a></li>
+  <li><a href="#marker-size" id="toc-marker-size" class="nav-link" data-scroll-target="#marker-size">Marker Size</a></li>
+  <li><a href="#marker-color" id="toc-marker-color" class="nav-link" data-scroll-target="#marker-color">Marker Color</a></li>
+  <li><a href="#marker-shape" id="toc-marker-shape" class="nav-link" data-scroll-target="#marker-shape">Marker Shape</a></li>
+  <li><a href="#pandas-and-seaborn" id="toc-pandas-and-seaborn" class="nav-link" data-scroll-target="#pandas-and-seaborn">Pandas and Seaborn</a></li>
+  <li><a href="#please-dont" id="toc-please-dont" class="nav-link" data-scroll-target="#please-dont">Please don’t</a>
+  <ul class="collapse">
+  <li><a href="#overplot" id="toc-overplot" class="nav-link" data-scroll-target="#overplot">Overplot</a></li>
+  <li><a href="#use-scatter-for-categorical-data" id="toc-use-scatter-for-categorical-data" class="nav-link" data-scroll-target="#use-scatter-for-categorical-data">Use Scatter for Categorical Data</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -613,18 +628,34 @@ window.Quarto = {
 <p>Scatter plots are a great way to give you a sense of trends, concentrations, and outliers. This notebook will show you how to create scatter plots using Matplotlib.</p>
 <p>A scatter plot uses dots to represent values for <u>two (or more) different numeric variables</u>. The position of each dot on the horizontal and vertical axis indicates values for an individual data point. Scatter plots are used to observe relationships between variables.</p>
 <p>Scatter plots are used when you want to show the relationship between two variables. Scatter plots are sometimes called correlation plots because they show how two variables are correlated.</p>
-<section id="scatter-plots-2-or-more-numeric-features" class="level4">
-<h4 class="anchored" data-anchor-id="scatter-plots-2-or-more-numeric-features">Scatter Plots (2 or more numeric features)</h4>
-<p>Scatter plots are one of the most useful tools in representing the relationship between two numerical features. They are particularly important in gauging the strength (correlation) of the relationship between features. Knowledge of these relationships can then motivate decisions in our modeling process.</p>
-<p>In Matplotlib, we use the function plt.scatter to generate a scatter plot. Notice that unlike our examples of plotting single-variable distributions, now we specify sequences of values to be plotted along the x axis and the y axis.</p>
-<div id="cell-3" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>wb <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/fahadsultan/csc272/main/data/world_bank.csv'</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(data <span class="op">=</span> wb, <span class="op">\</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                     x <span class="op">=</span><span class="st">'Adult literacy rate: Female: % ages 15 and older: 2005-14'</span>, <span class="op">\</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                     y <span class="op">=</span> <span class="st">"per capita: </span><span class="sc">% g</span><span class="st">rowth: 2016"</span>)</span>
+<section id="creating-a-scatter-plot" class="level3">
+<h3 class="anchored" data-anchor-id="creating-a-scatter-plot">Creating a Scatter Plot</h3>
+<p>To create a scatter plot, we can use the <code>scatter()</code> function from the Matplotlib library. The <code>scatter()</code> function takes two arguments: the x-axis values and the y-axis values.</p>
+<p>Here is an example of how to create a simple line plot using the Matplotlib library:</p>
+<div id="cell-2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Female adult literacy against </span><span class="sc">% g</span><span class="st">rowth"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load us cities data</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>url  <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/fahadsultan/csc343/refs/heads/main/data/uscities.csv'</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>us_mainland <span class="op">=</span> data[(data[<span class="st">'state_id'</span>] <span class="op">!=</span> <span class="st">'HI'</span>) <span class="op">&amp;</span> <span class="op">\</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                   (data[<span class="st">'state_id'</span>] <span class="op">!=</span> <span class="st">'AK'</span>) <span class="op">&amp;</span> <span class="op">\</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                   (data[<span class="st">'state_id'</span>] <span class="op">!=</span> <span class="st">'PR'</span>)]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># creating figure and axis</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># scatter plot</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>ax.scatter(us_mainland[<span class="st">'lng'</span>], us_mainland[<span class="st">'lat'</span>], s<span class="op">=</span><span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># setting labels and title</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Longitude'</span>)<span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Latitude'</span>)<span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Cities in the US Mainland'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -633,14 +664,21 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>In Seaborn, we call the function sns.scatterplot. We use the x and y parameters to indicate the values to be plotted along the x and y axes, respectively. By using the hue parameter, we can specify a third variable to be used for coloring each scatter point.</p>
-<div id="cell-5" class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data <span class="op">=</span> wb, <span class="op">\</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                y <span class="op">=</span> <span class="st">"per capita: </span><span class="sc">% g</span><span class="st">rowth: 2016"</span>, <span class="op">\</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                x <span class="op">=</span> <span class="st">"Adult literacy rate: Female: % ages 15 and older: 2005-14"</span>, </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                hue <span class="op">=</span> <span class="st">"Continent"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Female adult literacy against </span><span class="sc">% g</span><span class="st">rowth"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="marker-size" class="level2">
+<h2 class="anchored" data-anchor-id="marker-size">Marker Size</h2>
+<p>The size of the markers can be adjusted using the <code>s</code> parameter. This parameter controls the size of the markers. The default value is <code>s=20</code>.</p>
+<div id="cell-4" class="cell" data-execution_count="166">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating figure and axis</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">3</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># scatter plot</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].scatter(us_mainland[<span class="st">'lng'</span>], us_mainland[<span class="st">'lat'</span>], s<span class="op">=</span><span class="fl">0.1</span>)<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].scatter(us_mainland[<span class="st">'lng'</span>], us_mainland[<span class="st">'lat'</span>], s<span class="op">=</span><span class="dv">5</span>)<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># setting labels and title</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">'s=0.1'</span>)<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">'s=5'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -649,16 +687,17 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="cell-6" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(data <span class="op">=</span> wb, <span class="op">\</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                    y <span class="op">=</span> <span class="st">"per capita: </span><span class="sc">% g</span><span class="st">rowth: 2016"</span>, <span class="op">\</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                    x <span class="op">=</span> <span class="st">"Adult literacy rate: Female: % ages 15 and older: 2005-14"</span>, </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                    hue <span class="op">=</span> <span class="st">"Continent"</span>, <span class="op">\</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                    size<span class="op">=</span><span class="st">"Population: millions: 2016"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>ax.figure.set_size_inches(<span class="dv">8</span>, <span class="dv">6</span>)<span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Female adult literacy against </span><span class="sc">% g</span><span class="st">rowth"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>s</code> parameter accepts a scalar or an array of the same length as the number of data points.</p>
+<div id="cell-6" class="cell" data-execution_count="178">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating figure and axis</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>scaling_factor <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">50_000</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># scatter plot</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ax.scatter(us_mainland[<span class="st">'lng'</span>], us_mainland[<span class="st">'lat'</span>], s<span class="op">=</span>us_mainland[<span class="st">'population'</span>]<span class="op">*</span>scaling_factor)<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># setting labels and title</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Cities in the US Mainland, Size proportional to Population'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -667,8 +706,181 @@ window.Quarto = {
 </div>
 </div>
 </div>
+</section>
+<section id="marker-color" class="level2">
+<h2 class="anchored" data-anchor-id="marker-color">Marker Color</h2>
+<p>The color of the markers can be adjusted using the <code>c</code> parameter. The <code>c</code> parameter accepts a scalar or an array of the same length as the number of data points. This parameter controls the color of the markers. The default value is <code>c='b'</code> (blue).</p>
+<div id="cell-8" class="cell" data-execution_count="195">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> us_mainland[us_mainland[<span class="st">'state_id'</span>] <span class="op">==</span> <span class="st">'SC'</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ga <span class="op">=</span> us_mainland[us_mainland[<span class="st">'state_id'</span>] <span class="op">==</span> <span class="st">'GA'</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># creating figure and axis</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># scatter plot</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>ax.scatter(sc[<span class="st">'lng'</span>], sc[<span class="st">'lat'</span>], c<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'South Carolina'</span>)<span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ax.scatter(ga[<span class="st">'lng'</span>], ga[<span class="st">'lat'</span>], c<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Georgia'</span>)<span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># setting labels and title</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Cities in South Carolina and Georgia'</span>)<span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">12</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="scatter_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="297">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> us_mainland[us_mainland[<span class="st">'state_id'</span>] <span class="op">==</span> <span class="st">'SC'</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ga <span class="op">=</span> us_mainland[us_mainland[<span class="st">'state_id'</span>] <span class="op">==</span> <span class="st">'GA'</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># creating figure and axis</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># scatter plot</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>sc_plt <span class="op">=</span> ax.scatter(sc[<span class="st">'lng'</span>], sc[<span class="st">'lat'</span>], c<span class="op">=</span>sc[<span class="st">'density'</span>], cmap<span class="op">=</span><span class="st">'Reds'</span>)<span class="op">;</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># setting labels and title</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Cities in South Carolina, color proportional to Density'</span>)<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plt.colorbar(sc_plt, label<span class="op">=</span><span class="st">'Density'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="scatter_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="marker-shape" class="level2">
+<h2 class="anchored" data-anchor-id="marker-shape">Marker Shape</h2>
+<p>The shape of the markers can be adjusted using the marker parameter. The marker parameter accepts a string that specifies the shape of the markers. The default value is marker=‘o’ (circle).</p>
+<p>Here are some of the marker shapes that you can use:</p>
+<ul>
+<li>‘o’ - Circle</li>
+<li>‘s’ - Square</li>
+<li>‘^’ - Triangle</li>
+<li>‘v’ - Inverted Triangle</li>
+<li>‘x’ - X</li>
+<li>‘+’ - Plus</li>
+<li>’*’ - Star</li>
+<li>‘D’ - Diamond</li>
+<li>‘d’ - Thin Diamond</li>
+<li>‘p’ - Pentagon</li>
+<li>‘h’ - Hexagon</li>
+<li>‘H’ - Rotated Hexagon</li>
+<li>‘&lt;’ - Left Triangle</li>
+<li>‘&gt;’ - Right Triangle</li>
+</ul>
+<div id="cell-11" class="cell" data-execution_count="236">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(sc[<span class="st">'lng'</span>], sc[<span class="st">'lat'</span>], label<span class="op">=</span><span class="st">'South Carolina'</span>, color<span class="op">=</span><span class="st">'red'</span>,  marker<span class="op">=</span><span class="st">'x'</span>)<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ax.scatter(ga[<span class="st">'lng'</span>], ga[<span class="st">'lat'</span>], label<span class="op">=</span><span class="st">'Georgia'</span>,        color<span class="op">=</span><span class="st">'blue'</span>, marker<span class="op">=</span><span class="st">'^'</span>)<span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">12</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="scatter_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pandas-and-seaborn" class="level2">
+<h2 class="anchored" data-anchor-id="pandas-and-seaborn">Pandas and Seaborn</h2>
+<p>Pandas and Seaborn are great libraries for data manipulation and data visualization, respectively. Pandas is used to load and manipulate data, while Seaborn is used to visualize data. Seaborn is built on top of Matplotlib and provides a high-level interface for creating attractive and informative statistical graphics.</p>
+<p>Creating a scatter plot using seaborn and pandas requires fewer lines of code compared to using Matplotlib.</p>
+<div id="cell-13" class="cell" data-execution_count="260">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>sc.plot(kind<span class="op">=</span><span class="st">'scatter'</span>, <span class="op">\</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">'lng'</span>, <span class="op">\</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">'lat'</span>, <span class="op">\</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        s<span class="op">=</span>sc[<span class="st">'population'</span>]<span class="op">/</span><span class="dv">1000</span>, <span class="op">\</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>ax, <span class="op">\</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'red'</span>, <span class="op">\</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">'South Carolina'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="scatter_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Scatter plots can be created using the <code>scatterplot()</code> function from the Seaborn library. The <code>scatterplot()</code> function takes two arguments: the x-axis values and the y-axis values.</p>
+<p>Note that when using seaborn and pandas, the axis labels are automatically set to the column names of the DataFrame.</p>
+<div id="cell-15" class="cell" data-execution_count="261">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data<span class="op">=</span>us_mainland, <span class="op">\</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                x<span class="op">=</span><span class="st">'lng'</span>, <span class="op">\</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                y<span class="op">=</span><span class="st">'lat'</span>, <span class="op">\</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                size<span class="op">=</span><span class="st">'population'</span>, <span class="op">\</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                sizes <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">1000</span>), <span class="op">\</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                hue<span class="op">=</span><span class="st">'state_id'</span>, <span class="op">\</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                ax<span class="op">=</span>ax, <span class="op">\</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>                legend<span class="op">=</span><span class="va">False</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="scatter_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="please-dont" class="level2">
+<h2 class="anchored" data-anchor-id="please-dont">Please don’t</h2>
+<section id="overplot" class="level3">
+<h3 class="anchored" data-anchor-id="overplot">Overplot</h3>
+<p>Overplotting occurs when two or more data points are plotted on top of each other. This can make it difficult to see the true distribution of the data. Overplotting can be avoided by adjusting the transparency of the markers using the alpha parameter. The alpha parameter accepts a scalar between 0 and 1. This parameter controls the transparency of the markers. The default value is alpha=1.</p>
+<div id="cell-17" class="cell" data-execution_count="290">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/fahadsultan/csc272/refs/heads/main/data/loan_approval_dataset.csv'</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>ax.scatter(data[<span class="st">'cibil_score'</span>], data[<span class="st">'income_annum'</span>])<span class="op">;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Credit Score'</span>)<span class="op">;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Annual Income'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="scatter_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="use-scatter-for-categorical-data" class="level3">
+<h3 class="anchored" data-anchor-id="use-scatter-for-categorical-data">Use Scatter for Categorical Data</h3>
+<p>Scatter plots are used to show the relationship between two numeric variables. If you have categorical data, you should use a different type of plot, such as a bar plot or a box plot.</p>
+<div id="cell-19" class="cell" data-execution_count="295">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ax.scatter(data[<span class="st">'loan_term'</span>], data[<span class="st">'loan_amount'</span>], alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Loan Amount'</span>)<span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Loan Term'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="scatter_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
