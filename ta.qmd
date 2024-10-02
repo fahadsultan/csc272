@@ -3,4 +3,4 @@ title: "Teaching Assistant"
 toc: false
 ---
 
-<iframe src="http://64.225.111.177/" height="800px" width="1100px" style="filter:invert(1)"></iframe>
+<iframe src="http://127.0.0.1:5500/index.html" height="800px" width="1100px" ></iframe>
