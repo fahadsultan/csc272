@@ -2215,14 +2215,15 @@ Name: Entity, dtype: int64</code></pre>
 </section>
 <section id="question-5.-how-do-the-number-of-hurricanes-in-100-years-from-1900---1999-compare-to-the-number-of-hurricanes-in-24-years-from-2000---2024" class="level2">
 <h2 class="anchored" data-anchor-id="question-5.-how-do-the-number-of-hurricanes-in-100-years-from-1900---1999-compare-to-the-number-of-hurricanes-in-24-years-from-2000---2024">Question 5. How do the number of hurricanes in 100 years from 1900 - 1999 compare to the number of hurricanes in 24 years from 2000 - 2024?</h2>
-<div id="cell-45" class="cell" data-execution_count="437">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>data          <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/fahadsultan/csc272/refs/heads/main/data/GlobalLandTemperaturesByCity_decade.csv'</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'date'</span>]  <span class="op">=</span> pd.to_datetime(data[<span class="st">'dt'</span>])</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'year'</span>]  <span class="op">=</span> data[<span class="st">'date'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.year)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'month'</span>] <span class="op">=</span> data[<span class="st">'date'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.month)</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'day'</span>] <span class="op">=</span> data[<span class="st">'date'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.day)</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="437">
+<div id="cell-45" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>data          <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/fahadsultan/csc272/refs/heads/main/data/GlobalLandTemperaturesByCity_decade.csv'</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'date'</span>]  <span class="op">=</span> pd.to_datetime(data[<span class="st">'dt'</span>])</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'year'</span>]  <span class="op">=</span> data[<span class="st">'date'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.year)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'month'</span>] <span class="op">=</span> data[<span class="st">'date'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.month)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'day'</span>] <span class="op">=</span> data[<span class="st">'date'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.day)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -2314,9 +2315,15 @@ Name: Entity, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-46" class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Latitude'</span>] <span class="op">=</span> data[<span class="st">'Latitude'</span>].<span class="bu">apply</span>(convert_lat)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Longitude'</span>] <span class="op">=</span> data[<span class="st">'Longitude'</span>].<span class="bu">apply</span>(convert_lon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-46" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'year'</span>].<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>2010</code></pre>
+</div>
+</div>
+<div id="cell-47" class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Latitude'</span>] <span class="op">=</span> data[<span class="st">'Latitude'</span>].<span class="bu">apply</span>(convert_lat)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Longitude'</span>] <span class="op">=</span> data[<span class="st">'Longitude'</span>].<span class="bu">apply</span>(convert_lon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img align="right" src="https://assets.science.nasa.gov/content/dam/science/esd/eo/woc/images/globaltemp/global_gis_2022.png"></p>
 </section>
@@ -2336,38 +2343,38 @@ Name: Entity, dtype: int64</code></pre>
 <p>Each city should be represented by a different color in the plot.</p>
 <p>The plot should have a title, x-axis label, y-axis label, and a legend.</p>
 <p>Additionally, draw a horizontal line at y=0 to represent the baseline temperature in 1900.</p>
-<div id="cell-48" class="cell" data-execution_count="470">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> data[data[<span class="st">'year'</span>]<span class="op">&gt;=</span> <span class="dv">1900</span>]</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>atlanta     <span class="op">=</span> temperatures[temperatures[<span class="st">'City'</span>]<span class="op">==</span><span class="st">'Atlanta'</span>]</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>lahore      <span class="op">=</span> temperatures[temperatures[<span class="st">'City'</span>]<span class="op">==</span><span class="st">'Calcutta'</span>]</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>tokyo       <span class="op">=</span> temperatures[temperatures[<span class="st">'City'</span>]<span class="op">==</span><span class="st">'Tokyo'</span>]</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>nairobi     <span class="op">=</span> temperatures[temperatures[<span class="st">'City'</span>]<span class="op">==</span><span class="st">'Nairobi'</span>]</span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>dublin      <span class="op">=</span> temperatures[temperatures[<span class="st">'City'</span>]<span class="op">==</span><span class="st">'Dublin'</span>]</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>atlanta_aug <span class="op">=</span> atlanta[(atlanta[<span class="st">'month'</span>] <span class="op">==</span> <span class="dv">6</span>) <span class="op">&amp;</span> (atlanta[<span class="st">'day'</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>lahore_aug  <span class="op">=</span> lahore[(lahore[<span class="st">'month'</span>] <span class="op">==</span> <span class="dv">6</span>) <span class="op">&amp;</span> (lahore[<span class="st">'day'</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>tokyo_aug  <span class="op">=</span> tokyo[(tokyo[<span class="st">'month'</span>] <span class="op">==</span> <span class="dv">6</span>) <span class="op">&amp;</span> (tokyo[<span class="st">'day'</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>nairobi_aug <span class="op">=</span> nairobi[(nairobi[<span class="st">'month'</span>] <span class="op">==</span> <span class="dv">6</span>) <span class="op">&amp;</span> (nairobi[<span class="st">'day'</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>dublin_aug  <span class="op">=</span> dublin[(dublin[<span class="st">'month'</span>] <span class="op">==</span> <span class="dv">6</span>) <span class="op">&amp;</span> (dublin[<span class="st">'day'</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>atlanta_aug[<span class="st">'delta'</span>]    <span class="op">=</span> atlanta_aug[<span class="st">'AverageTemperature'</span>]<span class="op">-</span>atlanta_aug[<span class="st">'AverageTemperature'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>lahore_aug[<span class="st">'delta'</span>]     <span class="op">=</span> lahore_aug[<span class="st">'AverageTemperature'</span>]<span class="op">-</span>lahore_aug[<span class="st">'AverageTemperature'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>tokyo_aug[<span class="st">'delta'</span>]      <span class="op">=</span> tokyo_aug[<span class="st">'AverageTemperature'</span>]<span class="op">-</span>tokyo_aug[<span class="st">'AverageTemperature'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>nairobi_aug[<span class="st">'delta'</span>]    <span class="op">=</span> nairobi_aug[<span class="st">'AverageTemperature'</span>]<span class="op">-</span>nairobi_aug[<span class="st">'AverageTemperature'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>dublin_aug[<span class="st">'delta'</span>]     <span class="op">=</span> dublin_aug[<span class="st">'AverageTemperature'</span>]<span class="op">-</span>dublin_aug[<span class="st">'AverageTemperature'</span>].iloc[<span class="dv">0</span>]</span>
-<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>plt.plot(atlanta_aug[<span class="st">'year'</span>], atlanta_aug[<span class="st">'delta'</span>], label<span class="op">=</span><span class="st">'Atlanta'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
-<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>plt.plot(lahore_aug[<span class="st">'year'</span>],  lahore_aug[<span class="st">'delta'</span>],  label<span class="op">=</span><span class="st">'Calcutta'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
-<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>plt.plot(tokyo_aug[<span class="st">'year'</span>],   tokyo_aug[<span class="st">'delta'</span>],   label<span class="op">=</span><span class="st">'Tokyo'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
-<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>plt.plot(nairobi_aug[<span class="st">'year'</span>], nairobi_aug[<span class="st">'delta'</span>], label<span class="op">=</span><span class="st">'Nairobi'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
-<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>plt.plot(dublin_aug[<span class="st">'year'</span>],  dublin_aug[<span class="st">'delta'</span>],  label<span class="op">=</span><span class="st">'Dublin'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
-<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1900</span>, <span class="dv">2020</span>], [<span class="dv">0</span>, <span class="dv">0</span>], <span class="st">'k--'</span>)</span>
-<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-49" class="cell" data-execution_count="470">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> data[data[<span class="st">'year'</span>]<span class="op">&gt;=</span> <span class="dv">1900</span>]</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>atlanta     <span class="op">=</span> temperatures[temperatures[<span class="st">'City'</span>]<span class="op">==</span><span class="st">'Atlanta'</span>]</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>lahore      <span class="op">=</span> temperatures[temperatures[<span class="st">'City'</span>]<span class="op">==</span><span class="st">'Calcutta'</span>]</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>tokyo       <span class="op">=</span> temperatures[temperatures[<span class="st">'City'</span>]<span class="op">==</span><span class="st">'Tokyo'</span>]</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>nairobi     <span class="op">=</span> temperatures[temperatures[<span class="st">'City'</span>]<span class="op">==</span><span class="st">'Nairobi'</span>]</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>dublin      <span class="op">=</span> temperatures[temperatures[<span class="st">'City'</span>]<span class="op">==</span><span class="st">'Dublin'</span>]</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>atlanta_aug <span class="op">=</span> atlanta[(atlanta[<span class="st">'month'</span>] <span class="op">==</span> <span class="dv">6</span>) <span class="op">&amp;</span> (atlanta[<span class="st">'day'</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>lahore_aug  <span class="op">=</span> lahore[(lahore[<span class="st">'month'</span>] <span class="op">==</span> <span class="dv">6</span>) <span class="op">&amp;</span> (lahore[<span class="st">'day'</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>tokyo_aug  <span class="op">=</span> tokyo[(tokyo[<span class="st">'month'</span>] <span class="op">==</span> <span class="dv">6</span>) <span class="op">&amp;</span> (tokyo[<span class="st">'day'</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>nairobi_aug <span class="op">=</span> nairobi[(nairobi[<span class="st">'month'</span>] <span class="op">==</span> <span class="dv">6</span>) <span class="op">&amp;</span> (nairobi[<span class="st">'day'</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>dublin_aug  <span class="op">=</span> dublin[(dublin[<span class="st">'month'</span>] <span class="op">==</span> <span class="dv">6</span>) <span class="op">&amp;</span> (dublin[<span class="st">'day'</span>] <span class="op">==</span> <span class="dv">1</span>)]</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>atlanta_aug[<span class="st">'delta'</span>]    <span class="op">=</span> atlanta_aug[<span class="st">'AverageTemperature'</span>]<span class="op">-</span>atlanta_aug[<span class="st">'AverageTemperature'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>lahore_aug[<span class="st">'delta'</span>]     <span class="op">=</span> lahore_aug[<span class="st">'AverageTemperature'</span>]<span class="op">-</span>lahore_aug[<span class="st">'AverageTemperature'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>tokyo_aug[<span class="st">'delta'</span>]      <span class="op">=</span> tokyo_aug[<span class="st">'AverageTemperature'</span>]<span class="op">-</span>tokyo_aug[<span class="st">'AverageTemperature'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>nairobi_aug[<span class="st">'delta'</span>]    <span class="op">=</span> nairobi_aug[<span class="st">'AverageTemperature'</span>]<span class="op">-</span>nairobi_aug[<span class="st">'AverageTemperature'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>dublin_aug[<span class="st">'delta'</span>]     <span class="op">=</span> dublin_aug[<span class="st">'AverageTemperature'</span>]<span class="op">-</span>dublin_aug[<span class="st">'AverageTemperature'</span>].iloc[<span class="dv">0</span>]</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>plt.plot(atlanta_aug[<span class="st">'year'</span>], atlanta_aug[<span class="st">'delta'</span>], label<span class="op">=</span><span class="st">'Atlanta'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>plt.plot(lahore_aug[<span class="st">'year'</span>],  lahore_aug[<span class="st">'delta'</span>],  label<span class="op">=</span><span class="st">'Calcutta'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>plt.plot(tokyo_aug[<span class="st">'year'</span>],   tokyo_aug[<span class="st">'delta'</span>],   label<span class="op">=</span><span class="st">'Tokyo'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>plt.plot(nairobi_aug[<span class="st">'year'</span>], nairobi_aug[<span class="st">'delta'</span>], label<span class="op">=</span><span class="st">'Nairobi'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>plt.plot(dublin_aug[<span class="st">'year'</span>],  dublin_aug[<span class="st">'delta'</span>],  label<span class="op">=</span><span class="st">'Dublin'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">1900</span>, <span class="dv">2020</span>], [<span class="dv">0</span>, <span class="dv">0</span>], <span class="st">'k--'</span>)</span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>/var/folders/l9/y8y3rmys2sl93tzzph3dl7jw0000gr/T/ipykernel_30118/4155621840.py:17: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
@@ -2403,7 +2410,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="PA5_files/figure-html/cell-39-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="PA5_files/figure-html/cell-40-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -2416,16 +2423,16 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <p>Make a scatter plot of the change in temperature for each city. The x-axis should represent the longitude, and the y-axis should represent the latitude. The color of the points should represent the change in temperature for each city, between 1900 and 2024.</p>
 <p>The plot should have a title, x-axis label, y-axis label, and a legend.</p>
 <p>Use <code>cmap=coolwarm</code> as the colormap for the scatter plot. You can make a colorbar using <code>plt.colorbar(sc)</code> where <code>sc</code> is the scatter plot object, returned by <code>plt.scatter()</code>.</p>
-<div id="cell-50" class="cell" data-execution_count="486">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Latitude'</span>] <span class="op">=</span> data[<span class="st">'Latitude'</span>].<span class="bu">apply</span>(convert_lat)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Longitude'</span>] <span class="op">=</span> data[<span class="st">'Longitude'</span>].<span class="bu">apply</span>(convert_lon)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> data[(data[<span class="st">'year'</span>]<span class="op">==</span><span class="dv">1900</span>) <span class="op">&amp;</span> (data[<span class="st">'month'</span>]<span class="op">==</span><span class="dv">8</span>) <span class="op">&amp;</span> (data[<span class="st">'day'</span>]<span class="op">==</span><span class="dv">1</span>)]</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>end   <span class="op">=</span> data[(data[<span class="st">'year'</span>]<span class="op">==</span><span class="dv">2000</span>) <span class="op">&amp;</span> (data[<span class="st">'month'</span>]<span class="op">==</span><span class="dv">8</span>) <span class="op">&amp;</span> (data[<span class="st">'day'</span>]<span class="op">==</span><span class="dv">1</span>)]</span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(start, end[[<span class="st">'AverageTemperature'</span>, <span class="st">'City'</span>, <span class="st">'Country'</span>]], on<span class="op">=</span>[<span class="st">'City'</span>, <span class="st">'Country'</span>])</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>merged[<span class="st">'diff'</span>] <span class="op">=</span> merged[<span class="st">'AverageTemperature_y'</span>] <span class="op">-</span> merged[<span class="st">'AverageTemperature_x'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-51" class="cell" data-execution_count="486">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Latitude'</span>] <span class="op">=</span> data[<span class="st">'Latitude'</span>].<span class="bu">apply</span>(convert_lat)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Longitude'</span>] <span class="op">=</span> data[<span class="st">'Longitude'</span>].<span class="bu">apply</span>(convert_lon)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> data[(data[<span class="st">'year'</span>]<span class="op">==</span><span class="dv">1900</span>) <span class="op">&amp;</span> (data[<span class="st">'month'</span>]<span class="op">==</span><span class="dv">8</span>) <span class="op">&amp;</span> (data[<span class="st">'day'</span>]<span class="op">==</span><span class="dv">1</span>)]</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>end   <span class="op">=</span> data[(data[<span class="st">'year'</span>]<span class="op">==</span><span class="dv">2000</span>) <span class="op">&amp;</span> (data[<span class="st">'month'</span>]<span class="op">==</span><span class="dv">8</span>) <span class="op">&amp;</span> (data[<span class="st">'day'</span>]<span class="op">==</span><span class="dv">1</span>)]</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(start, end[[<span class="st">'AverageTemperature'</span>, <span class="st">'City'</span>, <span class="st">'Country'</span>]], on<span class="op">=</span>[<span class="st">'City'</span>, <span class="st">'Country'</span>])</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>merged[<span class="st">'diff'</span>] <span class="op">=</span> merged[<span class="st">'AverageTemperature_y'</span>] <span class="op">-</span> merged[<span class="st">'AverageTemperature_x'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -2483,24 +2490,24 @@ Cell <span class="ansi-green-fg">In[246], line 5</span>, in <span class="ansi-cy
 </div>
 </div>
 </div>
-<div id="cell-51" class="cell" data-execution_count="489">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> ax.scatter(merged[<span class="st">'Longitude'</span>], merged[<span class="st">'Latitude'</span>], s<span class="op">=</span><span class="dv">20</span>, c<span class="op">=</span>merged[<span class="st">'diff'</span>], cmap<span class="op">=</span><span class="st">'coolwarm'</span>)</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co"># sc = ax[0].scatter(start['Longitude'], start['Latitude'], c=start['AverageTemperature'])</span></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>plt.colorbar(sc)</span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="co"># sc = ax[1].scatter(end['Longitude'], end['Latitude'], c=end['AverageTemperature'])</span></span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.colorbar(sc)</span></span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.grid()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-52" class="cell" data-execution_count="489">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> ax.scatter(merged[<span class="st">'Longitude'</span>], merged[<span class="st">'Latitude'</span>], s<span class="op">=</span><span class="dv">20</span>, c<span class="op">=</span>merged[<span class="st">'diff'</span>], cmap<span class="op">=</span><span class="st">'coolwarm'</span>)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co"># sc = ax[0].scatter(start['Longitude'], start['Latitude'], c=start['AverageTemperature'])</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>plt.colorbar(sc)</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="co"># sc = ax[1].scatter(end['Longitude'], end['Latitude'], c=end['AverageTemperature'])</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.colorbar(sc)</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.grid()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="PA5_files/figure-html/cell-41-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="PA5_files/figure-html/cell-42-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
