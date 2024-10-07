@@ -11,22 +11,25 @@ From the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you
 
 👇🏾 Below, you can find important links and important announcements.
 
+
 ::: {.callout-caution}
-# Exam 1
-
-The first exam is on **Monday, October 7th** from 2:30 - 4:30 PM. The exam will be held in the Riley Hall labs. 
-
-Please make sure to bring your laptop and charger.
+# Written Assignment 3
+Please note that the [Written Assignment 3](https://docs.google.com/document/d/1n8M6qgJDjavnEMseZcPBTyJiAgOeXKt5RZPnknGsNK8/edit?usp=sharing) is now due on <u><b>Oct 11th (Monday) at 11:59 PM</b></u>.
 :::
 
 ::: {.callout-caution}
-
-Please note that the [Written Assignment 3](https://docs.google.com/document/d/1n8M6qgJDjavnEMseZcPBTyJiAgOeXKt5RZPnknGsNK8/edit?usp=sharing) is due on Sept 30th (Monday) at 11:59 PM.
+# Programming Assignment 4
+Please note that the [Programming Assignment 4](https://colab.research.google.com/drive/1mh6c5G73v8DiE8vUSsKowesd493lACRw?usp=sharing) is now due on <u><b>Oct 11th (Monday) at 11:59 PM</b></u>.
 :::
 
 ::: {.callout-caution}
-## Programming Assignment 2
-Please note that the [Programming Assignment 4](https://colab.research.google.com/drive/1mh6c5G73v8DiE8vUSsKowesd493lACRw?usp=sharing) is due on Sept 30th (Monday) at 2:30 PM.
+# Programming Assignment 5
+Please note that the [Programming Assignment 5](https://colab.research.google.com/drive/1mh6c5G73v8DiE8vUSsKowesd493lACRw?usp=sharing) is due before next lab on Oct 21st (Monday) at 2:30 PM.
+:::
+
+::: {.callout-tip}
+# Mister CatGPTA 🐈‍⬛
+The TA of the course [Mister CatGPTA](/ta.html) is now available remotely to help you with your questions. 
 :::
 
 ::: {.callout-tip}

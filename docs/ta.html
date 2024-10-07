@@ -195,7 +195,12 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<iframe src="https://furmancs.com/" height="800px" width="1100px">
+<script>
+    function resizeIframe(iframe) {
+        iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+    }
+</script>
+<iframe src="https://furmancs.com/tabot/" onload="resizeIframe(this)" height="800px" width="1100px" scrolling="yes">
 </iframe>
 
 
