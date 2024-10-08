@@ -3,32 +3,17 @@
 
 ## Breakdown
 
-**New:**
 
-| Component | Percentage | Change |
-|---------|------| --- |
-| Written Assignments | 12% | +2% |
-| Programming Assignments | 12% | +2% |
-| Class Participation | 10% | 0% |
-| Midterm  | 17% | +2% |
-| Final Exam  | 25% | 0% |
-| Project | 24% | +4% |
+| <font color="lightgreen">Component | <font color="red"><s>Percentage<br/>(Pre-Helene)<s> | <font color="lightgreen">Percentage (New)</font> | <font color="lightgreen">$\Delta$ Change |
+|---------|------| --- | --- |
+| <font color="lightgreen">Written Assignments</font> | <font color="red"><s>10%</s> | <font color="lightgreen">12% | <font color="lightgreen">+2% |
+| <font color="lightgreen">Programming Assignments</font> | <font color="red"><s>10%</s> | <font color="lightgreen">12% | <font color="lightgreen">+2% |
+| <font color="lightgreen">Class Participation</font>  | <font color="red"><s>10%</s> | <font color="lightgreen">10% | <font color="lightyellow">0% |
+| <s><font color="red">Exam 1</font></s> | <font color="red"><s>10%</s> | <font color="red">--- | <font color="red">---  |
+| <s><font color="red">Exam 2</font></s> **<font color="lightgreen">Midterm</font>**   | <font color="red"><s>15%</s> | <font color="lightgreen">17% | <font color="lightgreen">+2% |
+| <font color="lightgreen">Final Exam</font>   |<font color="red"><s>25%</s> | <font color="lightgreen">25% | <font color="lightyellow">0% |
+| <font color="lightgreen">Project</font>  | <font color="red"><s>20%</s> | <font color="lightgreen">24% | <font color="lightgreen">+4% |
 
-<br/>
-_Previously_:
-<s>
-
-| Component | Percentage |
-|---------|------|
-| Written Assignments | 10% |
-| Programming Assignments | 10% |
-| Class Participation | 10% | 
-| Exam 1  | 10% |
-| Exam 2  | 15% |
-| Final Exam  | 25% |
-| Project | 20% |
-
-</s>
 
 ## Scale 
 (+/- at instructor's discretion)
