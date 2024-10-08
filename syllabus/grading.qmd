@@ -3,6 +3,21 @@
 
 ## Breakdown
 
+**New:**
+
+| Component | Percentage | Change |
+|---------|------| --- |
+| Written Assignments | 12% | +2% |
+| Programming Assignments | 12% | +2% |
+| Class Participation | 10% | 0% |
+| Midterm  | 17% | +2% |
+| Final Exam  | 25% | 0% |
+| Project | 24% | +4% |
+
+<br/>
+_Previously_:
+<s>
+
 | Component | Percentage |
 |---------|------|
 | Written Assignments | 10% |
@@ -12,6 +27,8 @@
 | Exam 2  | 15% |
 | Final Exam  | 25% |
 | Project | 20% |
+
+</s>
 
 ## Scale 
 (+/- at instructor's discretion)

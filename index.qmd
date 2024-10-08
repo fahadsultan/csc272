@@ -14,12 +14,12 @@ From the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you
 
 ::: {.callout-caution}
 # Written Assignment 3
-Please note that the [Written Assignment 3](https://docs.google.com/document/d/1n8M6qgJDjavnEMseZcPBTyJiAgOeXKt5RZPnknGsNK8/edit?usp=sharing) is now due on <u><b>Oct 11th (Friday) at 11:59 PM</b></u>.
+Please note that the [Written Assignment 3](https://docs.google.com/document/d/1n8M6qgJDjavnEMseZcPBTyJiAgOeXKt5RZPnknGsNK8/edit?usp=sharing) is now due on <u><b>Oct 18th (Friday) at 11:59 PM</b></u>.
 :::
 
 ::: {.callout-caution}
 # Programming Assignment 4
-Please note that the [Programming Assignment 4](https://colab.research.google.com/drive/1mh6c5G73v8DiE8vUSsKowesd493lACRw?usp=sharing) is now due on <u><b>Oct 11th (Friday) at 11:59 PM</b></u>.
+Please note that the [Programming Assignment 4](https://colab.research.google.com/drive/1mh6c5G73v8DiE8vUSsKowesd493lACRw?usp=sharing) is now due on <u><b>Oct 18th (Friday) at 11:59 PM</b></u>.
 :::
 
 ::: {.callout-caution}
