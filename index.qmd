@@ -11,7 +11,11 @@ From the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you
 
 👇🏾 Below, you can find important links and important announcements.
 
-
+::: {.callout-caution}
+# Midterm
+The midterm exam is on <u><b>Oct 28th (Monday) from 2:30 - 4:30 PM</b></u>.
+::: 
+ 
 ::: {.callout-caution}
 # Written Assignment 3
 Please note that the [Written Assignment 3](https://docs.google.com/document/d/1n8M6qgJDjavnEMseZcPBTyJiAgOeXKt5RZPnknGsNK8/edit?usp=sharing) is now due on <u><b>Oct 18th (Friday) at 11:59 PM</b></u>.

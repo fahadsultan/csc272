@@ -590,8 +590,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#geometry-of-matrices" id="toc-geometry-of-matrices" class="nav-link active" data-scroll-target="#geometry-of-matrices">Geometry of Matrices</a></li>
-  <li><a href="#geometry-of-vectors" id="toc-geometry-of-vectors" class="nav-link" data-scroll-target="#geometry-of-vectors">Geometry of Vectors</a>
+  <li><a href="#geometry-of-vectors" id="toc-geometry-of-vectors" class="nav-link active" data-scroll-target="#geometry-of-vectors">Geometry of Vectors</a>
   <ul class="collapse">
   <li><a href="#vectors-as-points-in-feature-space" id="toc-vectors-as-points-in-feature-space" class="nav-link" data-scroll-target="#vectors-as-points-in-feature-space">1. Vectors as Points in Feature Space</a></li>
   <li><a href="#vectors-as-directions-in-feature-space" id="toc-vectors-as-directions-in-feature-space" class="nav-link" data-scroll-target="#vectors-as-directions-in-feature-space">2. Vectors as directions in feature space</a></li>
@@ -628,10 +627,6 @@ window.Quarto = {
 </header>
 
 
-<section id="geometry-of-matrices" class="level2">
-<h2 class="anchored" data-anchor-id="geometry-of-matrices">Geometry of Matrices</h2>
-<p>An (n, d) matrix can be interpreted as a collection of n vectors in d-dimensional space.</p>
-</section>
 <section id="geometry-of-vectors" class="level2">
 <h2 class="anchored" data-anchor-id="geometry-of-vectors">Geometry of Vectors</h2>
 <p>Vectors have two common geometric interpretations:</p>
@@ -648,7 +643,7 @@ window.Quarto = {
 </center>
 <!-- <center><img  width="60%" src="https://d2l.ai/_images/grid-points.svg"></center> -->
 <p>This geometric point of view allows us to consider the problem on a more abstract level. No longer faced with some insurmountable seeming problem like classifying pictures as either cats or dogs, we can start considering tasks abstractly as collections of points in space and picturing the task as discovering how to separate two distinct clusters of points.</p>
-<div id="cell-5" class="cell" data-execution_count="11">
+<div id="cell-5" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -703,7 +698,7 @@ name: par-vec
 Any vector can be visualized as an arrow in the plane. In this case, every vector drawn is a representation of the vector $(3, 2)^\top$
 ``` -->
 <!-- <center><img width="50%" src="https://d2l.ai/_images/par-vec.svg"></center> -->
-<div id="cell-8" class="cell" data-execution_count="5">
+<div id="cell-8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
@@ -746,55 +741,51 @@ We can visualize vector addition by first following one vector, and then another
 ``` -->
 <!-- <center><img width="50%" src="https://d2l.ai/_images/vec-add.svg"></center> -->
 <p>Vector subtraction has a similar interpretation. By considering the identity that <span class="math inline">\(\mathbf{u} = \mathbf{v} + (\mathbf{u} - \mathbf{v})\)</span>, we see that the vector <span class="math inline">\(\mathbf{u} - \mathbf{v}\)</span> is the direction that takes us from the point <span class="math inline">\(\mathbf{v}\)</span> to the point <span class="math inline">\(\mathbf{u}\)</span>.</p>
-<div id="cell-12" class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vector1 <span class="op">=</span> df[[<span class="st">'x'</span>, <span class="st">'y'</span>]].iloc[<span class="dv">0</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>vector2 <span class="op">=</span> df[[<span class="st">'x'</span>, <span class="st">'y'</span>]].iloc[<span class="dv">1</span>]</span>
+<div id="cell-12" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vector1 <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>vector2 <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span> <span class="op">=</span> vector1 <span class="op">+</span> vector2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cell-13" class="cell" data-execution_count="169">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span> <span class="op">=</span> pd.Series(vector1) <span class="op">+</span> pd.Series(vector2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cell-14" class="cell" data-execution_count="171">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="171">
-<pre><code>0    4
-1    6
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sum_vector <span class="op">=</span> vector1 <span class="op">+</span> vector2</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>sum_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>0    3
+1    1
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="cell-15" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>vector1 <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>])</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>vector2 <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span> <span class="op">=</span> vector1 <span class="op">+</span> vector2</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting vector 1</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, vector1[<span class="dv">0</span>], vector1[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span>vector1[<span class="dv">0</span>]<span class="op">+</span>displacement, y<span class="op">=</span>vector1[<span class="dv">1</span>], <span class="op">\</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>             s<span class="op">=</span><span class="ss">f"(%s, %s)"</span> <span class="op">%</span> (vector1[<span class="dv">0</span>], vector1[<span class="dv">1</span>]), size<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting vector 2</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>plt.quiver(vector1[<span class="dv">0</span>], vector1[<span class="dv">1</span>], vector2[<span class="dv">0</span>], vector2[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'magenta'</span>)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span>vector2[<span class="dv">0</span>]<span class="op">+</span>displacement, y<span class="op">=</span>vector2[<span class="dv">1</span>], <span class="op">\</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>             s<span class="op">=</span><span class="ss">f"(%s, %s)"</span> <span class="op">%</span> (vector2[<span class="dv">0</span>], vector2[<span class="dv">1</span>]), size<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, <span class="bu">sum</span>[<span class="dv">0</span>], <span class="bu">sum</span>[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'lime'</span>)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span><span class="bu">sum</span>[<span class="dv">0</span>]<span class="op">+</span>displacement, y<span class="op">=</span><span class="bu">sum</span>[<span class="dv">1</span>], <span class="op">\</span></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>             s<span class="op">=</span><span class="ss">f"(%s, %s)"</span> <span class="op">%</span> (<span class="bu">sum</span>[<span class="dv">0</span>], <span class="bu">sum</span>[<span class="dv">1</span>]), size<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'vector1'</span>, <span class="st">'vector2'</span>, <span class="st">'sum'</span>], loc<span class="op">=</span><span class="st">'upper left'</span>)<span class="op">;</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the x and y axes</span></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>)<span class="op">;</span></span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-13" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>vector1 <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>vector2 <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span> <span class="op">=</span> vector1 <span class="op">+</span> vector2</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting vector 1</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, vector1[<span class="dv">0</span>], vector1[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span>vector1[<span class="dv">0</span>]<span class="op">+</span>displacement, y<span class="op">=</span>vector1[<span class="dv">1</span>], <span class="op">\</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>             s<span class="op">=</span><span class="ss">f"(%s, %s)"</span> <span class="op">%</span> (vector1[<span class="dv">0</span>], vector1[<span class="dv">1</span>]), size<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting vector 2</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.quiver(vector1[<span class="dv">0</span>], vector1[<span class="dv">1</span>], vector2[<span class="dv">0</span>], vector2[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'magenta'</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span>vector2[<span class="dv">0</span>]<span class="op">+</span>displacement, y<span class="op">=</span>vector2[<span class="dv">1</span>], <span class="op">\</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>             s<span class="op">=</span><span class="ss">f"(%s, %s)"</span> <span class="op">%</span> (vector2[<span class="dv">0</span>], vector2[<span class="dv">1</span>]), size<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, <span class="bu">sum</span>[<span class="dv">0</span>], <span class="bu">sum</span>[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'lime'</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span><span class="bu">sum</span>[<span class="dv">0</span>]<span class="op">+</span>displacement, y<span class="op">=</span><span class="bu">sum</span>[<span class="dv">1</span>], <span class="op">\</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>             s<span class="op">=</span><span class="ss">f"(%s, %s)"</span> <span class="op">%</span> (<span class="bu">sum</span>[<span class="dv">0</span>], <span class="bu">sum</span>[<span class="dv">1</span>]), size<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'vector1'</span>, <span class="st">'vector2'</span>, <span class="st">'sum'</span>], loc<span class="op">=</span><span class="st">'upper left'</span>)<span class="op">;</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the x and y axes</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>)<span class="op">;</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="vectors_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="vectors_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -822,10 +813,10 @@ $$ \|\mathbf{x}\| > 0 \textrm{ for all } \mathbf{x} \neq 0. $$
 
 Many functions are valid norms and different norms encode different notions of size. The Euclidean norm that we all learned in elementary school geometry when calculating the hypotenuse of a right triangle is the square root of the sum of squares of a vector’s elements. Formally, this is called the $l_2$ norm and expressed as
 --> <span class="math display">\[ \|\mathbf{x}\|_2 = \sqrt{\sum_{i=1}^n x_i^2} \]</span></p>
-<div id="cell-17" class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> pd.Series(vector1)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>l2_norm <span class="op">=</span> (x<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>l2_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-15" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> pd.Series(vector1)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>l2_norm <span class="op">=</span> (x<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>l2_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="32">
 <pre><code>2.23606797749979</code></pre>
 </div>
@@ -833,23 +824,23 @@ Many functions are valid norms and different norms encode different notions of s
 <p>The <span class="math inline">\(l_1\)</span> norm is also common and the associated measure is called the Manhattan distance. By definition, the <span class="math inline">\(l_1\)</span> norm sums the absolute values of a vector’s elements:</p>
 <p><span class="math display">\[ \|\mathbf{x}\|_1 = \sum_{i=1}^n \left|x_i \right| \]</span></p>
 <p>Compared to the <span class="math inline">\(l_2\)</span> norm, it is less sensitive to outliers. To compute the <span class="math inline">\(l_1\)</span> norm, we compose the absolute value with the sum operation.</p>
-<div id="cell-19" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>l1_norm <span class="op">=</span> x.<span class="bu">abs</span>().<span class="bu">sum</span>()</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>l1_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-17" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>l1_norm <span class="op">=</span> x.<span class="bu">abs</span>().<span class="bu">sum</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>l1_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>6</code></pre>
 </div>
 </div>
 <p>Both the <span class="math inline">\(l_1\)</span> and <span class="math inline">\(l_2\)</span> norms are special cases of the more general norms:</p>
 <p><span class="math display">\[ \|\mathbf{x}\|_p = \left(\sum_{i=1}^n \left|x_i \right|^p \right)^{1/p}. \]</span></p>
-<div id="cell-21" class="cell" data-execution_count="181">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>vec <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>])</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>lp_norm <span class="op">=</span> ((<span class="bu">abs</span>(vec))<span class="op">**</span>p).<span class="bu">sum</span>()<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>p)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>lp_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>vec <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>])</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>lp_norm <span class="op">=</span> ((<span class="bu">abs</span>(vec))<span class="op">**</span>p).<span class="bu">sum</span>()<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>p)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>lp_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="181">
 <pre><code>12.651489979526238</code></pre>
 </div>
@@ -860,20 +851,20 @@ Many functions are valid norms and different norms encode different notions of s
 <p>One of the most fundamental operations in linear algebra (and all of data science and machine learning) is the dot product.</p>
 <p>Given two vectors <span class="math inline">\(\textbf{x}, \textbf{y} \in \mathbb{R}^d\)</span>, their <em>dot product</em> <span class="math inline">\(\textbf{x}^{\top} \textbf{y}\)</span> (also known as <em>inner product</em> <span class="math inline">\(\langle \textbf{x}, \textbf{y} \rangle\)</span>) is a sum over the products of the elements at the same position:</p>
 <p><span class="math display">\[\textbf{x}^\top \textbf{y} = \sum_{i=1}^{d} x_i y_i\]</span></p>
-<div id="cell-23" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> pd.Series([<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>x.dot(y) <span class="co"># 1*4 + 2*5 + 3*6 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-21" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> pd.Series([<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>x.dot(y) <span class="co"># 1*4 + 2*5 + 3*6 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>32</code></pre>
 </div>
 </div>
 <p>Equivalently, we can calculate the dot product of two vectors by performing an elementwise multiplication followed by a sum:</p>
-<div id="cell-25" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(x <span class="op">*</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-23" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(x <span class="op">*</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>32</code></pre>
 </div>
@@ -904,35 +895,35 @@ Many functions are valid norms and different norms encode different notions of s
 <p>This will prove to be a helpful formula when understanding objects geometrically.</p>
 <p>It is reasonable to ask: why is computing the angle useful? Consider the problem of classifying text data. We might want the topic or sentiment in the text to not change if we write twice as long of document that says the same thing.</p>
 <p>For some encoding (such as counting the number of occurrences of words in some vocabulary), this corresponds to a doubling of the vector encoding the document, so again we can use the angle.</p>
-<div id="cell-28" class="cell" data-execution_count="213">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="dv">0</span>, <span class="dv">2</span>])</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">0</span>])</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>v.dot(w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-26" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="dv">0</span>, <span class="dv">2</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">0</span>])</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>v.dot(w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="213">
 <pre><code>0</code></pre>
 </div>
 </div>
-<div id="cell-29" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> acos</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> l2_norm(vec):</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (vec<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="dv">0</span>, <span class="dv">2</span>])</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">0</span>])</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-27" class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> acos</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> l2_norm(vec):</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (vec<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="dv">0</span>, <span class="dv">2</span>])</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">0</span>])</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>0.0</code></pre>
 </div>
 </div>
-<div id="cell-30" class="cell" data-execution_count="217">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> acos, pi</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> acos(v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w)))</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">==</span> pi <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-28" class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> acos, pi</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> acos(v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w)))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">==</span> pi <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="217">
 <pre><code>True</code></pre>
 </div>
@@ -946,59 +937,65 @@ Many functions are valid norms and different norms encode different notions of s
 <p><span class="math display">\[ \text{Cosine Distance} = \frac{1 - \text{Cosine Similarity}}{2}\]</span></p>
 <p>where <span class="math inline">\(\text{Cosine Similarity} = \frac{\mathbf{v}\cdot\mathbf{w}}{\|\mathbf{v}\|\|\mathbf{w}\|}\)</span></p>
 <p>Cosine distance is a very useful alternative to Euclidean distance for data where the absolute magnitude of the features is not particularly meaningful, which is a very common scenario in practice.</p>
-<div id="cell-32" class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> uniform</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame()</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'cosine similarity'</span>] <span class="op">=</span> pd.Series([uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)])</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'cosine distance'</span>]   <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> df[<span class="st">'cosine similarity'</span>])<span class="op">/</span><span class="dv">2</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'cosine similarity'</span>, y<span class="op">=</span><span class="st">'cosine distance'</span>)<span class="op">;</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">'Cosine Similarity vs. Cosine Distance'</span>)</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-30" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> uniform</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'cosine similarity'</span>] <span class="op">=</span> pd.Series([uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)])</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'cosine distance'</span>]   <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> df[<span class="st">'cosine similarity'</span>])<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'cosine similarity'</span>, y<span class="op">=</span><span class="st">'cosine distance'</span>)<span class="op">;</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">'Cosine Similarity vs. Cosine Distance'</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="vectors_files/figure-html/cell-16-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="vectors_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-33" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> l2_norm(vec):</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (vec<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="fl">1.2</span>, <span class="fl">1.2</span>])</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="fl">2.5</span>])</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, v[<span class="dv">0</span>], v[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'navy'</span>)</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, w[<span class="dv">0</span>], w[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'magenta'</span>)</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w))</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> <span class="bu">round</span>(cosine_similarity, <span class="dv">2</span>)</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> cosine_similarity) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> <span class="bu">round</span>(cosine_distance, <span class="dv">2</span>)</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"θ ≈ 0° (or 0 radians)</span><span class="ch">\n</span><span class="st">"</span><span class="op">+\</span></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Cosine Similarity: </span><span class="sc">%s</span><span class="st"> </span><span class="ch">\n</span><span class="st">Cosine Distance: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> <span class="op">\</span></span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>          (cosine_similarity, cosine_distance), size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-31" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> l2_norm(vec):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (vec<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="fl">1.2</span>, <span class="fl">1.2</span>])</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="fl">2.5</span>])</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, v[<span class="dv">0</span>], v[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'navy'</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, w[<span class="dv">0</span>], w[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'magenta'</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w))</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> <span class="bu">round</span>(cosine_similarity, <span class="dv">2</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> cosine_similarity) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> <span class="bu">round</span>(cosine_distance, <span class="dv">2</span>)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"θ ≈ 0° (or 0 radians)</span><span class="ch">\n</span><span class="st">"</span><span class="op">+\</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Cosine Similarity: </span><span class="sc">%s</span><span class="st"> </span><span class="ch">\n</span><span class="st">Cosine Distance: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> <span class="op">\</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>          (cosine_similarity, cosine_distance), size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="vectors_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="vectors_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-34" class="cell" data-execution_count="37">
+<div id="cell-32" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cosine_similarity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>0.0</code></pre>
+</div>
+</div>
+<div id="cell-33" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
@@ -1019,42 +1016,45 @@ Many functions are valid norms and different norms encode different notions of s
 <span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> cosine_similarity) <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> <span class="bu">round</span>(cosine_distance, <span class="dv">2</span>)</span>
 <span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"θ = 90° (or π / 2 radians)"</span><span class="op">+\</span></span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>          <span class="st">"</span><span class="ch">\n</span><span class="st">Cosine Similarity: </span><span class="sc">%s</span><span class="st"> "</span><span class="op">+\</span></span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>          <span class="st">"</span><span class="ch">\n</span><span class="st">Cosine Distance: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> <span class="op">\</span></span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>          (cosine_similarity, cosine_distance), size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"θ = 90° (or π / 2 radians) </span><span class="ch">\n</span><span class="st">Cosine Similarity: </span><span class="sc">%s</span><span class="st"> </span><span class="ch">\n</span><span class="st">Cosine Distance: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> (cosine_similarity, cosine_distance))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="vectors_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="vectors_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+<div id="cell-34" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>'θ = 90° (or π / 2 radians) \nCosine Similarity: 0.0 \nCosine Distance: 0.5'</code></pre>
+</div>
+</div>
 <p>Note that cosine similarity can be negative, which means that the angle is greater than <span class="math inline">\(90^{\circ}\)</span>, i.e., the vectors point in opposite directions.</p>
-<div id="cell-36" class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">2</span>])</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, v[<span class="dv">0</span>], v[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'navy'</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, w[<span class="dv">0</span>], w[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'magenta'</span>)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w))</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> <span class="bu">round</span>(cosine_similarity, <span class="dv">2</span>)</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> cosine_similarity) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> <span class="bu">round</span>(cosine_distance, <span class="dv">2</span>)</span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"θ = 180° (or π radians)</span><span class="ch">\n</span><span class="st">"</span><span class="op">+\</span></span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Cosine Similarity: </span><span class="sc">%s</span><span class="st"> </span><span class="ch">\n</span><span class="st">Cosine Distance: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> <span class="op">\</span></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>          (cosine_similarity, cosine_distance), size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-36" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">2</span>])</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, v[<span class="dv">0</span>], v[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'navy'</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, w[<span class="dv">0</span>], w[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'magenta'</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w))</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> <span class="bu">round</span>(cosine_similarity, <span class="dv">2</span>)</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> cosine_similarity) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> <span class="bu">round</span>(cosine_distance, <span class="dv">2</span>)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"θ = 180° (or π radians)</span><span class="ch">\n</span><span class="st">"</span><span class="op">+\</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Cosine Similarity: </span><span class="sc">%s</span><span class="st"> </span><span class="ch">\n</span><span class="st">Cosine Distance: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> <span class="op">\</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>          (cosine_similarity, cosine_distance), size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1070,7 +1070,7 @@ Many functions are valid norms and different norms encode different notions of s
 <p>In addition to working with vectors, another key object that you must understand to go far in linear algebra is the hyperplane, a generalization to higher dimensions of a line (two dimensions) or of a plane (three dimensions). In an -dimensional vector space, a hyperplane has dimensions and divides the space into two half-spaces.</p>
 <!-- <center><img width="70%" src='https://images.deepai.org/glossary-terms/3bb86574825445cba73a67222b744648/hyperplane.png'></center> -->
 <center>
-<img width="70%" src="https://community.alteryx.com/t5/image/serverpage/image-id/53830i662E91D903B0F64B/image-size/large?v=v2&amp;px=999">
+<img style="filter:invert(1)" width="70%" src="https://community.alteryx.com/t5/image/serverpage/image-id/53830i662E91D903B0F64B/image-size/large?v=v2&amp;px=999">
 </center>
 <p>Let’s start with an example. Suppose that we have a column vector <span class="math inline">\(\mathbf{w}=[2,1]^\top\)</span>. We want to know, “what are the points <span class="math inline">\(\mathbf{v}\)</span> with <span class="math inline">\(\mathbf{w}\cdot\mathbf{v} = 1\)</span>?” We can define <span class="math inline">\(\mathbf{v} = [x, y]\)</span></p>
 <p><span class="math display">\[ \mathbf{w}\cdot\mathbf{v} = 1\]</span></p>
