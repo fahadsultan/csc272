@@ -94,6 +94,9 @@ website:
         - section:
           href: stats/stats.ipynb
           contents:
+            - probability/probability.ipynb
+            - probability/joint_prob.ipynb
+            - probability/conditional_prob.ipynb
             - stats/summary.ipynb
             - stats/distributions.ipynb
             - section:
@@ -101,12 +104,7 @@ website:
               contents: 
                 - pandas/grouping.ipynb
                 - pandas/pivot.ipynb
-        - section:
-          href: probability/probability.ipynb
-          contents:
-            - href: probability/joint_prob.ipynb
-            - href: probability/conditional_prob.ipynb
-            - href: probability/naivebayes.ipynb
+            - probability/naivebayes.ipynb
         #   contents:
         #     - probability/bayestheorem.qmd
         - section:

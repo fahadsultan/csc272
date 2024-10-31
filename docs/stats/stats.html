@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>STATISTICS</title>
+<title>PROBABILITY &amp; STATISTICS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -201,7 +201,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/stats.html">STATISTICS</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/stats.html">PROBABILITY &amp; STATISTICS</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -439,12 +439,30 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../stats/stats.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">STATISTICS</span></a>
+ <span class="menu-text">PROBABILITY &amp; STATISTICS</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/joint_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joint Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/conditional_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Probability</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../stats/summary.html" class="sidebar-item-text sidebar-link">
@@ -480,29 +498,6 @@ window.Quarto = {
 </li>
       </ul>
   </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../probability/probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PROBABILTY</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../probability/joint_prob.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Joint Probability</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../probability/conditional_prob.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conditional Probability</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
@@ -559,7 +554,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">STATISTICS</h1>
+<h1 class="title">PROBABILITY &amp; STATISTICS</h1>
 </div>
 
 
@@ -576,6 +571,67 @@ window.Quarto = {
 </header>
 
 
+<p>Probability and statistics are related areas of mathematics which concern themselves with analyzing <strong>the relative frequency of events</strong>. Both subjects are important, relevant, and useful. But they are different, and understanding the distinction is crucial in properly interpreting the relevance of mathematical evidence.</p>
+<p>Still, there are fundamental differences in the way they see the world:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 32%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Probability</th>
+<th style="text-align: center;">Statistics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>Goal:</strong></td>
+<td style="text-align: center;"><em>Predicting</em> the <em>Future</em></td>
+<td style="text-align: center;"><em>Summarizing</em> the <em>Past</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Branch of Mathematics:</strong></td>
+<td style="text-align: center;">Theoretical (pure math)</td>
+<td style="text-align: center;">Application-driven (applied math)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Reasoning / Inference</strong>:</td>
+<td style="text-align: center;">Deduction (Rules -&gt; Data)</td>
+<td style="text-align: center;">Induction (Data -&gt; Rules)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Worldview:</strong></td>
+<td style="text-align: center;">Ideal</td>
+<td style="text-align: center;">Real / Messy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Level of Confidence:</strong></td>
+<td style="text-align: center;">Certainty</td>
+<td style="text-align: center;">Estimation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Researchers / Practitioners</strong></td>
+<td style="text-align: center;">Happy go-lucky</td>
+<td style="text-align: center;">Tormented</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>In summary, <strong>probability theory</strong> enables us to find the <strong>consequences of a given ideal world</strong>, while <strong>statistical theory</strong> enables us to <strong>measure the extent to which our world is ideal</strong>. This constant tension between theory and practice is why statisticians prove to be a tortured group of individuals compared with the happy-go-lucky probabilists.</p>
+<p>This distinction will perhaps become clearer if we trace the thought process of a mathematician encountering their first gambling game:</p>
+<center>
+<p><img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNm01ZTl4MzBxZmI1bWMza2NvcWUxZXJhcTJpZ3Y3Ymxkbm9ubmM5ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26uf2YTgF5upXUTm0/giphy.gif" width="35%"></p>
+<p><small>Modern probability theory first emerged from gambling tables of France in mid 1600s. Blaise Pascal and Pierre de Fermat wondered whether the player or the house had the advantage in a particular betting game. </small></p>
+</center>
+<p>If a gambler were a probabilist, they would see the dice and think <em>“Six-sided dice? Each side of the dice is presumably equally likely to land face up. Now assuming that each face comes up with probability 1/6, I can figure out what my chances are of winning.”</em></p>
+<p>If instead a gambler were statistician, they would see the dice and think <em>“How do I know that they are not loaded?”</em> They’ll watch the game a while, and keep track of how often each number comes up. Then they can decide if my observations are consistent with the assumption of equal-probability faces. Once they have the probabilities figured out, they can call a probabilist to tell them how to bet.</p>
+<hr>
+<p>In this course, we will use Statistics to go from Data to Probability-based models, as shown in the figure below:</p>
+<p><img align="center" width="100%" src="../assets/probstats.png" style="filter:invert(1)"></p>
+<p>Having <em>learned</em> or <em>estimated</em> the model, we can then use Probability to make predictions about the future.</p>
 
 
 

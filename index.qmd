@@ -11,7 +11,7 @@ From the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you
 
 👇🏾 Below, you can find important links and important announcements.
 
-::: {.callout-caution}
+<!-- ::: {.callout-caution}
 # Midterm
 The midterm exam is on <u><b>Oct 28th (Monday) from 2:30 - 4:30 PM</b></u>.
 :::
@@ -19,7 +19,7 @@ The midterm exam is on <u><b>Oct 28th (Monday) from 2:30 - 4:30 PM</b></u>.
 ::: {.callout-caution}
 # Programming Assignment 6
 Please note that the [Programming Assignment 6](https://colab.research.google.com/drive/1S89yndxPP4s0Z3ltsS1JV_SNztjFykS3?usp=sharing) is due before next lab on Oct 28th (Monday) at 2:30 PM.
-:::
+::: -->
 
 ::: {.callout-tip}
 # Mister CatGPTA 🐈‍⬛
