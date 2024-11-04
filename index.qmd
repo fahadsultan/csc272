@@ -18,7 +18,7 @@ The midterm exam is on <u><b>Oct 28th (Monday) from 2:30 - 4:30 PM</b></u>.
 
 ::: {.callout-caution}
 # Programming Assignment 7
-Please note that the [Programming Assignment 7](https://colab.research.google.com/drive/1Y6xFPUhXx7gnp_shlaBM7EHA_YsGCosC?usp=sharing) is due before next lab on Nov 11th (Monday) at 2:30 PM.
+Please note that the [Programming Assignment 7](https://colab.research.google.com/drive/1oOTyWbIVeAfiAR0rCfIgUt6BAV3Tcor7?usp=sharing) is due before next lab on Nov 11th (Monday) at 2:30 PM.
 ::: 
 
 ::: {.callout-tip}
