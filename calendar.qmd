@@ -12,7 +12,7 @@ Please note that this is a tentative plan and is subject to change.
 | 3 | Working with multiple data files |[McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics)    | [Concatenation](pandas/concat_merge.ipynb#concatenating-dataframes) | [Merging](pandas/concat_merge.ipynb#merging-dataframes) | --- |[PA3](https://colab.research.google.com/drive/1ueg6ymvboNdV61IFJf0CCkFgzuGB1STu?usp=sharing) |
 | 4 | Custom Transformations | [McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics) | [Apply](pandas/apply.html) | [Apply](pandas/apply.html) | [WA3](https://docs.google.com/document/d/1n8M6qgJDjavnEMseZcPBTyJiAgOeXKt5RZPnknGsNK8/edit?usp=sharing) | [PA4](https://colab.research.google.com/drive/1mh6c5G73v8DiE8vUSsKowesd493lACRw?usp=sharing) | 
 | 5 | Data Visualization | [McKinney Ch.9](https://wesmckinney.com/book/plotting-and-visualization) | [Line plots](plotting/lineplots.html) | [Scatter](plotting/scatter.html) |  | [PA5](https://colab.research.google.com/drive/1pmMKy_kTv_YKfmCJmMYLsr_IiOOfKwzj?usp=sharing) | 
-| 6 | Encoding and Representation | [McKinney Ch.7](https://wesmckinney.com/book/data-cleaning) | [Encoding Feature Types](encoding/types.html) |  | | |
+| 6 | Encoding and Representation | [McKinney Ch.7](https://wesmckinney.com/book/data-cleaning) | [Encoding Feature Types](encoding/types.html) |  | [WA4]() | [PA6]()|
 | 7 | Nearest Neighbor | Skiena Ch. 8 and Ch. 10 |  |  | | |
 
 <center>
@@ -24,7 +24,7 @@ _MIDTERM_
 
 | # | TOPIC | READING | MEETING 1 | MEETING 2 | WRITTEN  ASSIGNMENT | PROGRAMMING ASSIGNMENT |
 |---|----|---|---|---|---|---|
-| 7 | Probability + Stats | Skiena Ch.2 |  |  | | |
+| 7 | Probability + Stats | Skiena Ch.2 |  |  | | [PA7](https://colab.research.google.com/drive/1Y6xFPUhXx7gnp_shlaBM7EHA_YsGCosC?usp=sharing)|
 | 8 | Naive Bayes | SLP 3rd edition Ch.4 |  |  | | |
 | 10 | Expectation Maximization | Skiena Ch.10 (10.5) |  |  | | |
 | 11 | Gradient Descent | Skiena Ch.9 (9.1-9.5) |  |  | | |

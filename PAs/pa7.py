@@ -43,3 +43,25 @@ def encode_wav(file_path):
 
 def euclidean_distance(x, y):
     return np.linalg.norm(np.array(x) - np.array(y))
+
+
+import pandas as pd
+
+def download_fashion_mnist():
+  import tensorflow as tf
+  y_codes = {0: 't-shirt/top', 1: 'trouser', 2:'pullover', 3:'dress',\
+             4: 'coat', 5:'sandal', 6:'shirt', 7:'sneaker', 8:'bag', \
+             9: 'ankle boot', 10: ''}
+  data    = tf.keras.datasets.fashion_mnist.load_data()
+  X_train = [pd.DataFrame(x) for x in data[0][0]]
+  X_test  = [pd.DataFrame(x) for x in data[1][0]]
+  y_train = pd.Series(data[0][1]).replace(y_codes)
+  y_test  = pd.Series(data[1][1]).replace(y_codes)
+  return X_train, y_train, X_test, y_test
+
+def plot_img(img, label=""):
+  from matplotlib import pyplot as plt
+  plt.figure(figsize=(3, 3))
+  plt.imshow(img, cmap='Greys');
+  plt.colorbar();
+  plt.title(label);
