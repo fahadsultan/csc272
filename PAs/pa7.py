@@ -31,7 +31,7 @@ def download_birdsongs():
 
   robins    = pd.Series(glob("birdsongs/robins/*.wav"), name='robins')
   cardinals = pd.Series(glob("birdsongs/cardinals/*.wav"), name='cardinals')
-  unknowns  = pd.Series(glob("birdsongs/unknown/*.wav"), name='unknowns')
+  unknowns  = pd.Series(glob("birdsongs/unknowns/*.wav"), name='unknowns')
   
   return robins, cardinals, unknowns
 
