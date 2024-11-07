@@ -592,11 +592,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#norms" id="toc-norms" class="nav-link" data-scroll-target="#norms">Norms</a></li>
   <li><a href="#dot-product" id="toc-dot-product" class="nav-link" data-scroll-target="#dot-product">Dot Product</a></li>
-  <li><a href="#dot-products-and-angles" id="toc-dot-products-and-angles" class="nav-link" data-scroll-target="#dot-products-and-angles">Dot Products and Angles</a>
-  <ul class="collapse">
+  <li><a href="#dot-products-and-angles" id="toc-dot-products-and-angles" class="nav-link" data-scroll-target="#dot-products-and-angles">Dot Products and Angles</a></li>
   <li><a href="#cosine-similaritydistance" id="toc-cosine-similaritydistance" class="nav-link" data-scroll-target="#cosine-similaritydistance">Cosine Similarity/Distance</a></li>
-  </ul></li>
-  <li><a href="#hyperplanes" id="toc-hyperplanes" class="nav-link" data-scroll-target="#hyperplanes">Hyperplanes</a></li>
   </ul>
 </nav>
     </div>
@@ -923,8 +920,9 @@ Many functions are valid norms and different norms encode different notions of s
 <pre><code>True</code></pre>
 </div>
 </div>
-<section id="cosine-similaritydistance" class="level3">
-<h3 class="anchored" data-anchor-id="cosine-similaritydistance">Cosine Similarity/Distance</h3>
+</section>
+<section id="cosine-similaritydistance" class="level2">
+<h2 class="anchored" data-anchor-id="cosine-similaritydistance">Cosine Similarity/Distance</h2>
 <p>In ML contexts where the angle is employed to measure the closeness of two vectors, practitioners adopt the term cosine similarity to refer to the portion</p>
 <p><span class="math display">\[ \cos(\theta) = \frac{\mathbf{v}\cdot\mathbf{w}}{\|\mathbf{v}\|\|\mathbf{w}\|}. \]</span></p>
 <p><u>The cosine takes a maximum value of <span class="math inline">\(1\)</span> when the two vectors point in the same direction, a minimum value of <span class="math inline">\(-1\)</span> when they point in opposite directions, and a value of <span class="math inline">\(0\)</span> when the two vectors are orthogonal. </u></p>
@@ -1020,59 +1018,58 @@ Many functions are valid norms and different norms encode different notions of s
 </div>
 </div>
 </div>
-<div id="cell-34" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="21">
-<pre><code>'θ = 90° (or π / 2 radians) \nCosine Similarity: 0.0 \nCosine Distance: 0.5'</code></pre>
-</div>
-</div>
 <p>Note that cosine similarity can be negative, which means that the angle is greater than <span class="math inline">\(90^{\circ}\)</span>, i.e., the vectors point in opposite directions.</p>
-<div id="cell-36" class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">2</span>])</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>])</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, v[<span class="dv">0</span>], v[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'navy'</span>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, w[<span class="dv">0</span>], w[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'magenta'</span>)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w))</span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> <span class="bu">round</span>(cosine_similarity, <span class="dv">2</span>)</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> cosine_similarity) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> <span class="bu">round</span>(cosine_distance, <span class="dv">2</span>)</span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"θ = 180° (or π radians)</span><span class="ch">\n</span><span class="st">"</span><span class="op">+\</span></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Cosine Similarity: </span><span class="sc">%s</span><span class="st"> </span><span class="ch">\n</span><span class="st">Cosine Distance: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> <span class="op">\</span></span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>          (cosine_similarity, cosine_distance), size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-35" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">2</span>])</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, v[<span class="dv">0</span>], v[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'navy'</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, w[<span class="dv">0</span>], w[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'magenta'</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w))</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> <span class="bu">round</span>(cosine_similarity, <span class="dv">2</span>)</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> cosine_similarity) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> <span class="bu">round</span>(cosine_distance, <span class="dv">2</span>)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"θ = 180° (or π radians)</span><span class="ch">\n</span><span class="st">"</span><span class="op">+\</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Cosine Similarity: </span><span class="sc">%s</span><span class="st"> </span><span class="ch">\n</span><span class="st">Cosine Distance: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> <span class="op">\</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>          (cosine_similarity, cosine_distance), size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="vectors_files/figure-html/cell-19-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="vectors_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="hyperplanes" class="level2">
-<h2 class="anchored" data-anchor-id="hyperplanes">Hyperplanes</h2>
-<p>In addition to working with vectors, another key object that you must understand to go far in linear algebra is the hyperplane, a generalization to higher dimensions of a line (two dimensions) or of a plane (three dimensions). In an -dimensional vector space, a hyperplane has dimensions and divides the space into two half-spaces.</p>
-<!-- <center><img width="70%" src='https://images.deepai.org/glossary-terms/3bb86574825445cba73a67222b744648/hyperplane.png'></center> -->
-<center>
-<img style="filter:invert(1)" width="70%" src="https://community.alteryx.com/t5/image/serverpage/image-id/53830i662E91D903B0F64B/image-size/large?v=v2&amp;px=999">
-</center>
-<p>Let’s start with an example. Suppose that we have a column vector <span class="math inline">\(\mathbf{w}=[2,1]^\top\)</span>. We want to know, “what are the points <span class="math inline">\(\mathbf{v}\)</span> with <span class="math inline">\(\mathbf{w}\cdot\mathbf{v} = 1\)</span>?” We can define <span class="math inline">\(\mathbf{v} = [x, y]\)</span></p>
-<p><span class="math display">\[ \mathbf{w}\cdot\mathbf{v} = 1\]</span></p>
-<p><span class="math display">\[ [2, 1]^\top \cdot [x, y] = 1\]</span></p>
-<p><span class="math display">\[ 2x + y = 1\]</span></p>
-<p><span class="math display">\[ y = -2x + 1\]</span></p>
-<p>Recall that the equation for a line is <span class="math inline">\(y = mx + b\)</span>. Therefore, in the equations above, we have defined a line where the slope (<span class="math inline">\(m\)</span>) is <span class="math inline">\(-2\)</span> and the intercept (<span class="math inline">\(b\)</span>) is <span class="math inline">\(1\)</span>.</p>
+<!-- 
+## Hyperplanes 
+
+In addition to working with vectors, another key object that you must understand to go far in linear algebra is the hyperplane, a generalization to higher dimensions of a line (two dimensions) or of a plane (three dimensions). In an 
+-dimensional vector space, a hyperplane has 
+ dimensions and divides the space into two half-spaces.
+
+<center><img style="filter:invert(1)" width="70%" src="https://community.alteryx.com/t5/image/serverpage/image-id/53830i662E91D903B0F64B/image-size/large?v=v2&px=999"></center>
+ 
+Let’s start with an example. Suppose that we have a column vector $\mathbf{w}=[2,1]^\top$. We want to know, “what are the points $\mathbf{v}$ with $\mathbf{w}\cdot\mathbf{v} = 1$?” We can define $\mathbf{v} = [x, y]$
+
+$$ \mathbf{w}\cdot\mathbf{v} = 1$$
+
+$$ [2, 1]^\top \cdot [x, y] = 1$$
+
+$$ 2x + y = 1$$
+
+$$ y = -2x + 1$$
+
+Recall that the equation for a line is $y = mx + b$. Therefore, in the equations above, we have defined a line where the slope ($m$) is $-2$ and the intercept ($b$) is $1$. -->
 <!-- <center>
 <img src="https://d2l.ai/_images/proj-vec.svg">
 </center> -->
@@ -1095,16 +1092,17 @@ If we wanted, we could find the equation for this line and see that it is $2x + 
 If we now look at what happens when we ask about the set of points with $\mathbf{w}\cdot\mathbf{v} > 1$ or $\mathbf{w}\cdot\mathbf{v} < 1$ we can see that these are cases where the projections are longer or shorter than $1/\|\mathbf{w}\|$, respectively.
 
 Thus, those two inequalities define either side of the line.  -->
-<p>In this way, we have found a way to cut our space into two halves, where all the points on one side have dot product below a threshold, and the other side above as we see below:</p>
-<center>
-<img src="https://d2l.ai/_images/space-division.svg" width="50%" style="filter:invert(1)">
-</center>
-<p>The story in higher dimension is much the same. If we now take <span class="math inline">\(\mathbf{w} = [1,2,3]^\top\)</span> and ask about the points in three dimensions with <span class="math inline">\(\mathbf{w}\cdot\mathbf{v} = 1\)</span>, we obtain a plane at right angles to the given vector <span class="math inline">\(\mathbf{w}\)</span>. The two inequalities again define the two sides of the plane as is shown below:</p>
-<center>
-<img src="https://d2l.ai/_images/space-division-3d.svg" width="50%" style="filter:invert(1)">
-</center>
-<p>While our ability to visualize runs out at this point, nothing stops us from doing this in tens, hundreds, or billions of dimensions. This occurs often when thinking about machine learned models.</p>
-<p>For instance, we can understand linear classification models, as methods to find hyperplanes that separate the different target classes. In this context, such hyperplanes are often referred to as decision planes. The majority of deep learned classification models end with a linear layer fed into a softmax, so one can interpret the role of the deep neural network to be to find a non-linear embedding such that the target classes can be separated cleanly by hyperplanes.</p>
+<!-- 
+In this way, we have found a way to cut our space into two halves, where all the points on one side have dot product below a threshold, and the other side above as we see below:
+
+<center><img src="https://d2l.ai/_images/space-division.svg" width="50%" style="filter:invert(1)"/></center>
+
+The story in higher dimension is much the same. If we now take $\mathbf{w} = [1,2,3]^\top$ and ask about the points in three dimensions with $\mathbf{w}\cdot\mathbf{v} = 1$, we obtain a plane at right angles to the given vector $\mathbf{w}$. The two inequalities again define the two sides of the plane as is shown below: 
+
+<center><img src="https://d2l.ai/_images/space-division-3d.svg" width="50%" style="filter:invert(1)"/></center> -->
+<!-- While our ability to visualize runs out at this point, nothing stops us from doing this in tens, hundreds, or billions of dimensions. This occurs often when thinking about machine learned models. 
+
+For instance, we can understand linear classification models, as methods to find hyperplanes that separate the different target classes. In this context, such hyperplanes are often referred to as decision planes. The majority of deep learned classification models end with a linear layer fed into a softmax, so one can interpret the role of the deep neural network to be to find a non-linear embedding such that the target classes can be separated cleanly by hyperplanes. -->
 
 
 </section>

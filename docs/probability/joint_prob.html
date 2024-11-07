@@ -588,7 +588,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#joint-probability-pa-b" id="toc-joint-probability-pa-b" class="nav-link active" data-scroll-target="#joint-probability-pa-b">Joint Probability <span class="math inline">\(P(A, B)\)</span></a></li>
+  <li><a href="#joint-frequency" id="toc-joint-frequency" class="nav-link active" data-scroll-target="#joint-frequency">Joint Frequency</a></li>
+  <li><a href="#joint-probability-pa-b" id="toc-joint-probability-pa-b" class="nav-link" data-scroll-target="#joint-probability-pa-b">Joint Probability <span class="math inline">\(P(A, B)\)</span></a></li>
   <li><a href="#marginal-probability-pa" id="toc-marginal-probability-pa" class="nav-link" data-scroll-target="#marginal-probability-pa">Marginal Probability <span class="math inline">\(P(A)\)</span></a></li>
   <li><a href="#independent-random-variables" id="toc-independent-random-variables" class="nav-link" data-scroll-target="#independent-random-variables">Independent Random Variables</a></li>
   </ul>
@@ -616,16 +617,17 @@ window.Quarto = {
 </header>
 
 
-<section id="joint-probability-pa-b" class="level2">
-<h2 class="anchored" data-anchor-id="joint-probability-pa-b">Joint Probability <span class="math inline">\(P(A, B)\)</span></h2>
-<p>Joint probability is the probability of two events occurring together.The joint probability is usually denoted by <span class="math inline">\(P(A, B)\)</span>, which is shorthand for <span class="math inline">\(P(A \wedge B)\)</span> read as <em>Probability of <span class="math inline">\(A\)</span> AND <span class="math inline">\(B\)</span>.</em></p>
-<p>Note that <span class="math inline">\(P(A, B) = P(B, A)\)</span> since <span class="math inline">\(A \wedge B = B \wedge A\)</span>.</p>
-<p>For example, if we are rolling two dice, the joint probability is the probability of rolling a 1 on the first die and a 2 on the second die.</p>
-<p>In Data Science, we rarely know the true joint probability. Instead, we estimate the joint probability from data. We will talk more about this when we talk about Statistics.</p>
-<div id="cell-4" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>joint_probs <span class="op">=</span> pd.read_csv(<span class="st">'../data/experiment_probs.csv'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>joint_probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
+<div id="cell-1" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">"ignore"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"../data/Shark Tank US dataset.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[data.columns[:<span class="dv">30</span>]]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Got Deal'</span>] <span class="op">=</span> data[<span class="st">'Got Deal'</span>].astype(<span class="bu">bool</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>data.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
 <div>
 
 
@@ -633,83 +635,188 @@ window.Quarto = {
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">C</th>
-<th data-quarto-table-cell-role="th">D</th>
-<th data-quarto-table-cell-role="th">P(C, D)</th>
+<th data-quarto-table-cell-role="th">Season Number</th>
+<th data-quarto-table-cell-role="th">Startup Name</th>
+<th data-quarto-table-cell-role="th">Episode Number</th>
+<th data-quarto-table-cell-role="th">Pitch Number</th>
+<th data-quarto-table-cell-role="th">Season Start</th>
+<th data-quarto-table-cell-role="th">Season End</th>
+<th data-quarto-table-cell-role="th">Original Air Date</th>
+<th data-quarto-table-cell-role="th">Industry</th>
+<th data-quarto-table-cell-role="th">Business Description</th>
+<th data-quarto-table-cell-role="th">Company Website</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">Got Deal</th>
+<th data-quarto-table-cell-role="th">Total Deal Amount</th>
+<th data-quarto-table-cell-role="th">Total Deal Equity</th>
+<th data-quarto-table-cell-role="th">Deal Valuation</th>
+<th data-quarto-table-cell-role="th">Number of Sharks in Deal</th>
+<th data-quarto-table-cell-role="th">Investment Amount Per Shark</th>
+<th data-quarto-table-cell-role="th">Equity Per Shark</th>
+<th data-quarto-table-cell-role="th">Royalty Deal</th>
+<th data-quarto-table-cell-role="th">Advisory Shares Equity</th>
+<th data-quarto-table-cell-role="th">Loan</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>H</td>
 <td>1</td>
-<td>0.24</td>
+<td>AvaTheElephant</td>
+<td>1</td>
+<td>1</td>
+<td>9-Aug-09</td>
+<td>5-Feb-10</td>
+<td>9-Aug-09</td>
+<td>Health/Wellness</td>
+<td>Ava The Elephant - Baby and Child Care</td>
+<td>http://www.avatheelephant.com/</td>
+<td>...</td>
+<td>True</td>
+<td>50000.0</td>
+<td>55.0</td>
+<td>90909.0</td>
+<td>1.0</td>
+<td>50000.0</td>
+<td>55.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>H</td>
-<td>2</td>
-<td>0.13</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>H</td>
-<td>3</td>
-<td>0.09</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>H</td>
-<td>4</td>
-<td>0.01</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>H</td>
-<td>5</td>
-<td>0.03</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>H</td>
-<td>6</td>
-<td>0.01</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>T</td>
 <td>1</td>
-<td>0.19</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>T</td>
+<td>MrTod'sPieFactory</td>
+<td>1</td>
 <td>2</td>
-<td>0.09</td>
+<td>9-Aug-09</td>
+<td>5-Feb-10</td>
+<td>9-Aug-09</td>
+<td>Food and Beverage</td>
+<td>Mr. Tod's Pie Factory - Specialty Food</td>
+<td>http://whybake.com/</td>
+<td>...</td>
+<td>True</td>
+<td>460000.0</td>
+<td>50.0</td>
+<td>920000.0</td>
+<td>2.0</td>
+<td>230000.0</td>
+<td>25.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>2 rows × 30 columns</p>
+</div>
+</div>
+</div>
+<section id="joint-frequency" class="level2">
+<h2 class="anchored" data-anchor-id="joint-frequency">Joint Frequency</h2>
+<p>The joint frequency of two events is the number of times they both occur in a given number of trials.</p>
+<p>In pandas, we can calculate the joint frequency of two events by using the <code>crosstab</code> function.</p>
+<div id="cell-3" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pd.crosstab(data[<span class="st">'Industry'</span>], data[<span class="st">'Got Deal'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Got Deal</th>
+<th data-quarto-table-cell-role="th">False</th>
+<th data-quarto-table-cell-role="th">True</th>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>T</td>
-<td>3</td>
-<td>0.13</td>
+<th data-quarto-table-cell-role="th">Industry</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
 </tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>T</td>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Automotive</td>
 <td>4</td>
-<td>0.04</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>T</td>
-<td>5</td>
-<td>0.00</td>
+<td>13</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>T</td>
+<td data-quarto-table-cell-role="th">Business Services</td>
+<td>21</td>
+<td>19</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Children/Education</td>
+<td>45</td>
+<td>78</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Electronics</td>
+<td>9</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Fashion/Beauty</td>
+<td>98</td>
+<td>128</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Fitness/Sports/Outdoors</td>
+<td>48</td>
+<td>79</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Food and Beverage</td>
+<td>116</td>
+<td>180</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Green/CleanTech</td>
+<td>5</td>
 <td>6</td>
-<td>0.04</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Health/Wellness</td>
+<td>27</td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Lifestyle/Home</td>
+<td>83</td>
+<td>163</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Liquor/Alcohol</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Media/Entertainment</td>
+<td>9</td>
+<td>17</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Pet Products</td>
+<td>24</td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Software/Tech</td>
+<td>31</td>
+<td>38</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Travel</td>
+<td>6</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Uncertain/Other</td>
+<td>8</td>
+<td>15</td>
 </tr>
 </tbody>
 </table>
@@ -717,10 +824,125 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<div id="cell-5" class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>joint_probs[<span class="st">'P(C, D)'</span>].<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>1.0</code></pre>
+</section>
+<section id="joint-probability-pa-b" class="level2">
+<h2 class="anchored" data-anchor-id="joint-probability-pa-b">Joint Probability <span class="math inline">\(P(A, B)\)</span></h2>
+<p>Joint probability is the probability of two events occurring together.The joint probability is usually denoted by <span class="math inline">\(P(A, B)\)</span>, which is shorthand for <span class="math inline">\(P(A \wedge B)\)</span> read as <em>Probability of <span class="math inline">\(A\)</span> AND <span class="math inline">\(B\)</span>.</em></p>
+<p>Note that <span class="math inline">\(P(A, B) = P(B, A)\)</span> since <span class="math inline">\(A \wedge B = B \wedge A\)</span>.</p>
+<p>For example, if we are rolling two dice, the joint probability is the probability of rolling a 1 on the first die and a 2 on the second die.</p>
+<p>In Data Science, we rarely know the true joint probability. Instead, we estimate the joint probability from data. We will talk more about this when we talk about Statistics.</p>
+<div id="cell-6" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>joint_prob <span class="op">=</span> pd.crosstab(data[<span class="st">'Industry'</span>], data[<span class="st">'Got Deal'</span>], normalize<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>joint_prob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Got Deal</th>
+<th data-quarto-table-cell-role="th">False</th>
+<th data-quarto-table-cell-role="th">True</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Industry</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Automotive</td>
+<td>0.002930</td>
+<td>0.009524</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Business Services</td>
+<td>0.015385</td>
+<td>0.013919</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Children/Education</td>
+<td>0.032967</td>
+<td>0.057143</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Electronics</td>
+<td>0.006593</td>
+<td>0.005128</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Fashion/Beauty</td>
+<td>0.071795</td>
+<td>0.093773</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Fitness/Sports/Outdoors</td>
+<td>0.035165</td>
+<td>0.057875</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Food and Beverage</td>
+<td>0.084982</td>
+<td>0.131868</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Green/CleanTech</td>
+<td>0.003663</td>
+<td>0.004396</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Health/Wellness</td>
+<td>0.019780</td>
+<td>0.029304</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Lifestyle/Home</td>
+<td>0.060806</td>
+<td>0.119414</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Liquor/Alcohol</td>
+<td>0.003663</td>
+<td>0.003663</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Media/Entertainment</td>
+<td>0.006593</td>
+<td>0.012454</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Pet Products</td>
+<td>0.017582</td>
+<td>0.024176</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Software/Tech</td>
+<td>0.022711</td>
+<td>0.027839</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Travel</td>
+<td>0.004396</td>
+<td>0.003663</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Uncertain/Other</td>
+<td>0.005861</td>
+<td>0.010989</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-7" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(joint_prob)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>1</code></pre>
 </div>
 </div>
 <p>Note that sum of joint probabilities is 1 i.e.&nbsp;<span class="math inline">\(\sum P(C, D) = 1\)</span> at the end of the day, since the sum of all probabilities is 1.</p>
@@ -730,220 +952,52 @@ window.Quarto = {
 <li><p><span class="math inline">\(\sum_{C} P(C) = 1\)</span> where <span class="math inline">\(P(C)\)</span> is a probability table with 2 rows (<span class="math inline">\({H, T}\)</span>) and 2 columns: <span class="math inline">\(C, P(C)\)</span>.</p></li>
 <li><p><span class="math inline">\(\sum_{D} P(D) = 1\)</span> where <span class="math inline">\(P(D)\)</span> is a probability table with 6 rows (<span class="math inline">\({1, 2, 3, 4, 5, 6}\)</span>) and 2 columns: <span class="math inline">\(D, P(D)\)</span>.</p></li>
 </ol>
-<div id="cell-7" class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>joint_probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">C</th>
-<th data-quarto-table-cell-role="th">D</th>
-<th data-quarto-table-cell-role="th">P(C, D)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>H</td>
-<td>1</td>
-<td>0.24</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>H</td>
-<td>2</td>
-<td>0.13</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>H</td>
-<td>3</td>
-<td>0.09</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>H</td>
-<td>4</td>
-<td>0.01</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>H</td>
-<td>5</td>
-<td>0.03</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>H</td>
-<td>6</td>
-<td>0.01</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>T</td>
-<td>1</td>
-<td>0.19</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>T</td>
-<td>2</td>
-<td>0.09</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>T</td>
-<td>3</td>
-<td>0.13</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>T</td>
-<td>4</td>
-<td>0.04</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>T</td>
-<td>5</td>
-<td>0.00</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>T</td>
-<td>6</td>
-<td>0.04</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div id="cell-8" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>joint_probs[<span class="st">"CD_vals"</span>] <span class="op">=</span> joint_probs.<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="st">"C=</span><span class="sc">%s</span><span class="st"> and D=</span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> (x[<span class="st">'C'</span>], x[<span class="st">'D'</span>]), axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cell-9" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>joint_probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">C</th>
-<th data-quarto-table-cell-role="th">D</th>
-<th data-quarto-table-cell-role="th">P(C, D)</th>
-<th data-quarto-table-cell-role="th">CD_vals</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>H</td>
-<td>1</td>
-<td>0.24</td>
-<td>C=H and D=1</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>H</td>
-<td>2</td>
-<td>0.13</td>
-<td>C=H and D=2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>H</td>
-<td>3</td>
-<td>0.09</td>
-<td>C=H and D=3</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>H</td>
-<td>4</td>
-<td>0.01</td>
-<td>C=H and D=4</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>H</td>
-<td>5</td>
-<td>0.03</td>
-<td>C=H and D=5</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>H</td>
-<td>6</td>
-<td>0.01</td>
-<td>C=H and D=6</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>T</td>
-<td>1</td>
-<td>0.19</td>
-<td>C=T and D=1</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>T</td>
-<td>2</td>
-<td>0.09</td>
-<td>C=T and D=2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>T</td>
-<td>3</td>
-<td>0.13</td>
-<td>C=T and D=3</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>T</td>
-<td>4</td>
-<td>0.04</td>
-<td>C=T and D=4</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>T</td>
-<td>5</td>
-<td>0.00</td>
-<td>C=T and D=5</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>T</td>
-<td>6</td>
-<td>0.04</td>
-<td>C=T and D=6</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<div id="cell-10" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.barplot(data<span class="op">=</span>joint_probs, x<span class="op">=</span><span class="st">"CD_vals"</span>, y<span class="op">=</span><span class="st">"P(C, D)"</span>, color<span class="op">=</span><span class="st">"lightblue"</span>)<span class="op">;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>axs.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Joint probability distribution of C and D</span><span class="ch">\n</span><span class="st"> Note that the joint probabilities sum to 1"</span>, <span class="op">\</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        xlabel<span class="op">=</span><span class="st">"C and D values"</span>, <span class="op">\</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        ylabel<span class="op">=</span><span class="st">"P(C, D)"</span>)<span class="op">;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">90</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-9" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>ax.bar(joint_prob.index, joint_prob[<span class="va">True</span>], label<span class="op">=</span><span class="st">'Got Deal'</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ax.bar(joint_prob.index, joint_prob[<span class="va">False</span>], bottom<span class="op">=</span>joint_prob[<span class="va">True</span>], label<span class="op">=</span><span class="st">'No Deal'</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(joint_prob.index, rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Probability'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Probability of Getting a Deal by Industry'</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>ax.legend()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="joint_prob_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="joint_prob_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-10" class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>x_values  <span class="op">=</span> pd.Series(<span class="bu">range</span>(<span class="bu">len</span>(joint_prob.index)))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>x_values1 <span class="op">=</span> x_values <span class="op">+</span> <span class="fl">0.1</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>x_values2 <span class="op">=</span> x_values <span class="op">-</span> <span class="fl">0.1</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>ax.bar(x_values1, joint_prob[<span class="va">True</span>],  label<span class="op">=</span><span class="st">'Got Deal'</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, width<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>ax.bar(x_values2, joint_prob[<span class="va">False</span>], label<span class="op">=</span><span class="st">'No Deal'</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, width<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>ax.set_xticks(x_values)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(joint_prob.index, rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Probability'</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Probability of Getting a Deal by Industry'</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>ax.legend()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="joint_prob_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -954,120 +1008,105 @@ window.Quarto = {
 <p>Because most data sets are multi-dimensional i.e.&nbsp;involving multiple random variables, we can sometimes find ourselves in a situation where we want to know the joint probability <span class="math inline">\(P(A, B)\)</span> of two random variables <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> but we don’t know <span class="math inline">\(P(A)\)</span> or <span class="math inline">\(P(B)\)</span>. In such cases, we compute the <strong>marginal probability</strong> of one variable from joint probability over multiple random variables.</p>
 <p>Marginalizing is the process of summing over one or more variables (say B) to get the probability of another variable (say A). This summing takes place over the joint probability table.</p>
 <p><span class="math display">\[ P(A) = \sum_{b \in \Omega_B} P(A, B=b) \]</span></p>
-<div id="cell-12" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>P_C <span class="op">=</span> joint_probs.groupby(<span class="st">'C'</span>).<span class="bu">sum</span>()[<span class="st">'P(C, D)'</span>]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>P_C.name <span class="op">=</span> <span class="st">'P(C)'</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>P_D <span class="op">=</span> joint_probs.groupby(<span class="st">'D'</span>).<span class="bu">sum</span>()[<span class="st">'P(C, D)'</span>]</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>P_D.name <span class="op">=</span> <span class="st">'P(D)'</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>P_C</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>C
-H    0.51
-T    0.49
-Name: P(C), dtype: float64</code></pre>
-</div>
-</div>
-<div id="cell-13" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>P_D, P_D.<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>(D
- 1    0.43
- 2    0.22
- 3    0.22
- 4    0.05
- 5    0.03
- 6    0.05
- Name: P(D), dtype: float64,
- 1.0)</code></pre>
-</div>
-</div>
-<div id="cell-14" class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>joint_probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
+<div id="cell-12" class="cell" data-execution_count="74">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>joint_prob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="74">
 <div>
 
 
 <table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
+<th data-quarto-table-cell-role="th">Got Deal</th>
+<th data-quarto-table-cell-role="th">False</th>
+<th data-quarto-table-cell-role="th">True</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Industry</th>
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">C</th>
-<th data-quarto-table-cell-role="th">D</th>
-<th data-quarto-table-cell-role="th">P(C, D)</th>
+<th data-quarto-table-cell-role="th"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>H</td>
-<td>1</td>
-<td>0.24</td>
+<td data-quarto-table-cell-role="th">Automotive</td>
+<td>0.002930</td>
+<td>0.009524</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>H</td>
-<td>2</td>
-<td>0.13</td>
+<td data-quarto-table-cell-role="th">Business Services</td>
+<td>0.015385</td>
+<td>0.013919</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>H</td>
-<td>3</td>
-<td>0.09</td>
+<td data-quarto-table-cell-role="th">Children/Education</td>
+<td>0.032967</td>
+<td>0.057143</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>H</td>
-<td>4</td>
-<td>0.01</td>
+<td data-quarto-table-cell-role="th">Electronics</td>
+<td>0.006593</td>
+<td>0.005128</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>H</td>
-<td>5</td>
-<td>0.03</td>
+<td data-quarto-table-cell-role="th">Fashion/Beauty</td>
+<td>0.071795</td>
+<td>0.093773</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>H</td>
-<td>6</td>
-<td>0.01</td>
+<td data-quarto-table-cell-role="th">Fitness/Sports/Outdoors</td>
+<td>0.035165</td>
+<td>0.057875</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>T</td>
-<td>1</td>
-<td>0.19</td>
+<td data-quarto-table-cell-role="th">Food and Beverage</td>
+<td>0.084982</td>
+<td>0.131868</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>T</td>
-<td>2</td>
-<td>0.09</td>
+<td data-quarto-table-cell-role="th">Green/CleanTech</td>
+<td>0.003663</td>
+<td>0.004396</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>T</td>
-<td>3</td>
-<td>0.13</td>
+<td data-quarto-table-cell-role="th">Health/Wellness</td>
+<td>0.019780</td>
+<td>0.029304</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>T</td>
-<td>4</td>
-<td>0.04</td>
+<td data-quarto-table-cell-role="th">Lifestyle/Home</td>
+<td>0.060806</td>
+<td>0.119414</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>T</td>
-<td>5</td>
-<td>0.00</td>
+<td data-quarto-table-cell-role="th">Liquor/Alcohol</td>
+<td>0.003663</td>
+<td>0.003663</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>T</td>
-<td>6</td>
-<td>0.04</td>
+<td data-quarto-table-cell-role="th">Media/Entertainment</td>
+<td>0.006593</td>
+<td>0.012454</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Pet Products</td>
+<td>0.017582</td>
+<td>0.024176</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Software/Tech</td>
+<td>0.022711</td>
+<td>0.027839</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Travel</td>
+<td>0.004396</td>
+<td>0.003663</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Uncertain/Other</td>
+<td>0.005861</td>
+<td>0.010989</td>
 </tr>
 </tbody>
 </table>
@@ -1075,118 +1114,80 @@ Name: P(C), dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-15" class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>joint_probs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">C</th>
-<th data-quarto-table-cell-role="th">D</th>
-<th data-quarto-table-cell-role="th">P(C, D)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>H</td>
-<td>1</td>
-<td>0.24</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>H</td>
-<td>2</td>
-<td>0.13</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>H</td>
-<td>3</td>
-<td>0.09</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>H</td>
-<td>4</td>
-<td>0.01</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>H</td>
-<td>5</td>
-<td>0.03</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>H</td>
-<td>6</td>
-<td>0.01</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>T</td>
-<td>1</td>
-<td>0.19</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>T</td>
-<td>2</td>
-<td>0.09</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>T</td>
-<td>3</td>
-<td>0.13</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>T</td>
-<td>4</td>
-<td>0.04</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>T</td>
-<td>5</td>
-<td>0.00</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>T</td>
-<td>6</td>
-<td>0.04</td>
-</tr>
-</tbody>
-</table>
-
+<div id="cell-13" class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># marginal probability of getting a deal</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>marginal_prob <span class="op">=</span> joint_prob.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>marginal_prob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="70">
+<pre><code>Got Deal
+False    0.394872
+True     0.605128
+dtype: float64</code></pre>
 </div>
 </div>
+<div id="cell-14" class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Got Deal'</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="73">
+<pre><code>True     0.605128
+False    0.394872
+Name: Got Deal, dtype: float64</code></pre>
 </div>
-<div id="cell-16" class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">5</span>), sharey<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].bar(joint_probs[<span class="st">"CD_vals"</span>], joint_probs[<span class="st">"P(C, D)"</span>], color<span class="op">=</span><span class="st">"lightblue"</span>)<span class="op">;</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].bar(P_C.index, P_C)<span class="op">;</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].bar(P_D.index, P_D, color<span class="op">=</span><span class="st">"navy"</span>)<span class="op">;</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].tick_params(<span class="st">'x'</span>, labelrotation<span class="op">=</span><span class="dv">90</span>)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">"P(C, D)"</span>)<span class="op">;</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">"P(C)"</span>)<span class="op">;</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_title(<span class="st">"P(D)"</span>)<span class="op">;</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">"P(C) and P(D) (center and right) marginalized from joint probability P(C, D) left"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-15" class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># marginal probability of industry</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>marginal_prob <span class="op">=</span> joint_prob.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>marginal_prob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="69">
+<pre><code>Industry
+Automotive                 0.012454
+Business Services          0.029304
+Children/Education         0.090110
+Electronics                0.011722
+Fashion/Beauty             0.165568
+Fitness/Sports/Outdoors    0.093040
+Food and Beverage          0.216850
+Green/CleanTech            0.008059
+Health/Wellness            0.049084
+Lifestyle/Home             0.180220
+Liquor/Alcohol             0.007326
+Media/Entertainment        0.019048
+Pet Products               0.041758
+Software/Tech              0.050549
+Travel                     0.008059
+Uncertain/Other            0.016850
+dtype: float64</code></pre>
+</div>
+</div>
+<div id="cell-16" class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">5</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].bar(joint_prob.index, joint_prob[<span class="va">True</span>], label<span class="op">=</span><span class="st">'Got Deal'</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].bar(joint_prob.index, joint_prob[<span class="va">False</span>], bottom<span class="op">=</span>joint_prob[<span class="va">True</span>], label<span class="op">=</span><span class="st">'No Deal'</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_xticklabels(joint_prob.index, rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_ylabel(<span class="st">'Probability'</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">0</span>].set_title(<span class="st">'Probability of Getting a Deal by Industry'</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Marginal probability of getting a deal</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>marginal_prob_deal <span class="op">=</span> joint_prob.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].bar(marginal_prob_deal.index, marginal_prob_deal, color<span class="op">=</span>[<span class="st">'blue'</span>, <span class="st">'red'</span>], alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_xticks([<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_xticklabels([<span class="st">'Got Deal'</span>, <span class="st">'No Deal'</span>])</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_ylabel(<span class="st">'Probability'</span>)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">1</span>].set_title(<span class="st">'Marginal Probability of Getting a Deal'</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Marginal probability of industry</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>marginal_prob_industry <span class="op">=</span> joint_prob.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].bar(joint_prob.index, marginal_prob_industry, color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_xticklabels(joint_prob.index, rotation<span class="op">=</span><span class="dv">90</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_ylabel(<span class="st">'Probability'</span>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>axs[<span class="dv">2</span>].set_title(<span class="st">'Marginal Probability of Industry'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="78">
+<pre><code>Text(0.5, 1.0, 'Marginal Probability of Industry')</code></pre>
+</div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="joint_prob_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="joint_prob_files/figure-html/cell-12-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1194,135 +1195,167 @@ Name: P(C), dtype: float64</code></pre>
 <p>As we look at new concepts in probability, it is important to stay mindful of i) what the probability sums to ii) what are the dimensions of the table that represents the probability.</p>
 <p>You can see from the cell below that the dimensions of marginal probability table is the length of the range of the variable.</p>
 <p>You can see from the code below that both the computed marginal probabilities in add up to 1.</p>
-<div id="cell-18" class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>P_C.<span class="bu">sum</span>().<span class="bu">round</span>(<span class="dv">3</span>), P_D.<span class="bu">sum</span>().<span class="bu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>(1.0, 1.0)</code></pre>
-</div>
-</div>
 </section>
 <section id="independent-random-variables" class="level2">
 <h2 class="anchored" data-anchor-id="independent-random-variables">Independent Random Variables</h2>
 <p>Random variables can be either independent or dependent. If two random variables are independent, then the value of one random variable does not affect the value of the other random variable.</p>
 <p>For example, if we are rolling two dice, we can use two random variables to represent the numbers that we roll. The two random variables are independent because the value of one die does not affect the value of the other die. If two random variables are dependent, then the value of one random variable does affect the value of the other random variable. For example, if we are measuring the temperature and the humidity, we can use two random variables to represent the temperature and the humidity. The two random variables are dependent because the temperature affects the humidity and the humidity affects the temperature.</p>
 <p>More formally, <strong>two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent if and only if <span class="math inline">\(P(X, Y) = P(X) \cdot P(Y)\)</span></strong>.</p>
-<div id="cell-20" class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>P_C.name <span class="op">=</span> <span class="st">"P(C)"</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>P_D.name <span class="op">=</span> <span class="st">"P(D)"</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(joint_probs, P_C, on<span class="op">=</span><span class="st">'C'</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>merged <span class="op">=</span> pd.merge(merged,      P_D, on<span class="op">=</span><span class="st">'D'</span>)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>merged</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
+<div id="cell-19" class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test for independence of Industry and Got Deal</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>prob_deal     <span class="op">=</span> joint_prob.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>prob_industry <span class="op">=</span> joint_prob.<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>prob_deal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="79">
+<pre><code>Got Deal
+False    0.394872
+True     0.605128
+dtype: float64</code></pre>
+</div>
+</div>
+<div id="cell-20" class="cell" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>joint_prob <span class="op">=</span> pd.crosstab(data[<span class="st">'Industry'</span>], data[<span class="st">'Got Deal'</span>], normalize<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-21" class="cell" data-execution_count="98">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>joint_prob[<span class="st">'False2'</span>] <span class="op">=</span> joint_prob.<span class="bu">apply</span>(<span class="kw">lambda</span> x: (prob_deal[<span class="va">False</span>] <span class="op">*</span> prob_industry[x.name]), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>joint_prob[<span class="st">'True2'</span>] <span class="op">=</span> joint_prob.<span class="bu">apply</span>(<span class="kw">lambda</span> x: (prob_deal[<span class="va">True</span>] <span class="op">*</span> prob_industry[x.name]), axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>joint_prob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="98">
 <div>
 
 
 <table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
+<th data-quarto-table-cell-role="th">Got Deal</th>
+<th data-quarto-table-cell-role="th">False</th>
+<th data-quarto-table-cell-role="th">True</th>
+<th data-quarto-table-cell-role="th">False2</th>
+<th data-quarto-table-cell-role="th">True2</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Industry</th>
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">C</th>
-<th data-quarto-table-cell-role="th">D</th>
-<th data-quarto-table-cell-role="th">P(C, D)</th>
-<th data-quarto-table-cell-role="th">P(C)</th>
-<th data-quarto-table-cell-role="th">P(D)</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>H</td>
-<td>1</td>
-<td>0.24</td>
-<td>0.51</td>
-<td>0.43</td>
+<td data-quarto-table-cell-role="th">Automotive</td>
+<td>0.002930</td>
+<td>0.009524</td>
+<td>0.004918</td>
+<td>0.007536</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>T</td>
-<td>1</td>
-<td>0.19</td>
-<td>0.49</td>
-<td>0.43</td>
+<td data-quarto-table-cell-role="th">Business Services</td>
+<td>0.015385</td>
+<td>0.013919</td>
+<td>0.011571</td>
+<td>0.017733</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>H</td>
-<td>2</td>
-<td>0.13</td>
-<td>0.51</td>
-<td>0.22</td>
+<td data-quarto-table-cell-role="th">Children/Education</td>
+<td>0.032967</td>
+<td>0.057143</td>
+<td>0.035582</td>
+<td>0.054528</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>T</td>
-<td>2</td>
-<td>0.09</td>
-<td>0.49</td>
-<td>0.22</td>
+<td data-quarto-table-cell-role="th">Electronics</td>
+<td>0.006593</td>
+<td>0.005128</td>
+<td>0.004629</td>
+<td>0.007093</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>H</td>
-<td>3</td>
-<td>0.09</td>
-<td>0.51</td>
-<td>0.22</td>
+<td data-quarto-table-cell-role="th">Fashion/Beauty</td>
+<td>0.071795</td>
+<td>0.093773</td>
+<td>0.065378</td>
+<td>0.100190</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>T</td>
-<td>3</td>
-<td>0.13</td>
-<td>0.49</td>
-<td>0.22</td>
+<td data-quarto-table-cell-role="th">Fitness/Sports/Outdoors</td>
+<td>0.035165</td>
+<td>0.057875</td>
+<td>0.036739</td>
+<td>0.056301</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>H</td>
-<td>4</td>
-<td>0.01</td>
-<td>0.51</td>
-<td>0.05</td>
+<td data-quarto-table-cell-role="th">Food and Beverage</td>
+<td>0.084982</td>
+<td>0.131868</td>
+<td>0.085628</td>
+<td>0.131222</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>T</td>
-<td>4</td>
-<td>0.04</td>
-<td>0.49</td>
-<td>0.05</td>
+<td data-quarto-table-cell-role="th">Green/CleanTech</td>
+<td>0.003663</td>
+<td>0.004396</td>
+<td>0.003182</td>
+<td>0.004876</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>H</td>
-<td>5</td>
-<td>0.03</td>
-<td>0.51</td>
-<td>0.03</td>
+<td data-quarto-table-cell-role="th">Health/Wellness</td>
+<td>0.019780</td>
+<td>0.029304</td>
+<td>0.019382</td>
+<td>0.029702</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>T</td>
-<td>5</td>
-<td>0.00</td>
-<td>0.49</td>
-<td>0.03</td>
+<td data-quarto-table-cell-role="th">Lifestyle/Home</td>
+<td>0.060806</td>
+<td>0.119414</td>
+<td>0.071164</td>
+<td>0.109056</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>H</td>
-<td>6</td>
-<td>0.01</td>
-<td>0.51</td>
-<td>0.05</td>
+<td data-quarto-table-cell-role="th">Liquor/Alcohol</td>
+<td>0.003663</td>
+<td>0.003663</td>
+<td>0.002893</td>
+<td>0.004433</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>T</td>
-<td>6</td>
-<td>0.04</td>
-<td>0.49</td>
-<td>0.05</td>
+<td data-quarto-table-cell-role="th">Media/Entertainment</td>
+<td>0.006593</td>
+<td>0.012454</td>
+<td>0.007521</td>
+<td>0.011526</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Pet Products</td>
+<td>0.017582</td>
+<td>0.024176</td>
+<td>0.016489</td>
+<td>0.025269</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Software/Tech</td>
+<td>0.022711</td>
+<td>0.027839</td>
+<td>0.019961</td>
+<td>0.030589</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Travel</td>
+<td>0.004396</td>
+<td>0.003663</td>
+<td>0.003182</td>
+<td>0.004876</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Uncertain/Other</td>
+<td>0.005861</td>
+<td>0.010989</td>
+<td>0.006654</td>
+<td>0.010196</td>
 </tr>
 </tbody>
 </table>
@@ -1330,133 +1363,142 @@ Name: P(C), dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-21" class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>merged[<span class="st">'P(C) P(D)'</span>] <span class="op">=</span> merged[<span class="st">'P(C)'</span>] <span class="op">*</span> merged[<span class="st">'P(D)'</span>]</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>merged</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
+<div id="cell-22" class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>joint_prob <span class="op">=</span> joint_prob.<span class="bu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>joint_prob</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="100">
 <div>
 
 
 <table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
+<th data-quarto-table-cell-role="th">Got Deal</th>
+<th data-quarto-table-cell-role="th">False</th>
+<th data-quarto-table-cell-role="th">True</th>
+<th data-quarto-table-cell-role="th">False2</th>
+<th data-quarto-table-cell-role="th">True2</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Industry</th>
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">C</th>
-<th data-quarto-table-cell-role="th">D</th>
-<th data-quarto-table-cell-role="th">P(C, D)</th>
-<th data-quarto-table-cell-role="th">P(C)</th>
-<th data-quarto-table-cell-role="th">P(D)</th>
-<th data-quarto-table-cell-role="th">P(C) P(D)</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>H</td>
-<td>1</td>
-<td>0.24</td>
-<td>0.51</td>
-<td>0.43</td>
-<td>0.2193</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>T</td>
-<td>1</td>
-<td>0.19</td>
-<td>0.49</td>
-<td>0.43</td>
-<td>0.2107</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>H</td>
-<td>2</td>
-<td>0.13</td>
-<td>0.51</td>
-<td>0.22</td>
-<td>0.1122</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>T</td>
-<td>2</td>
-<td>0.09</td>
-<td>0.49</td>
-<td>0.22</td>
-<td>0.1078</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>H</td>
-<td>3</td>
-<td>0.09</td>
-<td>0.51</td>
-<td>0.22</td>
-<td>0.1122</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>T</td>
-<td>3</td>
-<td>0.13</td>
-<td>0.49</td>
-<td>0.22</td>
-<td>0.1078</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>H</td>
-<td>4</td>
-<td>0.01</td>
-<td>0.51</td>
-<td>0.05</td>
-<td>0.0255</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>T</td>
-<td>4</td>
-<td>0.04</td>
-<td>0.49</td>
-<td>0.05</td>
-<td>0.0245</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>H</td>
-<td>5</td>
-<td>0.03</td>
-<td>0.51</td>
-<td>0.03</td>
-<td>0.0153</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>T</td>
-<td>5</td>
+<td data-quarto-table-cell-role="th">Automotive</td>
 <td>0.00</td>
-<td>0.49</td>
-<td>0.03</td>
-<td>0.0147</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>H</td>
-<td>6</td>
 <td>0.01</td>
-<td>0.51</td>
-<td>0.05</td>
-<td>0.0255</td>
+<td>0.00</td>
+<td>0.01</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>T</td>
-<td>6</td>
+<td data-quarto-table-cell-role="th">Business Services</td>
+<td>0.02</td>
+<td>0.01</td>
+<td>0.01</td>
+<td>0.02</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Children/Education</td>
+<td>0.03</td>
+<td>0.06</td>
 <td>0.04</td>
-<td>0.49</td>
 <td>0.05</td>
-<td>0.0245</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Electronics</td>
+<td>0.01</td>
+<td>0.01</td>
+<td>0.00</td>
+<td>0.01</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Fashion/Beauty</td>
+<td>0.07</td>
+<td>0.09</td>
+<td>0.07</td>
+<td>0.10</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Fitness/Sports/Outdoors</td>
+<td>0.04</td>
+<td>0.06</td>
+<td>0.04</td>
+<td>0.06</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Food and Beverage</td>
+<td>0.08</td>
+<td>0.13</td>
+<td>0.09</td>
+<td>0.13</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Green/CleanTech</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Health/Wellness</td>
+<td>0.02</td>
+<td>0.03</td>
+<td>0.02</td>
+<td>0.03</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Lifestyle/Home</td>
+<td>0.06</td>
+<td>0.12</td>
+<td>0.07</td>
+<td>0.11</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Liquor/Alcohol</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Media/Entertainment</td>
+<td>0.01</td>
+<td>0.01</td>
+<td>0.01</td>
+<td>0.01</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Pet Products</td>
+<td>0.02</td>
+<td>0.02</td>
+<td>0.02</td>
+<td>0.03</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Software/Tech</td>
+<td>0.02</td>
+<td>0.03</td>
+<td>0.02</td>
+<td>0.03</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Travel</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>0.00</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Uncertain/Other</td>
+<td>0.01</td>
+<td>0.01</td>
+<td>0.01</td>
+<td>0.01</td>
 </tr>
 </tbody>
 </table>
@@ -1464,101 +1506,50 @@ Name: P(C), dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-22" class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>merged[[<span class="st">'P(C, D)'</span>, <span class="st">'P(C) P(D)'</span>]].<span class="bu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">P(C, D)</th>
-<th data-quarto-table-cell-role="th">P(C) P(D)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>0.24</td>
-<td>0.22</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>0.19</td>
-<td>0.21</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>0.13</td>
-<td>0.11</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>0.09</td>
-<td>0.11</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>0.09</td>
-<td>0.11</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>0.13</td>
-<td>0.11</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>0.01</td>
-<td>0.03</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>0.04</td>
-<td>0.02</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>0.03</td>
-<td>0.02</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>0.00</td>
-<td>0.01</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>0.01</td>
-<td>0.03</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>0.04</td>
-<td>0.02</td>
-</tr>
-</tbody>
-</table>
-
+<div id="cell-23" class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>joint_prob[<span class="va">False</span>] <span class="op">==</span> joint_prob[<span class="st">'False2'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="101">
+<pre><code>Industry
+Automotive                  True
+Business Services          False
+Children/Education         False
+Electronics                False
+Fashion/Beauty              True
+Fitness/Sports/Outdoors     True
+Food and Beverage          False
+Green/CleanTech             True
+Health/Wellness             True
+Lifestyle/Home             False
+Liquor/Alcohol              True
+Media/Entertainment         True
+Pet Products                True
+Software/Tech               True
+Travel                      True
+Uncertain/Other             True
+dtype: bool</code></pre>
 </div>
 </div>
-</div>
-<p>The two random variables <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span> therefore are NOT independent because <span class="math inline">\(P(C, D) \neq P(C) \cdot P(D)\)</span>.</p>
-<div id="cell-24" class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(data<span class="op">=</span>merged, x<span class="op">=</span><span class="st">"CD_vals"</span>, y<span class="op">=</span><span class="st">"P(C, D)"</span>, color<span class="op">=</span><span class="st">"navy"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"$P(C, D)$"</span>)<span class="op">;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sns.barplot(data<span class="op">=</span>merged, x<span class="op">=</span><span class="st">"CD_vals"</span>, y<span class="op">=</span><span class="st">"P(C) P(D)"</span>, color<span class="op">=</span><span class="st">"orange"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"$P(C)\cdot P(D)$"</span>)<span class="op">;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">90</span>)<span class="op">;</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Probability"</span>)<span class="op">;</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>plt.legend()<span class="op">;</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"$C$ and $D$ are NOT independent since $P(C, D) </span><span class="ch">\\</span><span class="st">neq P(C) \cdot P(D)$"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="joint_prob_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
+<div id="cell-24" class="cell" data-execution_count="102">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>joint_prob[<span class="va">True</span>] <span class="op">==</span> joint_prob[<span class="st">'True2'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="102">
+<pre><code>Industry
+Automotive                  True
+Business Services          False
+Children/Education         False
+Electronics                 True
+Fashion/Beauty             False
+Fitness/Sports/Outdoors     True
+Food and Beverage           True
+Green/CleanTech             True
+Health/Wellness             True
+Lifestyle/Home             False
+Liquor/Alcohol              True
+Media/Entertainment         True
+Pet Products               False
+Software/Tech               True
+Travel                      True
+Uncertain/Other             True
+dtype: bool</code></pre>
 </div>
 </div>
 

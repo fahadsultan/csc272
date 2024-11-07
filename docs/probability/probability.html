@@ -588,14 +588,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#value_counts" id="toc-value_counts" class="nav-link active" data-scroll-target="#value_counts"><code>.value_counts()</code></a></li>
-  <li><a href="#unique" id="toc-unique" class="nav-link" data-scroll-target="#unique"><code>.unique()</code></a></li>
-  <li><a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability">Probability</a>
-  <ul class="collapse">
-  <li><a href="#random-variable" id="toc-random-variable" class="nav-link" data-scroll-target="#random-variable">Random Variable</a></li>
+  <li><a href="#random-variable" id="toc-random-variable" class="nav-link active" data-scroll-target="#random-variable">Random Variable</a></li>
   <li><a href="#experiment-outcome-omega-and-sample-space-omega" id="toc-experiment-outcome-omega-and-sample-space-omega" class="nav-link" data-scroll-target="#experiment-outcome-omega-and-sample-space-omega">Experiment, Outcome <span class="math inline">\(\omega\)</span> and Sample Space <span class="math inline">\(\Omega\)</span></a></li>
+  <li><a href="#observed-sample-space" id="toc-observed-sample-space" class="nav-link" data-scroll-target="#observed-sample-space">Observed Sample Space</a></li>
+  <li><a href="#frequency-distributions" id="toc-frequency-distributions" class="nav-link" data-scroll-target="#frequency-distributions">Frequency Distributions</a></li>
   <li><a href="#probability-model-px" id="toc-probability-model-px" class="nav-link" data-scroll-target="#probability-model-px">Probability Model <span class="math inline">\(P(X)\)</span></a></li>
   <li><a href="#probability-of-an-event-pphi" id="toc-probability-of-an-event-pphi" class="nav-link" data-scroll-target="#probability-of-an-event-pphi">Probability of an Event <span class="math inline">\(P(\phi)\)</span></a></li>
+  <li><a href="#visualizing-probability-distributions" id="toc-visualizing-probability-distributions" class="nav-link" data-scroll-target="#visualizing-probability-distributions">Visualizing Probability Distributions</a>
+  <ul class="collapse">
+  <li><a href="#categorical-random-variables-bar-plot" id="toc-categorical-random-variables-bar-plot" class="nav-link" data-scroll-target="#categorical-random-variables-bar-plot">Categorical Random Variables: Bar Plot</a></li>
+  <li><a href="#continuous-random-variables-histogram" id="toc-continuous-random-variables-histogram" class="nav-link" data-scroll-target="#continuous-random-variables-histogram">Continuous Random Variables: Histogram</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -622,50 +624,16 @@ window.Quarto = {
 </header>
 
 
-<section id="value_counts" class="level3">
-<h3 class="anchored" data-anchor-id="value_counts"><code>.value_counts()</code></h3>
-<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html"><code>Series.value_counts()</code></a> methods counts the number of occurrence of each unique value in a <code>Series</code>. In other words, it <em>counts</em> the number of times each unique <em>value</em> appears. This is often useful for determining the most or least common entries in a <code>Series</code>.</p>
-<p>In the example below, we can determine the name with the most years in which at least one person has taken that name by counting the number of times each name appears in the <code>"Name"</code> column of <code>elections</code>.</p>
-<div id="cell-1" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">"Party"</span>].value_counts().head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>Democratic     47
-Republican     41
-Libertarian    12
-Prohibition    11
-Socialist      10
-Name: Party, dtype: int64</code></pre>
-</div>
-</div>
-</section>
-<section id="unique" class="level3">
-<h3 class="anchored" data-anchor-id="unique"><code>.unique()</code></h3>
-<p>If we have a Series with many repeated values, then <a href="https://pandas.pydata.org/docs/reference/api/pandas.unique.html"><code>.unique()</code></a> can be used to identify only the <em>unique</em> values. Here we return an array of all the names in <code>elections</code>.</p>
-<div id="cell-3" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">"Result"</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>array(['loss', 'win'], dtype=object)</code></pre>
-</div>
-</div>
-</section>
-<section id="probability" class="level1">
-<h1>Probability</h1>
 <p>Probability allows us to talk about uncertainty, in certain terms. Once, we are able to quantify uncertainties, we can deterministically make deductions about the future. The language of statistics also allows us to talk about uncertainty in uncertain but tractable terms that we can reason about.</p>
-<section id="random-variable" class="level2">
-<h2 class="anchored" data-anchor-id="random-variable">Random Variable</h2>
-<p>A <strong>random variable</strong> is a mathematical formalization of an abstract quantity that has some degree of uncertainty associated with the values it may take on. The set of all possible values that a random variable can take on is called its <strong>range</strong>.</p>
-<p>A random variable is very much similar to a variable in computer programming. <strong>In the context of <code>pandas</code>, a random variable is a column or feature in a <code>DataFrame</code>.</strong></p>
-<p>Just as numerical features in a <code>DataFrame</code> can be either discrete or continuous, random variables can also be either discrete or continuous. The two types require different mathematical formalizations as we will see later.</p>
-<p>Random variables are usually denoted by capital letters, such as <span class="math inline">\(X\)</span> or <span class="math inline">\(Y\)</span>. The values that a random variable can take on are denoted by lower case letters, such as <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span>.</p>
-<p>It is important to note that in the real world, it is <em>often impossible to obtain the range</em> of a random variable. Since most real-world datasets are <strong>samples</strong>, <strong><code>df['X'].unique()</code> does not necessarily give us the range of <span class="math inline">\(X\)</span></strong>.</p>
-<p>It is also important to remember that <strong><span class="math inline">\(x\)</span> is a single value</strong> but <strong><span class="math inline">\(X\)</span> is a collection of values</strong> (i.e.&nbsp;<code>pd.Series</code>).</p>
-<p>In the example below, <span class="math inline">\(C\)</span> (coin) and <span class="math inline">\(D\)</span> (dice) are two random variables.</p>
-<div id="cell-8" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'../data/experiment.csv'</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
+<p>In the context of probability, note that we are going to be concerned with column vectors more than row vectors. In a pandas DataFrame, these column vectors are the columns of the DataFrame aka features.</p>
+<div id="cell-2" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"../data/Shark Tank US dataset.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data[data.columns[:<span class="dv">30</span>]]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>data.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
 
@@ -673,39 +641,167 @@ Name: Party, dtype: int64</code></pre>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">C</th>
-<th data-quarto-table-cell-role="th">D</th>
+<th data-quarto-table-cell-role="th">Season Number</th>
+<th data-quarto-table-cell-role="th">Startup Name</th>
+<th data-quarto-table-cell-role="th">Episode Number</th>
+<th data-quarto-table-cell-role="th">Pitch Number</th>
+<th data-quarto-table-cell-role="th">Season Start</th>
+<th data-quarto-table-cell-role="th">Season End</th>
+<th data-quarto-table-cell-role="th">Original Air Date</th>
+<th data-quarto-table-cell-role="th">Industry</th>
+<th data-quarto-table-cell-role="th">Business Description</th>
+<th data-quarto-table-cell-role="th">Company Website</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">Got Deal</th>
+<th data-quarto-table-cell-role="th">Total Deal Amount</th>
+<th data-quarto-table-cell-role="th">Total Deal Equity</th>
+<th data-quarto-table-cell-role="th">Deal Valuation</th>
+<th data-quarto-table-cell-role="th">Number of Sharks in Deal</th>
+<th data-quarto-table-cell-role="th">Investment Amount Per Shark</th>
+<th data-quarto-table-cell-role="th">Equity Per Shark</th>
+<th data-quarto-table-cell-role="th">Royalty Deal</th>
+<th data-quarto-table-cell-role="th">Advisory Shares Equity</th>
+<th data-quarto-table-cell-role="th">Loan</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>T</td>
 <td>1</td>
+<td>AvaTheElephant</td>
+<td>1</td>
+<td>1</td>
+<td>9-Aug-09</td>
+<td>5-Feb-10</td>
+<td>9-Aug-09</td>
+<td>Health/Wellness</td>
+<td>Ava The Elephant - Baby and Child Care</td>
+<td>http://www.avatheelephant.com/</td>
+<td>...</td>
+<td>1</td>
+<td>50000.0</td>
+<td>55.0</td>
+<td>90909.0</td>
+<td>1.0</td>
+<td>50000.0</td>
+<td>55.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>T</td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>T</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>H</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>T</td>
 <td>1</td>
+<td>MrTod'sPieFactory</td>
+<td>1</td>
+<td>2</td>
+<td>9-Aug-09</td>
+<td>5-Feb-10</td>
+<td>9-Aug-09</td>
+<td>Food and Beverage</td>
+<td>Mr. Tod's Pie Factory - Specialty Food</td>
+<td>http://whybake.com/</td>
+<td>...</td>
+<td>1</td>
+<td>460000.0</td>
+<td>50.0</td>
+<td>920000.0</td>
+<td>2.0</td>
+<td>230000.0</td>
+<td>25.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
 </tr>
 </tbody>
 </table>
 
+<p>2 rows × 30 columns</p>
+</div>
+</div>
+</div>
+<section id="random-variable" class="level2">
+<h2 class="anchored" data-anchor-id="random-variable">Random Variable</h2>
+<p>A <strong>random variable</strong> is a mathematical formalization of an abstract quantity that has some degree of uncertainty associated with the values it may take on. The set of all possible values that a random variable can take on is called its <strong>range</strong>.</p>
+<p><strong>In the context of <code>pandas</code>, we are going to model columns or features as random variables.</strong></p>
+<p>Just as numerical features in a <code>DataFrame</code> can be either discrete or continuous, random variables can also be either discrete or continuous. The two types require different mathematical formalizations as we will see later.</p>
+<p>Random variables are usually denoted by capital letters, such as <span class="math inline">\(X\)</span> or <span class="math inline">\(Y\)</span>. The values that a random variable can take on are denoted by lower case letters, such as <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span>.</p>
+<p>It is also important to remember that <strong><span class="math inline">\(x\)</span> is a single value</strong> but <strong><span class="math inline">\(X\)</span> is a collection of values</strong> (i.e.&nbsp;<code>pd.Series</code>).</p>
+<p>In the example below, <code>Got Deal</code> and <code>Deal Valuation</code> are two random variables in <code>data</code></p>
+<div id="cell-6" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'Got Deal'</span>, <span class="st">'Deal Valuation'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Got Deal</th>
+<th data-quarto-table-cell-role="th">Deal Valuation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>90909.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1</td>
+<td>920000.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1360</td>
+<td>1</td>
+<td>3125000.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1361</td>
+<td>0</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1362</td>
+<td>0</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1363</td>
+<td>1</td>
+<td>3000000.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1364</td>
+<td>1</td>
+<td>15000000.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>1365 rows × 2 columns</p>
 </div>
 </div>
 </div>
@@ -776,85 +872,38 @@ Name: Party, dtype: int64</code></pre>
 <p>In other words, the sample space is the <strong>cross product of the ranges of all random variables</strong> involved in the experiment.</p>
 <p>In our example, the experiment is the act of tossing a coin and rolling a dice.</p>
 <p>Each row in the data is an outcome <span class="math inline">\(w_i\)</span> from the set of all possible outcomes <span class="math inline">\(\Omega\)</span>.</p>
-<p><span class="math inline">\(C\)</span> variable can take on two (<span class="math inline">\(n=2\)</span>) values: <span class="math inline">\(\{H, T\}\)</span> and <span class="math inline">\(D\)</span> variable can take on six <span class="math inline">\(m=6\)</span> value: <span class="math inline">\(\{1, 2, 3, 4, 5, 6\}\)</span>. This means that the sample space <span class="math inline">\(\Omega\)</span> is of size <span class="math inline">\(n \times m = 2 \times 6 = 12\)</span>.</p>
-<p>However, the observed outcomes are only 11, as shown below.</p>
-<div id="cell-11" class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data.groupby([<span class="st">'C'</span>, <span class="st">'D'</span>]).count().reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">C</th>
-<th data-quarto-table-cell-role="th">D</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>H</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>H</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>H</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>H</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>H</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>H</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>T</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>T</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>T</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>T</td>
-<td>4</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>T</td>
-<td>5</td>
-</tr>
-</tbody>
-</table>
-
+<p>For example, coin flip <span class="math inline">\(C\)</span> variable can take on two (<span class="math inline">\(n=2\)</span>) values: <span class="math inline">\(\{H, T\}\)</span> and dice roll <span class="math inline">\(D\)</span> variable can take on six <span class="math inline">\(m=6\)</span> value: <span class="math inline">\(\{1, 2, 3, 4, 5, 6\}\)</span>. This means that the sample space <span class="math inline">\(\Omega\)</span> is of size <span class="math inline">\(n \times m = 2 \times 6 = 12\)</span>.</p>
+</section>
+<section id="observed-sample-space" class="level2">
+<h2 class="anchored" data-anchor-id="observed-sample-space">Observed Sample Space</h2>
+<p>If we have a Series with many repeated values, then <a href="https://pandas.pydata.org/docs/reference/api/pandas.unique.html"><code>.unique()</code></a> can be used to identify only the <em>unique</em> values.</p>
+<p>It is important to note that in the real world, it is <em>often impossible to obtain the range</em> of a random variable. Since most real-world datasets are <strong>samples</strong>, <strong><code>df['X'].unique()</code> does not necessarily give us the range of <span class="math inline">\(X\)</span></strong>.</p>
+<p>Here we return an array of all the Industries in the Shark Tank dataset.</p>
+<div id="cell-10" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Industry'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>array(['Health/Wellness', 'Food and Beverage', 'Business Services',
+       'Lifestyle/Home', 'Software/Tech', 'Children/Education',
+       'Automotive', 'Fashion/Beauty', 'Media/Entertainment',
+       'Fitness/Sports/Outdoors', 'Pet Products', 'Electronics',
+       'Green/CleanTech', 'Travel', 'Uncertain/Other', 'Liquor/Alcohol'],
+      dtype=object)</code></pre>
 </div>
 </div>
+</section>
+<section id="frequency-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="frequency-distributions">Frequency Distributions</h2>
+<p>A frequency distribution is a table that shows the frequency of various values in a dataset. The frequency of a value is the number of times it appears in the dataset.</p>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html"><code>Series.value_counts()</code></a> methods counts the number of occurrence of each unique value in a <code>Series</code>. In other words, it <em>counts</em> the number of times each unique <em>value</em> appears. This is often useful for determining the most or least common entries in a <code>Series</code>.</p>
+<p>In the example below, we can determine the frequency of startups that got a deal in the dataset.</p>
+<div id="cell-12" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Got Deal"</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>1    826
+0    539
+Name: Got Deal, dtype: int64</code></pre>
 </div>
-<p>This means that the sample space <span class="math inline">\(\Omega\)</span> is not the set of all observed outcomes. This is despite the fact that many observed outcomes are observed more than once. The missing outcome, that is never observed, is <span class="math inline">\(w_{12} = (T, 6)\)</span>.</p>
+</div>
 </section>
 <section id="probability-model-px" class="level2">
 <h2 class="anchored" data-anchor-id="probability-model-px">Probability Model <span class="math inline">\(P(X)\)</span></h2>
@@ -903,86 +952,56 @@ Name: Party, dtype: int64</code></pre>
 </tbody>
 </table>
 <p>such that <span class="math inline">\(0 \leq P(D=d) \leq 1\)</span> and and <span class="math inline">\(\sum_{d \in D} P(d=D) = 1\)</span>.</p>
-<div id="cell-15" class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fair_die <span class="op">=</span> pd.read_csv(<span class="st">'../data/fair_die.csv'</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fair_die</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">D</th>
-<th data-quarto-table-cell-role="th">P(D)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1</td>
-<td>0.166667</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>2</td>
-<td>0.166667</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>3</td>
-<td>0.166667</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>4</td>
-<td>0.166667</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>5</td>
-<td>0.166667</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>6</td>
-<td>0.166667</td>
-</tr>
-</tbody>
-</table>
-
+<div id="cell-15" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Got Deal'</span>].value_counts() <span class="op">/</span> <span class="bu">len</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>1    0.605128
+0    0.394872
+Name: Got Deal, dtype: float64</code></pre>
 </div>
 </div>
-</div>
-<p>The code cell above shows the probability model for the random variable <span class="math inline">\(D\)</span> for a fair die in our examples, where each number has a probability of <span class="math inline">\(\frac{1}{6}\)</span>.</p>
-<div id="cell-17" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.catplot(data<span class="op">=</span>fair_die, kind<span class="op">=</span><span class="st">'bar'</span>, x<span class="op">=</span><span class="st">"D"</span>, y<span class="op">=</span><span class="st">"P(D)"</span>, color<span class="op">=</span><span class="st">"lightblue"</span>)<span class="op">;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>axs.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Probability distribution of rolling a fair die"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="probability_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
-</figure>
+<div id="cell-16" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Got Deal'</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<pre><code>1    0.605128
+0    0.394872
+Name: Got Deal, dtype: float64</code></pre>
 </div>
 </div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>``` vovnnxecqyzp A word of caution on <u>mathematical notation</u> and <u>dimensionality</u>:</p>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A word of caution on <u>mathematical notation</u> and <u>dimensionality</u>:</p>
 <p>Uppercase letters (<span class="math inline">\(X, Y ...\)</span>) often refer to a random variable. Lowercase letters (<span class="math inline">\(x, y ...\)</span>) often refer to a particular outcome of a random variable.</p>
-<p>The following refer to a probability <u>value</u> (<code>int</code>, <code>float</code> etc.): * <span class="math inline">\(P(X = x)\)</span> * also written in shorthand as <span class="math inline">\(P(x)\)</span> * <span class="math inline">\(P(X = x ∧ Y = y)\)</span><br>
-* also written in shorthand as <span class="math inline">\(P(x, y)\)</span></p>
+<p>The following refer to a probability <u>value</u> (<code>int</code>, <code>float</code> etc.):</p>
+<ul>
+<li><p><span class="math inline">\(P(X = x)\)</span></p>
+<ul>
+<li>also written in shorthand as <span class="math inline">\(P(x)\)</span></li>
+</ul></li>
+<li><p><span class="math inline">\(P(X = x ∧ Y = y)\)</span></p>
+<ul>
+<li>also written in shorthand as <span class="math inline">\(P(x, y)\)</span></li>
+</ul></li>
+</ul>
 <p>The following refer to <u>a collection of values</u> (<code>pd.Series</code>, <code>pd.DataFrame</code> etc.):</p>
 <ul>
-<li><span class="math inline">\(P(X)\)</span></li>
-<li><span class="math inline">\(P(X ∧ Y)\)</span>
+<li><p><span class="math inline">\(P(X)\)</span></p></li>
+<li><p><span class="math inline">\(P(X ∧ Y)\)</span></p>
 <ul>
 <li>also written as P(X, Y)</li>
 </ul></li>
-<li><span class="math inline">\(P(X = x, Y)\)</span></li>
+<li><p><span class="math inline">\(P(X = x, Y)\)</span></p></li>
 </ul>
+</div>
+</div>
 </section>
 <section id="probability-of-an-event-pphi" class="level2">
 <h2 class="anchored" data-anchor-id="probability-of-an-event-pphi">Probability of an Event <span class="math inline">\(P(\phi)\)</span></h2>
@@ -992,16 +1011,241 @@ Name: Party, dtype: int64</code></pre>
 <!-- An example of an event is at least one Heads  $ \phi = \{\omega_1 , \omega_2 , \omega_3\}$ -->
 <p><span class="math inline">\(P (\phi) = \sum_{\omega \in \phi} P(\omega)\)</span> is the sum of probabilities of the set of possible worlds defining <span class="math inline">\(\phi\)</span></p>
 <p>$P (_1) = P() = P(_2) +P(_4) + P(_6) = 0.167 + 0.167 + 0.167 $</p>
-<div id="cell-20" class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>event_condition <span class="op">=</span> fair_die[<span class="st">'D'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>event <span class="op">=</span> fair_die[event_condition]</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>P_event <span class="op">=</span> event[<span class="st">'P(D)'</span>].<span class="bu">sum</span>()</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(P_event, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>event_condition <span class="op">=</span> fair_die[<span class="st">'D'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>event <span class="op">=</span> fair_die[event_condition]</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>P_event <span class="op">=</span> event[<span class="st">'P(D)'</span>].<span class="bu">sum</span>()</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(P_event, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>0.5</code></pre>
+</div>
+</div>
+</section>
+<section id="visualizing-probability-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-probability-distributions">Visualizing Probability Distributions</h2>
+<section id="categorical-random-variables-bar-plot" class="level3">
+<h3 class="anchored" data-anchor-id="categorical-random-variables-bar-plot">Categorical Random Variables: Bar Plot</h3>
+<div id="cell-22" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> data[<span class="st">'Got Deal'</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>).index</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> data[<span class="st">'Got Deal'</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>).values</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>ax.bar(x, y)<span class="op">;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Deal or No Deal"</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Deal"</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"P(Got Deal)"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="probability_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="continuous-random-variables-histogram" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-random-variables-histogram">Continuous Random Variables: Histogram</h3>
+<p>Histograms are used to visualize the distribution of continuous random variables.</p>
+<p>Note that the histogram is a visual representation of the frequency distribution of a continuous random variable. The height of each bar represents the frequency of the values in the bin.</p>
+<p>Bins are intervals that divide the range of a continuous random variable into equal segments. The number of bins determines the number of intervals.</p>
+<div id="cell-25" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Season Number</th>
+<th data-quarto-table-cell-role="th">Startup Name</th>
+<th data-quarto-table-cell-role="th">Episode Number</th>
+<th data-quarto-table-cell-role="th">Pitch Number</th>
+<th data-quarto-table-cell-role="th">Season Start</th>
+<th data-quarto-table-cell-role="th">Season End</th>
+<th data-quarto-table-cell-role="th">Original Air Date</th>
+<th data-quarto-table-cell-role="th">Industry</th>
+<th data-quarto-table-cell-role="th">Business Description</th>
+<th data-quarto-table-cell-role="th">Company Website</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">Got Deal</th>
+<th data-quarto-table-cell-role="th">Total Deal Amount</th>
+<th data-quarto-table-cell-role="th">Total Deal Equity</th>
+<th data-quarto-table-cell-role="th">Deal Valuation</th>
+<th data-quarto-table-cell-role="th">Number of Sharks in Deal</th>
+<th data-quarto-table-cell-role="th">Investment Amount Per Shark</th>
+<th data-quarto-table-cell-role="th">Equity Per Shark</th>
+<th data-quarto-table-cell-role="th">Royalty Deal</th>
+<th data-quarto-table-cell-role="th">Advisory Shares Equity</th>
+<th data-quarto-table-cell-role="th">Loan</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>AvaTheElephant</td>
+<td>1</td>
+<td>1</td>
+<td>9-Aug-09</td>
+<td>5-Feb-10</td>
+<td>9-Aug-09</td>
+<td>Health/Wellness</td>
+<td>Ava The Elephant - Baby and Child Care</td>
+<td>http://www.avatheelephant.com/</td>
+<td>...</td>
+<td>1</td>
+<td>50000.0</td>
+<td>55.0</td>
+<td>90909.0</td>
+<td>1.0</td>
+<td>50000.0</td>
+<td>55.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1</td>
+<td>MrTod'sPieFactory</td>
+<td>1</td>
+<td>2</td>
+<td>9-Aug-09</td>
+<td>5-Feb-10</td>
+<td>9-Aug-09</td>
+<td>Food and Beverage</td>
+<td>Mr. Tod's Pie Factory - Specialty Food</td>
+<td>http://whybake.com/</td>
+<td>...</td>
+<td>1</td>
+<td>460000.0</td>
+<td>50.0</td>
+<td>920000.0</td>
+<td>2.0</td>
+<td>230000.0</td>
+<td>25.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1</td>
+<td>Wispots</td>
+<td>1</td>
+<td>3</td>
+<td>9-Aug-09</td>
+<td>5-Feb-10</td>
+<td>9-Aug-09</td>
+<td>Business Services</td>
+<td>Wispots - Consumer Services</td>
+<td>http://www.wispots.com/</td>
+<td>...</td>
+<td>0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1</td>
+<td>CollegeFoxesPackingBoxes</td>
+<td>1</td>
+<td>4</td>
+<td>9-Aug-09</td>
+<td>5-Feb-10</td>
+<td>9-Aug-09</td>
+<td>Lifestyle/Home</td>
+<td>College Foxes Packing Boxes - Consumer Services</td>
+<td>http://collegehunkshaulingjunk.com/</td>
+<td>...</td>
+<td>0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1</td>
+<td>IonicEar</td>
+<td>1</td>
+<td>5</td>
+<td>9-Aug-09</td>
+<td>5-Feb-10</td>
+<td>9-Aug-09</td>
+<td>Software/Tech</td>
+<td>Ionic Ear - Novelties</td>
+<td>NaN</td>
+<td>...</td>
+<td>0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 30 columns</p>
+</div>
+</div>
+</div>
+<p>Note that histograms by default have a bin size of 10. This means that the range of the random variable is divided into 10 equal intervals.</p>
+<div id="cell-27" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>ax.hist(data[<span class="st">'Total Deal Equity'</span>], bins<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Total Deal Equity"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Deal Equity"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Frequency (count of deals)"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="probability_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In order to plot probabilities, we need to normalize the histogram. This is done by setting the <code>density</code> parameter to <code>True</code>. This will normalize the histogram such that the area under the histogram is equal to 1.</p>
+<p>Also note that histograms by default do not plot probabilities. The height of each bar is the frequency of the values in the bin.</p>
+<div id="cell-29" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ax.hist(data[<span class="st">'Total Deal Equity'</span>], bins<span class="op">=</span><span class="dv">20</span>, density<span class="op">=</span><span class="va">True</span>)<span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Total Deal Equity"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Deal Equity"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"P(Deal Equity)"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="probability_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 
