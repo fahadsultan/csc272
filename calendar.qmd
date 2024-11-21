@@ -11,9 +11,8 @@ Please note that this is a tentative plan and is subject to change.
 | 2 | Dropping/Retaining relevant rows/columns | [McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics) | [Selection, Filtering and Dropping](pandas/select_filter.ipynb) | [Data Manipulation and Wrangling](pandas/wrangling.ipynb) | [WA2](https://courses.furman.edu/mod/feedback/view.php?id=726353) | **[PA 2](https://colab.research.google.com/drive/1Ak7a1FzXVPUqVzcxgqWNlyXNk3OK5TKG?usp=sharing)** |
 | 3 | Working with multiple data files |[McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics)    | [Concatenation](pandas/concat_merge.ipynb#concatenating-dataframes) | [Merging](pandas/concat_merge.ipynb#merging-dataframes) | --- |[PA3](https://colab.research.google.com/drive/1ueg6ymvboNdV61IFJf0CCkFgzuGB1STu?usp=sharing) |
 | 4 | Custom Transformations | [McKinney Ch.5, 8, 10](https://wesmckinney.com/book/pandas-basics) | [Apply](pandas/apply.html) | [Apply](pandas/apply.html) | [WA3](https://docs.google.com/document/d/1n8M6qgJDjavnEMseZcPBTyJiAgOeXKt5RZPnknGsNK8/edit?usp=sharing) | [PA4](https://colab.research.google.com/drive/1mh6c5G73v8DiE8vUSsKowesd493lACRw?usp=sharing) | 
-| 5 | Data Visualization | [McKinney Ch.9](https://wesmckinney.com/book/plotting-and-visualization) | [Line plots](plotting/lineplots.html) | [Scatter](plotting/scatter.html) |  | [PA5](https://colab.research.google.com/drive/1pmMKy_kTv_YKfmCJmMYLsr_IiOOfKwzj?usp=sharing) | 
-| 6 | Encoding and Representation | [McKinney Ch.7](https://wesmckinney.com/book/data-cleaning) | [Encoding Feature Types](encoding/types.html) |  | [WA4]() | [PA6]()|
-| 7 | Nearest Neighbor | Skiena Ch. 8 and Ch. 10 |  |  | | |
+| 5 | Data Visualization | [McKinney Ch.9](https://wesmckinney.com/book/plotting-and-visualization) | [Line plots](plotting/lineplots.html) | [Scatter](plotting/scatter.html) | --- | [PA5](https://colab.research.google.com/drive/1pmMKy_kTv_YKfmCJmMYLsr_IiOOfKwzj?usp=sharing) | 
+| 6 | Encoding and Representation | [McKinney Ch.7](https://wesmckinney.com/book/data-cleaning) | [Encoding Feature Types](encoding/types.html) | [Images](encoding/images.html) + [Sound](encoding/sound.html) + [Text](encoding/text.html)  | [WA4](https://docs.google.com/document/d/1Owt_DuU4Xpn1yvvgmp__HUrQPtlvmPsMIZIESEb1qS0/edit?usp=sharing) | [PA6](https://colab.research.google.com/drive/1S89yndxPP4s0Z3ltsS1JV_SNztjFykS3?usp=sharing)|
 
 <center>
 <!-- _Project phase 2 due_ \ -->
@@ -24,8 +23,9 @@ _MIDTERM_
 
 | # | TOPIC | READING | MEETING 1 | MEETING 2 | WRITTEN  ASSIGNMENT | PROGRAMMING ASSIGNMENT |
 |---|----|---|---|---|---|---|
-| 7 | Probability + Stats | Skiena Ch.2 |  |  | | [PA7](https://colab.research.google.com/drive/1Y6xFPUhXx7gnp_shlaBM7EHA_YsGCosC?usp=sharing)|
-| 8 | Naive Bayes | SLP 3rd edition Ch.4 |  |  | | |
+| 7 | Nearest Neighbor | Skiena Ch. 8 and Ch. 10 | [Geometric Interpretation](linearalgebra/vectors.html) | [Dot Product](linearalgebra/matrices.html) | --- | [PA7](https://colab.research.google.com/drive/1Y6xFPUhXx7gnp_shlaBM7EHA_YsGCosC?usp=sharing) |
+| 8 | Probability + Stats | Skiena Ch.2 |  |  | | [PA8](https://colab.research.google.com/drive/1e0EqjeXn184emarLMYYTq8YlU6upk5Zp?usp=sharing) |
+| 9 | Naive Bayes | SLP 3rd edition Ch.4 |  |  | |   |
 | 10 | Expectation Maximization | Skiena Ch.10 (10.5) |  |  | | |
 | 11 | Gradient Descent | Skiena Ch.9 (9.1-9.5) |  |  | | |
 
