@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Images</title>
+<title>Garbage Collection</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -235,7 +235,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/linalg.html">LINEAR ALGEBRA</a></li><li class="breadcrumb-item"><a href="../encoding/encoding.html">Encoding</a></li><li class="breadcrumb-item"><a href="../encoding/images.html">Images</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/beyond.html">BEYOND PANDAS</a></li><li class="breadcrumb-item"><a href="../beyond/gc.html">Garbage Collection</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -396,11 +396,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../encoding/encoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Encoding</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../encoding/types.html" class="sidebar-item-text sidebar-link">
@@ -427,7 +427,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../encoding/images.html" class="sidebar-item-text sidebar-link active">
+  <a href="../encoding/images.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Images</span></a>
   </div>
 </li>
@@ -563,7 +563,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../beyond/gc.html" class="sidebar-item-text sidebar-link">
+  <a href="../beyond/gc.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Garbage Collection</span></a>
   </div>
 </li>
@@ -585,16 +585,24 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#videos" id="toc-videos" class="nav-link active" data-scroll-target="#videos">Videos</a></li>
+  <li><a href="#how-does-python-manage-memory" id="toc-how-does-python-manage-memory" class="nav-link active" data-scroll-target="#how-does-python-manage-memory">How does Python manage memory?</a></li>
+  <li><a href="#what-is-garbage-collection" id="toc-what-is-garbage-collection" class="nav-link" data-scroll-target="#what-is-garbage-collection">What is garbage collection?</a></li>
+  <li><a href="#how-does-garbage-collection-work-in-python" id="toc-how-does-garbage-collection-work-in-python" class="nav-link" data-scroll-target="#how-does-garbage-collection-work-in-python">How does garbage collection work in Python?</a></li>
+  <li><a href="#how-to-disable-garbage-collection" id="toc-how-to-disable-garbage-collection" class="nav-link" data-scroll-target="#how-to-disable-garbage-collection">How to disable garbage collection?</a></li>
+  <li><a href="#how-to-enable-garbage-collection" id="toc-how-to-enable-garbage-collection" class="nav-link" data-scroll-target="#how-to-enable-garbage-collection">How to enable garbage collection?</a></li>
+  <li><a href="#how-to-manually-run-garbage-collection" id="toc-how-to-manually-run-garbage-collection" class="nav-link" data-scroll-target="#how-to-manually-run-garbage-collection">How to manually run garbage collection?</a></li>
+  <li><a href="#how-to-get-the-garbage-collection-statistics" id="toc-how-to-get-the-garbage-collection-statistics" class="nav-link" data-scroll-target="#how-to-get-the-garbage-collection-statistics">How to get the garbage collection statistics?</a></li>
+  <li><a href="#how-to-debug-the-garbage-collector" id="toc-how-to-debug-the-garbage-collector" class="nav-link" data-scroll-target="#how-to-debug-the-garbage-collector">How to debug the garbage collector?</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/linalg.html">LINEAR ALGEBRA</a></li><li class="breadcrumb-item"><a href="../encoding/encoding.html">Encoding</a></li><li class="breadcrumb-item"><a href="../encoding/images.html">Images</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/beyond.html">BEYOND PANDAS</a></li><li class="breadcrumb-item"><a href="../beyond/gc.html">Garbage Collection</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Images</h1>
+<h1 class="title">Garbage Collection</h1>
 </div>
 
 
@@ -611,129 +619,94 @@ window.Quarto = {
 </header>
 
 
-<p>An image is a 2D array of pixels. Each pixel is a 3D vector of red, green, and blue (RGB) values. The RGB values are usually represented as integers between 0 and 255. The RGB values are used to represent the color of the pixel. For example, a pixel with RGB values of (255, 0, 0) is red, (0, 255, 0) is green, and (0, 0, 255) is blue. A pixel with RGB values of (0, 0, 0) is black and (255, 255, 255) is white.</p>
-<p>In this notebook, we will learn how to read and write images, and how to manipulate them.</p>
-<div id="cell-4" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read an image</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>fahadsultan<span class="op">/</span>csc272<span class="op">/</span>main<span class="op">/</span>data<span class="op">/</span>belltower.png</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> plt.imread(<span class="st">'belltower.png'</span>)<span class="op">;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.imshow(img)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>--2024-10-17 08:17:16--  https://raw.githubusercontent.com/fahadsultan/csc272/main/data/belltower.png
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.110.133, 185.199.108.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 3604223 (3.4M) [image/png]
-Saving to: 'belltower.png'
-
-belltower.png       100%[===================&gt;]   3.44M  --.-KB/s    in 0.1s    
-
-2024-10-17 08:17:17 (29.1 MB/s) - 'belltower.png' saved [3604223/3604223]
-</code></pre>
+<p>Garbage collection is a form of automatic memory management. The garbage collector, or just collector, attempts to reclaim garbage, or memory occupied by objects that are no longer in use by the program.</p>
+<p>Garbage collection is important because it helps to prevent memory leaks. A memory leak occurs when a program allocates memory but does not deallocate it, leading to memory exhaustion.</p>
+<p>Garbage collection is also important because it helps to prevent memory fragmentation. Memory fragmentation occurs when the memory is divided into small, non-contiguous blocks, leading to inefficient memory usage.</p>
+<p>In the context of data science and pandas, garbage collection is important because data science projects often involve working with large datasets, which can consume a significant amount of memory. If memory is not properly managed, it can lead to performance issues and crashes.</p>
+<p>In Python, garbage collection is handled by the <code>gc</code> module. The <code>gc</code> module provides an interface to the optional garbage collector. It provides the ability to disable the collector, tune the collection frequency, and set debugging options.</p>
+<section id="how-does-python-manage-memory" class="level2">
+<h2 class="anchored" data-anchor-id="how-does-python-manage-memory">How does Python manage memory?</h2>
+<p>Python uses a private heap to manage memory. The heap holds all the objects and data structures created by the program. The heap is the memory space where all the objects are stored. The heap is managed by the Python memory manager.</p>
+<p>The Python memory manager has different components:</p>
+<ul>
+<li><p>The memory allocator: The memory allocator is responsible for allocating memory for objects and data structures.</p></li>
+<li><p>The garbage collector: The garbage collector is responsible for reclaiming memory occupied by objects that are no longer in use by the program.</p></li>
+<li><p>The memory deallocator: The memory deallocator is responsible for deallocating memory when an object is no longer needed.</p></li>
+</ul>
+<center>
+<img src="https://miro.medium.com/v2/resize:fit:777/1*82qTTx6arMt2_YL0NAINGw.png" width="70%">
+</center>
+</section>
+<section id="what-is-garbage-collection" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-garbage-collection">What is garbage collection?</h2>
+</section>
+<section id="how-does-garbage-collection-work-in-python" class="level2">
+<h2 class="anchored" data-anchor-id="how-does-garbage-collection-work-in-python">How does garbage collection work in Python?</h2>
+<p>Python uses a reference counting mechanism to manage memory. Reference counting is a simple and efficient memory management technique. It works by keeping track of the number of references to an object. When an object is created, its reference count is set to one. When an object is referenced by another object, its reference count is incremented. When an object is no longer referenced, its reference count is decremented. When an object’s reference count reaches zero, the object is no longer in use by the program and can be reclaimed by the garbage collector.</p>
+<p>Python also uses a cyclic garbage collector to handle reference cycles. A reference cycle occurs when two or more objects reference each other in a circular manner. The cyclic garbage collector is responsible for detecting and breaking reference cycles.</p>
+</section>
+<section id="how-to-disable-garbage-collection" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-disable-garbage-collection">How to disable garbage collection?</h2>
+<p>You can disable garbage collection in Python using the <code>gc</code> module. The <code>gc</code> module provides an interface to the optional garbage collector. You can disable the garbage collector by setting the <code>gc.disable()</code> function.</p>
+<p>Here is an example that demonstrates how to disable garbage collection in Python:</p>
+<div id="cell-4" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>gc.disable()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images_files/figure-html/cell-3-output-2.png" class="img-fluid figure-img"></p>
-</figure>
+</section>
+<section id="how-to-enable-garbage-collection" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-enable-garbage-collection">How to enable garbage collection?</h2>
+<p>You can enable garbage collection in Python using the <code>gc</code> module. The <code>gc</code> module provides an interface to the optional garbage collector. You can enable the garbage collector by setting the <code>gc.enable()</code> function.</p>
+<p>Here is an example that demonstrates how to enable garbage collection in Python:</p>
+<div id="cell-6" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>gc.enable()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="how-to-manually-run-garbage-collection" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-manually-run-garbage-collection">How to manually run garbage collection?</h2>
+<p>You can manually run garbage collection in Python using the <code>gc</code> module. The <code>gc</code> module provides an interface to the optional garbage collector. You can manually run garbage collection by setting the <code>gc.collect()</code> function.</p>
+<p>Here is an example that demonstrates how to manually run garbage collection in Python:</p>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gc.collect()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="how-to-get-the-garbage-collection-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-get-the-garbage-collection-statistics">How to get the garbage collection statistics?</h2>
+<p>You can get the garbage collection statistics in Python using the <code>gc</code> module. The <code>gc</code> module provides an interface to the optional garbage collector. You can get the garbage collection statistics by setting the <code>gc.get_stats()</code> function.</p>
+<p>Here is an example that demonstrates how to get the garbage collection statistics in Python:</p>
+<div id="cell-10" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gc </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>gc.get_stats()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>img.shape <span class="co"># (height, width, channels)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>(1600, 1267, 4)</code></pre>
-</div>
-</div>
-<div id="cell-6" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>img[<span class="dv">0</span>,<span class="dv">0</span>,:] <span class="co"># RGB values of the first pixel</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>array([0.9411765 , 0.94509804, 0.9529412 , 1.        ], dtype=float32)</code></pre>
-</div>
-</div>
-<div id="cell-7" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to grayscale</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>img_gray <span class="op">=</span> img.mean(axis<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>img_df   <span class="op">=</span> pd.DataFrame(img_gray)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cell-8" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>img_df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>(1600, 1267)</code></pre>
-</div>
-</div>
-<div id="cell-9" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to grayscale</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>img_gray <span class="op">=</span> img.mean(axis<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>img_df   <span class="op">=</span> pd.DataFrame(img_gray)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.imshow(img_df, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.colorbar()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-10" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.imshow(<span class="dv">256</span><span class="op">-</span>img_df, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.colorbar()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-11" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Threshold the image</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>img_thresh <span class="op">=</span> img_gray <span class="op">&gt;</span> <span class="fl">0.5</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(img_thresh, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-12" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Crop the image</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>img_crop <span class="op">=</span> img_df.iloc[:<span class="dv">700</span>, :<span class="dv">700</span>]</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(img_crop, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="cell-13" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate the image</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>img_rot <span class="op">=</span> img_df.transpose()</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(img_rot, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="videos" class="level3">
-<h3 class="anchored" data-anchor-id="videos">Videos</h3>
-<p>Videos are a sequence of images. Within the context of videos, each image is called a <strong>frame</strong>. Most videos are a sequence of 24-30 frames per second.</p>
-<p>Most modern videos are encoded using a variety of different codecs. A codec is a method of encoding and decoding a video. Some common codecs are H.264, MPEG-4, and VP9.</p>
+<p><code>gc.get_stats()</code> returns a list of dictionaries, where each dictionary contains the following keys:</p>
+<ul>
+<li><p><code>collections</code>: The number of garbage collections that have occurred.</p></li>
+<li><p><code>collected</code>: The total number of objects collected.</p></li>
+<li><p><code>uncollectable</code>: The total number of uncollectable objects.</p></li>
+<li><p><code>garbage</code>: The total number of objects that are garbage.</p></li>
+</ul>
+</section>
+<section id="how-to-debug-the-garbage-collector" class="level2">
+<h2 class="anchored" data-anchor-id="how-to-debug-the-garbage-collector">How to debug the garbage collector?</h2>
+<p>You can debug the garbage collector in Python using the <code>gc</code> module. The <code>gc</code> module provides an interface to the optional garbage collector. You can debug the garbage collector by setting the <code>gc.set_debug()</code> function.</p>
+<p>Here is an example that demonstrates how to debug the garbage collector in Python:</p>
+<p><code>gc.set_debug()</code> takes an integer argument that specifies the debugging level. The debugging level can be one of the following values:</p>
+<ul>
+<li><p><code>gc.DEBUG_STATS</code>: Print statistics during collection.</p></li>
+<li><p><code>gc.DEBUG_COLLECTABLE</code>: Print collectable objects found.</p></li>
+<li><p><code>gc.DEBUG_UNCOLLECTABLE</code>: Print uncollectable objects found.</p></li>
+<li><p><code>gc.DEBUG_INSTANCES</code>: Print instance objects found.</p></li>
+<li><p><code>gc.DEBUG_OBJECTS</code>: Print objects found.</p></li>
+</ul>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
 
 
 </section>

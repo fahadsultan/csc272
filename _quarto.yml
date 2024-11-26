@@ -108,12 +108,22 @@ website:
         #   contents:
         #     - probability/bayestheorem.qmd
         - section:
-          href: calculus/calculus0.qmd
+          href: beyond/beyond.qmd
           contents:
-            - calculus/52_differential.ipynb
-            - calculus/41_classification.ipynb
-            - calculus/em.ipynb
-            - calculus/gradientdescent.ipynb
+            - beyond/tqdm.ipynb
+            - beyond/pickle.ipynb
+            - beyond/gc.ipynb
+            - beyond/sklearn.ipynb
+        #     - calculus/41_classification.ipynb
+        #     - calculus/em.ipynb
+        #     - calculus/gradientdescent.ipynb
+        # - section:
+        #   href: calculus/calculus0.qmd
+        #   contents:
+        #     - calculus/52_differential.ipynb
+        #     - calculus/41_classification.ipynb
+        #     - calculus/em.ipynb
+        #     - calculus/gradientdescent.ipynb
 
 format:
   html:

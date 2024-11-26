@@ -25,8 +25,8 @@ _MIDTERM_
 |---|----|---|---|---|---|---|
 | 7 | Nearest Neighbor | Skiena Ch. 8 and Ch. 10 | [Geometric Interpretation](linearalgebra/vectors.html) | [Dot Product](linearalgebra/matrices.html) | --- | [PA7](https://colab.research.google.com/drive/1Y6xFPUhXx7gnp_shlaBM7EHA_YsGCosC?usp=sharing) |
 | 8 | Probability + Stats | Skiena Ch.2 |  |  | | [PA8](https://colab.research.google.com/drive/1e0EqjeXn184emarLMYYTq8YlU6upk5Zp?usp=sharing) |
-| 9 | Naive Bayes | SLP 3rd edition Ch.4 |  |  | |   |
-| 10 | Expectation Maximization | Skiena Ch.10 (10.5) |  |  | | |
+| 9 | Naive Bayes | SLP 3rd edition Ch.4 |  |  | |  [PA9](https://colab.research.google.com/drive/1e0EqjeXn184emarLMYYTq8YlU6upk5Zp?usp=sharing) |
+| 10 | Expectation Maximization | Skiena Ch.10 (10.5) |  |  | | [PA10](https://colab.research.google.com/drive/1e0EqjeXn184emarLMYYTq8YlU6upk5Zp?usp=sharing) |
 | 11 | Gradient Descent | Skiena Ch.9 (9.1-9.5) |  |  | | |
 
 <center>
