@@ -98,7 +98,7 @@ website:
             - probability/joint_prob.ipynb
             - probability/conditional_prob.ipynb
             - stats/summary.ipynb
-            - stats/distributions.ipynb
+            # - stats/distributions.ipynb
             - section:
               href: pandas/aggregation.ipynb
               contents: 
@@ -113,7 +113,13 @@ website:
             - beyond/tqdm.ipynb
             - beyond/pickle.ipynb
             - beyond/gc.ipynb
-            - beyond/sklearn.ipynb
+            - section: 
+              href: beyond/sklearn.ipynb
+              contents: 
+                - beyond/classification.ipynb
+                - beyond/21_clustering.ipynb
+                - beyond/regression.ipynb
+                - beyond/dimensionality.ipynb
         #     - calculus/41_classification.ipynb
         #     - calculus/em.ipynb
         #     - calculus/gradientdescent.ipynb
