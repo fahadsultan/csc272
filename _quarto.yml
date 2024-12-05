@@ -116,10 +116,10 @@ website:
             - section: 
               href: beyond/sklearn.ipynb
               contents: 
-                - beyond/classification.ipynb
+                - beyond/41_classification.ipynb
                 - beyond/21_clustering.ipynb
-                - beyond/regression.ipynb
-                - beyond/dimensionality.ipynb
+                - beyond/42_regression.ipynb
+                # - beyond/dimensionality.ipynb
         #     - calculus/41_classification.ipynb
         #     - calculus/em.ipynb
         #     - calculus/gradientdescent.ipynb

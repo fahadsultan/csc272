@@ -503,12 +503,6 @@ window.Quarto = {
  <span class="menu-text">Summary Statistics</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../stats/distributions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistical Distributions</span></a>
-  </div>
-</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../pandas/aggregation.html" class="sidebar-item-text sidebar-link">
@@ -578,26 +572,20 @@ window.Quarto = {
       <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../beyond/classification.html" class="sidebar-item-text sidebar-link">
+  <a href="../beyond/41_classification.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Classification</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../beyond/clustering.html" class="sidebar-item-text sidebar-link">
+  <a href="../beyond/21_clustering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Clustering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../beyond/regression.html" class="sidebar-item-text sidebar-link">
+  <a href="../beyond/42_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Regression</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/dimensionality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dimensionality Reduction</span></a>
   </div>
 </li>
       </ul>
@@ -621,7 +609,6 @@ window.Quarto = {
   <li><a href="#how-to-enable-garbage-collection" id="toc-how-to-enable-garbage-collection" class="nav-link" data-scroll-target="#how-to-enable-garbage-collection">How to enable garbage collection?</a></li>
   <li><a href="#how-to-manually-run-garbage-collection" id="toc-how-to-manually-run-garbage-collection" class="nav-link" data-scroll-target="#how-to-manually-run-garbage-collection">How to manually run garbage collection?</a></li>
   <li><a href="#how-to-get-the-garbage-collection-statistics" id="toc-how-to-get-the-garbage-collection-statistics" class="nav-link" data-scroll-target="#how-to-get-the-garbage-collection-statistics">How to get the garbage collection statistics?</a></li>
-  <li><a href="#how-to-debug-the-garbage-collector" id="toc-how-to-debug-the-garbage-collector" class="nav-link" data-scroll-target="#how-to-debug-the-garbage-collector">How to debug the garbage collector?</a></li>
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   </ul>
 </nav>
@@ -720,19 +707,23 @@ window.Quarto = {
 <li><p><code>uncollectable</code>: The total number of uncollectable objects.</p></li>
 <li><p><code>garbage</code>: The total number of objects that are garbage.</p></li>
 </ul>
-</section>
-<section id="how-to-debug-the-garbage-collector" class="level2">
-<h2 class="anchored" data-anchor-id="how-to-debug-the-garbage-collector">How to debug the garbage collector?</h2>
-<p>You can debug the garbage collector in Python using the <code>gc</code> module. The <code>gc</code> module provides an interface to the optional garbage collector. You can debug the garbage collector by setting the <code>gc.set_debug()</code> function.</p>
-<p>Here is an example that demonstrates how to debug the garbage collector in Python:</p>
-<p><code>gc.set_debug()</code> takes an integer argument that specifies the debugging level. The debugging level can be one of the following values:</p>
-<ul>
-<li><p><code>gc.DEBUG_STATS</code>: Print statistics during collection.</p></li>
-<li><p><code>gc.DEBUG_COLLECTABLE</code>: Print collectable objects found.</p></li>
-<li><p><code>gc.DEBUG_UNCOLLECTABLE</code>: Print uncollectable objects found.</p></li>
-<li><p><code>gc.DEBUG_INSTANCES</code>: Print instance objects found.</p></li>
-<li><p><code>gc.DEBUG_OBJECTS</code>: Print objects found.</p></li>
-</ul>
+<!-- ## How to debug the garbage collector?
+
+You can debug the garbage collector in Python using the `gc` module. The `gc` module provides an interface to the optional garbage collector. You can debug the garbage collector by setting the `gc.set_debug()` function.
+
+Here is an example that demonstrates how to debug the garbage collector in Python:
+
+`gc.set_debug()` takes an integer argument that specifies the debugging level. The debugging level can be one of the following values:
+
+- `gc.DEBUG_STATS`: Print statistics during collection.
+
+- `gc.DEBUG_COLLECTABLE`: Print collectable objects found.
+
+- `gc.DEBUG_UNCOLLECTABLE`: Print uncollectable objects found.
+
+- `gc.DEBUG_INSTANCES`: Print instance objects found.
+
+- `gc.DEBUG_OBJECTS`: Print objects found. -->
 </section>
 <section id="section" class="level2">
 <h2 class="anchored" data-anchor-id="section"></h2>
