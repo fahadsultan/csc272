@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Manipulation and Wrangling</title>
+<title>Vectorized Operations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -160,10 +160,6 @@ window.Quarto = {
     <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../calendar.html"> 
-<span class="menu-text">Calendar</span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-syllabus" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Syllabus</span>
@@ -212,16 +208,12 @@ window.Quarto = {
 <span class="menu-text">Datasets</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://courses.furman.edu/course/view.php?id=18728"> 
+    <a class="nav-link" href="https://courses.furman.edu/course/view.php?id=20763"> 
 <span class="menu-text">Moodle Page</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../syllabus/appointment.html"> 
 <span class="menu-text">Office Hours</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../ta.html"> 
-<span class="menu-text">TA</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://calendly.com/ssultan-dpq/"> 
@@ -238,7 +230,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/linalg.html">LINEAR ALGEBRA</a></li><li class="breadcrumb-item"><a href="../pandas/wrangling.html">Data Manipulation and Wrangling</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/wrangling.html">Vectorized Operations</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -270,331 +262,246 @@ window.Quarto = {
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../pandas/linalg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">LINEAR ALGEBRA</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../pandas/preliminaries.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preliminaries</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/preliminaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Flat vs.&nbsp;Hierarchical Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/read_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reading Data</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/linalg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Scalars, Vectors and Matrices</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/view_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Index and Columns</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/write_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Writing Data</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../pandas/select_filter.html" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/select_filter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Selection, Filtering and Dropping</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+  </div>
+</li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/selection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Selection: subset of columns</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/filtering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Filtering: subset of rows</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/extraction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Extracting values</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/dropping.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Dropping</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../pandas/wrangling.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Data Manipulation and Wrangling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/wrangling.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Vectorized Operations</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/concat_merge.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Concatenation and Merging</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/apply.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Applying custom functions</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../plotting/basics.html" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plotting/basics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Visualizing Data</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+  </div>
+</li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../plotting/anatomy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Anatomy of a Plot</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../plotting/lineplots.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Line Plots (Temporal Data)</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../plotting/scatter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Scatter Plots (<span class="math inline">\(\geq\)</span> 2 numeric variables)</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../encoding/encoding.html" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/encoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Encoding</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+  </div>
+</li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../encoding/types.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Feature Types</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../encoding/text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Text</span></a>
+ <span class="menu-text">Text Data</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../encoding/network.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Networks</span></a>
+ <span class="menu-text">Networks Data</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../encoding/sound.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Audio</span></a>
+ <span class="menu-text">Audio Data</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../encoding/images.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Images</span></a>
+ <span class="menu-text">Image Data</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../encoding/spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geographic</span></a>
+ <span class="menu-text">Geospatial Data</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../encoding/time.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Time Series</span></a>
+ <span class="menu-text">Time Series Data</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../linearalgebra/vectors.html" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/vectors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Geometric Interpretation</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+  </div>
+</li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linearalgebra/matrices.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Matrices</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linearalgebra/nearestneighbor.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Nearest Neighbor</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../stats/stats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">PROBABILITY &amp; STATISTICS</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../probability/probability.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../probability/joint_prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Joint Probability</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../probability/conditional_prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Conditional Probability</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../stats/summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Summary Statistics</span></a>
   </div>
 </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../pandas/aggregation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aggregation</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/grouping.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grouping</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pandas/pivot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Pivot table</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Naive Bayes</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../beyond/beyond.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">BEYOND PANDAS</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/tqdm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tqdm</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/pickle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Pickle</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../beyond/gc.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Garbage Collection</span></a>
   </div>
 </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../beyond/sklearn.html" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beyond/sklearn.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Scikit-learn</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth2 ">  
-          <li class="sidebar-item">
+  </div>
+</li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../beyond/41_classification.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Classification</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../beyond/21_clustering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Clustering</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../beyond/42_regression.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Regression</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -609,8 +516,6 @@ window.Quarto = {
   <li><a href="#math-operations" id="toc-math-operations" class="nav-link" data-scroll-target="#math-operations">Math Operations</a></li>
   <li><a href="#creating-new-columns" id="toc-creating-new-columns" class="nav-link" data-scroll-target="#creating-new-columns">Creating new columns</a></li>
   <li><a href="#renaming-columns" id="toc-renaming-columns" class="nav-link" data-scroll-target="#renaming-columns">Renaming columns</a></li>
-  <li><a href="#converting-column-to-index" id="toc-converting-column-to-index" class="nav-link" data-scroll-target="#converting-column-to-index">Converting column to index</a></li>
-  <li><a href="#converting-index-to-column" id="toc-converting-index-to-column" class="nav-link" data-scroll-target="#converting-index-to-column">Converting index to column</a></li>
   <li><a href="#sorting-data" id="toc-sorting-data" class="nav-link" data-scroll-target="#sorting-data">Sorting Data</a></li>
   </ul>
 </nav>
@@ -618,9 +523,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/linalg.html">LINEAR ALGEBRA</a></li><li class="breadcrumb-item"><a href="../pandas/wrangling.html">Data Manipulation and Wrangling</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Manipulation and Wrangling</h1>
+<h1 class="title">Vectorized Operations</h1>
 </div>
 
 
@@ -637,6 +542,49 @@ window.Quarto = {
 </header>
 
 
+<p>Vector based programming (also known as array based programming) is a programming paradigm that uses operations on arrays to execute tasks. This is in contrast to scalar based programming where operations are performed on individual elements of an array.</p>
+<center>
+<img style="filter:invert(1)" width="60%" src="https://www.illustratedbytes.com/blog/series_what_is_kinetica/01-vectorize/assets/sequential.gif"> <img width="60%" style="filter:invert(1)" src="https://www.illustratedbytes.com/blog/series_what_is_kinetica/01-vectorize/assets/vectorize-2.gif">
+</center>
+<p><br></p>
+<p>Vectorization operates at the level of individual instructions sent to a processor within each node. For instance, in the illustration shown here, the instruction is to add 5 to a column of numbers and copy the results to a new column B. With vectorization, all the data elements in that column are transformed simultaneously, i.e.&nbsp;the instruction to add 5 is applied to multiple pieces of data at the same time. This paradigm is sometimes referred to as Single Instruction Multiple Data (or SIMD).</p>
+<p>We can think of vectorization as subdividing the work into smaller chunks that can be handled independently by different computational units at the same time.</p>
+<p><u>In this course, we will be minimizing the use of loops. </u></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><img src="../assets/serial2.png" alt="fishy" class="bg-primary" width="100%" style="filter:invert(1)"></td>
+<td style="text-align: center;"><img src="../assets/vectorized.png" alt="fishy" class="bg-primary" width="40%" style="filter:invert(1)"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1. Serial / Sequential Operations</td>
+<td style="text-align: center;">2. Vectorized Operations</td>
+</tr>
+</tbody>
+</table>
+<p><br><br></p>
+<p>This is orders of magnitude faster than the conventional sequential model where each piece of data is handled one after the other in sequence.</p>
+<p>Vectorized operations are also known as SIMD (Single Instruction Multiple Data) operations in the context of computer architecture. In contrast, scalar operations are known as SISD (Single Instruction Single Data) operations.</p>
+<center>
+<img width="60%" src="../assets/simd2.png" style="filter:invert(1)">
+</center>
+<p><br><br></p>
+<p>With vectorization, performing the same operation on a modern intel CPU is 16 times faster than the sequential mode. The performance gains on GPUs with thousands of computational cores is even greater. However, despite these remarkable performance benefits, most analytical code out there is written in the slower sequential mode. This is not a surprise, since until about a decade ago, CPU and GPU hardware could not really support vectorization for data analysis. So most implementations had to be sequential.</p>
+<p>The last 10 years, however, have seen the rise of new technologies like CUDA from NVidia and advanced vector extensions from Intel that have dramatically shifted our ability to apply vectorization. Because of the power of vectorization, some traditional vendors now make claims about including vectorization in their offerings. But shifting to this new vectorized paradigm is not easy, since all of your code needs to be written from scratch to utilize these capabilities.</p>
+<center>
+<img width="100%" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iGGVWf_CDfkE/v2/pidjEfPlU1QWZop3vfGKsrX.ke8XuWirGYh1PKgEw44kE/-1x-1.png" style="filter:invert(1)">
+</center>
+<!-- 
+<img src="../assets/vectorized3.png" alt="vectorized3" class="bg-primary" width="20%">  -->
+<p>Vectorization can only be applied in situations when operations at individual elements are independent of each other. For example, if we want to add two arrays, we can do so by adding each element of the first array to the corresponding element of the second array. This is a vectorized operation.</p>
+<center>
+<img src="../assets/vectorized_sum.png" alt="vectorized2" class="bg-primary" width="30%" style="filter:invert(1)">
+</center>
+<p>However, for problems such as the Fibonacci sequence, where the value of an element depends on the values of the previous two elements, we cannot vectorize the operation. Similarly, finding minimum or maximum of an array cannot be vectorized.</p>
 <p>Let’s read in the same elections data from the previous exercise and do some data manipulation and wrangling using pandas.</p>
 <div id="cell-3" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
@@ -1058,278 +1006,12 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="converting-column-to-index" class="level2">
-<h2 class="anchored" data-anchor-id="converting-column-to-index">Converting column to index</h2>
-<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.set_index.html"><code>.set_index()</code></a> method is used to set the DataFrame index using existing columns.</p>
-<div id="cell-19" class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>elections.set_index(<span class="st">"Candidate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="40">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Year</th>
-<th data-quarto-table-cell-role="th">Party</th>
-<th data-quarto-table-cell-role="th">Popular vote</th>
-<th data-quarto-table-cell-role="th">Result</th>
-<th data-quarto-table-cell-role="th">%</th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">Candidate</th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Andrew Jackson</td>
-<td>1824</td>
-<td>Democratic-Republican</td>
-<td>151271</td>
-<td>loss</td>
-<td>57.210122</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">John Quincy Adams</td>
-<td>1824</td>
-<td>Democratic-Republican</td>
-<td>113142</td>
-<td>win</td>
-<td>42.789878</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Andrew Jackson</td>
-<td>1828</td>
-<td>Democratic</td>
-<td>642806</td>
-<td>win</td>
-<td>56.203927</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">John Quincy Adams</td>
-<td>1828</td>
-<td>National Republican</td>
-<td>500897</td>
-<td>loss</td>
-<td>43.796073</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Andrew Jackson</td>
-<td>1832</td>
-<td>Democratic</td>
-<td>702735</td>
-<td>win</td>
-<td>54.574789</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Jill Stein</td>
-<td>2016</td>
-<td>Green</td>
-<td>1457226</td>
-<td>loss</td>
-<td>1.073699</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Joseph Biden</td>
-<td>2020</td>
-<td>Democratic</td>
-<td>81268924</td>
-<td>win</td>
-<td>51.311515</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Donald Trump</td>
-<td>2020</td>
-<td>Republican</td>
-<td>74216154</td>
-<td>loss</td>
-<td>46.858542</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">Jo Jorgensen</td>
-<td>2020</td>
-<td>Libertarian</td>
-<td>1865724</td>
-<td>loss</td>
-<td>1.177979</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">Howard Hawkins</td>
-<td>2020</td>
-<td>Green</td>
-<td>405035</td>
-<td>loss</td>
-<td>0.255731</td>
-</tr>
-</tbody>
-</table>
-
-<p>182 rows × 5 columns</p>
-</div>
-</div>
-</div>
-</section>
-<section id="converting-index-to-column" class="level2">
-<h2 class="anchored" data-anchor-id="converting-index-to-column">Converting index to column</h2>
-<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reset_index.html"><code>.reset_index()</code></a> method is used to reset the index of a DataFrame. By default, the original index is stored in a new column called <code>index</code>.</p>
-<div id="cell-21" class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>elections.reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">index</th>
-<th data-quarto-table-cell-role="th">Year</th>
-<th data-quarto-table-cell-role="th">Candidate</th>
-<th data-quarto-table-cell-role="th">Party</th>
-<th data-quarto-table-cell-role="th">Popular vote</th>
-<th data-quarto-table-cell-role="th">Result</th>
-<th data-quarto-table-cell-role="th">%</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>0</td>
-<td>1824</td>
-<td>Andrew Jackson</td>
-<td>Democratic-Republican</td>
-<td>151271</td>
-<td>loss</td>
-<td>57.210122</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>1</td>
-<td>1824</td>
-<td>John Quincy Adams</td>
-<td>Democratic-Republican</td>
-<td>113142</td>
-<td>win</td>
-<td>42.789878</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>2</td>
-<td>1828</td>
-<td>Andrew Jackson</td>
-<td>Democratic</td>
-<td>642806</td>
-<td>win</td>
-<td>56.203927</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>3</td>
-<td>1828</td>
-<td>John Quincy Adams</td>
-<td>National Republican</td>
-<td>500897</td>
-<td>loss</td>
-<td>43.796073</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>4</td>
-<td>1832</td>
-<td>Andrew Jackson</td>
-<td>Democratic</td>
-<td>702735</td>
-<td>win</td>
-<td>54.574789</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">177</td>
-<td>177</td>
-<td>2016</td>
-<td>Jill Stein</td>
-<td>Green</td>
-<td>1457226</td>
-<td>loss</td>
-<td>1.073699</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">178</td>
-<td>178</td>
-<td>2020</td>
-<td>Joseph Biden</td>
-<td>Democratic</td>
-<td>81268924</td>
-<td>win</td>
-<td>51.311515</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">179</td>
-<td>179</td>
-<td>2020</td>
-<td>Donald Trump</td>
-<td>Republican</td>
-<td>74216154</td>
-<td>loss</td>
-<td>46.858542</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">180</td>
-<td>180</td>
-<td>2020</td>
-<td>Jo Jorgensen</td>
-<td>Libertarian</td>
-<td>1865724</td>
-<td>loss</td>
-<td>1.177979</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">181</td>
-<td>181</td>
-<td>2020</td>
-<td>Howard Hawkins</td>
-<td>Green</td>
-<td>405035</td>
-<td>loss</td>
-<td>0.255731</td>
-</tr>
-</tbody>
-</table>
-
-<p>182 rows × 7 columns</p>
-</div>
-</div>
-</div>
-</section>
 <section id="sorting-data" class="level2">
 <h2 class="anchored" data-anchor-id="sorting-data">Sorting Data</h2>
 <p>Ordering a <code>DataFrame</code> can be useful for isolating extreme values. For example, the first 5 entries of a row sorted in descending order (that is, from highest to lowest) are the largest 5 values. <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html"><code>.sort_values</code></a> allows us to order a <code>DataFrame</code> or <code>Series</code> by a specified column. We can choose to either receive the rows in <code>ascending</code> order (default) or <code>descending</code> order.</p>
-<div id="cell-23" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the "Count" column from highest to lowest</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>elections.sort_values(by <span class="op">=</span> <span class="st">"%"</span>, ascending<span class="op">=</span><span class="va">False</span>).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the "Count" column from highest to lowest</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>elections.sort_values(by <span class="op">=</span> <span class="st">"%"</span>, ascending<span class="op">=</span><span class="va">False</span>).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -1399,9 +1081,9 @@ window.Quarto = {
 </div>
 </div>
 <p>We do not need to explicitly specify the column used for sorting when calling <code>.value_counts()</code> on a <code>Series</code>. We can still specify the ordering paradigm – that is, whether values are sorted in ascending or descending order.</p>
-<div id="cell-25" class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the "Name" Series alphabetically</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">"Candidate"</span>].sort_values(ascending<span class="op">=</span><span class="va">True</span>).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-21" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort the "Name" Series alphabetically</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">"Candidate"</span>].sort_values(ascending<span class="op">=</span><span class="va">True</span>).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>75     Aaron S. Watkins
 27      Abraham Lincoln

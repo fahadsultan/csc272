@@ -11,7 +11,7 @@ From the navigation bar on the top ☝🏾 and sidebar on the left 👈🏾, you
 
 👇🏾 Below, you can find important links and important announcements.
 
-::: {.callout-caution}
+<!-- ::: {.callout-caution}
 # Final Poster
 The poster template can be found [here](https://docs.google.com/presentation/d/12WyL8m-YKPqiJ7r9GkSo76Du0YdzAppPeT3xjPy1yj0/edit#slide=id.g279418aeb01_2_75)
 
@@ -27,7 +27,7 @@ The poster presentation for the project is scheduled for Monday, Dec 9th at 2:30
 ::: {.callout-caution}
 # Final Exam
 Final Exam is scheduled for Dec 17th (Tuesday) from in Patrick Lecture Hall from 8:30 AM - 11:00 AM. 
-::: 
+:::  -->
 
 <!-- ::: {.callout-caution}
 # Programming Assignment 7
@@ -35,14 +35,6 @@ Please note that the [Programming Assignment 7](https://colab.research.google.co
 :::  -->
 
 ::: {.callout-tip}
-# Mister CatGPTA 🐈‍⬛
-The TA of the course [Mister CatGPTA](/ta.html) is now available remotely to help you with your questions. 
-:::
-
-::: {.callout-tip}
-## Open-Door Policy
-I have an Open-Door Policy and am in my office (Riley Hall 200-H) between 9 AM - 5 PM most weekdays. Please drop by with your questions or just to say hi!
-
-Alternatively, send me an email or schedule an appointment
-:::
-
+## Go over the syllabus
+Please go over the [syllabus](syllabus/syllabus.md) to familiarize yourself with the course policies, grading scheme and other important information.
+::: 

@@ -11,19 +11,17 @@ website:
     left:
       - text: "Home"
         href: index.qmd
-      - text: "Calendar"
-        href: calendar.qmd
+      # - text: "Calendar"
+      #   href: calendar.qmd
       - sidebar:syllabus
       - text: "Project"
         href: project/project.qmd
       - text: "Datasets"
         href: project/data.qmd
       - text: "Moodle Page"
-        href: https://courses.furman.edu/course/view.php?id=18728
+        href: https://courses.furman.edu/course/view.php?id=20763
       - text: "Office Hours"
         href: syllabus/appointment.md
-      - text: "TA"
-        href: ta.qmd
       - text: "Set an Appointment"
         href: https://calendly.com/ssultan-dpq/
   sidebar:
@@ -49,76 +47,120 @@ website:
           href: index.qmd
         - text: "Introduction"
           href: intro.qmd
-        - section: 
-          href: pandas/linalg.ipynb
-          contents:
-            - section:
-              href: pandas/preliminaries.ipynb
-              contents: 
-                - pandas/read_data.ipynb
-                - pandas/view_data.ipynb
-                - pandas/write_data.ipynb
-            - section:
-              href: pandas/select_filter.ipynb
-              contents: 
-                - pandas/selection.ipynb
-                - pandas/filtering.ipynb
-                - pandas/extraction.ipynb
-                - pandas/dropping.ipynb
-            - section:
-              href: pandas/wrangling.ipynb
-              contents: 
-                - pandas/concat_merge.ipynb
-                - pandas/apply.ipynb
-            - section:
-              href: plotting/basics.ipynb
-              contents:
-                - plotting/anatomy.ipynb
-                - plotting/lineplots.ipynb
-                - plotting/scatter.ipynb
-            - section:
-              href: encoding/encoding.ipynb
-              contents:
-                - encoding/types.ipynb
-                - encoding/text.ipynb
-                - encoding/network.ipynb
-                - encoding/sound.ipynb
-                - encoding/images.ipynb
-                - encoding/spatial.ipynb
-                - encoding/time.ipynb
-            - section:
-              href: linearalgebra/vectors.ipynb
-              contents:
-                - linearalgebra/matrices.ipynb
-                - linearalgebra/nearestneighbor.ipynb
-        - section:
-          href: stats/stats.ipynb
-          contents:
-            - probability/probability.ipynb
-            - probability/joint_prob.ipynb
-            - probability/conditional_prob.ipynb
-            - stats/summary.ipynb
-            # - stats/distributions.ipynb
-            - section:
-              href: pandas/aggregation.ipynb
-              contents: 
-                - pandas/grouping.ipynb
-                - pandas/pivot.ipynb
-            - probability/naivebayes.ipynb
+        - pandas/preliminaries.ipynb
+        - pandas/read_data.ipynb
+        - pandas/linalg.ipynb
+        - pandas/view_data.ipynb
+        - pandas/write_data.ipynb
+        - pandas/select_filter.ipynb
+        - pandas/selection.ipynb
+        - pandas/filtering.ipynb
+        - pandas/extraction.ipynb
+        - pandas/dropping.ipynb
+        - pandas/wrangling.ipynb
+        - pandas/concat_merge.ipynb
+        - pandas/apply.ipynb
+        - plotting/basics.ipynb
+        - plotting/anatomy.ipynb
+        - plotting/lineplots.ipynb
+        - plotting/scatter.ipynb
+        - encoding/encoding.ipynb
+        - encoding/types.ipynb
+        - encoding/text.ipynb
+        - encoding/network.ipynb
+        - encoding/sound.ipynb
+        - encoding/images.ipynb
+        - encoding/spatial.ipynb
+        - encoding/time.ipynb
+        - linearalgebra/vectors.ipynb
+        - linearalgebra/matrices.ipynb
+        - linearalgebra/nearestneighbor.ipynb
+        # - stats/stats.ipynb
+        - probability/probability.ipynb
+        - probability/joint_prob.ipynb
+        - probability/conditional_prob.ipynb
+        - stats/summary.ipynb
+        # - pandas/aggregation.ipynb
+        - pandas/grouping.ipynb
+        - pandas/pivot.ipynb
+        - probability/naivebayes.ipynb
+        # - beyond/beyond.qmd
+        # - beyond/tqdm.ipynb
+        # - beyond/pickle.ipynb
+        - beyond/gc.ipynb
+        - beyond/sklearn.ipynb
+        - beyond/41_classification.ipynb
+        - beyond/21_clustering.ipynb
+        - beyond/42_regression.ipynb
+
+          # contents:
+            # - section:
+            #   href: pandas/preliminaries.ipynb
+            #   contents: 
+            #     - pandas/read_data.ipynb
+            #     - pandas/view_data.ipynb
+            #     - pandas/write_data.ipynb
+            # - section:
+            #   href: pandas/select_filter.ipynb
+            #   contents: 
+            #     - pandas/selection.ipynb
+            #     - pandas/filtering.ipynb
+            #     - pandas/extraction.ipynb
+            #     - pandas/dropping.ipynb
+            # - section:
+            #   href: pandas/wrangling.ipynb
+            #   contents: 
+            #     - pandas/concat_merge.ipynb
+            #     - pandas/apply.ipynb
+            # - section:
+            #   href: plotting/basics.ipynb
+            #   contents:
+            #     - plotting/anatomy.ipynb
+            #     - plotting/lineplots.ipynb
+            #     - plotting/scatter.ipynb
+            # - section:
+            #   href: encoding/encoding.ipynb
+            #   contents:
+            #     - encoding/types.ipynb
+            #     - encoding/text.ipynb
+            #     - encoding/network.ipynb
+            #     - encoding/sound.ipynb
+            #     - encoding/images.ipynb
+            #     - encoding/spatial.ipynb
+            #     - encoding/time.ipynb
+            # - section:
+            #   href: linearalgebra/vectors.ipynb
+            #   contents:
+            #     - linearalgebra/matrices.ipynb
+            #     - linearalgebra/nearestneighbor.ipynb
+        # - section:
+        #   href: stats/stats.ipynb
+        #   contents:
+        #     - probability/probability.ipynb
+        #     - probability/joint_prob.ipynb
+        #     - probability/conditional_prob.ipynb
+        #     - stats/summary.ipynb
+        #     # - stats/distributions.ipynb
+        #     - section:
+        #       href: pandas/aggregation.ipynb
+        #       contents: 
+        #         - pandas/grouping.ipynb
+        #         - pandas/pivot.ipynb
+        #     - probability/naivebayes.ipynb
         #   contents:
         #     - probability/bayestheorem.qmd
-        - section:
-          href: beyond/beyond.qmd
-          contents:
-            - beyond/tqdm.ipynb
-            - beyond/pickle.ipynb
-            - beyond/gc.ipynb
-            - section: 
-              href: beyond/sklearn.ipynb
-              contents: 
-                - beyond/41_classification.ipynb
-                - beyond/21_clustering.ipynb
-                - beyond/42_regression.ipynb
+        # - section:
+        #   href: beyond/beyond.qmd
+        #   contents:
+        #     - beyond/tqdm.ipynb
+        #     - beyond/pickle.ipynb
+        #     - beyond/gc.ipynb
+        #     - section: 
+        #       href: beyond/sklearn.ipynb
+        #       contents: 
+        #         - beyond/41_classification.ipynb
+        #         - beyond/21_clustering.ipynb
+        #         - beyond/42_regression.ipynb
                 # - beyond/dimensionality.ipynb
         #     - calculus/41_classification.ipynb
         #     - calculus/em.ipynb

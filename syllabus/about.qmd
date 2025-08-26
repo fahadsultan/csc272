@@ -13,7 +13,10 @@
 
 ## Course Description
 
-This course focuses on the algorithms and computing tools fundamental to data science: the process of extracting accurate and generalizable models from data via machine learning. Topics will include the prediction of outcomes, the discovery of associations, and the identification of similar groups. Students will complete a project related to human behavior, starting with data collection and cleaning, culminating in the presentation of a model and visualization of results.
+This course introduces students to the core tools, methods, and mindset of modern data science, with a focus on practical skills in Python's data ecosystem. Students will learn how to navigate the complete data science pipeline: collecting, cleaning, transforming, analyzing, and visualizing data, using industry-standard libraries such as `pandas` for data manipulation, `matplotlib` and `seaborn` for visualization, and introductory applications of `scikit-learn` for basic machine learning tasks.
+
+While the course emphasizes hands-on coding and problem solving with real-world datasets, it also highlights the mathematical underpinnings that make data science work. Connections to _**Probability**_, _**Statistics**_, _**Linear Algebra**_, and _**Calculus**_ are introduced throughout, ensuring students understand not just how to run analyses, but why the methods work and how they relate to future study in machine learning and artificial intelligence.
+
 
 ## Course Goals
 <!-- 
@@ -21,4 +24,20 @@ This course focuses on the algorithms and computing tools fundamental to data sc
 
 * Empower students to apply computational and inferential thinking to address real-world problems -->
 
-On successful completion of the course, the students should have the ability to identify and apply appropriate data mining and/or machine learning techniques towards solving problems of pattern recogition, learning and prediction. The course also aims to instill in students a deep sensitivity of issues of algorithmic bias and fairness in data mining.
+<!-- On successful completion of the course, the students should have the ability to identify and apply appropriate data mining and/or machine learning techniques towards solving problems of pattern recogition, learning and prediction. The course also aims to instill in students a deep sensitivity of issues of algorithmic bias and fairness in data mining. -->
+
+By the end of this course, students will be able to:
+
+1.	Navigate the data science pipeline by collecting, cleaning, transforming, analyzing, and visualizing data.
+
+2.	Develop proficiency with core Python libraries:
+
+* `pandas` for data wrangling and manipulation,
+* `matplotlib` and `seaborn` for effective visualizations,
+* `scikit-learn` for introductory machine learning workflows.
+
+3.	Apply statistical and mathematical reasoning to data analysis, recognizing how probability, statistics, linear algebra, and calculus underpin modern data science methods.
+
+4.	Work with real-world datasets to practice hands-on coding, problem-solving, and critical interpretation of results.
+
+5.	Build a foundation for advanced study in machine learning, statistical modeling, and artificial intelligence.

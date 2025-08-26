@@ -1,5 +1,5 @@
 
-# Data sets and Project ideas
+# Data sets
 
 
 Good places to look for data sets:
@@ -10,7 +10,7 @@ Good places to look for data sets:
 
 
 
-## Data sets
+<!-- ## Data sets
 
 Following data sets and ideas are only there to give you a starting point. You are free to propose a data set or project idea not listed here. \
 
@@ -28,29 +28,29 @@ Following data sets and ideas are only there to give you a starting point. You a
 
 * **Sports**: i) [College Basketball](https://www.kaggle.com/datasets/andrewsundberg/college-basketball-dataset) ii) [FIFA Soccer Rankings](https://www.kaggle.com/datasets/tadhgfitzgerald/fifa-international-soccer-mens-ranking-1993now) iii) [Cricket](https://www.kaggle.com/datasets/jaykay12/odi-cricket-matches-19712017)
 
-## Project Ideas
+## Project Ideas -->
 
 
 
 <!-- ### Movie / Song / TV Recommendation System   -->
 
-* Implement a **Recommendation System** using the data sets above. 
-{bdg-primary}`Unsupervised`
+<!-- * Implement a **Recommendation System** using the data sets above. 
+{bdg-primary}`Unsupervised` -->
 <!-- **Unsupervised**{: .label .label-purple }   -->
 <!-- **Tabular**{: .label .label-purple } **Text**{: .label .label-purple }  -->
 
-* Predict the **Genre / Artist** of the media using the data sets above. 
-{bdg-primary}`Supervised`
+<!-- * Predict the **Genre / Artist** of the media using the data sets above. 
+{bdg-primary}`Supervised` -->
 <!-- **Classification**{: .label .label-purple }   -->
 <!-- **Tabular**{: .label .label-purple } **Text**{: .label .label-purple }  -->
 
-* Predict the **Rating / Popularity / Revenue** of the media using the data sets above. 
-{bdg-primary}`Regression`
+<!-- * Predict the **Rating / Popularity / Revenue** of the media using the data sets above. 
+{bdg-primary}`Regression` -->
 <!-- **Regression**{: .label .label-purple }  -->
  <!-- **Tabular**{: .label .label-purple } **Text**{: .label .label-purple }  -->
 
-* Use **historical trend to predict future value of an indicator**. 
-{bdg-primary}`Time Series`
+<!-- * Use **historical trend to predict future value of an indicator**. 
+{bdg-primary}`Time Series` -->
 <!-- **Time Series**{: .label .label-purple } -->
 
 <!-- 

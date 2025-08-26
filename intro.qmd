@@ -44,14 +44,12 @@ I then went on to work at **Technology for People Initiative**, an applied resea
 
 
 
-<img align="right" width="30%" src="https://i.ibb.co/j6XJkn8/Screen-Shot-2024-05-03-at-12-54-31-PM.png">
+<!-- <img align="right" width="30%" src="https://i.ibb.co/j6XJkn8/Screen-Shot-2024-05-03-at-12-54-31-PM.png"> -->
 
 
 In 2015, I moved to **Mecca, Saudi Arabia** to work for the GIS Innovation Center (now Wadi Makkah). There I worked on innovative **urban sensing** techniques for better crowd control during the annual pilgrimage to the city, the largest human gathering in the world every year.
 
 During my PhD, I worked at the intersection of **computational neuroscience, bioinformatics and machine learning**. My work focused on identifying neurological and genetic biomarkers linking type-2 diabetes with cognitive disorders such as Alzheimer's and other dementias.
-
-I live in Travelers Rest with my wife and cat. 
 
 
 ### How to Reach Me
@@ -60,11 +58,15 @@ I live in Travelers Rest with my wife and cat.
 
 **Email**: fahad.sultan@furman.edu
 
-My office hours this semester are **10 - 11:30 AM** on **Mondays** and **Wednesdays**.
+<!-- My office hours this semester are **10 - 11:30 AM** on **Mondays** and **Wednesdays**. -->
 
-I have an **Open door policy**. I am in my office during work hours most weekdays and my door is only closed if I am in a class or in a meeting. So please drop by. 
+I don’t hold fixed office hours, but I’m available for on-demand meetings in real time. If you’d like to guarantee a time, you can schedule a meeting using this link.
+[https://calendly.com/ssultan-dpq/15-minute-meeting](https://calendly.com/ssultan-dpq/15-minute-meeting).
 
-You can also **schedule a meeting [using this link](https://calendly.com/ssultan-dpq/)** if you want to absolutely make sure that I am available.
+
+<!-- I have an **Open door policy**. I am in my office during work hours most weekdays and my door is only closed if I am in a class or in a meeting. So please drop by.  -->
+
+
 
 <center>
 <img width="60%" style="filter:invert(1)" src="assets/office.png"></img>
@@ -81,7 +83,7 @@ All of the course content will be posted on this website.
 
 Important announcements will be made on both the course website homepage and in class. 
 
-You are to submit assignments and exams on **[the course Moodle page](https://courses.furman.edu/course/view.php?id=18720)**. I will also upload all of your grades there.
+You are to submit assignments and exams on **[the course Moodle page](https://courses.furman.edu/course/view.php?id=20763)**. I will also upload all of your grades there.
 
 
 ### How-to knowledge > What-is knowledge
@@ -108,9 +110,7 @@ Approach assignments purely as **opportunities to learn**, prepare for exams and
 
 It is **not worth cheating** on assignments. Just come talk to me if you are struggling with an assignment. I will literally just tell you the answer. 
 
-On assignments, expect **near maximal flexibility** from me. Every assignment will be due 10 days calendar after it is posted. 
-
-You can schedule a time to get your assignments graded [using this link](https://calendly.com/ssultan-dpq/15-minute-meeting). 
+You can schedule a time to get your assignments graded [using this link](https://calendly.com/ssultan-dpq/). 
 
 <u>**Written Assignments:**</u>
 
@@ -130,39 +130,32 @@ During these code review, you will be given feedback on how to improve your code
 
 You should expect questions in the exams similar to assignments.
 
+## AI Policy
+
+This course encourages you to explore the use of generative artificial intelligence (GAI) tools such as ChatGPT for all assignments and assessments. GAI is a subset of AI that utilizes machine learning models to create new, original content, such as images, text, or music, based on patterns and structures learned from existing data. As is indicated in the University academic integrity policy, use of GAI must be appropriately acknowledged and cited as you would any other source. By submitting assignments in this class, you pledge to affirm that they are your own work and you attribute use of any tools and sources. Violations of this policy will be considered academic misconduct.
+
+It is your responsibility to assess the validity and applicability of any GAI output that is submitted; you bear the final responsibility. You should be aware that all GAI tools have a tendency to make up incorrect facts and fake citations or confidently reassert factual errors, that code generation models have a tendency to produce inaccurate outputs, and that image generation models can occasionally come up with highly offensive products. You will be responsible for any inaccurate, biased, offensive, or otherwise unethical content you submit regardless of whether it originally comes from you or a GAI tool. Please also note that different classes at Furman may implement different GAI policies, and it is your responsibility to conform to expectations for each course.
+
 ### Class Participation
-
-I have created 10 graded items under class participation on Moodle. In class, you will be asked to answer a question or solve a problem. You will be graded on the basis of your participation. It is your responsibility to make sure you have 10 points by the end of the semester.
-
-There are 10 graded items under class participation on Moodle. In class, you will be asked to answer a question or solve a problem. You will be graded on the basis of your participation. It is your responsibility to make sure you have 10 points by the end of the semester.
-
-$$\frac{24~\text{students} \times 10~\text{points needed by each student}}{15~\text{weeks} \times 2~\text{classes per week}} = 8~\text{points given out class, on average}$$
-
-
-I will give out class participation points in every class class for answering or asking a question. 
 
 Given the glut of information accessible online and otherwise in this day and age, **meaningful interactions with your peers and teachers is essentially why you are paying your college tuition**. 
 
-Please come to class, labs and office hours 
+To encourage this, I have allocated **5% of your course grade to class participation**. Ways to earn class participation points include:
 
-Please ask questions during class
+1. Coming to class and labs regularly
+2. Asking questions during class
+3. Sharing your thoughts and comments during class discussions
+4. (Optional) Answering questions during class
 
-Please answer questions and participate in discussions during class
+Class participation is somewhat subjective, but I will do my best to be as fair as possible. I will share your overall class participation points with you with each graded exam. 
 
 ### Exams 
 
 There will be **three** exams in the course, including the final. The final exam will be cumulative. Exams constitute **60%** of your course grade.
 
-**All exams will be on computer, with a large programming component**. Questions will be posted on Moodle and you will have to submit your solutions on Moodle, just like assignments.
+All exams will be on paper and closed-book. Exam 3 will be on the last day of class. 
 
-You will be evaluated on your ability to apply knowledge to new problems and not just on your ability to retain and recall information.
-
-The exams, more than the assignments, are going to determine your grade.
-
-All exams are going to be cumulative, with focus on the topics covered since last exam. 
-
-Diligent work on the homework and assignments will be rewarded here. 
-
+The finals week will be used for project presentations.
 
 ### Giant Asterisk * 
 
@@ -210,3 +203,26 @@ Trust me, there is a tremendous amount of beauty and joy to be found in mathemat
 `Pandas` is a powerful Python library that is widely used in data science and data analysis. It provides data structures and functions that make working with tabular data easy and intuitive.
 
 It is generally accepted in the data science community as the industry- and academia-standard tool for manipulating tabular data.
+
+
+
+<img style="filter:invert(1)" src="https://miro.medium.com/v2/resize:fit:1400/1*VnkA_uujJhE6stvAhPx0rw.png" width="100%" align="left">
+
+## Jupyter Notebooks
+
+Jupyter Notebooks are an open-source web application that allows you to create and share documents that contain live code, equations, visualizations, and narrative text.
+
+They are widely used in data science, scientific computing, and machine learning for data cleaning and transformation, numerical simulation, statistical modeling, data visualization, and much more.
+
+<img style="filter:invert(1)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1200px-Jupyter_logo.svg.png" width="30%" align="right">
+
+## Google Colab 
+
+<img style="filter:invert(1)" src="https://colab.research.google.com/img/colab_favicon_256px.png" width="30%" align="right">
+
+Google Colab is a free, cloud-based platform that allows you to write and execute Python code in your web browser. It provides a Jupyter notebook environment with access to powerful computing resources, including GPUs and TPUs.
+
+Note that code running on Google Colab is on a remote server, not on your local machine. This means that any files you want to use in your code must be uploaded to the Colab environment or accessed from a cloud storage service like Google Drive.
+
+
+
