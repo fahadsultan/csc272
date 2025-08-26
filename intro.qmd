@@ -164,9 +164,9 @@ The finals week will be used for project presentations.
 
 <img style="filter:invert(1)" src="assets/complaints.jpeg" width="25%" align="right">
 
-This is my first teaching this course. **Any and all feedback** is welcome! 
+**Any and all feedback** is welcome! 
 
-I have created an anonymous feedback poll on **Moodle**. Please use this to **anonymously** share any feedback. 
+I will an anonymous feedback poll on **Moodle**. Please use this to **anonymously** share any feedback. 
  
 Share **any changes** you want me to make in the course, **at any point in the semester**. You can submit multiple times over the span of the semester.  
 
