@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Descriptive Statistics</title>
+<title>Covariance</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -102,9 +102,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -230,7 +227,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/summary.html">Descriptive Statistics</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../stats/correlations.html">Covariance</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -318,13 +315,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../stats/summary.html" class="sidebar-item-text sidebar-link active">
+  <a href="../stats/summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Descriptive Statistics</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../stats/correlations.html" class="sidebar-item-text sidebar-link">
+  <a href="../stats/correlations.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Covariance</span></a>
   </div>
 </li>
@@ -518,24 +515,11 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#central-tendency" id="toc-central-tendency" class="nav-link active" data-scroll-target="#central-tendency">Central Tendency</a>
+  <li><a href="#correlations" id="toc-correlations" class="nav-link active" data-scroll-target="#correlations">Correlations</a>
   <ul class="collapse">
-  <li><a href="#mean" id="toc-mean" class="nav-link" data-scroll-target="#mean">Mean</a></li>
-  <li><a href="#median" id="toc-median" class="nav-link" data-scroll-target="#median">Median</a></li>
-  <li><a href="#mode" id="toc-mode" class="nav-link" data-scroll-target="#mode">Mode</a></li>
-  </ul></li>
-  <li><a href="#dispersion" id="toc-dispersion" class="nav-link" data-scroll-target="#dispersion">Dispersion</a>
-  <ul class="collapse">
-  <li><a href="#range" id="toc-range" class="nav-link" data-scroll-target="#range">Range</a></li>
-  <li><a href="#variance" id="toc-variance" class="nav-link" data-scroll-target="#variance">Variance</a></li>
-  <li><a href="#standard-deviation" id="toc-standard-deviation" class="nav-link" data-scroll-target="#standard-deviation">Standard Deviation</a></li>
-  <li><a href="#skewness" id="toc-skewness" class="nav-link" data-scroll-target="#skewness">Skewness</a></li>
-  <li><a href="#describe" id="toc-describe" class="nav-link" data-scroll-target="#describe"><code>.describe()</code></a></li>
-  </ul></li>
-  <li><a href="#percentile-and-quantile" id="toc-percentile-and-quantile" class="nav-link" data-scroll-target="#percentile-and-quantile">Percentile and Quantile</a>
-  <ul class="collapse">
-  <li><a href="#percentile" id="toc-percentile" class="nav-link" data-scroll-target="#percentile">Percentile</a></li>
-  <li><a href="#quantile" id="toc-quantile" class="nav-link" data-scroll-target="#quantile">Quantile</a></li>
+  <li><a href="#pearson-correlation-coefficient" id="toc-pearson-correlation-coefficient" class="nav-link" data-scroll-target="#pearson-correlation-coefficient">Pearson Correlation Coefficient</a></li>
+  <li><a href="#spearman-correlation" id="toc-spearman-correlation" class="nav-link" data-scroll-target="#spearman-correlation">Spearman Correlation</a></li>
+  <li><a href="#corr" id="toc-corr" class="nav-link" data-scroll-target="#corr"><code>.corr()</code></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -545,7 +529,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Descriptive Statistics</h1>
+<h1 class="title">Covariance</h1>
 </div>
 
 
@@ -562,401 +546,65 @@ window.Quarto = {
 </header>
 
 
-<p>In data science, we often want to compute summary statistics. <code>pandas</code> provides a number of built-in methods for this purpose.</p>
-<center>
-<img src="https://pandas.pydata.org/docs/_images/06_aggregate.svg" width="80%" style="filter:invert(1)">
-</center>
-<p>For example, we can use the <code>.mean()</code>, <code>.median()</code> and <code>.std()</code> methods to compute the mean, median, and standard deviation of a column, respectively.</p>
-<div id="cell-1" class="cell" data-execution_count="1">
+<p>Covariance is a measure of the relationship between two random variables. It is similar to correlation, but it is not normalized.</p>
+<p><span class="math display">\[ \text{Cov}(X, Y) = \frac{\sum_{i=1}^{n} (x_i - \mu_x)(y_i - \mu_y)}{n} \]</span></p>
+<p>where <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_i\)</span> are the <span class="math inline">\(i\)</span>-th values of the two variables, $ _x$ and $ _y$ are the means of the two variables, and <span class="math inline">\(n\)</span> is the number of values.</p>
+<p>The covariance can be positive, negative, or zero. A positive covariance indicates that the two variables tend to increase or decrease together, while a negative covariance indicates that one variable tends to increase as the other decreases.</p>
+<section id="correlations" class="level2">
+<h2 class="anchored" data-anchor-id="correlations">Correlations</h2>
+<p>Correlation is a statistical measure that describes the relationship between two variables. It can be positive, negative, or zero.</p>
+<p>Positive correlation: If one variable increases, the other variable also increases.</p>
+<p>Negative correlation: If one variable increases, the other variable decreases.</p>
+<p>Zero correlation: There is no relationship between the two variables.</p>
+<p>The correlation coefficient ranges from -1 to 1. A value of 1 indicates a perfect positive correlation, a value of -1 indicates a perfect negative correlation, and a value of 0 indicates no correlation.</p>
+<p>There are several methods to compute the correlation between two variables. The two most common methods are the Pearson correlation coefficient and the Spearman correlation</p>
+<section id="pearson-correlation-coefficient" class="level3">
+<h3 class="anchored" data-anchor-id="pearson-correlation-coefficient">Pearson Correlation Coefficient</h3>
+<p>The Pearson correlation coefficient measures the linear relationship between two variables. It ranges from -1 to 1.</p>
+<p><span class="math display">\[ r = \frac{\sum_{i=1}^{n} (x_i - \mu_x)(y_i - \mu_y)}{\sqrt{\sum_{i=1}^{n} (x_i -  \mu_x)^2} \sqrt{\sum_{i=1}^{n} (y_i -  \mu_y)^2}} \]</span></p>
+<p>where <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_i\)</span> are the <span class="math inline">\(i\)</span>-th values of the two variables, $ _x$ and $ _y$ are the means of the two variables, and <span class="math inline">\(n\)</span> is the number of values.</p>
+<div id="30205720" class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv"</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>elections <span class="op">=</span> pd.read_csv(url)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>elections.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Year</th>
-<th data-quarto-table-cell-role="th">Candidate</th>
-<th data-quarto-table-cell-role="th">Party</th>
-<th data-quarto-table-cell-role="th">Popular vote</th>
-<th data-quarto-table-cell-role="th">Result</th>
-<th data-quarto-table-cell-role="th">%</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1824</td>
-<td>Andrew Jackson</td>
-<td>Democratic-Republican</td>
-<td>151271</td>
-<td>loss</td>
-<td>57.210122</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>1824</td>
-<td>John Quincy Adams</td>
-<td>Democratic-Republican</td>
-<td>113142</td>
-<td>win</td>
-<td>42.789878</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1828</td>
-<td>Andrew Jackson</td>
-<td>Democratic</td>
-<td>642806</td>
-<td>win</td>
-<td>56.203927</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>1828</td>
-<td>John Quincy Adams</td>
-<td>National Republican</td>
-<td>500897</td>
-<td>loss</td>
-<td>43.796073</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>1832</td>
-<td>Andrew Jackson</td>
-<td>Democratic</td>
-<td>702735</td>
-<td>win</td>
-<td>54.574789</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<section id="central-tendency" class="level2">
-<h2 class="anchored" data-anchor-id="central-tendency">Central Tendency</h2>
-<p>The mean, median, and mode are three measures of central tendency. They are used to describe the center of a data set.</p>
-<center>
-<img src="https://ledidi.com/uploads/icons/median-mode-mean-central-dendency-ledidi-academy.png" width="80%" style="filter:invert(1)">
-</center>
-<section id="mean" class="level3">
-<h3 class="anchored" data-anchor-id="mean">Mean</h3>
-<p>The mean is the average of all the values in a data set. It is calculated by adding up all the values and then dividing by the number of values.</p>
-<p><span class="math display">\[ \text{Mean} = \frac{\sum_{i=1}^{n} x_i}{n} \]</span></p>
-<p>where <span class="math inline">\(x_i\)</span> is the <span class="math inline">\(i\)</span>-th value in the data set and <span class="math inline">\(n\)</span> is the number of values.</p>
-<div id="cell-3" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">'%'</span>].mean(), <span class="bu">sum</span>(elections[<span class="st">'%'</span>])<span class="op">/</span><span class="bu">len</span>(elections)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>(27.470350372043967, 27.470350372043967)</code></pre>
-</div>
-</div>
-</section>
-<section id="median" class="level3">
-<h3 class="anchored" data-anchor-id="median">Median</h3>
-<p>The median is the middle value in a data set when the values are ordered from smallest to largest. If there is an even number of values, the median is the average of the two middle values.</p>
-<p><span class="math display">\[ \text{Median} = \begin{cases} x_{(n+1)/2} &amp; \text{if $n$ is odd} \\ \frac{x_{n/2} + x_{n/2+1}}{2} &amp; \text{if $n$ is even} \end{cases} \]</span></p>
-<p>where <span class="math inline">\(x_{(n+1)/2}\)</span> is the middle value when <span class="math inline">\(n\)</span> is odd, and <span class="math inline">\(x_{n/2}\)</span> and <span class="math inline">\(x_{n/2+1}\)</span> are the two middle values when <span class="math inline">\(n\)</span> is even.</p>
-<div id="cell-5" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">'%'</span>].median(), elections[<span class="st">'%'</span>].quantile(<span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>(37.67789306, 37.67789306)</code></pre>
-</div>
-</div>
-</section>
-<section id="mode" class="level3">
-<h3 class="anchored" data-anchor-id="mode">Mode</h3>
-<p>The mode is the value that appears most frequently in a data set. A data set can have one mode, more than one mode, or no mode at all.</p>
-<p><span class="math display">\[ \text{Mode} = \text{value that appears most frequently} \]</span></p>
-<div id="cell-7" class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">'Party'</span>].mode()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
-<pre><code>0    Democratic
-Name: Party, dtype: object</code></pre>
-</div>
-</div>
-<div id="cell-8" class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">'Party'</span>].value_counts().idxmax()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
-<pre><code>'Democratic'</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="dispersion" class="level2">
-<h2 class="anchored" data-anchor-id="dispersion">Dispersion</h2>
-<p>Dispersion refers to the spread of values in a data set. Measures of dispersion include the range, variance, and standard deviation.</p>
-<center>
-<img src="https://www.statisticshowto.com/wp-content/uploads/2012/03/measure-of-dispersion.png" width="80%" style="filter:invert(1)">
-</center>
-<section id="range" class="level3">
-<h3 class="anchored" data-anchor-id="range">Range</h3>
-<p>The range is the difference between the largest and smallest values in a data set.</p>
-<p><span class="math display">\[ \text{Range} = \text{Largest value} - \text{Smallest value} \]</span></p>
-</section>
-<section id="variance" class="level3">
-<h3 class="anchored" data-anchor-id="variance">Variance</h3>
-<p>The variance is a measure of how spread out the values in a data set are. It is calculated by taking the average of the squared differences between each value and the mean.</p>
-<p><span class="math display">\[ \text{Variance} = \frac{\sum_{i=1}^{n} (x_i - \text{Mean})^2}{n} \]</span></p>
-<p>where <span class="math inline">\(x_i\)</span> is the <span class="math inline">\(i\)</span>-th value in the data set, <span class="math inline">\(\text{Mean}\)</span> is the mean of the data set, and <span class="math inline">\(n\)</span> is the number of values.</p>
-</section>
-<section id="standard-deviation" class="level3">
-<h3 class="anchored" data-anchor-id="standard-deviation">Standard Deviation</h3>
-<p>The standard deviation is the square root of the variance. It is a measure of how spread out the values in a data set are relative to the mean.</p>
-<p><span class="math display">\[ \text{Standard Deviation} = \sqrt{\text{Variance}} \]</span></p>
-</section>
-<section id="skewness" class="level3">
-<h3 class="anchored" data-anchor-id="skewness">Skewness</h3>
-<p>Skewness is a measure of the asymmetry of a distribution. It can be positive, negative, or zero.</p>
-<p><strong>Positive skewness</strong>: The distribution is skewed to the right, with a long tail on the right side.</p>
-<p><strong>Negative skewness</strong>: The distribution is skewed to the left, with a long tail on the left side.</p>
-<p><strong>Zero skewness</strong>: The distribution is symmetric.</p>
-<p>The skewness of a distribution can be computed using the <code>.skew()</code> method.</p>
-<p><span class="math display">\[ \text{Skewness} = \frac{\sum_{i=1}^{n} (x_i - \mu)^3}{n \sigma^3} \]</span></p>
-<p>where <span class="math inline">\(x_i\)</span> is the <span class="math inline">\(i\)</span>-th value in the data set, $ $ is the mean of the data set, <span class="math inline">\(n\)</span> is the number of values, and $ $ is the standard deviation of the data set.</p>
-<p>Similarly, we can use the <code>.max()</code> and <code>.min()</code> methods to compute the maximum and minimum values of a <code>Series</code> or <code>DataFrame</code>.</p>
-<div id="cell-11" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">'%'</span>].<span class="bu">max</span>(), elections[<span class="st">'%'</span>].<span class="bu">min</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>elections.head()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> elections[<span class="st">'Popular vote'</span>]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> elections[<span class="st">'%'</span>]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> x.cov(y) <span class="op">/</span> (x.std() <span class="op">*</span> y.std())</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<pre><code>(61.34470329, 0.098088334)</code></pre>
+<pre><code>0.559061061317942</code></pre>
 </div>
 </div>
-<p>The <code>.sum()</code> method computes the sum of all the values in a <code>Series</code> or <code>DataFrame</code>.</p>
-<center>
-<img src="https://pandas.pydata.org/docs/_images/06_reduction.svg" width="80%" style="filter:invert(1)">
-</center>
-<p>The <code>.describe()</code> method computes summary statistics for a <code>Series</code> or <code>DataFrame</code>. It computes the mean, standard deviation, minimum, maximum, and the quantiles of the data.</p>
-<div id="cell-16" class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">'%'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can also compute the correlation between two columns of a <code>DataFrame</code> using the <code>.corr()</code> method.</p>
+<div id="02060746" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x.corr(y, method<span class="op">=</span><span class="st">'pearson'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<pre><code>count    182.000000
-mean      27.470350
-std       22.968034
-min        0.098088
-25%        1.219996
-50%       37.677893
-75%       48.354977
-max       61.344703
-Name: %, dtype: float64</code></pre>
-</div>
-</div>
-<div id="cell-17" class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>elections.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Year</th>
-<th data-quarto-table-cell-role="th">Popular vote</th>
-<th data-quarto-table-cell-role="th">%</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">count</td>
-<td>182.000000</td>
-<td>1.820000e+02</td>
-<td>182.000000</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">mean</td>
-<td>1934.087912</td>
-<td>1.235364e+07</td>
-<td>27.470350</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">std</td>
-<td>57.048908</td>
-<td>1.907715e+07</td>
-<td>22.968034</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">min</td>
-<td>1824.000000</td>
-<td>1.007150e+05</td>
-<td>0.098088</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">25%</td>
-<td>1889.000000</td>
-<td>3.876395e+05</td>
-<td>1.219996</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">50%</td>
-<td>1936.000000</td>
-<td>1.709375e+06</td>
-<td>37.677893</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">75%</td>
-<td>1988.000000</td>
-<td>1.897775e+07</td>
-<td>48.354977</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">max</td>
-<td>2020.000000</td>
-<td>8.126892e+07</td>
-<td>61.344703</td>
-</tr>
-</tbody>
-</table>
-
-</div>
+<pre><code>0.559061061317942</code></pre>
 </div>
 </div>
 </section>
-<section id="describe" class="level3">
-<h3 class="anchored" data-anchor-id="describe"><code>.describe()</code></h3>
-<p>If many statistics are required from a <code>DataFrame</code> (minimum value, maximum value, mean value, etc.), then <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html"><code>.describe()</code></a> can be used to compute all of them at once.</p>
-<div id="cell-19" class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>elections.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="spearman-correlation" class="level3">
+<h3 class="anchored" data-anchor-id="spearman-correlation">Spearman Correlation</h3>
+<p>The Spearman correlation coefficient measures the monotonic relationship between two variables. It ranges from -1 to 1.</p>
+<p><span class="math display">\[ r = 1 - \frac{6 \sum_{i=1}^{n} d_i^2}{n(n^2 - 1)} \]</span></p>
+<p>where <span class="math inline">\(d_i\)</span> is the difference between the ranks of the two variables and <span class="math inline">\(n\)</span> is the number of values.</p>
+<div id="d982d5a3" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x.corr(y, method<span class="op">=</span><span class="st">'spearman'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Year</th>
-<th data-quarto-table-cell-role="th">Popular vote</th>
-<th data-quarto-table-cell-role="th">%</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">count</td>
-<td>182.000000</td>
-<td>1.820000e+02</td>
-<td>182.000000</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">mean</td>
-<td>1934.087912</td>
-<td>1.235364e+07</td>
-<td>27.470350</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">std</td>
-<td>57.048908</td>
-<td>1.907715e+07</td>
-<td>22.968034</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">min</td>
-<td>1824.000000</td>
-<td>1.007150e+05</td>
-<td>0.098088</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">25%</td>
-<td>1889.000000</td>
-<td>3.876395e+05</td>
-<td>1.219996</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">50%</td>
-<td>1936.000000</td>
-<td>1.709375e+06</td>
-<td>37.677893</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">75%</td>
-<td>1988.000000</td>
-<td>1.897775e+07</td>
-<td>48.354977</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">max</td>
-<td>2020.000000</td>
-<td>8.126892e+07</td>
-<td>61.344703</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>A different set of statistics will be reported if <code>.describe()</code> is called on a Series.</p>
-<div id="cell-21" class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">"Party"</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>count            182
-unique            36
-top       Democratic
-freq              47
-Name: Party, dtype: object</code></pre>
-</div>
-</div>
-<div id="cell-22" class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>elections[<span class="st">"Popular vote"</span>].describe().astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>count         182
-mean     12353635
-std      19077149
-min        100715
-25%        387639
-50%       1709375
-75%      18977751
-max      81268924
-Name: Popular vote, dtype: int64</code></pre>
-</div>
-</div>
-<div id="cell-24" class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> elections[<span class="st">'%'</span>]</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> elections[<span class="st">'Popular vote'</span>]</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>cov <span class="op">=</span> <span class="bu">sum</span>((x<span class="op">-</span>x.mean()) <span class="op">*</span> (y<span class="op">-</span>y.mean())) <span class="op">/</span> <span class="bu">len</span>(x)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">round</span>(cov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="25">
-<pre><code>243614836</code></pre>
-</div>
-</div>
-<div id="cell-26" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>x.cov(y), <span class="bu">round</span>(x.cov(y, ddof<span class="op">=</span><span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="26">
-<pre><code>(244960774.11030602, 243614836)</code></pre>
+<pre><code>0.7432486904455022</code></pre>
 </div>
 </div>
 </section>
-</section>
-<section id="percentile-and-quantile" class="level2">
-<h2 class="anchored" data-anchor-id="percentile-and-quantile">Percentile and Quantile</h2>
-<p>Percentiles and quantiles are measures of position in a data set. They divide the data set into equal parts.</p>
-<section id="percentile" class="level3">
-<h3 class="anchored" data-anchor-id="percentile">Percentile</h3>
-<p>A percentile is a value below which a given percentage of the data falls. For example, the 25th percentile is the value below which 25% of the data falls.</p>
-</section>
-<section id="quantile" class="level3">
-<h3 class="anchored" data-anchor-id="quantile">Quantile</h3>
-<p>A quantile is a value below which a given fraction of the data falls. For example, the 0.25 quantile is the value below which 25% of the data falls.</p>
-<p>The <code>.quantile()</code> method can be used to compute the quantiles of a <code>Series</code> or <code>DataFrame</code>.</p>
-<div id="cell-28" class="cell" data-execution_count="51">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>elections.quantile(<span class="fl">0.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="51">
-<pre><code>Year              1889.000000
-Popular vote    387639.500000
-%                    1.219996
-Name: 0.25, dtype: float64</code></pre>
-</div>
-</div>
+<section id="corr" class="level3">
+<h3 class="anchored" data-anchor-id="corr"><code>.corr()</code></h3>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html"><code>.corr()</code></a> method computes the correlation between columns in a DataFrame. By default, it computes the Pearson correlation coefficient, but the <code>method</code> parameter can be used to specify the method to use.</p>
 
 
 </section>

@@ -36,5 +36,5 @@ Please note that the [Programming Assignment 7](https://colab.research.google.co
 
 ::: {.callout-tip}
 ## Go over the syllabus
-Please go over the [syllabus](syllabus/syllabus.md) to familiarize yourself with the course policies, grading scheme and other important information.
+Please go over the [syllabus](/syllabus/about.html) to familiarize yourself with the course policies, grading scheme and other important information.
 ::: 

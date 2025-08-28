@@ -51,19 +51,24 @@ website:
         - pandas/read_data.ipynb
         - pandas/linalg.ipynb
         - pandas/view_data.ipynb
-        - pandas/write_data.ipynb
+        - pandas/wrangling.ipynb
         - pandas/select_filter.ipynb
         - pandas/selection.ipynb
         - pandas/filtering.ipynb
         - pandas/extraction.ipynb
-        - pandas/dropping.ipynb
-        - pandas/wrangling.ipynb
+        - stats/summary.ipynb
+        - stats/correlations.ipynb
+        - pandas/write_data.ipynb
+        # - pandas/dropping.ipynb
         - pandas/concat_merge.ipynb
+        - pandas/grouping.ipynb
+        - pandas/pivot.ipynb
         - pandas/apply.ipynb
         - plotting/basics.ipynb
         - plotting/anatomy.ipynb
         - plotting/lineplots.ipynb
         - plotting/scatter.ipynb
+        - plotting/boxplot.ipynb
         - encoding/encoding.ipynb
         - encoding/types.ipynb
         - encoding/text.ipynb
@@ -79,10 +84,7 @@ website:
         - probability/probability.ipynb
         - probability/joint_prob.ipynb
         - probability/conditional_prob.ipynb
-        - stats/summary.ipynb
         # - pandas/aggregation.ipynb
-        - pandas/grouping.ipynb
-        - pandas/pivot.ipynb
         - probability/naivebayes.ipynb
         # - beyond/beyond.qmd
         # - beyond/tqdm.ipynb
