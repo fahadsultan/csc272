@@ -52,18 +52,18 @@ website:
         - pandas/linalg.ipynb
         - pandas/view_data.ipynb
         - pandas/wrangling.ipynb
-        - pandas/select_filter.ipynb
+        # - pandas/select_filter.ipynb
         - pandas/selection.ipynb
         - pandas/filtering.ipynb
         - pandas/extraction.ipynb
         - stats/summary.ipynb
         - stats/correlations.ipynb
-        - pandas/write_data.ipynb
         # - pandas/dropping.ipynb
         - pandas/concat_merge.ipynb
         - pandas/grouping.ipynb
         - pandas/pivot.ipynb
         - pandas/apply.ipynb
+        - pandas/write_data.ipynb
         - plotting/basics.ipynb
         - plotting/anatomy.ipynb
         - plotting/lineplots.ipynb
