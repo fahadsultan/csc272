@@ -99,11 +99,7 @@
     "href": "pandas/select_filter.html",
     "title": "Selection, Filtering and Dropping",
     "section": "",
-    "text": "In this section, we will learn how to extract and remove a subset of rows and columns in pandas. The two primary operations of data extraction are:\n\nSelection: Extracting subset of columns.\nFiltering: Extracting subset of rows.\n\nLet’s start by loading the dataset.\n\nimport pandas as pd \n\nurl = \"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv\"\n\nelections = pd.read_csv(url)",
-    "crumbs": [
-      "Home",
-      "Selection, Filtering and Dropping"
-    ]
+    "text": "In this section, we will learn how to extract and remove a subset of rows and columns in pandas. The two primary operations of data extraction are:\n\nSelection: Extracting subset of columns.\nFiltering: Extracting subset of rows.\n\nLet’s start by loading the dataset.\n\nimport pandas as pd \n\nurl = \"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv\"\n\nelections = pd.read_csv(url)"
   },
   {
     "objectID": "pandas/read_data.html",
@@ -2045,6 +2041,17 @@
     ]
   },
   {
+    "objectID": "stats/correlations.html#covariance",
+    "href": "stats/correlations.html#covariance",
+    "title": "Correlations",
+    "section": "",
+    "text": "Covariance is a measure of the relationship between two random variables. It is similar to correlation, but it is not normalized.\n\\[ \\text{Cov}(X, Y) = \\frac{\\sum_{i=1}^{n} (x_i - \\mu_x)(y_i - \\mu_y)}{n} \\]\nwhere \\(x_i\\) and \\(y_i\\) are the \\(i\\)-th values of the two variables, $ _x$ and $ _y$ are the means of the two variables, and \\(n\\) is the number of values.\nThe covariance can be positive, negative, or zero. A positive covariance indicates that the two variables tend to increase or decrease together, while a negative covariance indicates that one variable tends to increase as the other decreases.",
+    "crumbs": [
+      "Home",
+      "Correlations"
+    ]
+  },
+  {
     "objectID": "stats/correlations.html#correlations",
     "href": "stats/correlations.html#correlations",
     "title": "Correlations",
@@ -2416,17 +2423,6 @@
     "crumbs": [
       "Home",
       "Pivot table"
-    ]
-  },
-  {
-    "objectID": "stats/correlations.html#covariance",
-    "href": "stats/correlations.html#covariance",
-    "title": "Correlations",
-    "section": "",
-    "text": "Covariance is a measure of the relationship between two random variables. It is similar to correlation, but it is not normalized.\n\\[ \\text{Cov}(X, Y) = \\frac{\\sum_{i=1}^{n} (x_i - \\mu_x)(y_i - \\mu_y)}{n} \\]\nwhere \\(x_i\\) and \\(y_i\\) are the \\(i\\)-th values of the two variables, $ _x$ and $ _y$ are the means of the two variables, and \\(n\\) is the number of values.\nThe covariance can be positive, negative, or zero. A positive covariance indicates that the two variables tend to increase or decrease together, while a negative covariance indicates that one variable tends to increase as the other decreases.",
-    "crumbs": [
-      "Home",
-      "Correlations"
     ]
   }
 ]
