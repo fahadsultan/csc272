@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Grouping</title>
+<title>Aggregation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -230,7 +230,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/grouping.html">Grouping</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/grouping.html">Aggregation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -318,20 +318,26 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../stats/correlations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Correlations</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../pandas/concat_merge.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Concatenation and Merging</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Feature Types</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../pandas/grouping.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Grouping</span></a>
+ <span class="menu-text">Aggregation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/correlations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Correlations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -386,12 +392,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../encoding/encoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Encoding</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Feature Types</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -512,11 +512,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#aggregation-with-.groupby" id="toc-aggregation-with-.groupby" class="nav-link active" data-scroll-target="#aggregation-with-.groupby">Aggregation with <code>.groupby</code></a>
+  <li><a href="#groupby" id="toc-groupby" class="nav-link active" data-scroll-target="#groupby"><code>.groupby</code></a>
   <ul class="collapse">
   <li><a href="#aggregation-with-lambda-functions" id="toc-aggregation-with-lambda-functions" class="nav-link" data-scroll-target="#aggregation-with-lambda-functions">Aggregation with <code>lambda</code> Functions</a></li>
   <li><a href="#other-groupby-features" id="toc-other-groupby-features" class="nav-link" data-scroll-target="#other-groupby-features">Other <code>GroupBy</code> Features</a></li>
-  <li><a href="#filtering-by-group" id="toc-filtering-by-group" class="nav-link" data-scroll-target="#filtering-by-group">Filtering by Group</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -526,7 +525,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Grouping</h1>
+<h1 class="title">Aggregation</h1>
 </div>
 
 
@@ -543,8 +542,8 @@ window.Quarto = {
 </header>
 
 
-<section id="aggregation-with-.groupby" class="level2">
-<h2 class="anchored" data-anchor-id="aggregation-with-.groupby">Aggregation with <code>.groupby</code></h2>
+<section id="groupby" class="level2">
+<h2 class="anchored" data-anchor-id="groupby"><code>.groupby</code></h2>
 <p>Up until this point, we have been working with individual rows of DataFrames. As data scientists, we often wish to investigate trends across a larger subset of our data. For example, we may want to compute some summary statistic (the mean, median, sum, etc.) for a group of rows in our DataFrame. To do this, we’ll use pandas GroupBy objects.</p>
 <center>
 <img src="https://pandas.pydata.org/docs/_images/06_groupby.svg" alt="groupby" width="95%" style="filter:invert(1)">
@@ -1885,23 +1884,25 @@ Name: letter, dtype: int64</code></pre>
 <center>
 <img src="../assets/groupby_2.png" alt="first" width="100%" style="filter:invert(1)">
 </center>
-</section>
-<section id="filtering-by-group" class="level3">
-<h3 class="anchored" data-anchor-id="filtering-by-group">Filtering by Group</h3>
-<p>Another common use for <code>GroupBy</code> objects is to filter data by group.</p>
-<p><code>groupby.filter</code> takes an argument <span class="math inline">\(\text{f}\)</span>, where <span class="math inline">\(\text{f}\)</span> is a function that:</p>
-<ul>
-<li>Takes a DataFrame object as input</li>
-<li>Returns a single <code>True</code> or <code>False</code> for the each sub-DataFrame</li>
-</ul>
-<p>Sub-DataFrames that correspond to <code>True</code> are returned in the final result, whereas those with a <code>False</code> value are not. Importantly, <code>groupby.filter</code> is different from <code>groupby.agg</code> in that an <em>entire</em> sub-DataFrame is returned in the final DataFrame, not just a single row. As a result, <code>groupby.filter</code> preserves the original indices.</p>
-<p>To illustrate how this happens, consider the following <code>.filter</code> function applied on some arbitrary data. Say we want to identify “tight” election years – that is, we want to find all rows that correspond to elections years where all candidates in that year won a similar portion of the total vote. Specifically, let’s find all rows corresponding to a year where no candidate won more than 45% of the total vote.</p>
-<p>In other words, we want to:</p>
-<ul>
-<li>Find the years where the maximum <code>%</code> in that year is less than 45%</li>
-<li>Return all DataFrame rows that correspond to these years</li>
-</ul>
-<p>For each year, we need to find the maximum <code>%</code> among <em>all</em> rows for that year. If this maximum <code>%</code> is lower than 45%, we will tell <code>pandas</code> to keep all rows corresponding to that year.</p>
+<!-- ### Filtering by Group
+
+Another common use for `GroupBy` objects is to filter data by group. 
+
+`groupby.filter` takes an argument $\text{f}$, where $\text{f}$ is a function that:
+
+- Takes a DataFrame object as input
+- Returns a single `True` or `False` for the each sub-DataFrame
+
+Sub-DataFrames that correspond to `True` are returned in the final result, whereas those with a `False` value are not. Importantly, `groupby.filter` is different from `groupby.agg` in that an *entire* sub-DataFrame is returned in the final DataFrame, not just a single row. As a result, `groupby.filter` preserves the original indices.
+
+To illustrate how this happens, consider the following `.filter` function applied on some arbitrary data. Say we want to identify "tight" election years – that is, we want to find all rows that correspond to elections years where all candidates in that year won a similar portion of the total vote. Specifically, let's find all rows corresponding to a year where no candidate won more than 45% of the total vote. 
+
+In other words, we want to: 
+
+- Find the years where the maximum `%` in that year is less than 45%
+- Return all DataFrame rows that correspond to these years
+
+For each year, we need to find the maximum `%` among *all* rows for that year. If this maximum `%` is lower than 45%, we will tell `pandas` to keep all rows corresponding to that year.  -->
 <div id="cell-39" class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>elections.groupby(<span class="st">"Year"</span>).<span class="bu">filter</span>(<span class="kw">lambda</span> sf: sf[<span class="st">"%"</span>].<span class="bu">max</span>() <span class="op">&lt;</span> <span class="dv">45</span>).head(<span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">

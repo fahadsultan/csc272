@@ -57,10 +57,11 @@ website:
         - pandas/filtering.ipynb
         - pandas/extraction.ipynb
         - stats/summary.ipynb
-        - stats/correlations.ipynb
         # - pandas/dropping.ipynb
         - pandas/concat_merge.ipynb
+        - encoding/types.ipynb
         - pandas/grouping.ipynb
+        - stats/correlations.ipynb
         - pandas/pivot.ipynb
         - pandas/apply.ipynb
         - pandas/write_data.ipynb
@@ -70,7 +71,6 @@ website:
         - plotting/scatter.ipynb
         - plotting/boxplot.ipynb
         - encoding/encoding.ipynb
-        - encoding/types.ipynb
         - encoding/text.ipynb
         - encoding/network.ipynb
         - encoding/sound.ipynb

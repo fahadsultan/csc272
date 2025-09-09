@@ -318,20 +318,26 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../stats/correlations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Correlations</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../pandas/concat_merge.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Concatenation and Merging</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Feature Types</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../pandas/grouping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Grouping</span></a>
+ <span class="menu-text">Aggregation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/correlations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Correlations</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -386,12 +392,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../encoding/encoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Encoding</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Feature Types</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -554,7 +554,7 @@ window.Quarto = {
 <p>There also exists a third special category of data type called <strong>missing</strong>. Missing data is a special data type because it is not a data type at all. It is a placeholder for a value that is not known or not applicable. Missing data is represented by <code>NaN</code> (not a number) in pandas. More on missing data in a bit.</p>
 <p><img src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/featuretypes.png" width="100%" style="filter:invert(1)"></p>
 <p>To study these feature types, we will use the <strong>dataset of food safety scores</strong> for restaurants in San Francisco. The scores and violation information have been made available by the San Francisco Department of Public Health.</p>
-<div id="cell-5" class="cell" data-tags="[]" data-execution_count="3">
+<div id="cell-5" class="cell" data-tags="[]">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/fahadsultan/csc272/main/data/restaurants_truncated.csv'</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
@@ -1311,87 +1311,8 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-31" class="cell" data-execution_count="7">
+<div id="cell-31" class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'zip'</span>].astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">IntCastingNaNError</span>                        Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[7], line 1</span>
-<span class="ansi-green-fg">----&gt; 1</span> <span class="ansi-yellow-bg">data</span><span class="ansi-yellow-bg">[</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">zip</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span class="ansi-yellow-bg">]</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">astype</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(0,135,0)" class="ansi-yellow-bg">int</span><span class="ansi-yellow-bg">)</span>
-
-File <span class="ansi-green-fg">~/opt/anaconda3/lib/python3.9/site-packages/pandas/core/generic.py:5912</span>, in <span class="ansi-cyan-fg">NDFrame.astype</span><span class="ansi-blue-fg">(self, dtype, copy, errors)</span>
-<span class="ansi-green-fg ansi-bold">   5905</span>     results <span style="color:rgb(98,98,98)">=</span> [
-<span class="ansi-green-fg ansi-bold">   5906</span>         <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>iloc[:, i]<span style="color:rgb(98,98,98)">.</span>astype(dtype, copy<span style="color:rgb(98,98,98)">=</span>copy)
-<span class="ansi-green-fg ansi-bold">   5907</span>         <span style="font-weight:bold;color:rgb(0,135,0)">for</span> i <span style="font-weight:bold;color:rgb(175,0,255)">in</span> <span style="color:rgb(0,135,0)">range</span>(<span style="color:rgb(0,135,0)">len</span>(<span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>columns))
-<span class="ansi-green-fg ansi-bold">   5908</span>     ]
-<span class="ansi-green-fg ansi-bold">   5910</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
-<span class="ansi-green-fg ansi-bold">   5911</span>     <span style="font-style:italic;color:rgb(95,135,135)"># else, only a single dtype is given</span>
-<span class="ansi-green-fg">-&gt; 5912</span>     new_data <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">_mgr</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">astype</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">dtype</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">dtype</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">copy</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">copy</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">errors</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">errors</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">   5913</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>_constructor(new_data)<span style="color:rgb(98,98,98)">.</span>__finalize__(<span style="color:rgb(0,135,0)">self</span>, method<span style="color:rgb(98,98,98)">=</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">astype</span><span style="color:rgb(175,0,0)">"</span>)
-<span class="ansi-green-fg ansi-bold">   5915</span> <span style="font-style:italic;color:rgb(95,135,135)"># GH 33113: handle empty frame or series</span>
-
-File <span class="ansi-green-fg">~/opt/anaconda3/lib/python3.9/site-packages/pandas/core/internals/managers.py:419</span>, in <span class="ansi-cyan-fg">BaseBlockManager.astype</span><span class="ansi-blue-fg">(self, dtype, copy, errors)</span>
-<span class="ansi-green-fg ansi-bold">    418</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> <span style="color:rgb(0,0,255)">astype</span>(<span style="color:rgb(0,135,0)">self</span>: T, dtype, copy: <span style="color:rgb(0,135,0)">bool</span> <span style="color:rgb(98,98,98)">=</span> <span style="font-weight:bold;color:rgb(0,135,0)">False</span>, errors: <span style="color:rgb(0,135,0)">str</span> <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">raise</span><span style="color:rgb(175,0,0)">"</span>) <span style="color:rgb(98,98,98)">-</span><span style="color:rgb(98,98,98)">&gt;</span> T:
-<span class="ansi-green-fg">--&gt; 419</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">self</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">apply</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">astype</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">"</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dtype</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">dtype</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">copy</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">copy</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">errors</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">errors</span><span class="ansi-yellow-bg">)</span>
-
-File <span class="ansi-green-fg">~/opt/anaconda3/lib/python3.9/site-packages/pandas/core/internals/managers.py:304</span>, in <span class="ansi-cyan-fg">BaseBlockManager.apply</span><span class="ansi-blue-fg">(self, f, align_keys, ignore_failures, **kwargs)</span>
-<span class="ansi-green-fg ansi-bold">    302</span>         applied <span style="color:rgb(98,98,98)">=</span> b<span style="color:rgb(98,98,98)">.</span>apply(f, <span style="color:rgb(98,98,98)">*</span><span style="color:rgb(98,98,98)">*</span>kwargs)
-<span class="ansi-green-fg ansi-bold">    303</span>     <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
-<span class="ansi-green-fg">--&gt; 304</span>         applied <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)" class="ansi-yellow-bg">getattr</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">b</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">f</span><span class="ansi-yellow-bg">)</span><span class="ansi-yellow-bg">(</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">*</span><span class="ansi-yellow-bg">kwargs</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">    305</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> (<span style="font-weight:bold;color:rgb(215,95,95)">TypeError</span>, <span style="font-weight:bold;color:rgb(215,95,95)">NotImplementedError</span>):
-<span class="ansi-green-fg ansi-bold">    306</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> ignore_failures:
-
-File <span class="ansi-green-fg">~/opt/anaconda3/lib/python3.9/site-packages/pandas/core/internals/blocks.py:580</span>, in <span class="ansi-cyan-fg">Block.astype</span><span class="ansi-blue-fg">(self, dtype, copy, errors)</span>
-<span class="ansi-green-fg ansi-bold">    562</span> <span style="font-style:italic;color:rgb(175,0,0)">"""</span>
-<span class="ansi-green-fg ansi-bold">    563</span> <span style="font-style:italic;color:rgb(175,0,0)">Coerce to the new dtype.</span>
-<span class="ansi-green-fg ansi-bold">    564</span> 
-<span class="ansi-green-fg">   (...)</span>
-<span class="ansi-green-fg ansi-bold">    576</span> <span style="font-style:italic;color:rgb(175,0,0)">Block</span>
-<span class="ansi-green-fg ansi-bold">    577</span> <span style="font-style:italic;color:rgb(175,0,0)">"""</span>
-<span class="ansi-green-fg ansi-bold">    578</span> values <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>values
-<span class="ansi-green-fg">--&gt; 580</span> new_values <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">astype_array_safe</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">values</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dtype</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">copy</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">copy</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">errors</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">errors</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">    582</span> new_values <span style="color:rgb(98,98,98)">=</span> maybe_coerce_values(new_values)
-<span class="ansi-green-fg ansi-bold">    583</span> newb <span style="color:rgb(98,98,98)">=</span> <span style="color:rgb(0,135,0)">self</span><span style="color:rgb(98,98,98)">.</span>make_block(new_values)
-
-File <span class="ansi-green-fg">~/opt/anaconda3/lib/python3.9/site-packages/pandas/core/dtypes/cast.py:1292</span>, in <span class="ansi-cyan-fg">astype_array_safe</span><span class="ansi-blue-fg">(values, dtype, copy, errors)</span>
-<span class="ansi-green-fg ansi-bold">   1289</span>     dtype <span style="color:rgb(98,98,98)">=</span> dtype<span style="color:rgb(98,98,98)">.</span>numpy_dtype
-<span class="ansi-green-fg ansi-bold">   1291</span> <span style="font-weight:bold;color:rgb(0,135,0)">try</span>:
-<span class="ansi-green-fg">-&gt; 1292</span>     new_values <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">astype_array</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">values</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dtype</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">copy</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">copy</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">   1293</span> <span style="font-weight:bold;color:rgb(0,135,0)">except</span> (<span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>, <span style="font-weight:bold;color:rgb(215,95,95)">TypeError</span>):
-<span class="ansi-green-fg ansi-bold">   1294</span>     <span style="font-style:italic;color:rgb(95,135,135)"># e.g. astype_nansafe can fail on object-dtype of strings</span>
-<span class="ansi-green-fg ansi-bold">   1295</span>     <span style="font-style:italic;color:rgb(95,135,135)">#  trying to convert to float</span>
-<span class="ansi-green-fg ansi-bold">   1296</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> errors <span style="color:rgb(98,98,98)">==</span> <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">ignore</span><span style="color:rgb(175,0,0)">"</span>:
-
-File <span class="ansi-green-fg">~/opt/anaconda3/lib/python3.9/site-packages/pandas/core/dtypes/cast.py:1237</span>, in <span class="ansi-cyan-fg">astype_array</span><span class="ansi-blue-fg">(values, dtype, copy)</span>
-<span class="ansi-green-fg ansi-bold">   1234</span>     values <span style="color:rgb(98,98,98)">=</span> values<span style="color:rgb(98,98,98)">.</span>astype(dtype, copy<span style="color:rgb(98,98,98)">=</span>copy)
-<span class="ansi-green-fg ansi-bold">   1236</span> <span style="font-weight:bold;color:rgb(0,135,0)">else</span>:
-<span class="ansi-green-fg">-&gt; 1237</span>     values <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">astype_nansafe</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">values</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dtype</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">copy</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">copy</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">   1239</span> <span style="font-style:italic;color:rgb(95,135,135)"># in pandas we don't store numpy str dtypes, so convert to object</span>
-<span class="ansi-green-fg ansi-bold">   1240</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="color:rgb(0,135,0)">isinstance</span>(dtype, np<span style="color:rgb(98,98,98)">.</span>dtype) <span style="font-weight:bold;color:rgb(175,0,255)">and</span> <span style="color:rgb(0,135,0)">issubclass</span>(values<span style="color:rgb(98,98,98)">.</span>dtype<span style="color:rgb(98,98,98)">.</span>type, <span style="color:rgb(0,135,0)">str</span>):
-
-File <span class="ansi-green-fg">~/opt/anaconda3/lib/python3.9/site-packages/pandas/core/dtypes/cast.py:1148</span>, in <span class="ansi-cyan-fg">astype_nansafe</span><span class="ansi-blue-fg">(arr, dtype, copy, skipna)</span>
-<span class="ansi-green-fg ansi-bold">   1145</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">TypeError</span>(<span style="color:rgb(175,0,0)">f</span><span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">cannot astype a timedelta from [</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>arr<span style="color:rgb(98,98,98)">.</span>dtype<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">] to [</span><span style="font-weight:bold;color:rgb(175,95,135)">{</span>dtype<span style="font-weight:bold;color:rgb(175,95,135)">}</span><span style="color:rgb(175,0,0)">]</span><span style="color:rgb(175,0,0)">"</span>)
-<span class="ansi-green-fg ansi-bold">   1147</span> <span style="font-weight:bold;color:rgb(0,135,0)">elif</span> np<span style="color:rgb(98,98,98)">.</span>issubdtype(arr<span style="color:rgb(98,98,98)">.</span>dtype, np<span style="color:rgb(98,98,98)">.</span>floating) <span style="font-weight:bold;color:rgb(175,0,255)">and</span> np<span style="color:rgb(98,98,98)">.</span>issubdtype(dtype, np<span style="color:rgb(98,98,98)">.</span>integer):
-<span class="ansi-green-fg">-&gt; 1148</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> <span class="ansi-yellow-bg">astype_float_to_int_nansafe</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">arr</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">dtype</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">copy</span><span class="ansi-yellow-bg">)</span>
-<span class="ansi-green-fg ansi-bold">   1150</span> <span style="font-weight:bold;color:rgb(0,135,0)">elif</span> is_object_dtype(arr<span style="color:rgb(98,98,98)">.</span>dtype):
-<span class="ansi-green-fg ansi-bold">   1151</span> 
-<span class="ansi-green-fg ansi-bold">   1152</span>     <span style="font-style:italic;color:rgb(95,135,135)"># work around NumPy brokenness, #1987</span>
-<span class="ansi-green-fg ansi-bold">   1153</span>     <span style="font-weight:bold;color:rgb(0,135,0)">if</span> np<span style="color:rgb(98,98,98)">.</span>issubdtype(dtype<span style="color:rgb(98,98,98)">.</span>type, np<span style="color:rgb(98,98,98)">.</span>integer):
-
-File <span class="ansi-green-fg">~/opt/anaconda3/lib/python3.9/site-packages/pandas/core/dtypes/cast.py:1193</span>, in <span class="ansi-cyan-fg">astype_float_to_int_nansafe</span><span class="ansi-blue-fg">(values, dtype, copy)</span>
-<span class="ansi-green-fg ansi-bold">   1189</span> <span style="font-style:italic;color:rgb(175,0,0)">"""</span>
-<span class="ansi-green-fg ansi-bold">   1190</span> <span style="font-style:italic;color:rgb(175,0,0)">astype with a check preventing converting NaN to an meaningless integer value.</span>
-<span class="ansi-green-fg ansi-bold">   1191</span> <span style="font-style:italic;color:rgb(175,0,0)">"""</span>
-<span class="ansi-green-fg ansi-bold">   1192</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> np<span style="color:rgb(98,98,98)">.</span>isfinite(values)<span style="color:rgb(98,98,98)">.</span>all():
-<span class="ansi-green-fg">-&gt; 1193</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> IntCastingNaNError(
-<span class="ansi-green-fg ansi-bold">   1194</span>         <span style="color:rgb(175,0,0)">"</span><span style="color:rgb(175,0,0)">Cannot convert non-finite values (NA or inf) to integer</span><span style="color:rgb(175,0,0)">"</span>
-<span class="ansi-green-fg ansi-bold">   1195</span>     )
-<span class="ansi-green-fg ansi-bold">   1196</span> <span style="font-weight:bold;color:rgb(0,135,0)">return</span> values<span style="color:rgb(98,98,98)">.</span>astype(dtype, copy<span style="color:rgb(98,98,98)">=</span>copy)
-
-<span class="ansi-red-fg">IntCastingNaNError</span>: Cannot convert non-finite values (NA or inf) to integer</pre>
-</div>
-</div>
 </div>
 
 
