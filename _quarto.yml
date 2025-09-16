@@ -59,11 +59,11 @@ website:
         - stats/summary.ipynb
         # - pandas/dropping.ipynb
         - pandas/concat_merge.ipynb
+        - pandas/apply.ipynb
         - encoding/types.ipynb
         - pandas/grouping.ipynb
         - stats/correlations.ipynb
         - pandas/pivot.ipynb
-        - pandas/apply.ipynb
         - pandas/write_data.ipynb
         - plotting/basics.ipynb
         - plotting/anatomy.ipynb
