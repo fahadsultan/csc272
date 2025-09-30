@@ -47,53 +47,65 @@ website:
           href: index.qmd
         - text: "Introduction"
           href: intro.qmd
-        - pandas/preliminaries.ipynb
-        - pandas/read_data.ipynb
-        - pandas/linalg.ipynb
-        - pandas/view_data.ipynb
-        - pandas/wrangling.ipynb
-        # - pandas/select_filter.ipynb
-        - pandas/selection.ipynb
-        - pandas/filtering.ipynb
-        - pandas/extraction.ipynb
-        - stats/summary.ipynb
-        # - pandas/dropping.ipynb
-        - pandas/concat_merge.ipynb
-        - pandas/apply.ipynb
-        - pandas/grouping.ipynb
-        - pandas/pivot.ipynb
-        - encoding/types.ipynb
-        - stats/correlations.ipynb
-        - pandas/write_data.ipynb
-        - plotting/basics.ipynb
-        - plotting/anatomy.ipynb
-        - plotting/lineplots.ipynb
-        - plotting/scatter.ipynb
-        - plotting/boxplot.ipynb
-        - encoding/encoding.ipynb
-        - encoding/text.ipynb
-        - encoding/network.ipynb
-        - encoding/sound.ipynb
-        - encoding/images.ipynb
-        - encoding/spatial.ipynb
-        - encoding/time.ipynb
-        - linearalgebra/vectors.ipynb
-        - linearalgebra/matrices.ipynb
-        - linearalgebra/nearestneighbor.ipynb
-        # - stats/stats.ipynb
-        - probability/probability.ipynb
-        - probability/joint_prob.ipynb
-        - probability/conditional_prob.ipynb
-        # - pandas/aggregation.ipynb
-        - probability/naivebayes.ipynb
-        # - beyond/beyond.qmd
-        # - beyond/tqdm.ipynb
-        # - beyond/pickle.ipynb
-        - beyond/gc.ipynb
-        - beyond/sklearn.ipynb
-        - beyond/41_classification.ipynb
-        - beyond/21_clustering.ipynb
-        - beyond/42_regression.ipynb
+        - section:
+          href: pandas/pandas.ipynb
+          contents:
+          - pandas/preliminaries.ipynb
+          - pandas/read_data.ipynb
+          - pandas/linalg.ipynb
+          - pandas/view_data.ipynb
+          - pandas/wrangling.ipynb
+          # - pandas/select_filter.ipynb
+          - pandas/selection.ipynb
+          - pandas/filtering.ipynb
+          - pandas/extraction.ipynb
+          - stats/summary.ipynb
+          # - pandas/dropping.ipynb
+          - pandas/concat_merge.ipynb
+          - pandas/apply.ipynb
+          - pandas/grouping.ipynb
+          - pandas/pivot.ipynb
+          - pandas/write_data.ipynb
+        - section: 
+          href: plotting/basics.ipynb
+          contents: 
+          - plotting/anatomy.ipynb
+          - plotting/lineplots.ipynb
+          - plotting/scatter.ipynb
+          - plotting/boxplot.ipynb
+          - plotting/21_univariate.ipynb
+          - plotting/22_multivariate.ipynb
+        - section: 
+          href: encoding/encoding.ipynb
+          contents:
+          - encoding/types.ipynb
+          - encoding/text.ipynb
+          - encoding/network.ipynb
+          - encoding/sound.ipynb
+          - encoding/images.ipynb
+          - encoding/spatial.ipynb
+          - encoding/time.ipynb
+        - section: 
+          href: beyond/analytics.ipynb
+          contents:
+          - stats/correlations.ipynb
+          - linearalgebra/vectors.ipynb
+          - linearalgebra/matrices.ipynb
+          - linearalgebra/nearestneighbor.ipynb
+          # - stats/stats.ipynb
+          - probability/probability.ipynb
+          - probability/joint_prob.ipynb
+          - probability/conditional_prob.ipynb
+          # - pandas/aggregation.ipynb
+          - probability/naivebayes.ipynb
+          # - beyond/beyond.qmd
+          # - beyond/tqdm.ipynb
+          # - beyond/pickle.ipynb
+          - beyond/gc.ipynb
+          - beyond/sklearn.ipynb
+          - beyond/41_classification.ipynb
+          - beyond/21_clustering.ipynb
+          - beyond/42_regression.ipynb
 
           # contents:
             # - section:

@@ -196,33 +196,3 @@ This presents a unique opportunity for you to overcome your Math anxiety. You wi
 
 Trust me, there is a tremendous amount of beauty and joy to be found in mathematics. And if beauty and joy aren't really your thing, then let me also assure you there is a lot of money to be made these days by being good at coding math. Either way, the rewards are well worth the effort! 
 
-## Pandas
-
-<img style="filter:invert(1)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/512px-Pandas_logo.svg.png" width="30%" align="right">
-
-`Pandas` is a powerful Python library that is widely used in data science and data analysis. It provides data structures and functions that make working with tabular data easy and intuitive.
-
-It is generally accepted in the data science community as the industry- and academia-standard tool for manipulating tabular data.
-
-
-
-<img style="filter:invert(1)" src="https://miro.medium.com/v2/resize:fit:1400/1*VnkA_uujJhE6stvAhPx0rw.png" width="100%" align="left">
-
-## Jupyter Notebooks
-
-Jupyter Notebooks are an open-source web application that allows you to create and share documents that contain live code, equations, visualizations, and narrative text.
-
-They are widely used in data science, scientific computing, and machine learning for data cleaning and transformation, numerical simulation, statistical modeling, data visualization, and much more.
-
-<img style="filter:invert(1)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1200px-Jupyter_logo.svg.png" width="30%" align="right">
-
-## Google Colab 
-
-<img style="filter:invert(1)" src="https://colab.research.google.com/img/colab_favicon_256px.png" width="30%" align="right">
-
-Google Colab is a free, cloud-based platform that allows you to write and execute Python code in your web browser. It provides a Jupyter notebook environment with access to powerful computing resources, including GPUs and TPUs.
-
-Note that code running on Google Colab is on a remote server, not on your local machine. This means that any files you want to use in your code must be uploaded to the Colab environment or accessed from a cloud storage service like Google Drive.
-
-
-

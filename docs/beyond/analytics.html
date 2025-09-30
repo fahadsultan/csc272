@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Naive Bayes</title>
+<title>Data Science and Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -193,7 +193,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/analytics.html">Data Science and Machine Learning</a></li><li class="breadcrumb-item"><a href="../probability/naivebayes.html">Naive Bayes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/analytics.html">Data Science and Machine Learning</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -422,7 +422,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../beyond/analytics.html" class="sidebar-item-text sidebar-link">
+            <a href="../beyond/analytics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Data Science and Machine Learning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -473,7 +473,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Naive Bayes</span></a>
   </div>
 </li>
@@ -514,24 +514,15 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link active" data-scroll-target="#bayes-theorem">Bayes’ Theorem</a></li>
-  <li><a href="#naive-assumption" id="toc-naive-assumption" class="nav-link" data-scroll-target="#naive-assumption">Naive Assumption</a></li>
-  <li><a href="#bag-of-words-bow-as-multinomial-data" id="toc-bag-of-words-bow-as-multinomial-data" class="nav-link" data-scroll-target="#bag-of-words-bow-as-multinomial-data">Bag of Words (BOW) as Multinomial Data</a></li>
-  <li><a href="#multinomial-naive-bayes-classifier" id="toc-multinomial-naive-bayes-classifier" class="nav-link" data-scroll-target="#multinomial-naive-bayes-classifier">Multinomial Naive Bayes Classifier</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/analytics.html">Data Science and Machine Learning</a></li><li class="breadcrumb-item"><a href="../probability/naivebayes.html">Naive Bayes</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Naive Bayes</h1>
+<h1 class="title">Data Science and Machine Learning</h1>
 </div>
 
 
@@ -548,73 +539,8 @@ window.Quarto = {
 </header>
 
 
-<p>Naive Bayes are a set of models for supervised learning based on applying Bayes’ theorem with a “naive” assumption.</p>
-<p>Naive Bayes models are generative and probabilistic.</p>
-<p>Generative models are ones that make an assumption about how the data is generated. Probabilistic models are ones that make an assumption about the probability distribution of the data. A probabilistic models tell us the probability of the observation being in each class. This full distribution over the classes can be useful information for downstream decisions; avoiding making discrete decisions early on can be useful when combining system</p>
-<section id="bayes-theorem" class="level2">
-<h2 class="anchored" data-anchor-id="bayes-theorem">Bayes’ Theorem</h2>
-<p>Recall Bayes’ Theorem from probability theory:</p>
-<p><span class="math display">\[ Posterior = \frac{Likelihood \cdot Prior}{Evidence} \]</span></p>
-<p>or</p>
-<p><span class="math display">\[ P(\mathbf{y}|X) = \frac{P(X|\mathbf{y})P(\mathbf{y})}{P(X)} \]</span></p>
-<p>Here <span class="math inline">\(X\)</span> is multi-dimensional input data (say Bag of Words representation of a set of documents) whereas <span class="math inline">\(y\)</span> is the corresponding set of labels (say each document’s sentiment).</p>
-<center>
-<img src="../assets/sentiment.png" width="80%" style="filter:invert(1)">
-</center>
-</section>
-<section id="naive-assumption" class="level2">
-<h2 class="anchored" data-anchor-id="naive-assumption">Naive Assumption</h2>
-<p>Note that the likelihood term <span class="math inline">\(P(X|\mathbf{y})\)</span> in the Bayes theorem can get very complicated to compute, for high dimensional data where X may be composed of many features.</p>
-<p>Naive Bayes’ makes a <strong>simplifying naive assumption</strong> that the features are independent of each other, given the class. In other words,</p>
-<p><span class="math display">\[ P(X|y) = \prod_{i=1}^{D} P(x_i|y) \]</span></p>
-<center>
-<img src="../assets/naive_assumption.png" width="50%" align="center" style="filter:invert(1)">
-</center>
-<p>This is a naive assumption, since in most cases, features are not independent. This is especially not true for text data, where the presence of a word in a document is highly correlated with the presence of other words in the document. Hence the popular adage in NLP: <em>“You shall know a word by the company it keeps”</em> by Firth.</p>
-<p>However, the naive assumption makes the computation of the likelihood term tractable and still remarkably yields great results in practice.</p>
-<p>Naive Bayes model is a <strong>generative model</strong> since it makes an assumption about how the data is generated. It assumes that the data is generated by first sampling a class <span class="math inline">\(y\)</span> from the prior distribution <span class="math inline">\(P(y)\)</span> and then sampling each feature <span class="math inline">\(x_i\)</span> from the likelihood distribution <span class="math inline">\(P(x_i|y)\)</span>.</p>
-</section>
-<section id="bag-of-words-bow-as-multinomial-data" class="level2">
-<h2 class="anchored" data-anchor-id="bag-of-words-bow-as-multinomial-data">Bag of Words (BOW) as Multinomial Data</h2>
-<p>Recall that multinomial distribution counts the number of times an outcome occurs when there are k-possible outcomes and N independent trials that can be used to capture probability of counts for rolling a k-sided die n times. Also recall that BOW representation of text is a count of how many times a word occurs in a document.</p>
-<p>BOW representation, therefore, can be modeled using the multinomial distibution. Here, instead of k-sided die, imagine a <span class="math inline">\(|V|\)</span> sided die where <span class="math inline">\(V\)</span> is the set of all unique words (vocabulary) and <span class="math inline">\(|V|\)</span> is the size of the vocabulary. Each word in the vocabulary, in other words, is a possible outcome and count of a word in all documents constitutes a binomial distribution of that word.</p>
-<center>
-<img width="70%" align="center" src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/bow.png" style="filter:invert(1)">
-</center>
-<center>
-<img width="70%" align="center" src="https://miro.medium.com/v2/resize:fit:1400/1*yuiduGxcrHKlLwl4y6TiDA.png" style="filter:invert(1)">
-</center>
-<p>So we can use the multinomial distribution to model the likelihood term <span class="math inline">\(P(x_i|y)\)</span> in the prediction rule.</p>
-<p>However, the Naive Assumption in the Naive Bayes model alleviates the need to estimate the joint distribution of the features. Instead, we can estimate the parameters of the binomial distribution for each feature independently and simply multiply the probabilities of each feature to get the likelihood term.</p>
-<p>The parameters of the binomial distribution are estimated using Maximum Likelihood Estimation (MLE) or Maximum A Posteriori (MAP) estimation.</p>
-</section>
-<section id="multinomial-naive-bayes-classifier" class="level2">
-<h2 class="anchored" data-anchor-id="multinomial-naive-bayes-classifier">Multinomial Naive Bayes Classifier</h2>
-<p>Naive Bayes classifier is simply a <strong>probabilistic classifier</strong> where the prediction <span class="math inline">\(\hat{y}\)</span> is the class <span class="math inline">\(y\)</span> that maximizes the posterior probability <span class="math inline">\(P(\mathbf{y}|X)\)</span> i.e.&nbsp;</p>
-<p><span class="math display">\[ \hat{y} = \underset{y}{\operatorname{argmax}} P(\mathbf{y}|X) \]</span></p>
-<p>In other words, if y=0 maximizes P(y | X), then the predicted class is 0. Otherwise, if y=1 maximizes P(y | X), then the predicted class is 1.</p>
-<p>P(y | X) is <em>proportional</em> to P(X | y)P(y), as per the Bayes’ theorem. In other words, we can ignore the denominator P(X) since it is the same for all classes (values of <span class="math inline">\(\textbf{y}\)</span>).</p>
-<p>So, we can also write the prediction rule as:</p>
-<p><span class="math display">\[ \hat{y} = \underset{y}{\operatorname{argmax}} P(X|\mathbf{y})\cdot P(\mathbf{y}) \]</span></p>
-<p>If we make the naive assumption that the features are independent of each other, given the class, then we can write the prediction rule as:</p>
-<p><span class="math display">\[ \hat{y} = \underset{y}{\operatorname{argmax}} \prod_{i=1}^{D} P(x_i|\mathbf{y}) \cdot P(\mathbf{y})  \]</span></p>
-<p>Based on our conversation on logarithms, when we apply log to the equation above, two things happen:</p>
-<ol type="1">
-<li><p>Due to log being a monotonically increasing function, the outcome of argmax remains unchanged.</p></li>
-<li><p>All multiplications in the equation become additions, making our lives easier.</p></li>
-</ol>
-<p>Therefore, we can write the prediction rule as:</p>
-<p><span class="math display">\[ \hat{y} = \underset{y}{\operatorname{argmax}} \sum_{i=1}^{D} \log P(x_i|\mathbf{y}) + \log P(\mathbf{y})  \]</span></p>
-<p>Now, let’s look at the two terms in the equation above:</p>
-<ol type="1">
-<li><p><span class="math inline">\(P(\mathbf{y})\)</span> is the prior probability of the class <span class="math inline">\(y\)</span>. It is estimated as the fraction of documents in the training set that belong to class <span class="math inline">\(y\)</span>.</p></li>
-<li><p><span class="math inline">\(P(x_i|\mathbf{y})\)</span> is the likelihood term. It is the sum of the log probabilities of each <span class="math inline">\(x_i\)</span> <span class="math inline">\(X\)</span> given the class <span class="math inline">\(y\)</span>.</p>
-<p>If, for example, we are trying to predict the sentiment of the document “Furman University” then the likelihood term would be <span class="math inline">\(\text{log}~ P(\text{Furman}|y) + \text{log}~ P(\text{University}|y)\)</span>.</p>
-<p>Similarly, likelihood term for the document “Greeenville is in SC” would be <span class="math inline">\(\text{log}~P(\text{Greenville}|y) + \text{log}~ P(\text{is}|y) + \text{log}~ P(\text{in}|y) + \text{log}~ P(\text{SC}|y)\)</span>.</p></li>
-</ol>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
