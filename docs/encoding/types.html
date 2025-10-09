@@ -230,7 +230,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../encoding/encoding.html">Data Cleaning and Encoding</a></li><li class="breadcrumb-item"><a href="../encoding/types.html">Feature Types</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../plotting/basics.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="../encoding/types.html">Feature Types</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -368,6 +368,12 @@ window.Quarto = {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Feature Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../plotting/anatomy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Anatomy of a Plot</span></a>
   </div>
@@ -386,20 +392,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../plotting/barplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bar Plot (Distribution of Discrete / Categorical Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plotting/histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Histogram (Distribution of Continuous Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../plotting/boxplot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Box Plots</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../plotting/21_univariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Univariate Visualizations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../plotting/22_multivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multivariate Visualizations</span></a>
   </div>
 </li>
       </ul>
@@ -407,7 +413,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../encoding/encoding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Cleaning and Encoding</span></a>
+ <span class="menu-text">Data Cleaning and Encoding Modalities</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -415,8 +421,8 @@ window.Quarto = {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Feature Types</span></a>
+  <a href="../encoding/missing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Missing Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -441,18 +447,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../encoding/images.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Image Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../encoding/spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geospatial Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../encoding/time.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Time Series Data</span></a>
   </div>
 </li>
       </ul>
@@ -556,8 +550,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#missing-data" id="toc-missing-data" class="nav-link active" data-scroll-target="#missing-data">Missing Data</a></li>
-  <li><a href="#numerical-features" id="toc-numerical-features" class="nav-link" data-scroll-target="#numerical-features">Numerical Features</a>
+  <li><a href="#numerical-features" id="toc-numerical-features" class="nav-link active" data-scroll-target="#numerical-features">Numerical Features</a>
   <ul class="collapse">
   <li><a href="#discrete-features" id="toc-discrete-features" class="nav-link" data-scroll-target="#discrete-features">Discrete Features</a></li>
   <li><a href="#continuous-features" id="toc-continuous-features" class="nav-link" data-scroll-target="#continuous-features">Continuous Features</a></li>
@@ -575,7 +568,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../encoding/encoding.html">Data Cleaning and Encoding</a></li><li class="breadcrumb-item"><a href="../encoding/types.html">Feature Types</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../plotting/basics.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="../encoding/types.html">Feature Types</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Feature Types</h1>
 </div>
@@ -689,67 +682,13 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<section id="missing-data" class="level2">
-<h2 class="anchored" data-anchor-id="missing-data">Missing Data</h2>
-<p>Missing data occurs commonly in many data analysis applications. One of the goals of pandas is to make working with missing data as painless as possible. For example, all of the descriptive statistics on pandas objects exclude missing data by default.</p>
-<p>The way that missing data is represented in pandas objects is somewhat imperfect, but it is sufficient for most real-world use. For data with <code>float64</code> dtype, pandas uses the floating-point value <code>NaN</code> (Not a Number) to represent missing data.</p>
-<p>We call this a <em>sentinel value</em>: when present, it indicates a missing (or null) value.</p>
-<p>The isna method gives us a Boolean Series with <code>True</code> where values are null:</p>
-<div id="cell-7" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data.isna().<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="bu">sum</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>id            0
-zip           1
-phone        27
-lat          30
-lng          30
-type          0
-score        15
-risk         17
-violation    17
-dtype: int64</code></pre>
-</div>
-</div>
-<p>In pandas, missing data is also refered to as NA, which stands for <em>Not Available</em>. In statistics applications, NA data may either be data that does not exist or that exists but was not observed (through problems with data collection, for example). When cleaning up data for analysis, it is often important to do analysis on the missing data itself to identify data collection problems or potential biases in the data caused by missing data.</p>
-<p>The built-in Python <code>None</code> value is also treated as NA.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 48%">
-<col style="width: 51%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Method</th>
-<th style="text-align: right;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><code>dropna</code></td>
-<td style="text-align: right;">Filter axis labels based on whether values for each label have missing data, with varying thresholds for how much missing data to tolerate.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>fillna</code></td>
-<td style="text-align: right;">Fill in missing data with some value</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>isna</code></td>
-<td style="text-align: right;">Return Boolean values indicating which values are missing/NA.</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>notna</code></td>
-<td style="text-align: right;">Negation of <code>isna</code>, returns <code>True</code> for non-NA values and <code>False</code> for NA values.</td>
-</tr>
-</tbody>
-</table>
-</section>
 <section id="numerical-features" class="level2">
 <h2 class="anchored" data-anchor-id="numerical-features">Numerical Features</h2>
 <p>Numeric data is data that can be represented as numbers. These variables generally describe some numeric <em>quantity</em> or <em>amount</em> and are also sometimes referred to as “quantitative” variables.</p>
 <p>Since numerical features are already represented as numbers, they are already ready to be used in machine learning models and there is no need to encode them.</p>
 <p>In the example above, numerical features include <code>zip</code>, <code>phone</code>, <code>lat</code>, <code>lng</code>, <code>score</code>.</p>
-<div id="cell-10" class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="99">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'zip'</span>, <span class="st">'phone'</span>, <span class="st">'lat'</span>, <span class="st">'lng'</span>, <span class="st">'score'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-7" class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="99">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'zip'</span>, <span class="st">'phone'</span>, <span class="st">'lat'</span>, <span class="st">'lng'</span>, <span class="st">'score'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="99">
 <div>
 
@@ -816,8 +755,8 @@ dtype: int64</code></pre>
 <h3 class="anchored" data-anchor-id="discrete-features">Discrete Features</h3>
 <p>Discrete data is data that is counted. For example, the number of students in a class is discrete data. You can count the number of students in a class. You can not count the number of students in a class and get a fraction of a student. You can only count whole students.</p>
 <p>In the restaurants inspection data set, <code>zip</code>, <code>phone</code>, <code>score</code> are discrete features.</p>
-<div id="cell-12" class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="100">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'zip'</span>, <span class="st">'phone'</span>, <span class="st">'score'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-9" class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'zip'</span>, <span class="st">'phone'</span>, <span class="st">'score'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="100">
 <div>
 
@@ -873,8 +812,8 @@ dtype: int64</code></pre>
 <h3 class="anchored" data-anchor-id="continuous-features">Continuous Features</h3>
 <p>Continuous data is data that is measured. For example, the height of a student is continuous data. You can measure the height of a student. You can measure the height of a student and get a fraction of a student. You can measure a student and get a height of 5 feet and 6.5 inches.</p>
 <p>In the restaurants inspection data set, <code>lat</code>, <code>lng</code> are continuous features.</p>
-<div id="cell-14" class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="101">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'lat'</span>, <span class="st">'lng'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-11" class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'lat'</span>, <span class="st">'lng'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="101">
 <div>
 
@@ -924,8 +863,8 @@ dtype: int64</code></pre>
 <section id="categorical-features" class="level2">
 <h2 class="anchored" data-anchor-id="categorical-features">Categorical Features</h2>
 <p>Categorical data is data that is not numeric. It is often represented as text or a set of text values. These variables generally describe some <em>characteristic</em> or <em>quality</em> of a data unit, and are also sometimes referred to as “qualitative” variables.</p>
-<div id="cell-16" class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="103">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'type'</span>, <span class="st">'risk'</span>, <span class="st">'violation'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-13" class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="103">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'type'</span>, <span class="st">'risk'</span>, <span class="st">'violation'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="103">
 <div>
 
@@ -979,8 +918,8 @@ dtype: int64</code></pre>
 <section id="ordinal-features" class="level3">
 <h3 class="anchored" data-anchor-id="ordinal-features">Ordinal Features</h3>
 <p>Ordinal data is data that is ordered in some way. For example, the size of a t-shirt is ordinal data. The sizes are ordered from smallest to largest. The sizes are more or less than each other. They are different and ordered.</p>
-<div id="cell-18" class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="105">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'risk'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-15" class="cell" data-tags="[&quot;hide-input&quot;]" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'risk'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="105">
 <div>
 
@@ -1022,9 +961,9 @@ dtype: int64</code></pre>
 <section id="encoding-ordinal-features" class="level4">
 <h4 class="anchored" data-anchor-id="encoding-ordinal-features">Encoding Ordinal Features</h4>
 <p>Ordinal features can be encoded using a technique called <strong>label encoding</strong>. Label encoding is simply converting each value in a column to a number. For example, the sizes of t-shirts could be represented as 0 (XS), 1 (S), 2 (M), 3 (L), 4 (XL), 5 (XXL).</p>
-<div id="cell-20" class="cell" data-execution_count="109">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'risk_enc'</span>] <span class="op">=</span> data[<span class="st">'risk'</span>].replace({<span class="st">'Low Risk'</span>: <span class="dv">0</span>, <span class="st">'Moderate Risk'</span>: <span class="dv">1</span>, <span class="st">'High Risk'</span>: <span class="dv">2</span>})</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-17" class="cell" data-execution_count="109">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'risk_enc'</span>] <span class="op">=</span> data[<span class="st">'risk'</span>].replace({<span class="st">'Low Risk'</span>: <span class="dv">0</span>, <span class="st">'Moderate Risk'</span>: <span class="dv">1</span>, <span class="st">'High Risk'</span>: <span class="dv">2</span>})</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="109">
 <div>
 
@@ -1122,8 +1061,8 @@ dtype: int64</code></pre>
 <section id="nominal-features" class="level3">
 <h3 class="anchored" data-anchor-id="nominal-features">Nominal Features</h3>
 <p>Nominal data is data that is not ordered in any way. For example, the color of a car is nominal data. There is no order to the colors. The colors are not more or less than each other. They are just different.</p>
-<div id="cell-22" class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'type'</span>, <span class="st">'violation'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'type'</span>, <span class="st">'violation'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -1177,8 +1116,8 @@ dtype: int64</code></pre>
 </center>
 <p><br></p>
 <p>pandas has a built-in <code>.get_dummies</code> function for doing this:</p>
-<div id="cell-25" class="cell" data-execution_count="130">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pd.get_dummies(data[<span class="st">'type'</span>]).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-22" class="cell" data-execution_count="130">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pd.get_dummies(data[<span class="st">'type'</span>]).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="130">
 <div>
 
@@ -1247,8 +1186,8 @@ dtype: int64</code></pre>
 <section id="dtypes-attribute" class="level2">
 <h2 class="anchored" data-anchor-id="dtypes-attribute"><code>.dtypes</code> attribute</h2>
 <p><code>.dtypes</code> is an attribute of a DataFrame that returns the data type of each column. The data types are returned as a Series with the column names as the index labels.</p>
-<div id="cell-27" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-24" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>id             int64
 zip          float64
@@ -1267,8 +1206,8 @@ dtype: object</code></pre>
 <section id="astype" class="level2">
 <h2 class="anchored" data-anchor-id="astype"><code>.astype()</code></h2>
 <p>Cast a pandas object to a specified dtype</p>
-<div id="cell-30" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-27" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -1355,8 +1294,8 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-31" class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'zip'</span>].astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-28" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'zip'</span>].astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

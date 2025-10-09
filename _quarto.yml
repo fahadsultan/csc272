@@ -69,22 +69,25 @@ website:
         - section: 
           href: plotting/basics.ipynb
           contents: 
+          - encoding/types.ipynb
           - plotting/anatomy.ipynb
           - plotting/lineplots.ipynb
           - plotting/scatter.ipynb
+          - plotting/barplot.ipynb
+          - plotting/histogram.ipynb
           - plotting/boxplot.ipynb
-          - plotting/21_univariate.ipynb
-          - plotting/22_multivariate.ipynb
+          # - plotting/21_univariate.ipynb
+          # - plotting/22_multivariate.ipynb
         - section: 
           href: encoding/encoding.ipynb
           contents:
-          - encoding/types.ipynb
+          - encoding/missing.ipynb
           - encoding/text.ipynb
           - encoding/network.ipynb
           - encoding/sound.ipynb
           - encoding/images.ipynb
-          - encoding/spatial.ipynb
-          - encoding/time.ipynb
+          # - encoding/spatial.ipynb
+          # - encoding/time.ipynb
         - section: 
           href: beyond/analytics.ipynb
           contents:

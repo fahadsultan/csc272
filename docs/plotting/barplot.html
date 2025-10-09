@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Writing Data</title>
+<title>Bar Plot (Distribution of Discrete / Categorical Data)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -227,7 +227,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas.html">Data Wranging and Manipulation</a></li><li class="breadcrumb-item"><a href="../pandas/write_data.html">Writing Data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../plotting/basics.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="../plotting/barplot.html">Bar Plot (Distribution of Discrete / Categorical Data)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -348,7 +348,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/write_data.html" class="sidebar-item-text sidebar-link active">
+  <a href="../pandas/write_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Writing Data</span></a>
   </div>
 </li>
@@ -389,7 +389,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../plotting/barplot.html" class="sidebar-item-text sidebar-link">
+  <a href="../plotting/barplot.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Bar Plot (Distribution of Discrete / Categorical Data)</span></a>
   </div>
 </li>
@@ -542,27 +542,15 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#to_csv" id="toc-to_csv" class="nav-link active" data-scroll-target="#to_csv"><code>to_csv</code></a></li>
-  <li><a href="#pickle" id="toc-pickle" class="nav-link" data-scroll-target="#pickle">Pickle</a>
-  <ul class="collapse">
-  <li><a href="#serialization" id="toc-serialization" class="nav-link" data-scroll-target="#serialization">Serialization</a></li>
-  <li><a href="#deserialization" id="toc-deserialization" class="nav-link" data-scroll-target="#deserialization">Deserialization</a></li>
-  <li><a href="#security" id="toc-security" class="nav-link" data-scroll-target="#security">Security</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas.html">Data Wranging and Manipulation</a></li><li class="breadcrumb-item"><a href="../pandas/write_data.html">Writing Data</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../plotting/basics.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="../plotting/barplot.html">Bar Plot (Distribution of Discrete / Categorical Data)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Writing Data</h1>
+<h1 class="title">Bar Plot (Distribution of Discrete / Categorical Data)</h1>
 </div>
 
 
@@ -579,56 +567,78 @@ window.Quarto = {
 </header>
 
 
-<section id="to_csv" class="level2">
-<h2 class="anchored" data-anchor-id="to_csv"><code>to_csv</code></h2>
-<p><code>pandas</code> can also write data to a variety of file formats, including CSV, Excel, and SQL databases. The following code cell writes the <code>elections</code> dataset to a CSV file named <code>elections.csv</code>.</p>
-<p><br></p>
-<center>
-<img style="filter:invert(1)" src="https://i.ibb.co/j8Hn4VN/to-csv.png" width="85%">
-</center>
-<p><br></p>
-<p>To write a DataFrame to a CSV file, use the <code>df.to_csv()</code> function. The first input to <code>df.to_csv()</code> is the filename or filepath that you want to write to.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pd.to_csv(<span class="st">'elections_new.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Other important parameters of the <code>df.to_csv()</code> function are:</p>
-<ol type="1">
-<li><p><code>sep</code>: (default: <code>sep=','</code>) specifies the separator used to separate columns. Default is <code>,</code> which means the columns are separated by a comma.</p></li>
-<li><p><code>header</code>: (default: <code>header=True</code>) specifies whether to write the header row. Default is <code>True</code> which means the header row is written. If you don’t want to write the header row, then <code>header=False</code> should be used.</p></li>
-<li><p><code>index</code>: (default: <code>index=True</code>) specifies whether to write the index column. Default is <code>True</code> which means the index column is written. If you don’t want to write the index column, then <code>index=False</code> should be used. data.to_csv(‘elections.csv’)</p></li>
-</ol>
-</section>
-<section id="pickle" class="level1">
-<h1>Pickle</h1>
-<p>pickle is a Python module used to serialize and deserialize Python objects. It can be used to store and retrieve Python objects from disk.</p>
-<section id="serialization" class="level2">
-<h2 class="anchored" data-anchor-id="serialization">Serialization</h2>
-<p>Serialization is the process of converting a Python object into a byte stream. This byte stream can be stored on disk or sent over a network.</p>
-<p>The <code>pickle.dump()</code> function is used to serialize a Python object. It takes two arguments: the object to serialize and a file object to write the byte stream to.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
+<p>A bar plot (or bar chart) is a graphical representation used to display the distribution of discrete numerical or categorical data. It consists of rectangular bars where the length of each bar is proportional to the value it represents. Bar plots are useful for comparing different categories or groups.</p>
+<p>Key Features of Bar Plots:</p>
+<ul>
+<li><p><strong>Categories</strong>: Each bar represents a different category or group.</p></li>
+<li><p><strong>Height/Length</strong>: The height (or length) of the bar corresponds to the value or frequency of the category it represents.</p></li>
+<li><p><strong>Orientation</strong>: Bars can be oriented vertically or horizontally.</p></li>
+<li><p><strong>Spacing</strong>: There is usually some space between the bars to distinguish different categories.</p></li>
+</ul>
+<p>The following is an example of how to create a simple bar plot using Python’s Matplotlib library:</p>
+<div id="cell-2" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>elections <span class="op">=</span> pd.read_csv(url)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-3" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> elections.groupby(<span class="st">'Party'</span>).size()</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">'name'</span>: <span class="st">'Alice'</span>, <span class="st">'age'</span>: <span class="dv">25</span>}</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> party_counts.sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'data.pickle'</span>, <span class="st">'wb'</span>) <span class="im">as</span> f:</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    pickle.dump(data, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this example, we serialize a dictionary containing a person’s name and age to a file called <code>data.pickle</code>.</p>
-</section>
-<section id="deserialization" class="level2">
-<h2 class="anchored" data-anchor-id="deserialization">Deserialization</h2>
-<p>Deserialization is the process of converting a byte stream back into a Python object.</p>
-<p>The <code>pickle.load()</code> function is used to deserialize a Python object. It takes a file object containing the byte stream as an argument and returns the deserialized object.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'data.pickle'</span>, <span class="st">'rb'</span>) <span class="im">as</span> f:</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pickle.load(f)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this example, we deserialize the byte stream from the <code>data.pickle</code> file back into a Python object and print it.</p>
-</section>
-<section id="security" class="level2">
-<h2 class="anchored" data-anchor-id="security">Security</h2>
-<p>It is important to note that the <code>pickle</code> module is not secure. Deserializing untrusted data can lead to security vulnerabilities, as malicious code can be executed during deserialization. It is recommended to only deserialize data from trusted sources.</p>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> party_counts.index</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> party_counts.values</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>ax.bar(categories, values, color<span class="op">=</span><span class="st">'skyblue'</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Party'</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Number of Candidates'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Number of Candidates by Party'</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ax.grid()</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ax.set_xticklabels(categories, rotation<span class="op">=</span><span class="dv">90</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/l9/y8y3rmys2sl93tzzph3dl7jw0000gr/T/ipykernel_5981/2239138952.py:15: UserWarning: FixedFormatter should only be used together with FixedLocator
+  ax.set_xticklabels(categories, rotation=90);</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="barplot_files/figure-html/cell-3-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The plot above rotates the x-axis labels for better readability but doing so might crane the neck of the viewer.</p>
+<p>Here is an example of a horizontal bar plot:</p>
+<div id="cell-5" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> elections.groupby(<span class="st">'Party'</span>).size()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>party_counts <span class="op">=</span> party_counts.sort_values(ascending<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> party_counts.index</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> party_counts.values</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">4</span>, <span class="dv">8</span>))</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>ax.barh(categories, values, color<span class="op">=</span><span class="st">'skyblue'</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Party'</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Number of Candidates'</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Number of Candidates by Party'</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>ax.grid()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="barplot_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

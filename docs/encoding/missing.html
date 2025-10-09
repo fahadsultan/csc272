@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Writing Data</title>
+<title>missing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -227,7 +227,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas.html">Data Wranging and Manipulation</a></li><li class="breadcrumb-item"><a href="../pandas/write_data.html">Writing Data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../encoding/encoding.html">Data Cleaning and Encoding Modalities</a></li><li class="breadcrumb-item"><a href="../encoding/missing.html">Missing Data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -348,7 +348,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pandas/write_data.html" class="sidebar-item-text sidebar-link active">
+  <a href="../pandas/write_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Writing Data</span></a>
   </div>
 </li>
@@ -418,7 +418,7 @@ window.Quarto = {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../encoding/missing.html" class="sidebar-item-text sidebar-link">
+  <a href="../encoding/missing.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Missing Data</span></a>
   </div>
 </li>
@@ -547,12 +547,11 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#to_csv" id="toc-to_csv" class="nav-link active" data-scroll-target="#to_csv"><code>to_csv</code></a></li>
-  <li><a href="#pickle" id="toc-pickle" class="nav-link" data-scroll-target="#pickle">Pickle</a>
+  <li><a href="#missing-data" id="toc-missing-data" class="nav-link active" data-scroll-target="#missing-data">Missing Data</a>
   <ul class="collapse">
-  <li><a href="#serialization" id="toc-serialization" class="nav-link" data-scroll-target="#serialization">Serialization</a></li>
-  <li><a href="#deserialization" id="toc-deserialization" class="nav-link" data-scroll-target="#deserialization">Deserialization</a></li>
-  <li><a href="#security" id="toc-security" class="nav-link" data-scroll-target="#security">Security</a></li>
+  <li><a href="#isna-and-notna" id="toc-isna-and-notna" class="nav-link" data-scroll-target="#isna-and-notna"><code>isna</code> and <code>notna</code></a></li>
+  <li><a href="#dropna" id="toc-dropna" class="nav-link" data-scroll-target="#dropna"><code>dropna</code></a></li>
+  <li><a href="#fillna" id="toc-fillna" class="nav-link" data-scroll-target="#fillna"><code>fillna</code></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -560,71 +559,172 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas.html">Data Wranging and Manipulation</a></li><li class="breadcrumb-item"><a href="../pandas/write_data.html">Writing Data</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Writing Data</h1>
+
+
+
+<section id="missing-data" class="level1">
+<h1>Missing Data</h1>
+<p>Missing data occurs commonly in many data analysis applications. One of the goals of pandas is to make working with missing data as painless as possible. For example, all of the descriptive statistics on pandas objects exclude missing data by default.</p>
+<p>The way that missing data is represented in pandas objects is somewhat imperfect, but it is sufficient for most real-world use. For data with <code>float64</code> dtype, pandas uses the floating-point value <code>NaN</code> (Not a Number) to represent missing data.</p>
+<p>We call this a <em>sentinel value</em>: when present, it indicates a missing (or null) value.</p>
+<p>The isna method gives us a Boolean Series with <code>True</code> where values are null:</p>
+<div id="cell-1" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data.isna().<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="bu">sum</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>id            0
+zip           1
+phone        27
+lat          30
+lng          30
+type          0
+score        15
+risk         17
+violation    17
+dtype: int64</code></pre>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="to_csv" class="level2">
-<h2 class="anchored" data-anchor-id="to_csv"><code>to_csv</code></h2>
-<p><code>pandas</code> can also write data to a variety of file formats, including CSV, Excel, and SQL databases. The following code cell writes the <code>elections</code> dataset to a CSV file named <code>elections.csv</code>.</p>
-<p><br></p>
-<center>
-<img style="filter:invert(1)" src="https://i.ibb.co/j8Hn4VN/to-csv.png" width="85%">
-</center>
-<p><br></p>
-<p>To write a DataFrame to a CSV file, use the <code>df.to_csv()</code> function. The first input to <code>df.to_csv()</code> is the filename or filepath that you want to write to.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pd.to_csv(<span class="st">'elections_new.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Other important parameters of the <code>df.to_csv()</code> function are:</p>
-<ol type="1">
-<li><p><code>sep</code>: (default: <code>sep=','</code>) specifies the separator used to separate columns. Default is <code>,</code> which means the columns are separated by a comma.</p></li>
-<li><p><code>header</code>: (default: <code>header=True</code>) specifies whether to write the header row. Default is <code>True</code> which means the header row is written. If you don’t want to write the header row, then <code>header=False</code> should be used.</p></li>
-<li><p><code>index</code>: (default: <code>index=True</code>) specifies whether to write the index column. Default is <code>True</code> which means the index column is written. If you don’t want to write the index column, then <code>index=False</code> should be used. data.to_csv(‘elections.csv’)</p></li>
-</ol>
+</div>
+<p>In pandas, missing data is also refered to as NA, which stands for <em>Not Available</em>. In statistics applications, NA data may either be data that does not exist or that exists but was not observed (through problems with data collection, for example). When cleaning up data for analysis, it is often important to do analysis on the missing data itself to identify data collection problems or potential biases in the data caused by missing data.</p>
+<p>The built-in Python <code>None</code> value is also treated as NA.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 48%">
+<col style="width: 51%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Method</th>
+<th style="text-align: right;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>dropna</code></td>
+<td style="text-align: right;">Filter axis labels based on whether values for each label have missing data, with varying thresholds for how much missing data to tolerate.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>fillna</code></td>
+<td style="text-align: right;">Fill in missing data with some value</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>isna</code></td>
+<td style="text-align: right;">Return Boolean values indicating which values are missing/NA.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>notna</code></td>
+<td style="text-align: right;">Negation of <code>isna</code>, returns <code>True</code> for non-NA values and <code>False</code> for NA values.</td>
+</tr>
+</tbody>
+</table>
+<section id="isna-and-notna" class="level2">
+<h2 class="anchored" data-anchor-id="isna-and-notna"><code>isna</code> and <code>notna</code></h2>
+<p>The <code>isna</code> and <code>notna</code> functions should be used to detect missing values. These functions are available as top-level methods in the pandas namespace, as well as instance methods on Series and DataFrame objects.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.Series([<span class="dv">1</span>, np.nan, <span class="st">'hello'</span>, <span class="va">None</span>])</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>data.isna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>0    False
+1     True
+2    False
+3     True
+dtype: bool</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data.notna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>0     True
+1    False
+2     True
+3    False
+dtype: bool</code></pre>
+<p>These functions can also be used with DataFrame objects:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>, np.nan, <span class="dv">6</span>], [<span class="dv">7</span>, <span class="dv">8</span>, <span class="va">None</span>]])</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     0    1     2
+0  1.0  2.0   3.0
+1  4.0  NaN   6.0
+2  7.0  8.0   NaN</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data.isna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>       0      1      2
+0  False  False  False
+1  False   True  False
+2  False  False   True</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data.notna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>       0      1      2
+0   True   True   True
+1   True  False   True
+2   True   True  False</code></pre>
 </section>
-<section id="pickle" class="level1">
-<h1>Pickle</h1>
-<p>pickle is a Python module used to serialize and deserialize Python objects. It can be used to store and retrieve Python objects from disk.</p>
-<section id="serialization" class="level2">
-<h2 class="anchored" data-anchor-id="serialization">Serialization</h2>
-<p>Serialization is the process of converting a Python object into a byte stream. This byte stream can be stored on disk or sent over a network.</p>
-<p>The <code>pickle.dump()</code> function is used to serialize a Python object. It takes two arguments: the object to serialize and a file object to write the byte stream to.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pickle</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">'name'</span>: <span class="st">'Alice'</span>, <span class="st">'age'</span>: <span class="dv">25</span>}</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'data.pickle'</span>, <span class="st">'wb'</span>) <span class="im">as</span> f:</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    pickle.dump(data, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this example, we serialize a dictionary containing a person’s name and age to a file called <code>data.pickle</code>.</p>
+<section id="dropna" class="level2">
+<h2 class="anchored" data-anchor-id="dropna"><code>dropna</code></h2>
+<p>The <code>dropna</code> method can be used to drop rows or columns with missing data. By default, it drops any row containing a missing value:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     0    1    2
+0  1.0  2.0  3.0</code></pre>
+<p>To drop columns with missing data instead of rows, use the <code>axis</code> keyword:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>data.dropna(axis<span class="op">=</span><span class="st">'columns'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     0
+0  1.0
+1  4.0
+2  7.0</code></pre>
+<p>By default, <code>dropna</code> drops rows or columns that contain <em>any</em> missing data. You can change this to drop rows or columns that contain <em>all</em> missing data by passing the <code>how</code> keyword:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">3</span>] <span class="op">=</span> np.nan</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     0    1     2   3
+0  1.0  2.0   3.0 NaN
+1  4.0  NaN   6.0 NaN
+2  7.0  8.0   NaN NaN</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data.dropna(how<span class="op">=</span><span class="st">'all'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     0    1     2   3
+0  1.0  2.0   3.0 NaN
+1  4.0  NaN   6.0 NaN
+2  7.0  8.0   NaN NaN</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>data.dropna(axis<span class="op">=</span><span class="st">'columns'</span>, how<span class="op">=</span><span class="st">'all'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     0    1     2
+0  1.0  2.0   3.0
+1  4.0  NaN   6.0
+2  7.0  8.0   NaN</code></pre>
+<p>Dropping rows or columns with missing data is a common operation when cleaning up data for analysis. However, it is important to consider whether this is appropriate for your data, as it can introduce bias if the missing data is not random.</p>
+<p>You can also specify a threshold for the minimum number of non-missing values required to keep a row or column using the <code>thresh</code> keyword:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     0    1     2   3
+0  1.0  2.0   3.0 NaN
+1  4.0  NaN   6.0 NaN
+2  7.0  8.0   NaN NaN</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>data.dropna(thresh<span class="op">=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     0    1    2   3
+0  1.0  2.0  3.0 NaN
+1  4.0  NaN  6.0 NaN</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>data.dropna(axis<span class="op">=</span><span class="st">'columns'</span>, thresh<span class="op">=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     0
+0  1.0
+1  4.0
+2  7.0</code></pre>
 </section>
-<section id="deserialization" class="level2">
-<h2 class="anchored" data-anchor-id="deserialization">Deserialization</h2>
-<p>Deserialization is the process of converting a byte stream back into a Python object.</p>
-<p>The <code>pickle.load()</code> function is used to deserialize a Python object. It takes a file object containing the byte stream as an argument and returns the deserialized object.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'data.pickle'</span>, <span class="st">'rb'</span>) <span class="im">as</span> f:</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pickle.load(f)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this example, we deserialize the byte stream from the <code>data.pickle</code> file back into a Python object and print it.</p>
-</section>
-<section id="security" class="level2">
-<h2 class="anchored" data-anchor-id="security">Security</h2>
-<p>It is important to note that the <code>pickle</code> module is not secure. Deserializing untrusted data can lead to security vulnerabilities, as malicious code can be executed during deserialization. It is recommended to only deserialize data from trusted sources.</p>
+<section id="fillna" class="level2">
+<h2 class="anchored" data-anchor-id="fillna"><code>fillna</code></h2>
+<p>The <code>fillna</code> method can be used to fill in missing data with a specified value or method. For example, to fill in missing values with zero:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>data.fillna(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     0    1    2    3
+0  1.0  2.0  3.0  0.0
+1  4.0  0.0  6.0  0.0
+2  7.0  8.0  0.0  0.0</code></pre>
+<p>You can also use different fill values for different columns by passing a dictionary:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>data.fillna({<span class="dv">1</span>: <span class="fl">0.5</span>, <span class="dv">2</span>: <span class="dv">99</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     0    1     2   3
+0  1.0  2.0   3.0 NaN
+1  4.0  0.5   6.0 NaN
+2  7.0  8.0  99.0 NaN</code></pre>
+<p>The <code>method</code> keyword can be used to specify a method for filling in missing values. The two most common methods are <code>ffill</code> (forward fill) and <code>bfill</code> (backward fill).</p>
+<p>Forward fill propagates the last valid observation forward to the next valid. Backward fill uses the next valid observation to fill the gap.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>data.fillna(method<span class="op">=</span><span class="st">'ffill'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     0    1    2    3
+0  1.0  2.0  3.0  NaN
+1  4.0  2.0  6.0  NaN
+2  7.0  8.0  6.0  NaN</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>data.fillna(method<span class="op">=</span><span class="st">'bfill'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>     0    1    2   3
+0  1.0  2.0  3.0 NaN
+1  4.0  8.0  6.0 NaN
+2  7.0  8.0  NaN NaN</code></pre>
 
 
 </section>

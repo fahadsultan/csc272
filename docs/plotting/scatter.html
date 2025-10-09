@@ -365,6 +365,12 @@ window.Quarto = {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Feature Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../plotting/anatomy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Anatomy of a Plot</span></a>
   </div>
@@ -383,20 +389,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../plotting/barplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bar Plot (Distribution of Discrete / Categorical Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plotting/histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Histogram (Distribution of Continuous Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../plotting/boxplot.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Box Plots</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../plotting/21_univariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Univariate Visualizations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../plotting/22_multivariate.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Multivariate Visualizations</span></a>
   </div>
 </li>
       </ul>
@@ -404,7 +410,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../encoding/encoding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Cleaning and Encoding</span></a>
+ <span class="menu-text">Data Cleaning and Encoding Modalities</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -412,8 +418,8 @@ window.Quarto = {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Feature Types</span></a>
+  <a href="../encoding/missing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Missing Data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -438,18 +444,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../encoding/images.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Image Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../encoding/spatial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geospatial Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../encoding/time.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Time Series Data</span></a>
   </div>
 </li>
       </ul>
@@ -557,7 +551,7 @@ window.Quarto = {
   <li><a href="#marker-size" id="toc-marker-size" class="nav-link" data-scroll-target="#marker-size">Marker Size</a></li>
   <li><a href="#marker-color" id="toc-marker-color" class="nav-link" data-scroll-target="#marker-color">Marker Color</a></li>
   <li><a href="#marker-shape" id="toc-marker-shape" class="nav-link" data-scroll-target="#marker-shape">Marker Shape</a></li>
-  <li><a href="#pandas-and-seaborn" id="toc-pandas-and-seaborn" class="nav-link" data-scroll-target="#pandas-and-seaborn">Pandas and Seaborn</a></li>
+  <li><a href="#seaborn" id="toc-seaborn" class="nav-link" data-scroll-target="#seaborn">Seaborn</a></li>
   <li><a href="#please-dont" id="toc-please-dont" class="nav-link" data-scroll-target="#please-dont">Please don’t</a>
   <ul class="collapse">
   <li><a href="#overplot" id="toc-overplot" class="nav-link" data-scroll-target="#overplot">Overplot</a></li>
@@ -755,20 +749,23 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="pandas-and-seaborn" class="level2">
-<h2 class="anchored" data-anchor-id="pandas-and-seaborn">Pandas and Seaborn</h2>
-<p>Pandas and Seaborn are great libraries for data manipulation and data visualization, respectively. Pandas is used to load and manipulate data, while Seaborn is used to visualize data. Seaborn is built on top of Matplotlib and provides a high-level interface for creating attractive and informative statistical graphics.</p>
-<p>Creating a scatter plot using seaborn and pandas requires fewer lines of code compared to using Matplotlib.</p>
+<section id="seaborn" class="level2">
+<h2 class="anchored" data-anchor-id="seaborn">Seaborn</h2>
+<p>Seaborn is a Python data visualization library based on Matplotlib that provides a high-level interface for drawing attractive and informative statistical graphics. It is built on top of Matplotlib and integrates closely with pandas data structures.</p>
+<p>Seaborn often requires less code to create complex visualizations compared to Matplotlib, making it easier to create aesthetically pleasing plots with minimal effort.</p>
+<p>As a trade-off, seaborn often does not offer the same level of customization and flexibility as Matplotlib for highly specialized plots.</p>
 <div id="cell-13" class="cell" data-execution_count="260">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>sc.plot(kind<span class="op">=</span><span class="st">'scatter'</span>, <span class="op">\</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">'lng'</span>, <span class="op">\</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">'lat'</span>, <span class="op">\</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        s<span class="op">=</span>sc[<span class="st">'population'</span>]<span class="op">/</span><span class="dv">1000</span>, <span class="op">\</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>ax, <span class="op">\</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'red'</span>, <span class="op">\</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">'South Carolina'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>sc.plot(kind<span class="op">=</span><span class="st">'scatter'</span>, <span class="op">\</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">'lng'</span>, <span class="op">\</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">'lat'</span>, <span class="op">\</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        s<span class="op">=</span>sc[<span class="st">'population'</span>]<span class="op">/</span><span class="dv">1000</span>, <span class="op">\</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>ax, <span class="op">\</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">'red'</span>, <span class="op">\</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="st">'South Carolina'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
