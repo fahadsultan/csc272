@@ -545,8 +545,19 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#first-quartile-q1" id="toc-first-quartile-q1" class="nav-link active" data-scroll-target="#first-quartile-q1">First quartile (Q1)</a></li>
+  <li><a href="#second-quartile-q2-aka-median" id="toc-second-quartile-q2-aka-median" class="nav-link" data-scroll-target="#second-quartile-q2-aka-median">Second quartile (Q2) aka Median</a></li>
+  <li><a href="#third-quartile-q3" id="toc-third-quartile-q3" class="nav-link" data-scroll-target="#third-quartile-q3">Third quartile (Q3)</a></li>
+  <li><a href="#inter-quartile-range-iqr-and-whiskers" id="toc-inter-quartile-range-iqr-and-whiskers" class="nav-link" data-scroll-target="#inter-quartile-range-iqr-and-whiskers">Inter-Quartile Range (IQR) and Whiskers</a></li>
+  <li><a href="#outliers" id="toc-outliers" class="nav-link" data-scroll-target="#outliers">Outliers</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -570,17 +581,43 @@ window.Quarto = {
 </header>
 
 
+<p>When visualizing distributions of continuous variables, across multiple categories, bar plots can be misleading. They fail to convey the spread of the data, and can hide important information about the distribution.</p>
 <p><img align="right" width="60%" src="https://ds100.org/course-notes-su23/visualization_1/images/boxplot.png" style="filter:invert(1)"></p>
 <p><strong>Box plots</strong> display distributions using information about quartiles.</p>
-<p>A quartile represents a 25% portion of the data. We say that:</p>
-<ul>
-<li><p>The first quartile (Q1) repesents the 25th percentile – 25% of the data lies below the first quartile</p></li>
-<li><p>The second quartile (Q2) represents the 50th percentile, also known as the median – 50% of the data lies below the second quartile</p></li>
-<li><p>The third quartile (Q3) represents the 75th percentile – 75% of the data lies below the third quartile.</p></li>
-</ul>
+<p>A quartile represents a 25% portion of the data.</p>
+<p>We say that:</p>
+<section id="first-quartile-q1" class="level3">
+<h3 class="anchored" data-anchor-id="first-quartile-q1">First quartile (Q1)</h3>
+<p>Repesents the 25th percentile – 25% of the data lies below the first quartile.</p>
+<p>In a box plot, the lower extent of the box lies at Q1.</p>
+</section>
+<section id="second-quartile-q2-aka-median" class="level3">
+<h3 class="anchored" data-anchor-id="second-quartile-q2-aka-median">Second quartile (Q2) aka Median</h3>
+<p>Represents the 50th percentile, also known as the median – 50% of the data lies below the second quartile</p>
+<p>In a box plot, the horizontal line in the middle of the box corresponds to Q2 (equivalently, the median).</p>
+</section>
+<section id="third-quartile-q3" class="level3">
+<h3 class="anchored" data-anchor-id="third-quartile-q3">Third quartile (Q3)</h3>
+<p>Represents the 75th percentile – 75% of the data lies below the third quartile.</p>
+<p>In a box plot, the upper extent of the box lies at Q3.</p>
+</section>
+<section id="inter-quartile-range-iqr-and-whiskers" class="level3">
+<h3 class="anchored" data-anchor-id="inter-quartile-range-iqr-and-whiskers">Inter-Quartile Range (IQR) and Whiskers</h3>
 <p>In a box plot, the lower extent of the box lies at Q1, while the upper extent of the box lies at Q3. The horizontal line in the middle of the box corresponds to Q2 (equivalently, the median).</p>
 <p>The <strong>Inter-Quartile Range</strong> (IQR) measures the spread of the middle % of the distribution, calculated as the (<span class="math inline">\(3^{rd}\)</span> Quartile <span class="math inline">\(-\)</span> <span class="math inline">\(1^{st}\)</span> Quartile).</p>
+<p><span class="math display">\[ IQR = Q3 - Q1 \]</span></p>
 <p>The <strong>whiskers</strong> of a box-plot are the two points that lie at the [<span class="math inline">\(1^{st}\)</span> Quartile <span class="math inline">\(-\)</span>(<span class="math inline">\(1.5 \times\)</span> IQR)], and the [<span class="math inline">\(3^{rd}\)</span> Quartile <span class="math inline">\(+\)</span> (<span class="math inline">\(1.5 \times\)</span> IQR)]. They are the lower and upper ranges of “normal” data (the points excluding outliers). Subsequently, the outliers are the data points that fall beyond the whiskers, or further than ( <span class="math inline">\(1.5 \times\)</span> IQR) from the extreme quartiles.</p>
+<p><span class="math display">\[ \text{Lower Whisker} = Q1 - (1.5 \times IQR) \]</span></p>
+<p><span class="math display">\[ \text{Upper Whisker} = Q3 + (1.5 \times IQR) \]</span></p>
+</section>
+<section id="outliers" class="level3">
+<h3 class="anchored" data-anchor-id="outliers">Outliers</h3>
+<p>An outlier is a data point that lies outside the overall pattern of the distribution. In a box plot, outliers are represented as individual points that fall beyond the whiskers.</p>
+<p><span class="math display">\[ \text{Outlier} &lt; Q1 - (1.5 \times IQR) \]</span></p>
+<p><span class="math display">\[ \text{Outlier} &gt; Q3 + (1.5 \times IQR) \]</span></p>
+</section>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
 <div id="e11ca04f" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -717,6 +754,7 @@ window.Quarto = {
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
