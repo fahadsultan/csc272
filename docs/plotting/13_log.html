@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Image Data</title>
+<title>Logarithms</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -102,6 +102,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -227,7 +230,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../encoding/encoding.html">Data Cleaning and Encoding Modalities</a></li><li class="breadcrumb-item"><a href="../encoding/images.html">Image Data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../plotting/basics.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="../plotting/13_log.html">Logarithms</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -407,7 +410,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../plotting/13_log.html" class="sidebar-item-text sidebar-link">
+  <a href="../plotting/13_log.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Logarithms</span></a>
   </div>
 </li>
@@ -448,7 +451,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../encoding/images.html" class="sidebar-item-text sidebar-link active">
+  <a href="../encoding/images.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Image Data</span></a>
   </div>
 </li>
@@ -553,16 +556,20 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#videos" id="toc-videos" class="nav-link active" data-scroll-target="#videos">Videos</a></li>
+  <li><a href="#monotonically-increasing-function" id="toc-monotonically-increasing-function" class="nav-link active" data-scroll-target="#monotonically-increasing-function">Monotonically Increasing Function</a></li>
+  <li><a href="#laws-of-logarithms" id="toc-laws-of-logarithms" class="nav-link" data-scroll-target="#laws-of-logarithms">Laws of Logarithms</a></li>
+  <li><a href="#multiplying-probabilities" id="toc-multiplying-probabilities" class="nav-link" data-scroll-target="#multiplying-probabilities">Multiplying Probabilities</a></li>
+  <li><a href="#ratios-of-probabilities" id="toc-ratios-of-probabilities" class="nav-link" data-scroll-target="#ratios-of-probabilities">Ratios of Probabilities</a></li>
+  <li><a href="#normalizing-skewed-distributions" id="toc-normalizing-skewed-distributions" class="nav-link" data-scroll-target="#normalizing-skewed-distributions">Normalizing Skewed Distributions</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../encoding/encoding.html">Data Cleaning and Encoding Modalities</a></li><li class="breadcrumb-item"><a href="../encoding/images.html">Image Data</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../plotting/basics.html">Data Visualization</a></li><li class="breadcrumb-item"><a href="../plotting/13_log.html">Logarithms</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Image Data</h1>
+<h1 class="title">Logarithms</h1>
 </div>
 
 
@@ -579,129 +586,317 @@ window.Quarto = {
 </header>
 
 
-<p>An image is a 2D array of pixels. Each pixel is a 3D vector of red, green, and blue (RGB) values. The RGB values are usually represented as integers between 0 and 255. The RGB values are used to represent the color of the pixel. For example, a pixel with RGB values of (255, 0, 0) is red, (0, 255, 0) is green, and (0, 0, 255) is blue. A pixel with RGB values of (0, 0, 0) is black and (255, 255, 255) is white.</p>
-<p>In this notebook, we will learn how to read and write images, and how to manipulate them.</p>
-<div id="cell-4" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
+<p>The logarithm is the inverse exponential function of base b. That is,</p>
+<p><span class="math display">\[ \text{if  } y = e^x \]</span></p>
+<p><span class="math display">\[ \text{then  } log_e y = x \]</span></p>
+<p>From the two equations above, it follows that</p>
+<p><span class="math display">\[  log_e e^x = x \]</span></p>
+<center>
+<img src="https://content.nroc.org/DevelopmentalMath/COURSE_TEXT2_RESOURCE/U18_L2_T1_text_final_7_files/image043.png" width="40%" style="filter:invert(1)"> <br><br> <img src="https://fahadsultan.com/csc122/_images/log1.png" width="70%" style="filter:invert(1)"> <br><br> <img src="https://fahadsultan.com/csc122/_images/log2.png" width="70%" style="filter:invert(1)">
+</center>
+<p>Here <span class="math inline">\(e\)</span> is an irrational constant called Euler’s number that begins with 2.718281828459.</p>
+<div id="cell-4" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> log, exp</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Read an image</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>raw.githubusercontent.com<span class="op">/</span>fahadsultan<span class="op">/</span>csc272<span class="op">/</span>main<span class="op">/</span>data<span class="op">/</span>belltower.png</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> plt.imread(<span class="st">'belltower.png'</span>)<span class="op">;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.imshow(img)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>--2024-10-17 08:17:16--  https://raw.githubusercontent.com/fahadsultan/csc272/main/data/belltower.png
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.110.133, 185.199.108.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 3604223 (3.4M) [image/png]
-Saving to: 'belltower.png'
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'X'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'Y'</span>] <span class="op">=</span> data[<span class="st">'X'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: math.e <span class="op">**</span> x)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.lineplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'X'</span>, y<span class="op">=</span><span class="st">'Y'</span>, linewidth<span class="op">=</span><span class="dv">4</span>, color<span class="op">=</span><span class="st">'cyan'</span>)<span class="op">;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>axs.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"$Y = f(x) = e^{~x}$"</span> <span class="op">+</span> <span class="st">" where "</span> <span class="op">+</span> <span class="st">"$x \in [0, 100)$"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_log_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<pre class="{note}"><code>Note that to use the log function in python, we have to import it from the `math` library: 
 
-belltower.png       100%[===================&gt;]   3.44M  --.-KB/s    in 0.1s    
+`from math import log`
 
-2024-10-17 08:17:17 (29.1 MB/s) - 'belltower.png' saved [3604223/3604223]
-</code></pre>
-</div>
+Also note that the default base of the built-in `log` function is $e$.</code></pre>
+<p>Now let’s try to apply the logarithm to the equation <strong><span class="math inline">\(y = e^x\)</span></strong> and call it <strong><span class="math inline">\(log(y)\)</span></strong>. For additional comparison, let’s also compute <strong><span class="math inline">\(log(x)\)</span></strong>.</p>
+<div id="cell-6" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'log(Y)'</span>] <span class="op">=</span> data[<span class="st">'Y'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: log(x))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'log(X)'</span>] <span class="op">=</span> data[<span class="st">'X'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: log(x))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.lineplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'X'</span>, y<span class="op">=</span><span class="st">'Y'</span>)<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.lineplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'X'</span>, y<span class="op">=</span><span class="st">'log(Y)'</span>)<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.lineplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'X'</span>, y<span class="op">=</span><span class="st">'log(X)'</span>)<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>plt.legend(labels<span class="op">=</span>[<span class="st">'$Y = e^</span><span class="sc">{x}</span><span class="st">$'</span>, <span class="st">'$log_e(Y)$'</span>, <span class="st">'$log_e(X)$'</span>])<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">50</span>)<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">50</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="images_files/figure-html/cell-3-output-2.png" class="img-fluid figure-img"></p>
+<p><img src="13_log_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>img.shape <span class="co"># (height, width, channels)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>(1600, 1267, 4)</code></pre>
+<p>Exponential functions grow at a very fast rate. In contrast, logarithms grow a very slow rate.</p>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">X</th>
+<th data-quarto-table-cell-role="th">Y</th>
+<th data-quarto-table-cell-role="th">log(Y)</th>
+<th data-quarto-table-cell-role="th">log(X)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">95</td>
+<td>96</td>
+<td>4.923458e+41</td>
+<td>96.0</td>
+<td>4.564348</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">96</td>
+<td>97</td>
+<td>1.338335e+42</td>
+<td>97.0</td>
+<td>4.574711</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">97</td>
+<td>98</td>
+<td>3.637971e+42</td>
+<td>98.0</td>
+<td>4.584967</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">98</td>
+<td>99</td>
+<td>9.889030e+42</td>
+<td>99.0</td>
+<td>4.595120</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">99</td>
+<td>100</td>
+<td>2.688117e+43</td>
+<td>100.0</td>
+<td>4.605170</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>img[<span class="dv">0</span>,<span class="dv">0</span>,:] <span class="co"># RGB values of the first pixel</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>array([0.9411765 , 0.94509804, 0.9529412 , 1.        ], dtype=float32)</code></pre>
 </div>
-</div>
-<div id="cell-7" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to grayscale</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>img_gray <span class="op">=</span> img.mean(axis<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>img_df   <span class="op">=</span> pd.DataFrame(img_gray)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cell-8" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>img_df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>(1600, 1267)</code></pre>
-</div>
-</div>
-<div id="cell-9" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to grayscale</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>img_gray <span class="op">=</span> img.mean(axis<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>img_df   <span class="op">=</span> pd.DataFrame(img_gray)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.imshow(img_df, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>plt.colorbar()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For comparison, there are 1e+42 stars in the universe. Meaning <span class="math inline">\(2.1718^{100} &gt;\)</span> stars in the universe.</p>
+<p>Logarithm to the base <span class="math inline">\(e\)</span> is called the <strong>natural logarithm</strong>. The natural logarithm of a number <span class="math inline">\(x\)</span> is generally written as <strong><span class="math inline">\(\text{ln}~x\)</span></strong> or <span class="math inline">\(log_e x\)</span>.</p>
+<p>The relationship between the exponential function and the logarithm is preserved when considering logarithms to any other base. Therefore, more generally,</p>
+<p><span class="math display">\[ \text{if  } y = b^x \]</span> <span class="math display">\[ \text{then  } log_b y = x \]</span></p>
+<p>The logarithm of a number y to base b is the exponent to which we must raise b to get y.</p>
+<p>For example, <span class="math inline">\(2^3 = 8\)</span>, so <span class="math inline">\(log_2 8 = 3\)</span>.</p>
+<p>Logarithms are very useful things, and arise often in data analysis. Here I detail three important roles logarithms play in data science.</p>
+<section id="monotonically-increasing-function" class="level2">
+<h2 class="anchored" data-anchor-id="monotonically-increasing-function">Monotonically Increasing Function</h2>
+<p>A function <span class="math inline">\(f (x)\)</span> is monotonically increasing if <span class="math inline">\(x_1 &gt; x_2\)</span> implies that <span class="math inline">\(f (x_1) &gt; f (x_2)\)</span>.</p>
+<p>The logarithm is a monotonically increasing function. This means that if <span class="math inline">\(x_1 &gt; x_2\)</span> then <span class="math inline">\(log(x_1) &gt; log(x_2)\)</span>.</p>
+<p>This is a very useful property, because it means that we can apply a logarithmic transformation without changing the order of the data. Preserving the relative order of the data is important for many statistical techniques.</p>
+<div id="cell-11" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'X'</span>, y<span class="op">=</span><span class="st">'Y'</span>,      hue<span class="op">=</span><span class="st">'X'</span>, palette<span class="op">=</span><span class="st">'bright'</span>, s<span class="op">=</span><span class="dv">80</span>)<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'X'</span>, y<span class="op">=</span><span class="st">'log(Y)'</span>, hue<span class="op">=</span><span class="st">'X'</span>, palette<span class="op">=</span><span class="st">'bright'</span>, s<span class="op">=</span><span class="dv">80</span>)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'X'</span>, y<span class="op">=</span><span class="st">'log(X)'</span>, hue<span class="op">=</span><span class="st">'X'</span>, palette<span class="op">=</span><span class="st">'bright'</span>, s<span class="op">=</span><span class="dv">80</span>)<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.lineplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'X'</span>, y<span class="op">=</span><span class="st">'Y'</span>, label<span class="op">=</span><span class="st">'Y'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.lineplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'X'</span>, y<span class="op">=</span><span class="st">'log(Y)'</span>, label<span class="op">=</span><span class="st">'log(Y)'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>axs <span class="op">=</span> sns.lineplot(data<span class="op">=</span>data, x<span class="op">=</span><span class="st">'X'</span>, y<span class="op">=</span><span class="st">'log(X)'</span>, label<span class="op">=</span><span class="st">'log(X)'</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>axs.legend([],[], frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>axs.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Note that the order of the points is preserved between $e^X$, $X$ and $log(X)$"</span>)<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="dv">25</span>)<span class="op">;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>, <span class="dv">25</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="images_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="13_log_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-10" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plt.imshow(<span class="dv">256</span><span class="op">-</span>img_df, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>plt.colorbar()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the context of data science, this is useful because in many cases we are interested in comparing the relative size of things rather than the absolute size of things. For instance, often we are interested in answering if <span class="math inline">\(P(X) &gt; P(X)\)</span>.</p>
+<p>With logarithms, we can answer this question by comparing <span class="math inline">\(log(P(X))\)</span> and <span class="math inline">\(log(P(X))\)</span> instead.</p>
+<div id="cell-13" class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'X'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Y'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">11</span>, <span class="dv">21</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'X'</span>].<span class="bu">apply</span>(log) <span class="op">&lt;</span> df[<span class="st">'Y'</span>].<span class="bu">apply</span>(log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="85">
+<pre><code>0    True
+1    True
+2    True
+3    True
+4    True
+5    True
+6    True
+7    True
+8    True
+9    True
+dtype: bool</code></pre>
+</div>
+</div>
+</section>
+<section id="laws-of-logarithms" class="level2">
+<h2 class="anchored" data-anchor-id="laws-of-logarithms">Laws of Logarithms</h2>
+<p>The three laws of logarithms are:</p>
+<p><strong>Product rule</strong>:</p>
+<p><span class="math display">\[ log_b (x \cdot y) = log_b x + log_b y \]</span></p>
+<div id="cell-15" class="cell" data-execution_count="112">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>log(<span class="dv">4</span> <span class="op">*</span> <span class="dv">2</span>) <span class="op">==</span> log(<span class="dv">4</span>) <span class="op">+</span> log(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="112">
+<pre><code>True</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Quotient rule</strong>:</p>
+<p><span class="math display">\[ log_b (\frac{x}{y}) = log_b x - log_b y \]</span></p>
+<div id="cell-17" class="cell" data-execution_count="113">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>log(<span class="dv">4</span> <span class="op">/</span> <span class="dv">2</span>) <span class="op">==</span> log(<span class="dv">4</span>) <span class="op">-</span> log(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="113">
+<pre><code>True</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Power rule</strong>:</p>
+<p><span class="math display">\[ log_b (x^r) = r \cdot log_b x \]</span></p>
+<div id="cell-19" class="cell" data-execution_count="114">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>log(<span class="dv">4</span><span class="op">**</span><span class="dv">2</span>) <span class="op">==</span> <span class="dv">2</span> <span class="op">*</span> log(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="114">
+<pre><code>True</code></pre>
+</div>
+</div>
+</section>
+<section id="multiplying-probabilities" class="level2">
+<h2 class="anchored" data-anchor-id="multiplying-probabilities">Multiplying Probabilities</h2>
+<p>Logarithms were first invented as an aide to computation, by reducing the problem of multiplication to that of addition.</p>
+<p>In particular, to compute the product <span class="math inline">\(p = x \cdot y\)</span>, we could compute the sum of the logarithms <span class="math inline">\(s = log_b x+log_b y\)</span> and then take the inverse of the logarithm (i.e.&nbsp;raising <span class="math inline">\(b\)</span> to the <span class="math inline">\(sth\)</span> power) to get <span class="math inline">\(p\)</span>, because:</p>
+<p><span class="math display">\[p = x \cdot y = b^{(log_b x+log_b y)}\]</span></p>
+<p>This is the trick that powered the mechanical slide rules that geeks used in the days before pocket calculators.</p>
+<p>However, this idea remains important today, particularly <strong>when multiplying long chains of probabilities</strong>. Probabilities are small numbers. Thus multiplying long chains of probability yield very small numbers that govern the chances of very rare events. There are serious <strong>numerical stability problems</strong> with floating point multiplication on real computers. Numerical errors will creep in, and will eventually overwhelm the true value of small-enough numbers.</p>
+<p><strong>Summing the logarithms of probabilities is much more numerically stable than multiplying them, but yields an equivalent result</strong> because:</p>
+<p><span class="math display">\[ \prod_{i=1}^{n} p_i = b^P , \text{where}~~P = \sum_{i=1}^{n} log_b(p_i) \]</span></p>
+<p>We can raise our sum to an exponential if we need the real probability, but usually this is not necessary.</p>
+<p>When we just need to compare two probabilities to decide which one is larger we can safely stay in log world, because bigger logarithms correspond to bigger probabilities.</p>
+<pre class="{note}"><code>Note that the $log(P(X=x))$ are all negative numbers for the range $x \in (0, 1)$, 0 and 1 exclusive, since log(1) = 0 and log(0) is undefined. 
+
+Equations with logs of probabilities involve negative numbers which might look odd. Don't let that throw you off. </code></pre>
+<div id="cell-21" class="cell" data-execution_count="93">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="93">
+<pre><code>True</code></pre>
+</div>
+</div>
+</section>
+<section id="ratios-of-probabilities" class="level2">
+<h2 class="anchored" data-anchor-id="ratios-of-probabilities">Ratios of Probabilities</h2>
+<p>Ratios are quantities of the form <span class="math inline">\(\frac{a}{b}\)</span>. They occur often in data sets either as elementary features or values derived from feature pairs. Ratios naturally occur in normalizing data for conditions (i.e.&nbsp;weight after some treatment over the initial weight) or time (i.e.&nbsp;today’s price over yesterday’s price).</p>
+<p>But ratios behave differently when reflecting increases than decreases. The ratio <span class="math inline">\(200/100\)</span> is <span class="math inline">\(200%\)</span> above baseline, but <span class="math inline">\(100/200\)</span> is only 50% below despite being a similar magnitude change. Thus doing things like averaging ratios is committing a statistical sin. Do you really want a doubling followed by a halving to average out as an increase, as opposed to a neutral change?</p>
+<p>One solution here is taking the logarithm of these ratios, so that they yield equal displacement, since <span class="math inline">\(log_2(2) = 1\)</span> and <span class="math inline">\(log_2(1/2) = −1\)</span>. We get the extra bonus that a unit ratio maps to zero, so positive and negative numbers correspond to improper and proper ratios, respectively.</p>
+<p><img src="../assets/log_ratios.png" width="70%"></p>
+<!-- ```{figure} ../assets/log_ratios.png
+
+---
+width: 70%
+name: log_ratio
+---
+
+Plotting ratios on a scale cramps the space allocated to small ratios relative to large ratios (left). Plotting the logarithms of ratios better represents the underlying data (right).
+``` 
+-->
+<p>A rookie mistake my students often make involves plotting the value of ratios instead of their logarithms. Figure above (left) is a graph from a student paper, showing the ratio of new score over old score on data over 24 hours (each red dot is the measurement for one hour) on four different data sets (each given a row). The solid black line shows the ratio of one, where both scores give the same result. Now try to read this graph: it isn’t easy because the points on the left side of the line are cramped together in a narrow strip. What jumps out at you are the outliers. Certainly the new algorithm does terrible on 7UM917 in the top row: that point all the way to the right is a real outlier.</p>
+<p>Except that it isn’t. Now look at the panel on the right, where we plot the logarithms of the ratios. The space devoted to left and right of the black line can now be equal. And it shows that this point wasn’t really such an outlier at all. The magnitude of improvement of the leftmost points is much greater than that of the rightmost points. This plot reveals that new algorithm generally makes things better, only because we are showing logs of ratios instead of the ratios themselves.</p>
+<p>Similar to the case of multiplying probabilities, ratio of probabilities can be computed by subtracting the logarithms of the probabilities:</p>
+<p><span class="math display">\[ log_{~b} (\frac{a}{b} ) = log_{~b} ( a - b ) \]</span></p>
+</section>
+<section id="normalizing-skewed-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="normalizing-skewed-distributions">Normalizing Skewed Distributions</h2>
+<p>Variables which follow symmetric, bell-shaped distributions tend to be nice as features in models. They show substantial variation, so they can be used to discriminate between things, but not over such a wide range that outliers are overwhelming.</p>
+<p>But not every distribution is symmetric. Consider the one in Figure 2.13 (left). The tail on the right goes much further than the tail on the left. And we are destined to see far more lopsided distributions when we discuss power laws, in Section 5.1.5. Wealth is representative of such a distribution, where the poorest human has zero or perhaps negative wealth, the average person (optimistically) is in the thousands of dollars, and Bill Gates is pushing $100 billion as of this writing.</p>
+<p><img src="../assets/log_skew.png" width="70%"> <!-- 
+```nauizptz ../assets/log_skew.png
+---
+width: 70%
+name: log_skew
+---
+Hitting a skewed data distribution (left) with a log often yields a more bell-shaped distribution (right).
+``` --></p>
+<p>We need a normalization to convert such distributions into something easier to deal with. To ring the bell of a power law distribution we need something non-linear, that reduces large values to a disproportionate degree compared to more modest values.</p>
+<p>The logarithm is the transformation of choice for power law variables. Hit your long-tailed distribution with a log and often good things happen. The distribution in Figure 2.13 happened to be the log normal distribution, so taking the logarithm yielded a perfect bell-curve on right. Taking the logarithm of variables with a power law distribution brings them more in line with traditional distributions. For example, as an upper-middle class professional, my wealth is roughly the same number of logs from my starving students as I am from Bill Gates!</p>
+<p>Sometimes taking the logarithm proves too drastic a hit, and a less dramatic non-linear transformation like the square root works better to normalize a dis- tribution. The acid test is to plot a frequency distribution of the transformed values and see if it looks bell-shaped: grossly-symmetric, with a bulge in the middle. That is when you know you have the right function.</p>
+<hr>
+<p>In <code>matplotlib</code> you can specify the use of log scale for an axis with <strong><code>plt.yscale('log')</code></strong> or <strong><code>plt.xscale('log')</code></strong>.</p>
+<p>Example code cell below. Note how the values on the y-axis are still evenly spaced but increase exponentially.</p>
+<div id="cell-29" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'X'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Y'</span>] <span class="op">=</span> df[<span class="st">'X'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: math.e <span class="op">**</span> x)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'X'</span>, y<span class="op">=</span><span class="st">'Y'</span>)<span class="op">;</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>plt.yscale(<span class="st">'log'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="images_files/figure-html/cell-9-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="13_log_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-11" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Threshold the image</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>img_thresh <span class="op">=</span> img_gray <span class="op">&gt;</span> <span class="fl">0.5</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(img_thresh, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Similarly, you can specify the use of log scale for both axes with <strong><code>log_scale = [True, False]</code></strong> in most plotting functions in <code>seaborn</code>. The first value in the list is for the x-axis, the second for the y-axis. <code>True</code> means log scale, <code>False</code> means the default linear scale.</p>
+<div id="cell-31" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'X'</span>] <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">20</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Y'</span>] <span class="op">=</span> df[<span class="st">'X'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="dv">2</span> <span class="op">**</span> x)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'Y'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="images_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="13_log_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-12" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Crop the image</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>img_crop <span class="op">=</span> img_df.iloc[:<span class="dv">700</span>, :<span class="dv">700</span>]</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(img_crop, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-32" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'Y'</span>, log_scale<span class="op">=</span>[<span class="va">False</span>, <span class="va">True</span>])<span class="op">;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"Y-axis is log-scaled"</span>)<span class="op">;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.figure()<span class="op">;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.histplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'Y'</span>, log_scale<span class="op">=</span>[<span class="va">True</span>, <span class="va">False</span>])<span class="op">;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">"X-axis is log-scaled"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="images_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="13_log_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_log_files/figure-html/cell-13-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-13" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotate the image</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>img_rot <span class="op">=</span> img_df.transpose()</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(img_rot, cmap<span class="op">=</span><span class="st">'gray'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="images_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="videos" class="level3">
-<h3 class="anchored" data-anchor-id="videos">Videos</h3>
-<p>Videos are a sequence of images. Within the context of videos, each image is called a <strong>frame</strong>. Most videos are a sequence of 24-30 frames per second.</p>
-<p>Most modern videos are encoded using a variety of different codecs. A codec is a method of encoding and decoding a video. Some common codecs are H.264, MPEG-4, and VP9.</p>
 
 
 </section>

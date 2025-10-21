@@ -76,6 +76,7 @@ website:
           - plotting/barplot.ipynb
           - plotting/histogram.ipynb
           - plotting/boxplot.ipynb
+          - plotting/13_log.ipynb
           # - plotting/21_univariate.ipynb
           # - plotting/22_multivariate.ipynb
         - section: 
