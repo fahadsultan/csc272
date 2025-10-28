@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Wranging and Manipulation</title>
+<title>Label and One-Hot Encoding</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,10 +20,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -68,6 +102,9 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -193,7 +230,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pandas/pandas.html">Data Wranging and Manipulation</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../encoding/encoding.html">Data Cleaning and Encoding Modalities</a></li><li class="breadcrumb-item"><a href="../encoding/onehotencoding.html">Label and One-Hot Encoding</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -227,7 +264,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../pandas/pandas.html" class="sidebar-item-text sidebar-link active">
+            <a href="../pandas/pandas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data Wranging and Manipulation</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -396,7 +433,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../encoding/onehotencoding.html" class="sidebar-item-text sidebar-link">
+  <a href="../encoding/onehotencoding.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Label and One-Hot Encoding</span></a>
   </div>
 </li>
@@ -525,18 +562,17 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pandas" id="toc-pandas" class="nav-link active" data-scroll-target="#pandas">Pandas</a></li>
-  <li><a href="#jupyter-notebooks" id="toc-jupyter-notebooks" class="nav-link" data-scroll-target="#jupyter-notebooks">Jupyter Notebooks</a></li>
-  <li><a href="#google-colab" id="toc-google-colab" class="nav-link" data-scroll-target="#google-colab">Google Colab</a></li>
+  <li><a href="#encoding-ordinal-features-label-encoding" id="toc-encoding-ordinal-features-label-encoding" class="nav-link active" data-scroll-target="#encoding-ordinal-features-label-encoding">Encoding Ordinal Features: Label Encoding</a></li>
+  <li><a href="#encoding-nominal-features-one-hot-encoding" id="toc-encoding-nominal-features-one-hot-encoding" class="nav-link" data-scroll-target="#encoding-nominal-features-one-hot-encoding">Encoding Nominal Features: One-Hot Encoding</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../encoding/encoding.html">Data Cleaning and Encoding Modalities</a></li><li class="breadcrumb-item"><a href="../encoding/onehotencoding.html">Label and One-Hot Encoding</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Data Wranging and Manipulation</h1>
+<h1 class="title">Label and One-Hot Encoding</h1>
 </div>
 
 
@@ -553,33 +589,179 @@ window.Quarto = {
 </header>
 
 
-<section id="pandas" class="level2">
-<h2 class="anchored" data-anchor-id="pandas">Pandas</h2>
-<p><img style="filter:invert(1)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Pandas_logo.svg/512px-Pandas_logo.svg.png" width="30%" align="right"></p>
-<p><code>Pandas</code> is a powerful Python library that is widely used in data science and data analysis. It provides data structures and functions that make working with tabular data easy and intuitive.</p>
-<p>It is generally accepted in the data science community as the industry- and academia-standard tool for manipulating tabular data.</p>
-<p><img style="filter:invert(1)" src="https://miro.medium.com/v2/resize:fit:1400/1*VnkA_uujJhE6stvAhPx0rw.png" width="100%" align="left"></p>
-<p>Some of the core functionalities of <code>Pandas</code> covered in this course include:</p>
-<ul>
-<li>Reading and Writing Data (<code>read_csv</code>, <code>to_csv</code>, etc.)</li>
-<li>Extracting Relevant Rows and Columns (Filtering, Slicing, Selection, <code>loc</code>, <code>iloc</code>)</li>
-<li>Merging multiple datasets (<code>merge</code>, <code>concat</code>, etc.)</li>
-<li>Grouping data (<code>groupby</code>)</li>
-<li>Aggregating data (<code>sum</code>, <code>mean</code>, <code>count</code>, etc.)</li>
-<li>Reshaping data (<code>pivot</code>)</li>
-</ul>
+<p>In machine learning and data preprocessing, categorical variables often need to be converted into a numerical format that algorithms can understand. Two common techniques for this conversion are Label Encoding and One-Hot Encoding.</p>
+<section id="encoding-ordinal-features-label-encoding" class="level2">
+<h2 class="anchored" data-anchor-id="encoding-ordinal-features-label-encoding">Encoding Ordinal Features: Label Encoding</h2>
+<p>Ordinal features can be encoded using a technique called <strong>label encoding</strong>. Label encoding is simply converting each value in a column to a number. For example, the sizes of t-shirts could be represented as 0 (XS), 1 (S), 2 (M), 3 (L), 4 (XL), 5 (XXL).</p>
+<div id="cell-3" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/fahadsultan/csc272/main/data/restaurants_truncated.csv'</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">zip</th>
+<th data-quarto-table-cell-role="th">phone</th>
+<th data-quarto-table-cell-role="th">lat</th>
+<th data-quarto-table-cell-role="th">lng</th>
+<th data-quarto-table-cell-role="th">type</th>
+<th data-quarto-table-cell-role="th">score</th>
+<th data-quarto-table-cell-role="th">risk</th>
+<th data-quarto-table-cell-role="th">violation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>70064</td>
+<td>94103.0</td>
+<td>1.415565e+10</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Routine - Unscheduled</td>
+<td>75.0</td>
+<td>High Risk</td>
+<td>Improper reheating of food</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>90039</td>
+<td>94103.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Routine - Unscheduled</td>
+<td>81.0</td>
+<td>High Risk</td>
+<td>High risk food holding temperature</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>89059</td>
+<td>94115.0</td>
+<td>1.415369e+10</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Complaint</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>91044</td>
+<td>94112.0</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Routine - Unscheduled</td>
+<td>84.0</td>
+<td>Moderate Risk</td>
+<td>Inadequate and inaccessible handwashing facili...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>62768</td>
+<td>94122.0</td>
+<td>NaN</td>
+<td>37.765421</td>
+<td>-122.477256</td>
+<td>Routine - Unscheduled</td>
+<td>90.0</td>
+<td>Low Risk</td>
+<td>Food safety certificate or food handler card n...</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-4" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'risk_enc'</span>] <span class="op">=</span> data[<span class="st">'risk'</span>].replace({<span class="st">'Low Risk'</span>: <span class="dv">0</span>, <span class="st">'Moderate Risk'</span>: <span class="dv">1</span>, <span class="st">'High Risk'</span>: <span class="dv">2</span>})</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="jupyter-notebooks" class="level2">
-<h2 class="anchored" data-anchor-id="jupyter-notebooks">Jupyter Notebooks</h2>
-<p>Jupyter Notebooks are an open-source web application that allows you to create and share documents that contain live code, equations, visualizations, and narrative text.</p>
-<p>They are widely used in data science, scientific computing, and machine learning for data cleaning and transformation, numerical simulation, statistical modeling, data visualization, and much more.</p>
-<p><img style="filter:invert(1)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/1200px-Jupyter_logo.svg.png" width="30%" align="right"></p>
-</section>
-<section id="google-colab" class="level2">
-<h2 class="anchored" data-anchor-id="google-colab">Google Colab</h2>
-<p><img style="filter:invert(1)" src="https://colab.research.google.com/img/colab_favicon_256px.png" width="30%" align="right"></p>
-<p>Google Colab is a free, cloud-based platform that allows you to write and execute Python code in your web browser. It provides a Jupyter notebook environment with access to powerful computing resources, including GPUs and TPUs.</p>
-<p>Note that code running on Google Colab is on a remote server, not on your local machine. This means that any files you want to use in your code must be uploaded to the Colab environment or accessed from a cloud storage service like Google Drive.</p>
+<section id="encoding-nominal-features-one-hot-encoding" class="level2">
+<h2 class="anchored" data-anchor-id="encoding-nominal-features-one-hot-encoding">Encoding Nominal Features: One-Hot Encoding</h2>
+<p>Since nominal features don’t have any order, encoding them requires some creativity. The most common way to encode nominal features is to use a technique called <strong>one-hot encoding</strong>. One-hot encoding creates a new column for each unique value in the nominal feature. Each new column is a binary feature that indicates whether or not the original observation had that value.</p>
+<p>The figure below illustrates how one-hot encoding for a “day” (of the week) column:</p>
+<center>
+<img src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/ohe.png" width="65%" style="filter:invert(1)">
+</center>
+<p><br></p>
+<p>pandas has a built-in <code>.get_dummies</code> function for doing this:</p>
+<div id="cell-7" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pd.get_dummies(data[<span class="st">'type'</span>]).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Complaint</th>
+<th data-quarto-table-cell-role="th">New Construction</th>
+<th data-quarto-table-cell-role="th">New Ownership</th>
+<th data-quarto-table-cell-role="th">Reinspection/Followup</th>
+<th data-quarto-table-cell-role="th">Routine - Unscheduled</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 
 
 </section>

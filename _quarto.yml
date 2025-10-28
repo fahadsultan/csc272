@@ -83,6 +83,7 @@ website:
           href: encoding/encoding.ipynb
           contents:
           - encoding/missing.ipynb
+          - encoding/onehotencoding.ipynb
           - encoding/text.ipynb
           - encoding/network.ipynb
           - encoding/sound.ipynb

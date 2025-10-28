@@ -433,6 +433,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../encoding/onehotencoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Label and One-Hot Encoding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../encoding/text.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Text Data</span></a>
   </div>
@@ -964,111 +970,12 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<section id="encoding-ordinal-features" class="level4">
-<h4 class="anchored" data-anchor-id="encoding-ordinal-features">Encoding Ordinal Features</h4>
-<p>Ordinal features can be encoded using a technique called <strong>label encoding</strong>. Label encoding is simply converting each value in a column to a number. For example, the sizes of t-shirts could be represented as 0 (XS), 1 (S), 2 (M), 3 (L), 4 (XL), 5 (XXL).</p>
-<div id="cell-17" class="cell" data-execution_count="109">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'risk_enc'</span>] <span class="op">=</span> data[<span class="st">'risk'</span>].replace({<span class="st">'Low Risk'</span>: <span class="dv">0</span>, <span class="st">'Moderate Risk'</span>: <span class="dv">1</span>, <span class="st">'High Risk'</span>: <span class="dv">2</span>})</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="109">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">id</th>
-<th data-quarto-table-cell-role="th">zip</th>
-<th data-quarto-table-cell-role="th">phone</th>
-<th data-quarto-table-cell-role="th">lat</th>
-<th data-quarto-table-cell-role="th">lng</th>
-<th data-quarto-table-cell-role="th">type</th>
-<th data-quarto-table-cell-role="th">score</th>
-<th data-quarto-table-cell-role="th">risk</th>
-<th data-quarto-table-cell-role="th">violation</th>
-<th data-quarto-table-cell-role="th">risk_enc</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>64454</td>
-<td>94105</td>
-<td>NaN</td>
-<td>37.787925</td>
-<td>-122.400953</td>
-<td>Routine - Unscheduled</td>
-<td>82.0</td>
-<td>High Risk</td>
-<td>High risk food holding temperature</td>
-<td>2.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>33014</td>
-<td>94109</td>
-<td>NaN</td>
-<td>37.786108</td>
-<td>-122.425764</td>
-<td>Complaint</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1526</td>
-<td>94115</td>
-<td>NaN</td>
-<td>37.791607</td>
-<td>-122.434563</td>
-<td>Routine - Unscheduled</td>
-<td>82.0</td>
-<td>Low Risk</td>
-<td>Inadequate warewashing facilities or equipment</td>
-<td>0.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>73</td>
-<td>94115</td>
-<td>NaN</td>
-<td>37.788932</td>
-<td>-122.433895</td>
-<td>Routine - Unscheduled</td>
-<td>78.0</td>
-<td>Low Risk</td>
-<td>Improper food storage</td>
-<td>0.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>66402</td>
-<td>94110</td>
-<td>NaN</td>
-<td>37.739161</td>
-<td>-122.416967</td>
-<td>Routine - Unscheduled</td>
-<td>94.0</td>
-<td>Low Risk</td>
-<td>Unapproved or unmaintained equipment or utensils</td>
-<td>0.0</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
 </section>
 <section id="nominal-features" class="level3">
 <h3 class="anchored" data-anchor-id="nominal-features">Nominal Features</h3>
 <p>Nominal data is data that is not ordered in any way. For example, the color of a car is nominal data. There is no order to the colors. The colors are not more or less than each other. They are just different.</p>
-<div id="cell-19" class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'type'</span>, <span class="st">'violation'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-17" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data[[<span class="st">'type'</span>, <span class="st">'violation'</span>]].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 
@@ -1113,87 +1020,13 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<section id="encoding-nominal-features" class="level4">
-<h4 class="anchored" data-anchor-id="encoding-nominal-features">Encoding Nominal Features</h4>
-<p>Since nominal features don’t have any order, encoding them requires some creativity. The most common way to encode nominal features is to use a technique called <strong>one-hot encoding</strong>. One-hot encoding creates a new column for each unique value in the nominal feature. Each new column is a binary feature that indicates whether or not the original observation had that value.</p>
-<p>The figure below illustrates how one-hot encoding for a “day” (of the week) column:</p>
-<center>
-<img src="https://raw.githubusercontent.com/fahadsultan/csc272/main/assets/ohe.png" width="65%" style="filter:invert(1)">
-</center>
-<p><br></p>
-<p>pandas has a built-in <code>.get_dummies</code> function for doing this:</p>
-<div id="cell-22" class="cell" data-execution_count="130">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pd.get_dummies(data[<span class="st">'type'</span>]).head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="130">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Complaint</th>
-<th data-quarto-table-cell-role="th">New Construction</th>
-<th data-quarto-table-cell-role="th">New Ownership</th>
-<th data-quarto-table-cell-role="th">Reinspection/Followup</th>
-<th data-quarto-table-cell-role="th">Routine - Unscheduled</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
 </section>
 </section>
 <section id="dtypes-attribute" class="level2">
 <h2 class="anchored" data-anchor-id="dtypes-attribute"><code>.dtypes</code> attribute</h2>
 <p><code>.dtypes</code> is an attribute of a DataFrame that returns the data type of each column. The data types are returned as a Series with the column names as the index labels.</p>
-<div id="cell-24" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-19" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>id             int64
 zip          float64
@@ -1212,8 +1045,8 @@ dtype: object</code></pre>
 <section id="astype" class="level2">
 <h2 class="anchored" data-anchor-id="astype"><code>.astype()</code></h2>
 <p>Cast a pandas object to a specified dtype</p>
-<div id="cell-27" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-22" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -1300,8 +1133,8 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div id="cell-28" class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'zip'</span>].astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-23" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'zip'</span>].astype(<span class="bu">int</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
