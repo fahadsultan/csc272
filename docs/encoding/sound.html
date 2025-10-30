@@ -554,8 +554,14 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#mfccs" id="toc-mfccs" class="nav-link active" data-scroll-target="#mfccs">MFCCs</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -596,56 +602,152 @@ Note
 <p>The audio file can be downloaded from <a href="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars3.wav">this link</a>.</p>
 </div>
 </div>
-<div id="cell-4" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> librosa</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y, sr <span class="op">=</span> librosa.load(<span class="st">'../assets/StarWars3.wav'</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>plt.plot(y)<span class="op">;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (samples)'</span>)<span class="op">;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Amplitude'</span>)<span class="op">;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Star Wars Theme</span><span class="ch">\n</span><span class="st">Sampling rate: </span><span class="sc">%s</span><span class="st"> Hz</span><span class="ch">\n</span><span class="st">Length: </span><span class="sc">%s</span><span class="st"> seconds'</span> <span class="op">%</span> (sr, <span class="bu">len</span>(y)<span class="op">/</span>sr))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-4" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install librosa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Requirement already satisfied: librosa in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (0.10.1)
+Requirement already satisfied: audioread&gt;=2.1.9 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from librosa) (3.0.0)
+Requirement already satisfied: numpy!=1.22.0,!=1.22.1,!=1.22.2,&gt;=1.20.3 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from librosa) (2.0.2)
+Requirement already satisfied: scipy&gt;=1.2.0 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from librosa) (1.13.1)
+Requirement already satisfied: scikit-learn&gt;=0.20.0 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from librosa) (1.0.2)
+Requirement already satisfied: joblib&gt;=0.14 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from librosa) (1.1.0)
+Requirement already satisfied: decorator&gt;=4.3.0 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from librosa) (5.1.1)
+Requirement already satisfied: numba&gt;=0.51.0 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from librosa) (0.55.1)
+Requirement already satisfied: soundfile&gt;=0.12.1 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from librosa) (0.12.1)
+Requirement already satisfied: pooch&gt;=1.0 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from librosa) (1.7.0)
+Requirement already satisfied: soxr&gt;=0.3.2 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from librosa) (0.3.6)
+Requirement already satisfied: typing-extensions&gt;=4.1.1 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from librosa) (4.12.2)
+Requirement already satisfied: lazy-loader&gt;=0.1 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from librosa) (0.3)
+Requirement already satisfied: msgpack&gt;=1.0 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from librosa) (1.0.2)
+Requirement already satisfied: llvmlite&lt;0.39,&gt;=0.38.0rc1 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from numba&gt;=0.51.0-&gt;librosa) (0.38.0)
+Collecting numpy!=1.22.0,!=1.22.1,!=1.22.2,&gt;=1.20.3 (from librosa)
+  Downloading numpy-1.21.6-cp39-cp39-macosx_10_9_x86_64.whl.metadata (2.1 kB)
+Requirement already satisfied: setuptools in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from numba&gt;=0.51.0-&gt;librosa) (73.0.1)
+Requirement already satisfied: platformdirs&gt;=2.5.0 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from pooch&gt;=1.0-&gt;librosa) (4.2.2)
+Requirement already satisfied: packaging&gt;=20.0 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from pooch&gt;=1.0-&gt;librosa) (24.1)
+Requirement already satisfied: requests&gt;=2.19.0 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from pooch&gt;=1.0-&gt;librosa) (2.32.3)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from scikit-learn&gt;=0.20.0-&gt;librosa) (2.2.0)
+INFO: pip is looking at multiple versions of scipy to determine which version is compatible with other requirements. This could take a while.
+Collecting scipy&gt;=1.2.0 (from librosa)
+  Downloading scipy-1.13.0-cp39-cp39-macosx_10_9_x86_64.whl.metadata (60 kB)
+  Downloading scipy-1.12.0-cp39-cp39-macosx_10_9_x86_64.whl.metadata (60 kB)
+  Downloading scipy-1.11.4-cp39-cp39-macosx_10_9_x86_64.whl.metadata (60 kB)
+Requirement already satisfied: cffi&gt;=1.0 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from soundfile&gt;=0.12.1-&gt;librosa) (1.15.0)
+Requirement already satisfied: pycparser in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from cffi&gt;=1.0-&gt;soundfile&gt;=0.12.1-&gt;librosa) (2.21)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from requests&gt;=2.19.0-&gt;pooch&gt;=1.0-&gt;librosa) (3.3.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from requests&gt;=2.19.0-&gt;pooch&gt;=1.0-&gt;librosa) (3.8)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from requests&gt;=2.19.0-&gt;pooch&gt;=1.0-&gt;librosa) (2.2.2)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /Users/fsultan/opt/anaconda3/lib/python3.9/site-packages (from requests&gt;=2.19.0-&gt;pooch&gt;=1.0-&gt;librosa) (2024.7.4)
+Downloading numpy-1.21.6-cp39-cp39-macosx_10_9_x86_64.whl (17.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.0/17.0 MB 7.9 MB/s eta 0:00:00a 0:00:01
+Downloading scipy-1.11.4-cp39-cp39-macosx_10_9_x86_64.whl (37.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 37.3/37.3 MB 18.7 MB/s eta 0:00:00a 0:00:01
+Installing collected packages: numpy, scipy
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.0.2
+    Uninstalling numpy-2.0.2:
+      Successfully uninstalled numpy-2.0.2
+  Attempting uninstall: scipy
+    Found existing installation: scipy 1.13.1
+    Uninstalling scipy-1.13.1:
+      Successfully uninstalled scipy-1.13.1
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+daal4py 2021.5.0 requires daal==2021.4.0, which is not installed.
+nibabel 5.3.2 requires numpy&gt;=1.22, but you have numpy 1.21.6 which is incompatible.
+panel 0.13.0 requires bokeh&lt;2.5.0,&gt;=2.4.0, but you have bokeh 3.2.0 which is incompatible.
+Successfully installed numpy-1.21.6 scipy-1.11.4
+
+[notice] A new release of pip is available: 24.2 -&gt; 25.3
+[notice] To update, run: pip install --upgrade pip</code></pre>
+</div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>wget https:<span class="op">//</span>github.com<span class="op">/</span>fahadsultan<span class="op">/</span>csc272<span class="op">/</span>raw<span class="op">/</span>refs<span class="op">/</span>heads<span class="op">/</span>main<span class="op">/</span>assets<span class="op">/</span>StarWars3.wav</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>--2025-10-30 09:30:45--  https://github.com/fahadsultan/csc272/raw/refs/heads/main/assets/StarWars3.wav
+Resolving github.com (github.com)... 140.82.114.4
+Connecting to github.com (github.com)|140.82.114.4|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://raw.githubusercontent.com/fahadsultan/csc272/refs/heads/main/assets/StarWars3.wav [following]
+--2025-10-30 09:30:46--  https://raw.githubusercontent.com/fahadsultan/csc272/refs/heads/main/assets/StarWars3.wav
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.109.133, 185.199.108.133, 185.199.111.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 132344 (129K) [audio/wav]
+Saving to: 'StarWars3.wav'
+
+StarWars3.wav       100%[===================&gt;] 129.24K  --.-KB/s    in 0.02s   
+
+2025-10-30 09:30:46 (5.12 MB/s) - 'StarWars3.wav' saved [132344/132344]
+</code></pre>
+</div>
+</div>
+<div id="cell-6" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> librosa</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>y, sr <span class="op">=</span> librosa.load(<span class="st">'StarWars3.wav'</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.plot(y)<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time (samples)'</span>)<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Amplitude'</span>)<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Star Wars Theme</span><span class="ch">\n</span><span class="st">Sampling rate: </span><span class="sc">%s</span><span class="st"> Hz</span><span class="ch">\n</span><span class="st">Length: </span><span class="sc">%s</span><span class="st"> seconds'</span> <span class="op">%</span> (sr, <span class="bu">len</span>(y)<span class="op">/</span>sr))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="sound_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="sound_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sr, <span class="bu">len</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-7" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sr, <span class="bu">len</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>(22050, 66150)</code></pre>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> librosa.stft(y)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>S.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-8" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> librosa.stft(y)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>S.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(1025, 130)</code></pre>
 </div>
 </div>
 <p><strong>Power Spectral Density</strong> (PSD) is a measure of the power of a signal at different frequencies. The PSD is calculated using the <strong>Fourier Transform</strong>. The PSD is a useful representation of audio data because it is often easier to distinguish different sounds in the frequency domain than in the time domain.</p>
-<div id="cell-8" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> librosa.display.specshow(librosa.amplitude_to_db(np.<span class="bu">abs</span>(S), ref<span class="op">=</span>np.<span class="bu">max</span>),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    y_axis<span class="op">=</span><span class="st">'log'</span>, x_axis<span class="op">=</span><span class="st">'time'</span>, ax<span class="op">=</span>ax)<span class="op">;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Power spectrogram'</span>)<span class="op">;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>fig.colorbar(img, ax<span class="op">=</span>ax, <span class="bu">format</span><span class="op">=</span><span class="st">"%+2.0f dB"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-10" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> librosa.display.specshow(librosa.amplitude_to_db(np.<span class="bu">abs</span>(S), ref<span class="op">=</span>np.<span class="bu">max</span>),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    y_axis<span class="op">=</span><span class="st">'log'</span>, x_axis<span class="op">=</span><span class="st">'time'</span>, ax<span class="op">=</span>ax)<span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Power spectrogram'</span>)<span class="op">;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>fig.colorbar(img, ax<span class="op">=</span>ax, <span class="bu">format</span><span class="op">=</span><span class="st">"%+2.0f dB"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="sound_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="sound_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+<section id="mfccs" class="level2">
+<h2 class="anchored" data-anchor-id="mfccs">MFCCs</h2>
+<p><strong>Mel-Frequency Cepstral Coefficients</strong> (MFCCs) are a representation of the short-term power spectrum of a sound. MFCCs are widely used in speech and audio processing because they capture the perceptually relevant features of the sound.</p>
+<p>To put it simply, MFCCs are a way to represent audio data that mimics how humans perceive sound.</p>
+<p>Using MFCCs, you can extract features from audio data that are more relevant for tasks like speech recognition or music classification.</p>
+<p>The code below demonstrates how to load an audio file and compute its MFCCs.</p>
+<div id="cell-12" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> librosa</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>y, sr <span class="op">=</span> librosa.load(<span class="st">'StarWars3.wav'</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>mfcc <span class="op">=</span> librosa.feature.mfcc(y<span class="op">=</span>y, sr<span class="op">=</span>sr, n_mfcc<span class="op">=</span><span class="dv">13</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>mfcc_mean <span class="op">=</span> mfcc.mean(axis<span class="op">=</span><span class="dv">1</span>)   <span class="co"># 13-dimensional vector</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that this way, we can map each audio file to a fixed-size feature vector, which can then be used as input to machine learning models.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

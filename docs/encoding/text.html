@@ -563,6 +563,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#bag-of-words" id="toc-bag-of-words" class="nav-link active" data-scroll-target="#bag-of-words">Bag of Words</a></li>
+  <li><a href="#countvectorizer" id="toc-countvectorizer" class="nav-link" data-scroll-target="#countvectorizer">CountVectorizer</a></li>
   </ul>
 </nav>
     </div>
@@ -831,6 +832,35 @@ window.Quarto = {
 </div>
 </div>
 </div>
+</section>
+<section id="countvectorizer" class="level2">
+<h2 class="anchored" data-anchor-id="countvectorizer">CountVectorizer</h2>
+<p>In practice, the Bag-of-Words representation is created using libraries such as <code>scikit-learn</code>.</p>
+<p>The <code>CountVectorizer</code> class in <code>scikit-learn</code> can be used to create a Bag-of-Words representation of a corpus.</p>
+<p>In the code below, we create a corpus of two documents. We then create an instance of the <code>CountVectorizer</code> class and use it to fit and transform the corpus into a Bag-of-Words representation. The resulting Bag-of-Words representation is a sparse matrix, which we convert to a dense array using the <code>toarray()</code> method. Finally, we print the vocabulary and the Bag-of-Words representation.</p>
+<div id="cell-7" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>corpus <span class="op">=</span> [</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'This is the first document.'</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'This document is the second document.'</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the CountVectorizer</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>vectorizer <span class="op">=</span> CountVectorizer()</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit and transform the corpus to create the bag-of-words representation</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> vectorizer.fit_transform(corpus)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># View the feature names and the resulting array</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(vectorizer.get_feature_names_out()) </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># View the resulting array</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X.toarray())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that count vectorizer automatically converts all words to lowercase and removes punctuation.</p>
+<p>It is also more efficient than creating the Bag-of-Words representation manually, as it uses sparse matrices to store the data. Sparse matrices only store the non-zero values, which saves memory and computation time.</p>
 
 
 </section>

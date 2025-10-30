@@ -520,8 +520,24 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link active" data-scroll-target="#supervised-learning">Supervised Learning</a>
+  <ul class="collapse">
+  <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification">Classification</a></li>
+  <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression">Regression</a></li>
+  </ul></li>
+  <li><a href="#unsupervised-learning" id="toc-unsupervised-learning" class="nav-link" data-scroll-target="#unsupervised-learning">Unsupervised Learning</a>
+  <ul class="collapse">
+  <li><a href="#clustering" id="toc-clustering" class="nav-link" data-scroll-target="#clustering">Clustering</a></li>
+  <li><a href="#dimensionality-reduction" id="toc-dimensionality-reduction" class="nav-link" data-scroll-target="#dimensionality-reduction">Dimensionality Reduction</a></li>
+  </ul></li>
+  <li><a href="#sklearn" id="toc-sklearn" class="nav-link" data-scroll-target="#sklearn">Sklearn</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -545,8 +561,53 @@ window.Quarto = {
 </header>
 
 
+<p>Machine Learning involves creating mathematical models that can learn from and make predictions or decisions based on data.</p>
+<p>A mathematical model in machine learning is typically represented as a function or a set of equations that describe the relationship between one set of columns (features) and another set of columns (target variable).</p>
+<p>There are two types of machine learning:</p>
+<ol type="1">
+<li><p>Supervised Learning</p></li>
+<li><p>Unsupervised Learning</p></li>
+</ol>
+<center>
+<img src="https://www.researchgate.net/publication/351953193/figure/fig3/AS:11431281117150742@1675395484096/Supervised-and-unsupervised-machine-learning-a-Schematic-representation-of-an.png" style="filter:invert(1)" width="70%">
+</center>
+<section id="supervised-learning" class="level2">
+<h2 class="anchored" data-anchor-id="supervised-learning">Supervised Learning</h2>
+<p>In supervised learning, the model is trained on a labeled dataset, which means that each training example is paired with an output label. The goal is to learn a mapping from inputs to outputs. Common algorithms include linear regression, decision trees, and support vector machines.</p>
+<section id="classification" class="level3">
+<h3 class="anchored" data-anchor-id="classification">Classification</h3>
+<p>Classification involves predicting a discrete label or category for a given input. Examples include spam detection in emails and image recognition.</p>
+</section>
+<section id="regression" class="level3">
+<h3 class="anchored" data-anchor-id="regression">Regression</h3>
+<p>Regression involves predicting a continuous value based on input features. Examples include predicting house prices or stock prices.</p>
+<center>
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250129121636823249/classification-vs-regression.webp" width="80%" style="filter:invert(1)">
+</center>
+</section>
+</section>
+<section id="unsupervised-learning" class="level2">
+<h2 class="anchored" data-anchor-id="unsupervised-learning">Unsupervised Learning</h2>
+<p>In unsupervised learning, the model is trained on data without labeled responses. The goal is to find hidden patterns or intrinsic structures in the input data. Common algorithms include clustering (like K-means) and dimensionality reduction (like PCA).</p>
+<section id="clustering" class="level3">
+<h3 class="anchored" data-anchor-id="clustering">Clustering</h3>
+<p>Clustering involves grouping a set of objects in such a way that objects in the same group (or cluster) are more similar to each other than to those in other groups. Examples include customer segmentation and image compression.</p>
+</section>
+<section id="dimensionality-reduction" class="level3">
+<h3 class="anchored" data-anchor-id="dimensionality-reduction">Dimensionality Reduction</h3>
+<p>Dimensionality reduction involves reducing the number of random variables under consideration, by obtaining a set of principal variables. Examples include feature selection and feature extraction techniques.</p>
+<center>
+<img src="https://www.researchgate.net/profile/Andrea-Beck-2/publication/344783581/figure/fig2/AS:949012773498885@1603273685950/Two-main-applications-of-unsupervised-learning-clustering-and-dimensionality-reduction.png" style="filter:invert(1)" width="80%">
+</center>
+</section>
+</section>
+<section id="sklearn" class="level2">
+<h2 class="anchored" data-anchor-id="sklearn">Sklearn</h2>
+<p>Scikit-learn (sklearn) is a popular Python library for machine learning that provides simple and efficient tools for data mining and data analysis. It is built on top of NumPy, SciPy, and Matplotlib.</p>
+<p><img src="https://scikit-learn.org/1.3/_static/ml_map.png" width="100%"></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
