@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Matrices</title>
+<title>Model Validation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -230,7 +230,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/analytics.html">Data Science and Machine Learning</a></li><li class="breadcrumb-item"><a href="../linearalgebra/matrices.html">Matrices</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/analytics.html">Data Science and Machine Learning</a></li><li class="breadcrumb-item"><a href="../beyond/validation.html">Model Validation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -474,26 +474,26 @@ window.Quarto = {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../beyond/normalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Normalizing &amp; Standardizing Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../stats/correlations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Correlations</span></a>
+ <span class="menu-text">Feature Selection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../linearalgebra/vectors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geometric Interpretation</span></a>
+  <a href="../beyond/validation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Model Validation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../linearalgebra/matrices.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Matrices</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../linearalgebra/nearestneighbor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Nearest Neighbor</span></a>
+  <a href="../linearalgebra/distance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distance based Modeling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -518,18 +518,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Naive Bayes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/gc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Garbage Collection</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/sklearn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Scikit-learn</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -562,15 +550,14 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#geometry-of-matrices" id="toc-geometry-of-matrices" class="nav-link active" data-scroll-target="#geometry-of-matrices">Geometry of Matrices</a></li>
-  <li><a href="#transpose" id="toc-transpose" class="nav-link" data-scroll-target="#transpose">Transpose</a></li>
-  <li><a href="#matrix-vector-products" id="toc-matrix-vector-products" class="nav-link" data-scroll-target="#matrix-vector-products">Matrix-Vector Products</a>
+  <li><a href="#training-and-test-sets" id="toc-training-and-test-sets" class="nav-link active" data-scroll-target="#training-and-test-sets"><strong>Training and Test Sets</strong>:</a></li>
+  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation"><strong>Cross-Validation</strong>:</a></li>
+  <li><a href="#performance-metrics" id="toc-performance-metrics" class="nav-link" data-scroll-target="#performance-metrics"><strong>Performance Metrics</strong>:</a></li>
+  <li><a href="#overfitting-and-underfitting" id="toc-overfitting-and-underfitting" class="nav-link" data-scroll-target="#overfitting-and-underfitting"><strong>Overfitting and Underfitting</strong>:</a></li>
+  <li><a href="#hyperparameter-tuning" id="toc-hyperparameter-tuning" class="nav-link" data-scroll-target="#hyperparameter-tuning"><strong>Hyperparameter Tuning</strong>:</a></li>
+  <li><a href="#baselines" id="toc-baselines" class="nav-link" data-scroll-target="#baselines">Baselines</a>
   <ul class="collapse">
-  <li><a href="#finding-similar-vectors" id="toc-finding-similar-vectors" class="nav-link" data-scroll-target="#finding-similar-vectors">Finding similar vectors</a></li>
-  </ul></li>
-  <li><a href="#matrix-matrix-multiplication" id="toc-matrix-matrix-multiplication" class="nav-link" data-scroll-target="#matrix-matrix-multiplication">Matrix-Matrix Multiplication</a>
-  <ul class="collapse">
-  <li><a href="#computing-similarity-distance-matrix" id="toc-computing-similarity-distance-matrix" class="nav-link" data-scroll-target="#computing-similarity-distance-matrix">Computing similarity / distance matrix</a></li>
+  <li><a href="#types-of-baselines" id="toc-types-of-baselines" class="nav-link" data-scroll-target="#types-of-baselines">Types of Baselines</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -578,9 +565,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/analytics.html">Data Science and Machine Learning</a></li><li class="breadcrumb-item"><a href="../linearalgebra/matrices.html">Matrices</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/analytics.html">Data Science and Machine Learning</a></li><li class="breadcrumb-item"><a href="../beyond/validation.html">Model Validation</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Matrices</h1>
+<h1 class="title">Model Validation</h1>
 </div>
 
 
@@ -597,146 +584,28 @@ window.Quarto = {
 </header>
 
 
-<p>We denote matrices by bold capital letters (e.g., <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, and <span class="math inline">\(Z\)</span>), and represent them in code by <code>pd.DataFrame</code>. The expression <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> indicates that a matrix <span class="math inline">\(\textbf{A}\)</span> contains <span class="math inline">\(m \times n\)</span> real-valued scalars, arranged as <span class="math inline">\(m\)</span> rows and <span class="math inline">\(n\)</span> columns. When <span class="math inline">\(m = n\)</span>, we say that a matrix is <em>square</em>. Visually, we can illustrate any matrix as a table. To refer to an individual element, we subscript both the row and column indices, e.g., <span class="math inline">\(a_{ij}\)</span> is the value that belongs to <span class="math inline">\(\mathbf{A}\)</span>’s <span class="math inline">\(i^{th}\)</span> row and <span class="math inline">\(j^{th}\)</span> column:</p>
-<p><span class="math display">\[ \begin{split}\mathbf{A}=\begin{bmatrix} a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\ a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn} \\ \end{bmatrix}.\end{split} \]</span></p>
-<div id="cell-3" class="cell" data-execution_count="1">
+<p>Model validation is a crucial step in the machine learning workflow that ensures the performance and reliability of a model before it is deployed in real-world applications. It involves assessing how well a model generalizes to unseen data, which helps in identifying potential issues such as overfitting or underfitting.</p>
+<section id="training-and-test-sets" class="level3">
+<h3 class="anchored" data-anchor-id="training-and-test-sets"><strong>Training and Test Sets</strong>:</h3>
+<p>For effective model validation, the dataset is typically divided into atleast two subsets:</p>
+<ol type="1">
+<li><p><strong>Training Set</strong>: This subset is used to train the model. Training involves feeding the model with input data and corresponding labels so that it can learn patterns and relationships.</p></li>
+<li><p><strong>Test Set</strong>: This subset is used to assess the final performance of the model after training and validation. It provides an unbiased evaluation of the model’s generalization ability. <u>It is extremely important that the test set remains completely unseen during the training to ensure an unbiased evaluation of the model’s performance.</u></p></li>
+</ol>
+<center>
+<img src="https://fahadsultan.com/csc272_f23/_images/train_test.png" alt="Train, Validation, Test Split" width="100%" style="filter:invert(1)">
+</center>
+<p>In some cases, a third subset called the <strong>Validation Set</strong> is also used during the training process to tune hyperparameters and make decisions about model architecture. However, in simpler workflows, cross-validation techniques can be employed instead of a separate validation set.</p>
+<p>In sklearn, the <code>train_test_split</code> function from the <code>model_selection</code> module is commonly used to split the dataset into training and test sets. Here is an example:</p>
+<div id="cell-2" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'a'</span>: [<span class="dv">1</span>, <span class="dv">20</span>, <span class="dv">3</span>, <span class="dv">40</span>], <span class="st">'b'</span>: [<span class="dv">50</span>, <span class="dv">6</span>, <span class="dv">70</span>, <span class="dv">8</span>]})</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df.index <span class="op">=</span> [<span class="st">'v1'</span>, <span class="st">'v2'</span>, <span class="st">'v3'</span>, <span class="st">'v4'</span>]</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">a</th>
-<th data-quarto-table-cell-role="th">b</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">v1</td>
-<td>1</td>
-<td>50</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">v2</td>
-<td>20</td>
-<td>6</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">v3</td>
-<td>3</td>
-<td>70</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">v4</td>
-<td>40</td>
-<td>8</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<section id="geometry-of-matrices" class="level2">
-<h2 class="anchored" data-anchor-id="geometry-of-matrices">Geometry of Matrices</h2>
-<p>An (n, d) matrix can be interpreted as a collection of n vectors in d-dimensional space.</p>
-<div id="cell-5" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(x<span class="op">=</span><span class="st">'a'</span>, y<span class="op">=</span><span class="st">'b'</span>, data<span class="op">=</span>df, s<span class="op">=</span><span class="dv">100</span>)<span class="op">;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">'Scatterplot of a vs b'</span>, xlabel<span class="op">=</span><span class="st">'a'</span>, ylabel<span class="op">=</span><span class="st">'b'</span>)<span class="op">;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> annotate(row):</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    plt.text(x<span class="op">=</span>row[<span class="st">'a'</span>]<span class="op">+</span><span class="fl">0.05</span>, y<span class="op">=</span>row[<span class="st">'b'</span>], s<span class="op">=</span>row.name, size<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">apply</span>(annotate, axis<span class="op">=</span><span class="dv">1</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="matrices_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="transpose" class="level2">
-<h2 class="anchored" data-anchor-id="transpose">Transpose</h2>
-<p>Sometimes we want to flip the axes. When we exchange a matrix’s rows and columns, the result is called its transpose. Formally, we signify a matrix’s <span class="math inline">\(\textbf{A}\)</span> transpose by <span class="math inline">\(\mathbf{A}^\top\)</span> and if <span class="math inline">\(\mathbf{B} = \mathbf{A}^\top\)</span>, then <span class="math inline">\(b_{ij} = a_{ij}\)</span> for all <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. Thus, the transpose of an <span class="math inline">\(m \times n\)</span> matrix is an <span class="math inline">\(n \times m\)</span> matrix:</p>
-<p><span class="math display">\[ \begin{split}\mathbf{A}^\top =
-\begin{bmatrix}
-    a_{11} &amp; a_{21} &amp; \dots  &amp; a_{m1} \\
-    a_{12} &amp; a_{22} &amp; \dots  &amp; a_{m2} \\
-    \vdots &amp; \vdots &amp; \ddots  &amp; \vdots \\
-    a_{1n} &amp; a_{2n} &amp; \dots  &amp; a_{mn}
-\end{bmatrix}.\end{split} \]</span></p>
-<!-- We can convert any appropriately sized 
- tensor into an 
- matrix by passing the desired shape to reshape:
-
-A matrix is a rectangular array of numbers. Matrices are often used to represent linear transformations such as rotations and reflections. For example, a matrix can be used to represent a rotation of 90 degrees clockwise about the origin.
-
-Matrices can be added together to form new matrices. For example, the matrix representing a rotation of 90 degrees clockwise about the origin can be added to the matrix representing a rotation of 90 degrees counterclockwise about the origin to form the matrix representing a rotation of 180 degrees about the origin.
-
-Matrices can also be multiplied together to form new matrices. For example, the matrix representing a rotation of 90 degrees clockwise about the origin can be multiplied by the matrix representing a rotation of 90 degrees counterclockwise about the origin to form the matrix representing a rotation of 180 degrees about the origin. -->
-<p>In pandas, you can transpose a <code>DataFrame</code> with the <strong><code>.T</code></strong> attribute:</p>
-<div id="cell-9" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">v1</th>
-<th data-quarto-table-cell-role="th">v2</th>
-<th data-quarto-table-cell-role="th">v3</th>
-<th data-quarto-table-cell-role="th">v4</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">a</td>
-<td>1</td>
-<td>20</td>
-<td>3</td>
-<td>40</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">b</td>
-<td>50</td>
-<td>6</td>
-<td>70</td>
-<td>8</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>Note that columns of original dataframe <code>df</code> are the same as index of <code>df.T</code></p>
-<div id="cell-11" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">==</span> df.T.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>array([ True,  True])</code></pre>
-</div>
-</div>
-<div id="cell-12" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv"</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>elections <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>elections.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
@@ -745,407 +614,125 @@ Matrices can also be multiplied together to form new matrices. For example, the 
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">v1</th>
-<th data-quarto-table-cell-role="th">v2</th>
-<th data-quarto-table-cell-role="th">v3</th>
-<th data-quarto-table-cell-role="th">v4</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">a</td>
-<td>1</td>
-<td>20</td>
-<td>3</td>
-<td>40</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">b</td>
-<td>50</td>
-<td>6</td>
-<td>70</td>
-<td>8</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
-<section id="matrix-vector-products" class="level2">
-<h2 class="anchored" data-anchor-id="matrix-vector-products">Matrix-Vector Products</h2>
-<p>Now that we know how to calculate dot products, we can begin to understand the product between an <span class="math inline">\(m \times n\)</span> matrix and an <span class="math inline">\(n\)</span>-dimensional vector <span class="math inline">\(\mathbf{x}\)</span>.</p>
-<p>To start off, we visualize our matrix in terms of its row vectors</p>
-<p><span class="math display">\[
-\begin{split}\mathbf{A}=
-\begin{bmatrix}
-\mathbf{a}^\top_{1} \\
-\mathbf{a}^\top_{2} \\
-\vdots \\
-\mathbf{a}^\top_m \\
-\end{bmatrix},\end{split}
-\]</span></p>
-<p>where each <span class="math inline">\(\mathbf{a}^\top_{i} \in \mathbb{R}^n\)</span> is a row vector representing the <span class="math inline">\(i^\textrm{th}\)</span> row of the matrix <span class="math inline">\(\mathbf{A}\)</span>.</p>
-<p>The matrix–vector product <span class="math inline">\(\mathbf{A}\mathbf{x}\)</span> is simply a column vector of length <span class="math inline">\(m\)</span> , whose <span class="math inline">\(i^{th}\)</span> element is the dot product <span class="math inline">\(\mathbf{a}^\top_i \mathbf{x}\)</span></p>
-<p><span class="math display">\[
-\begin{split}\mathbf{A}\mathbf{x}
-= \begin{bmatrix}
-\mathbf{a}^\top_{1} \\
-\mathbf{a}^\top_{2} \\
-\vdots \\
-\mathbf{a}^\top_m \\
-\end{bmatrix}\mathbf{x}
-= \begin{bmatrix}
-\mathbf{a}^\top_{1} \mathbf{x}  \\
-\mathbf{a}^\top_{2} \mathbf{x} \\
-\vdots\\
-\mathbf{a}^\top_{m} \mathbf{x}\\
-\end{bmatrix}.\end{split}
-\]</span></p>
-<p>We can think of multiplication with a matrix <span class="math inline">\(\mathbf{A}\in \mathbb{R}^{m \times n}\)</span> as a transformation that projects vectors from <span class="math inline">\(\mathbb{R}^{n}\)</span> to <span class="math inline">\(\mathbb{R}^{m}\)</span>.</p>
-<p>These transformations are remarkably useful. For example, we can represent rotations as multiplications by certain square matrices. Matrix–vector products also describe the key calculation involved in computing the outputs of each layer in a neural network given the outputs from the previous layer.</p>
-<section id="finding-similar-vectors" class="level3">
-<h3 class="anchored" data-anchor-id="finding-similar-vectors">Finding similar vectors</h3>
-<p>Note that, given a vector <span class="math inline">\(\mathbf{v}\)</span>, vector-matrix products can also be used to compute the similarity of <span class="math inline">\(\mathbf{v}\)</span> and each row <span class="math inline">\(\mathbf{a}^\top_i\)</span> of matrix <span class="math inline">\(\mathbf{A}\)</span>. This is because the matrix-vector product <span class="math inline">\(\mathbf{A}\mathbf{v}\)</span> will contain the dot products of <span class="math inline">\(\mathbf{v}\)</span> and each row in <span class="math inline">\(\mathbf{A}\)</span>.</p>
-<p>There is one thing to be careful about: recall that the formula for cosine similarity is:</p>
-<p><span class="math display">\[\text{cos}(\theta) = \frac{\mathbf{a} \cdot \mathbf{b}}{\|\mathbf{a}\| \|\mathbf{b}\|}\]</span></p>
-<p><strong>The dot product (numerator, on the right hand side) is equal to the cosine of the angle between the two vectors when the vectors are normalized (i.e.&nbsp;each divided by their norms).</strong></p>
-<p>The example below shows how to compute the cosine similarity between a vector <span class="math inline">\(\mathbf{v}\)</span> and each row of matrix <span class="math inline">\(\mathbf{A}\)</span>.</p>
-<div id="cell-15" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/fahadsultan/csc272/main/data/chat_dataset.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cell-16" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating bow representation</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>vocab <span class="op">=</span> (<span class="st">' '</span>.join(data[<span class="st">'message'</span>].values)).lower().split()</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>bow <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>vocab)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word <span class="kw">in</span> vocab: </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    bow[word] <span class="op">=</span> data[<span class="st">'message'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> msg: msg.count(word))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cell-17" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># l2 norm of a vector</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> l2_norm(vec):</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="bu">sum</span>(vec<span class="op">**</span><span class="dv">2</span>))<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># bow where each row is a unit vectors i.e. ||row|| = 1</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>bow_unit <span class="op">=</span> bow.<span class="bu">apply</span>(<span class="kw">lambda</span> row: row<span class="op">/</span>l2_norm(row), axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="cell-18" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># random message : I don't have an opinion on this</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> bow_unit.iloc[<span class="dv">20</span>] </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cosine similarity of first message with all other messages</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>msg_sim <span class="op">=</span> bow_unit.dot(msg.T)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>msg_sim.index <span class="op">=</span> data[<span class="st">'message'</span>]</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>msg_sim.sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>message
-I don't have an opinion on this           1.000000
-I don't really have an opinion on this    0.984003
-I have no strong opinion about this       0.971575
-I have no strong opinions about this      0.971226
-I have no strong opinion on this          0.969768
-                                            ...   
-I'm not sure what to do 😕                 0.204587
-I'm not sure what to do next 🤷‍♂️         0.201635
-I'm not sure what to do next 🤔            0.200593
-The food was not good                     0.200295
-The food was not very good                0.197220
-Length: 584, dtype: float64</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="matrix-matrix-multiplication" class="level2">
-<h2 class="anchored" data-anchor-id="matrix-matrix-multiplication">Matrix-Matrix Multiplication</h2>
-<p>Once you have gotten the hang of dot products and matrix–vector products, then matrix–matrix multiplication should be straightforward.</p>
-<p>Say that we have two matrices <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{n \times k}\)</span> and <span class="math inline">\(\mathbf{B} \in \mathbb{R}^{k \times m}\)</span>:</p>
-<p><span class="math display">\[
-\begin{split}\mathbf{A}=\begin{bmatrix}
-a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1k} \\
-a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2k} \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nk} \\
-\end{bmatrix},\quad
-\mathbf{B}=\begin{bmatrix}
-b_{11} &amp; b_{12} &amp; \cdots &amp; b_{1m} \\
-b_{21} &amp; b_{22} &amp; \cdots &amp; b_{2m} \\
-\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
-b_{k1} &amp; b_{k2} &amp; \cdots &amp; b_{km} \\
-\end{bmatrix}.\end{split}
-\]</span></p>
-<p>Let <span class="math inline">\(\mathbf{a}^\top_{i} \in \mathbb{R}^k\)</span> denote the row vector representing the <span class="math inline">\(i^\textrm{th}\)</span> row of the matrix <span class="math inline">\(\mathbf{A}\)</span> and let <span class="math inline">\(\mathbf{b}_{j} \in \mathbb{R}^k\)</span> denote the column vector from the <span class="math inline">\(j^\textrm{th}\)</span> column of the matrix <span class="math inline">\(\mathbf{B}\)</span> :</p>
-<p><span class="math display">\[
-\begin{split}\mathbf{A}=
-\begin{bmatrix}
-\mathbf{a}^\top_{1} \\
-\mathbf{a}^\top_{2} \\
-\vdots \\
-\mathbf{a}^\top_n \\
-\end{bmatrix},
-\quad \mathbf{B}=\begin{bmatrix}
-\mathbf{b}_{1} &amp; \mathbf{b}_{2} &amp; \cdots &amp; \mathbf{b}_{m} \\
-\end{bmatrix}.\end{split}
-\]</span></p>
-<p>To form the matrix product <span class="math inline">\(\mathbf{C} \in \mathbb{R}^{n \times m}\)</span> , we simply compute each element <span class="math inline">\(c_{ij}\)</span> as the dot product between the <span class="math inline">\(i^{\textrm{th}}\)</span> row of <span class="math inline">\(\mathbf{A}\)</span> and the <span class="math inline">\(i^{\textrm{th}}\)</span> column of <span class="math inline">\(\mathbf{B}\)</span> , i.e., <span class="math inline">\(\mathbf{a}^\top_i \mathbf{b}_j\)</span> :</p>
-<p><span class="math display">\[
-\begin{split}\mathbf{C} = \mathbf{AB} = \begin{bmatrix}
-\mathbf{a}^\top_{1} \\
-\mathbf{a}^\top_{2} \\
-\vdots \\
-\mathbf{a}^\top_n \\
-\end{bmatrix}
-\begin{bmatrix}
-\mathbf{b}_{1} &amp; \mathbf{b}_{2} &amp; \cdots &amp; \mathbf{b}_{m} \\
-\end{bmatrix}
-= \begin{bmatrix}
-\mathbf{a}^\top_{1} \mathbf{b}_1 &amp; \mathbf{a}^\top_{1}\mathbf{b}_2&amp; \cdots &amp; \mathbf{a}^\top_{1} \mathbf{b}_m \\
-\mathbf{a}^\top_{2}\mathbf{b}_1 &amp; \mathbf{a}^\top_{2} \mathbf{b}_2 &amp; \cdots &amp; \mathbf{a}^\top_{2} \mathbf{b}_m \\
-\vdots &amp; \vdots &amp; \ddots &amp;\vdots\\
-\mathbf{a}^\top_{n} \mathbf{b}_1 &amp; \mathbf{a}^\top_{n}\mathbf{b}_2&amp; \cdots&amp; \mathbf{a}^\top_{n} \mathbf{b}_m
-\end{bmatrix}.\end{split}
-\]</span></p>
-<p>We can think of the matrix–matrix multiplication <span class="math inline">\(\mathbf{AB}\)</span> as performing <span class="math inline">\(m\)</span> matrix–vector products or <span class="math inline">\(m \times n\)</span> dot products and stitching the results together to form an <span class="math inline">\(m \times n\)</span> matrix. In the following snippet, we perform matrix multiplication on A and B. Here, A is a matrix with two rows and three columns, and B is a matrix with three rows and four columns. After multiplication, we obtain a matrix with two rows and four columns.</p>
-<section id="computing-similarity-distance-matrix" class="level3">
-<h3 class="anchored" data-anchor-id="computing-similarity-distance-matrix">Computing similarity / distance matrix</h3>
-<p>Note that, given two matrices <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span>, matrix-matrix products can also be used to compute the similarity between each row <span class="math inline">\(\mathbf{a}^\top_i\)</span> of matrix <span class="math inline">\(\mathbf{A}\)</span> and each row <span class="math inline">\(\mathbf{b}^\top_j\)</span> of matrix <span class="math inline">\(\mathbf{B}\)</span>. This is because the matrix-matrix product <span class="math inline">\(\mathbf{A}\mathbf{B}\)</span> will contain the dot products of each pair of rows in <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span>.</p>
-<div id="cell-21" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>similarity_matrix <span class="op">=</span> bow_unit.dot(bow_unit.T)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>similarity_matrix.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>(584, 584)</code></pre>
-</div>
-</div>
-<div id="cell-22" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>similarity_matrix.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">0</th>
-<th data-quarto-table-cell-role="th">1</th>
-<th data-quarto-table-cell-role="th">2</th>
-<th data-quarto-table-cell-role="th">3</th>
-<th data-quarto-table-cell-role="th">4</th>
-<th data-quarto-table-cell-role="th">5</th>
-<th data-quarto-table-cell-role="th">6</th>
-<th data-quarto-table-cell-role="th">7</th>
-<th data-quarto-table-cell-role="th">8</th>
-<th data-quarto-table-cell-role="th">9</th>
-<th data-quarto-table-cell-role="th">...</th>
-<th data-quarto-table-cell-role="th">574</th>
-<th data-quarto-table-cell-role="th">575</th>
-<th data-quarto-table-cell-role="th">576</th>
-<th data-quarto-table-cell-role="th">577</th>
-<th data-quarto-table-cell-role="th">578</th>
-<th data-quarto-table-cell-role="th">579</th>
-<th data-quarto-table-cell-role="th">580</th>
-<th data-quarto-table-cell-role="th">581</th>
-<th data-quarto-table-cell-role="th">582</th>
-<th data-quarto-table-cell-role="th">583</th>
+<th data-quarto-table-cell-role="th">Year</th>
+<th data-quarto-table-cell-role="th">Candidate</th>
+<th data-quarto-table-cell-role="th">Party</th>
+<th data-quarto-table-cell-role="th">Popular vote</th>
+<th data-quarto-table-cell-role="th">Result</th>
+<th data-quarto-table-cell-role="th">%</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>1.000000</td>
-<td>0.568191</td>
-<td>0.453216</td>
-<td>0.565809</td>
-<td>0.612787</td>
-<td>0.608156</td>
-<td>0.377769</td>
-<td>0.631309</td>
-<td>0.793969</td>
-<td>0.642410</td>
-<td>...</td>
-<td>0.516106</td>
-<td>0.612624</td>
-<td>0.660911</td>
-<td>0.490580</td>
-<td>0.845518</td>
-<td>0.573549</td>
-<td>0.648564</td>
-<td>0.629598</td>
-<td>0.594468</td>
-<td>0.570452</td>
+<td>1824</td>
+<td>Andrew Jackson</td>
+<td>Democratic-Republican</td>
+<td>151271</td>
+<td>loss</td>
+<td>57.210122</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>0.568191</td>
-<td>1.000000</td>
-<td>0.508206</td>
-<td>0.928580</td>
-<td>0.687137</td>
-<td>0.681944</td>
-<td>0.423604</td>
-<td>0.707906</td>
-<td>0.551139</td>
-<td>0.720354</td>
-<td>...</td>
-<td>0.573755</td>
-<td>0.686954</td>
-<td>0.741100</td>
-<td>0.546166</td>
-<td>0.801864</td>
-<td>0.643139</td>
-<td>0.721001</td>
-<td>0.705988</td>
-<td>0.652357</td>
-<td>0.639666</td>
+<td>1824</td>
+<td>John Quincy Adams</td>
+<td>Democratic-Republican</td>
+<td>113142</td>
+<td>win</td>
+<td>42.789878</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>0.453216</td>
-<td>0.508206</td>
-<td>1.000000</td>
-<td>0.506075</td>
-<td>0.548093</td>
-<td>0.707857</td>
-<td>0.778316</td>
-<td>0.621438</td>
-<td>0.538883</td>
-<td>0.648861</td>
-<td>...</td>
-<td>0.457088</td>
-<td>0.547948</td>
-<td>0.650512</td>
-<td>0.443105</td>
-<td>0.593732</td>
-<td>0.512998</td>
-<td>0.574392</td>
-<td>0.605515</td>
-<td>0.520351</td>
-<td>0.609064</td>
+<td>1828</td>
+<td>Andrew Jackson</td>
+<td>Democratic</td>
+<td>642806</td>
+<td>win</td>
+<td>56.203927</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>0.565809</td>
-<td>0.928580</td>
-<td>0.506075</td>
-<td>1.000000</td>
-<td>0.685614</td>
-<td>0.679085</td>
-<td>0.421828</td>
-<td>0.704938</td>
-<td>0.548828</td>
-<td>0.717334</td>
-<td>...</td>
-<td>0.571349</td>
-<td>0.684074</td>
-<td>0.737993</td>
-<td>0.543876</td>
-<td>0.798502</td>
-<td>0.640442</td>
-<td>0.717978</td>
-<td>0.703027</td>
-<td>0.649622</td>
-<td>0.638039</td>
+<td>1828</td>
+<td>John Quincy Adams</td>
+<td>National Republican</td>
+<td>500897</td>
+<td>loss</td>
+<td>43.796073</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>0.612787</td>
-<td>0.687137</td>
-<td>0.548093</td>
-<td>0.685614</td>
-<td>1.000000</td>
-<td>0.735468</td>
-<td>0.273748</td>
-<td>0.559585</td>
-<td>0.714100</td>
-<td>0.599091</td>
-<td>...</td>
-<td>0.926494</td>
-<td>0.825530</td>
-<td>0.806139</td>
-<td>0.933257</td>
-<td>0.802775</td>
-<td>0.945544</td>
-<td>0.931874</td>
-<td>0.913601</td>
-<td>0.928473</td>
-<td>0.690556</td>
+<td>1832</td>
+<td>Andrew Jackson</td>
+<td>Democratic</td>
+<td>702735</td>
+<td>win</td>
+<td>54.574789</td>
 </tr>
 </tbody>
 </table>
 
-<p>5 rows × 584 columns</p>
 </div>
 </div>
 </div>
-<div id="cell-23" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(similarity_matrix, cmap<span class="op">=</span><span class="st">'Greens'</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.colorbar()<span class="op">;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Similarity Matrix: Each cell contains cosine </span><span class="ch">\n</span><span class="st">similarity between two messages"</span>)<span class="op">;</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Message Index"</span>)<span class="op">;</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Message Index"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="matrices_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
-</figure>
+<div id="cell-3" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> elections[[<span class="st">'Year'</span>, <span class="st">'Popular vote'</span>]]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> elections[<span class="st">'Result'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-4" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>X_train.shape, y_train.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>((127, 2), (127,))</code></pre>
 </div>
 </div>
-</div>
-<p>Note how 1. the similarity matrix is symmetric, i.e.&nbsp;<span class="math inline">\(sim_{ij} = sim_{ji}\)</span> and 2. the diagonal elements are all 1, i.e.&nbsp;<span class="math inline">\(sim_{ii} = 1\)</span>.</p>
-<div id="cell-25" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>distance_matrix <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> bow_unit.dot(bow_unit.T)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.imshow(distance_matrix, cmap<span class="op">=</span><span class="st">'Reds'</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>plt.colorbar()<span class="op">;</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Distance Matrix: Each cell contains cosine </span><span class="ch">\n</span><span class="st">distance between two messages"</span>)<span class="op">;</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Message Index"</span>)<span class="op">;</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Message Index"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="matrices_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
-</figure>
+<div id="cell-6" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X_test.shape, y_test.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>((55, 2), (55,))</code></pre>
 </div>
 </div>
-</div>
-<!-- ## Linear Transformations
-
-A linear transformation is a function that maps vectors to vectors. For example, a rotation of 90 degrees clockwise about the origin is a linear transformation that maps vectors to vectors.
-
-Linear transformations can be represented as matrices. For example, a rotation of 90 degrees clockwise about the origin can be represented as the matrix
-
-$$ \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix} $$
-
-## Norms
-
-Norms, in the case of matrices, are more complicated. After all, matrices can be viewed both as collections of individual entries and as objects that operate on vectors and transform them into other vectors. For instance, we can ask by how much longer the matrix–vector product $\mathbf{X} \mathbf{v}$ could be relative to 
-. This line of thought leads to what is called the spectral norm. For now, we introduce the Frobenius norm, which is much easier to compute and defined as the square root of the sum of the squares of a matrix’s elements:
-
-$$ \|\mathbf{X}\|_\textrm{F} = \sqrt{\sum_{i=1}^m \sum_{j=1}^n x_{ij}^2} $$
-
-The Frobenius norm behaves as if it were an $l_2$ norm of a matrix-shaped vector. Invoking the following function will calculate the Frobenius norm of a matrix.
-
-While we do not want to get too far ahead of ourselves, we already can plant some intuition about why these concepts are useful. In deep learning, we are often trying to solve optimization problems: maximize the probability assigned to observed data; maximize the revenue associated with a recommender model; minimize the distance between predictions and the ground truth observations; minimize the distance between representations of photos of the same person while maximizing the distance between representations of photos of different people. These distances, which constitute the objectives of deep learning algorithms, are often expressed as norms. -->
-<!-- ## Tensors -->
-<!-- While you can go far in your machine learning journey with only scalars, vectors, and matrices, eventually you may need to work with higher-order tensors. Tensors give us a generic way of describing extensions to $n^{th}$-order arrays. We call software objects of the _tensor_ class “tensors” precisely because they too can have arbitrary numbers of axes. While it may be confusing to use the word tensor for both the mathematical object and its realization in code, our meaning should usually be clear from context. We denote general tensors by capital letters with a special font face (e.g., $\mathsf{X}$, $\mathsf{Y}$, and $\mathsf{Z}$) and their indexing mechanism (e.g., $x_{ijk}$ and $[\mathsf{X}_{1,2i-1,3}]$) follows naturally from that of matrices.
-
-Tensors will become more important when we start working with images. Each image arrives as a 
--order tensor with axes corresponding to the height, width, and channel. At each spatial location, the intensities of each color (red, green, and blue) are stacked along the channel. Furthermore, a collection of images is represented in code by a 
--order tensor, where distinct images are indexed along the first axis. Higher-order tensors are constructed, as were vectors and matrices, by growing the number of shape components. -->
-<!-- <center>
-
-<img width="70%" src="../assets/tensors.png">
-
-<img width="70%" src="../assets/tensors2.png">
-
-<img width="30%" src="../assets/tensors3.png">
-
-</center> -->
+</section>
+<section id="cross-validation" class="level3">
+<h3 class="anchored" data-anchor-id="cross-validation"><strong>Cross-Validation</strong>:</h3>
+<ul>
+<li>A technique used to assess how the results of a statistical analysis will generalize to an independent dataset. Common methods include k-fold cross-validation and leave-one-out cross-validation.</li>
+</ul>
+</section>
+<section id="performance-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="performance-metrics"><strong>Performance Metrics</strong>:</h3>
+<pre><code>- Depending on the type of problem (classification, regression, etc.), different metrics are used to evaluate model performance. Common metrics include accuracy, precision, recall, F1-score for classification tasks, and mean squared error (MSE), R-squared for regression tasks.</code></pre>
+</section>
+<section id="overfitting-and-underfitting" class="level3">
+<h3 class="anchored" data-anchor-id="overfitting-and-underfitting"><strong>Overfitting and Underfitting</strong>:</h3>
+<pre><code>- **Overfitting**: When a model learns the training data too well, including noise and outliers, leading to poor generalization on new data.
+- **Underfitting**: When a model is too simple to capture the underlying patterns in the data, resulting in poor performance on both training and test sets.</code></pre>
+</section>
+<section id="hyperparameter-tuning" class="level3">
+<h3 class="anchored" data-anchor-id="hyperparameter-tuning"><strong>Hyperparameter Tuning</strong>:</h3>
+<pre><code>- The process of optimizing the parameters that govern the training process of the model (e.g., learning rate, number of trees in a random forest) to improve performance on the validation set.</code></pre>
+</section>
+<section id="baselines" class="level2">
+<h2 class="anchored" data-anchor-id="baselines">Baselines</h2>
+<p>Establishing a baseline is an essential step in model validation. A baseline provides a reference point against which the performance of more complex models can be compared. It helps to determine whether a new model is actually improving upon simpler approaches.</p>
+<section id="types-of-baselines" class="level3">
+<h3 class="anchored" data-anchor-id="types-of-baselines">Types of Baselines</h3>
+<ol type="1">
+<li><p><strong>Simple Heuristic Baseline</strong>:</p>
+<ul>
+<li>A straightforward approach that uses basic rules or averages. For example, in a classification task, predicting the majority class for all instances.</li>
+</ul></li>
+<li><p><strong>Random Baseline</strong>:</p>
+<ul>
+<li>A model that makes random predictions. This is often used to demonstrate that a more sophisticated model performs better than chance.</li>
+</ul></li>
+<li><p><strong>Majority Class Baseline</strong>:</p>
+<ul>
+<li>In classification tasks, this baseline predicts the most frequent class in the training data for all instances.</li>
+</ul></li>
+</ol>
 
 
 </section>

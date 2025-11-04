@@ -471,26 +471,26 @@ window.Quarto = {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../beyond/normalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Normalizing &amp; Standardizing Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../stats/correlations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Correlations</span></a>
+ <span class="menu-text">Feature Selection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../linearalgebra/vectors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geometric Interpretation</span></a>
+  <a href="../beyond/validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Validation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../linearalgebra/matrices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Matrices</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../linearalgebra/nearestneighbor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Nearest Neighbor</span></a>
+  <a href="../linearalgebra/distance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distance based Modeling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -515,18 +515,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Naive Bayes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/gc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Garbage Collection</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/sklearn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Scikit-learn</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -595,7 +583,7 @@ window.Quarto = {
 <p>The discrete output variable <span class="math inline">\(\mathcal{y}\)</span> is often also called the <strong>label</strong> or <strong>target</strong> or <strong>class</strong>.</p>
 <p>For example, we might want to predict whether a patient has a disease or not, based on their symptoms. In this case, <span class="math inline">\(\mathcal{y}\)</span> is a binary variable, taking the value 1 if the patient has the disease, and 0 otherwise. Other examples of classification problems include predicting the sentiment of a movie review: positive, negative, or neutral.</p>
 <p>For example,</p>
-<p><img align="center" width="90%" src="../assets/sentiment.png"></p>
+<p><img align="center" width="100%" src="../assets/sentiment.png" style="filter:invert(1)"></p>
 <p><br></p>
 <p>In other words, the classification problem is to learn a function <span class="math inline">\(f\)</span> that maps the input <span class="math inline">\(\mathcal{X}\)</span> to the discrete output <span class="math inline">\(\mathcal{Y}\)</span>.</p>
 <section id="evaluation-metrics" class="level2">
@@ -608,7 +596,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="multi-class-classification-as-multiple-binary-classifications">Multi-class classification as multiple Binary classifications</h3>
 <p>Every multi-class classification problem can be decomposed into multiple binary classification problems. For example, if we have a multi-class classification problem with 3 classes, we can decompose it into 3 binary classification problems.</p>
 <p><br></p>
-<p><img src="../assets/binary_multiclass.png"></p>
+<p><img src="../assets/binary_multiclass.png" width="100%" style="filter:invert(1)"></p>
 <p><br> <br></p>
 <p>Assuming the categorical variable that we are trying to predict is binary, we can define the accuracy in terms of the four possible outcomes of a binary classifier:</p>
 <ol type="1">

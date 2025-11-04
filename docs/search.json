@@ -429,37 +429,37 @@
   {
     "objectID": "stats/correlations.html",
     "href": "stats/correlations.html",
-    "title": "Correlations",
+    "title": "Feature Selection",
     "section": "",
-    "text": "Covariance is a measure of the relationship between two random variables. It is similar to correlation, but it is not normalized.\n\\[ \\text{Cov}(X, Y) = \\frac{\\sum_{i=1}^{n} (x_i - \\mu_x)(y_i - \\mu_y)}{n} \\]\nwhere \\(x_i\\) and \\(y_i\\) are the \\(i\\)-th values of the two variables, $ _x$ and $ _y$ are the means of the two variables, and \\(n\\) is the number of values.\nThe covariance can be positive, negative, or zero. A positive covariance indicates that the two variables tend to increase or decrease together, while a negative covariance indicates that one variable tends to increase as the other decreases.",
+    "text": "Feature selection is a crucial step in the machine learning pipeline. It involves selecting a subset of relevant features (variables, predictors) for use in model construction. The main goals of feature selection are to improve model performance, reduce overfitting, and decrease training time.",
     "crumbs": [
       "Home",
       "Data Science and Machine Learning",
-      "Correlations"
-    ]
-  },
-  {
-    "objectID": "stats/correlations.html#covariance",
-    "href": "stats/correlations.html#covariance",
-    "title": "Correlations",
-    "section": "",
-    "text": "Covariance is a measure of the relationship between two random variables. It is similar to correlation, but it is not normalized.\n\\[ \\text{Cov}(X, Y) = \\frac{\\sum_{i=1}^{n} (x_i - \\mu_x)(y_i - \\mu_y)}{n} \\]\nwhere \\(x_i\\) and \\(y_i\\) are the \\(i\\)-th values of the two variables, $ _x$ and $ _y$ are the means of the two variables, and \\(n\\) is the number of values.\nThe covariance can be positive, negative, or zero. A positive covariance indicates that the two variables tend to increase or decrease together, while a negative covariance indicates that one variable tends to increase as the other decreases.",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Correlations"
+      "Feature Selection"
     ]
   },
   {
     "objectID": "stats/correlations.html#correlations",
     "href": "stats/correlations.html#correlations",
-    "title": "Correlations",
+    "title": "Feature Selection",
     "section": "Correlations",
-    "text": "Correlations\nCorrelation is a statistical measure that describes the relationship between two variables. It can be positive, negative, or zero.\nPositive correlation: If one variable increases, the other variable also increases.\nNegative correlation: If one variable increases, the other variable decreases.\nZero correlation: There is no relationship between the two variables.\nThe correlation coefficient ranges from -1 to 1. A value of 1 indicates a perfect positive correlation, a value of -1 indicates a perfect negative correlation, and a value of 0 indicates no correlation.\nThere are several methods to compute the correlation between two variables. The two most common methods are the Pearson correlation coefficient and the Spearman correlation\n\nPearson Correlation Coefficient\nThe Pearson correlation coefficient measures the linear relationship between two variables. It ranges from -1 to 1.\n\\[ r = \\frac{\\sum_{i=1}^{n} (x_i - \\mu_x)(y_i - \\mu_y)}{\\sqrt{\\sum_{i=1}^{n} (x_i -  \\mu_x)^2} \\sqrt{\\sum_{i=1}^{n} (y_i -  \\mu_y)^2}} \\]\nwhere \\(x_i\\) and \\(y_i\\) are the \\(i\\)-th values of the two variables, $ _x$ and $ _y$ are the means of the two variables, and \\(n\\) is the number of values.\n\nimport pandas as pd \n\nurl = \"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv\"\n\nelections = pd.read_csv(url)\n\nelections.head()\n\nx = elections['Popular vote']\ny = elections['%']\n\nr = x.cov(y) / (x.std() * y.std())\n\nr\n\n0.559061061317942\n\n\nYou can also compute the correlation between two columns of a DataFrame using the .corr() method.\n\nx.corr(y, method='pearson')\n\n0.559061061317942\n\n\n\n\nSpearman Correlation\nThe Spearman correlation coefficient measures the monotonic relationship between two variables. It ranges from -1 to 1.\n\\[ r = 1 - \\frac{6 \\sum_{i=1}^{n} d_i^2}{n(n^2 - 1)} \\]\nwhere \\(d_i\\) is the difference between the ranks of the two variables and \\(n\\) is the number of values.\n\nx.corr(y, method='spearman')\n\n0.7432486904455022\n\n\n\n\n.corr()\nThe .corr() method computes the correlation between columns in a DataFrame. By default, it computes the Pearson correlation coefficient, but the method parameter can be used to specify the method to use.",
+    "text": "Correlations\nCorrelations are statistical measures that describe the strength and direction of the relationship between two variables. They help to identify how changes in one variable are associated with changes in another variable.\n\nPositive correlation: If one variable increases, the other variable also increases.\nNegative correlation: If one variable increases, the other variable decreases.\nZero correlation: There is no relationship between the two variables.\n\nThe correlation coefficient ranges from -1 to 1. A value of 1 indicates a perfect positive correlation, a value of -1 indicates a perfect negative correlation, and a value of 0 indicates no correlation.\nThere are several methods to compute the correlation between two variables. The two most common methods are the Pearson correlation coefficient and the Spearman correlation\n\nPearson Correlation Coefficient\nThe Pearson correlation coefficient measures the linear relationship between two variables. It ranges from -1 to 1.\n\\[ r = \\frac{\\sum_{i=1}^{n} (x_i - \\mu_x)(y_i - \\mu_y)}{\\sqrt{\\sum_{i=1}^{n} (x_i -  \\mu_x)^2} \\sqrt{\\sum_{i=1}^{n} (y_i -  \\mu_y)^2}} \\]\nwhere \\(x_i\\) and \\(y_i\\) are the \\(i\\)-th values of the two variables, $ _x$ and $ _y$ are the means of the two variables, and \\(n\\) is the number of values.\n\nimport pandas as pd\nfrom matplotlib import pyplot as plt \n\nn = 50\n\ndf = pd.DataFrame()\n\ndf['x'] = list(range(n))\ndf['y_pos'] = df['x']\ndf['y_neg'] = df['x'].values[::-1]\ndf['y_zero'] = [0  if (i % 2 == 0) else 1 for i in range(n)]\n\nr_pos = df['x'].corr(df['y_pos'])\nr_neg = df['x'].corr(df['y_neg'])\nr_zero = df['x'].corr(df['y_zero'])\n\nfig, ax = plt.subplots(1, 3, figsize=(15, 5))\n\nax[0].scatter(df['x'], df['y_pos'])\nax[0].set_title(f'Positive Correlation (r={r_pos:.1f})')\nax[0].set_xlabel('x')\nax[0].set_ylabel('y_pos')\nax[0].grid(True)\n\nax[1].scatter(df['x'], df['y_neg'])\nax[1].set_title(f'Negative Correlation (r={r_neg:.1f})')\nax[1].set_xlabel('x')\nax[1].set_ylabel('y_neg')\nax[1].grid(True)\n\nax[2].scatter(df['x'], df['y_zero'])\nax[2].set_title(f'No Correlation (r={r_zero:.1f})')\nax[2].set_xlabel('x')\nax[2].set_ylabel('y_zero')\nax[2].grid(True)\n\n\n\n\n\n\n\n\n\ncorrs = df.corr()\n\nplt.imshow(corrs, cmap='coolwarm', vmin=-1, vmax=1)\n\nplt.colorbar(label='Correlation Coefficient')\n\nplt.xticks(range(len(corrs)), corrs.columns, rotation=45)\nplt.yticks(range(len(corrs)), corrs.columns)\nplt.title('Correlation Matrix Heatmap')\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nPearson correlation is extremely sensitive to outliers and assumes that the relationship between the variables is linear.\n\ndf['y_pos_outlier'] = df['y_pos'].copy()\n\ndf['y_pos_outlier'].iloc[0] = 100  # Introduce an outlier\n\nr_pos_outlier = df['x'].corr(df['y_pos_outlier'])\n\nfig2, ax2 = plt.subplots(1, 2, figsize=(10, 5))\n\nax2[0].scatter(df['x'], df['y_pos'])\n\nax2[0].set_title(f'Original Positive Correlation (r={r_pos:.1f})')\nax2[0].set_xlabel('x')\nax2[0].set_ylabel('y_pos')\nax2[0].grid(True)\n\nax2[1].scatter(df['x'], df['y_pos_outlier'])\nax2[1].set_title(f'With Outlier (r={r_pos_outlier:.1f})')\nax2[1].set_xlabel('x')\nax2[1].set_ylabel('y_pos_outlier')\nax2[1].grid(True)\n\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nurl = \"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv\"\n\nelections = pd.read_csv(url)\n\nelections.head()\n\nx = elections['Popular vote']\ny = elections['%']\n\nr = x.corr(y, method='pearson')\n\nplt.scatter(x, y)\nplt.title(f'Correlation between Popular Vote and Percentage: {r:.2f}');\n\n\n\n\n\n\n\n\n\ncorrs = elections.corr()\n\nplt.imshow(corrs, cmap='coolwarm', vmin=-1, vmax=1)\nplt.colorbar(label='Correlation Coefficient')\nplt.xticks(range(len(corrs)), corrs.columns, rotation=45)\nplt.yticks(range(len(corrs)), corrs.columns)\n\nplt.title('Elections Correlation Matrix Heatmap')\n\nplt.tight_layout()\n\n\n\n\n\n\n\n\nYou can also compute the correlation between two columns of a DataFrame using the .corr() method.\n\n\nSpearman Correlation\nThe Spearman correlation coefficient measures the monotonic relationship between two variables. In simpler terms, it assesses how well the relationship between two variables can be described constantly increasing or decreasing, regardless of whether that relationship is linear.\nAnother way to think about it is that the Spearman correlation evaluates the relationship between the ranks of the data rather than the raw data itself. It creates a ranking of the values for each variable and then computes the Pearson correlation coefficient on these ranks.\nSimilar to Pearson correlation, coefficient, it ranges from -1 to 1.\n\nx.corr(y, method='spearman')\n\n0.7432486904455022\n\n\n\ndf['y_pos_outlier'] = df['y_pos'].copy()\n\ndf['y_pos_outlier'].iloc[0] = 100  # Introduce an outlier\n\nr_pos_outlier = df['x'].corr(df['y_pos_outlier'], method='spearman')\n\nfig2, ax2 = plt.subplots(1, 2, figsize=(10, 5))\n\nax2[0].scatter(df['x'], df['y_pos'])\n\nax2[0].set_title(f'Original Positive Correlation (r={r_pos:.1f})')\nax2[0].set_xlabel('x')\nax2[0].set_ylabel('y_pos')\nax2[0].grid(True)\n\nax2[1].scatter(df['x'], df['y_pos_outlier'])\nax2[1].set_title(f'With Outlier (r={r_pos_outlier:.1f})')\nax2[1].set_xlabel('x')\nax2[1].set_ylabel('y_pos_outlier')\nax2[1].grid(True)\n\nfig2.suptitle('Spearman Correlation with Outlier Effect')\n\nplt.show()",
     "crumbs": [
       "Home",
       "Data Science and Machine Learning",
-      "Correlations"
+      "Feature Selection"
+    ]
+  },
+  {
+    "objectID": "stats/correlations.html#feature-selection-using-correlations",
+    "href": "stats/correlations.html#feature-selection-using-correlations",
+    "title": "Feature Selection",
+    "section": "Feature Selection using Correlations",
+    "text": "Feature Selection using Correlations\nFeature selection using correlations involves identifying and selecting features that have a strong correlation with the target variable while minimizing redundancy among the features themselves. Here are some common techniques for feature selection using correlations:\n\n1. Correlation Matrix\nA correlation matrix is a table that displays the correlation coefficients between multiple variables. It helps to visualize the relationships between features and the target variable.\nOnce you have the correlation matrix, you can identify features that have a high correlation with the target variable (e.g., above a certain threshold like 0.5 or 0.7) and select them for your model.\n\n\n2. Removing Highly Correlated Features\nHighly correlated features can introduce multicollinearity, which can negatively impact model performance. To address this, you can remove one of the features from pairs of highly correlated features (e.g., correlation coefficient above 0.8 or 0.9).\n\n\n3. Using Correlation Thresholds\nYou can set a correlation threshold to filter out features that do not meet a certain level of correlation with the target variable. For example, you might choose to keep only features with a correlation coefficient above 0.3 or below -0.3.",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Feature Selection"
     ]
   },
   {
@@ -595,76 +595,181 @@
     "text": "Evaluation Metrics\nThe most common metric for evaluating a classifier is accuracy. Accuracy is the proportion of correct predictions. It is the number of correct predictions divided by the total number of predictions.\n\\[Accuracy = \\frac{\\text{Number of correct predictions}}{\\text{Total number of predictions}}\\]\nFor example, if we have a test set of 100 documents, and our classifier correctly predicts the class of 80 of them, then the accuracy is 80%.\nAccuracy is a good metric when the classes are balanced \\(N_{class1} \\approx N_{class2}\\). However, when the classes are imbalanced, accuracy can be misleading. For example, if we have a test set of 100 documents, and 95 of them are positive and 5 of them are negative, then a classifier that always predicts positive will have an accuracy of 95%. However, this classifier is not useful, because it never predicts negative.\n\nMulti-class classification as multiple Binary classifications\nEvery multi-class classification problem can be decomposed into multiple binary classification problems. For example, if we have a multi-class classification problem with 3 classes, we can decompose it into 3 binary classification problems.\n\n\n \nAssuming the categorical variable that we are trying to predict is binary, we can define the accuracy in terms of the four possible outcomes of a binary classifier:\n\nTrue Positive (TP): The classifier correctly predicted the positive class.\nFalse Positive (FP): The classifier incorrectly predicted the negative class as positive.\nTrue Negative (TN): The classifier correctly predicted the negative class.\nFalse Negative (FN): The classifier incorrectly predicted the positive class as negative.\n\nTrue positive means that the classifier correctly predicted the positive class. False positive means that the classifier incorrectly predicted the positive class. True negative means that the classifier correctly predicted the negative class. False negative means that the classifier incorrectly predicted the negative class.\nThese definitions are summarized in the table below:\n\n\n\n\nPrediction \\(\\hat{y} = f'(x)\\)\nTruth \\(y = f(x)\\)\n\n\n\n\nTrue Negative (TN)\n0\n0\n\n\nFalse Negative (FN)\n0\n1\n\n\nFalse Positive (FP)\n1\n0\n\n\nTrue Positive (TP)\n1\n1\n\n\n\nIn terms of the four outcomes above, the accuracy is:\n\\[ \\text{Accuracy} = \\frac{TP + TN}{TP + TN + FP + FN}\\]\nAccuracy is a useful metric, but it can be misleading.\nOther metrics that are often used to evaluate classifiers are:\n\nPrecision: The proportion of positive predictions that are correct. Mathematically, it is defined as:\n\n\\[\\text{Precision} = \\frac{TP}{TP + FP}\\]\n\nRecall: The proportion of positive instances that are correctly predicted. Mathematically, it is defined as:\n\n\\[\\text{Recall} = \\frac{TP}{TP + FN}\\]\nThe precision and recall are often combined into a single metric called the F1 score. The F1 score is the harmonic mean of precision and recall. The harmonic mean of two numbers is given by:\n\nF1 Score: The harmonic mean of precision and recall.\n\n\\[\\text{F1-Score} = 2 \\times \\frac{\\text{Precision} \\cdot \\text{Recall}}{\\text{Precision} + \\text{Recall}}\\]\n\n\nMany kinds of machine learning algorithms are used to build classifiers. Two common classifiers are Naive Bayes and Logistic Regression.\nThese exemplify two primary category of models for doing classification:\n\nGenerative models like naive Bayes build a model of how a class could generate some input data. Given an observation, they return the class most likely to have generated the observation.\nDiscriminative models like logistic regression instead learn what features from the input are most useful to discriminate between the different possible classes.\n\nWhile discriminative systems are often more accurate and hence more commonly used, generative classifiers still have a role. They can be more robust to missing data, and can be used to generate synthetic data.\n\n\nCode Example\nThe code below shows how to train a Nearest Neighbor classifier on the Iris dataset. The Iris dataset is a dataset of 150 observations of iris flowers. There are 3 classes of iris flowers: setosa, versicolor, and virginica. For each observation, there are 4 features: sepal length, sepal width, petal length, and petal width. The goal is to predict the class of iris flower given the 4 features.\nThe code below uses the scikit-learn library to train a Nearest Neighbor classifier on the Iris dataset. The Nearest Neighbor classifier is a simple classifier that works by finding the training observation that is closest to the test observation, and predicting the class of the closest training observation. The Nearest Neighbor classifier is a discriminative classifier.\nThere are 5 steps shown in the code below:\n\nImport the dataset: The Iris dataset is included in scikit-learn. We import it using the load_iris function.\nSplit the dataset into training and test sets: We split the dataset into a training set and a test set. The training set is used to train the classifier, and the test set is used to evaluate the classifier.\nInstantiate the classifier: We instantiate the classifier using the KNeighborsClassifier class.\nTrain the classifier: We train the classifier using the fit method.\nMake predictions: We make predictions on the test set using the predict method.\nPrint the classification report: We evaluate the classifier using the classification_report function.\n\n\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.metrics import classification_report\n\n# 1. Load the data\ndata = load_iris(as_frame=True)\nX    = data['data']\ny    = data['target']\n\n# 2. Create a train/test split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)\n\n# 3. Instantiate a model\nmodel = KNeighborsClassifier()\n\n# 4. Fit a model\nmodel.fit(X_train, y_train)\n\n# 5. Predict on the test set\npreds = model.predict(X_test)\n\n# 6. Print classification report\nprint(classification_report(y_test, preds))\n\n              precision    recall  f1-score   support\n\n           0       1.00      1.00      1.00         8\n           1       0.91      1.00      0.95        10\n           2       1.00      0.92      0.96        12\n\n    accuracy                           0.97        30\n   macro avg       0.97      0.97      0.97        30\nweighted avg       0.97      0.97      0.97        30"
   },
   {
-    "objectID": "linearalgebra/vectors.html",
-    "href": "linearalgebra/vectors.html",
-    "title": "Geometric Interpretation",
+    "objectID": "linearalgebra/distance.html",
+    "href": "linearalgebra/distance.html",
+    "title": "Distance based Modeling",
     "section": "",
     "text": "Vectors have two common geometric interpretations:\n\nVectors as Points in Feature Space: In this interpretation, we consider vectors as points in a space with a fixed reference point called the origin.\nVectors as Displacement: In this interpretation, we consider vectors as displacements between points in space.\n\n\n\nGiven a vector, the first interpretation that we should give it is as a point in space.\nIn two or three dimensions, we can visualize these points by using the components of the vectors to define the location of the points in space compared to a fixed reference called the origin. This can be seen in the figure below.\n\n\n\n\nThis geometric point of view allows us to consider the problem on a more abstract level. No longer faced with some insurmountable seeming problem like classifying pictures as either cats or dogs, we can start considering tasks abstractly as collections of points in space and picturing the task as discovering how to separate two distinct clusters of points.\n\nimport pandas as pd \nfrom matplotlib import pyplot as plt\n\nplt.style.use('dark_background')\n\nplt.xlim(-3, 3)\nplt.ylim(-3, 3)\n\nvector1 = [1, 2]\nvector2 = [2, -1]\n\ndisplacement = 0.1\n\n# Plotting vector 1\nplt.scatter(x=vector1[0], y=vector1[1], color='blue');\nplt.text(x=vector1[0]+displacement, y=vector1[1], \\\n             s=f\"(%s, %s)\" % (vector1[0], vector1[1]), size=15);\n\n# Plotting vector 2\nplt.scatter(x=vector2[0], y=vector2[1], color='magenta');\nplt.text(x=vector2[0]+displacement, y=vector2[1], \\\n             s=f\"(%s, %s)\" % (vector2[0], vector2[1]), size=15);\n\n# Plotting the x and y axes\nplt.axhline(0, color='white');\nplt.axvline(0, color='white');\n\n# Plotting the legend\nplt.legend(['vector1', 'vector2'], loc='upper left');\n\n\n\n\n\n\n\n\n\n\n\nIn parallel, there is a second point of view that people often take of vectors: as directions in space. Not only can we think of the vector \\(\\textbf{v} = [3, 2]^{T}\\) as the location \\(3\\) units to the right and \\(2\\) units up from the origin, we can also think of it as the direction itself to take \\(3\\) steps to the right and \\(2\\) steps up. In this way, we consider all the vectors in figure below the same.\n\n\n\n\n\n\n\nplt.xlim(-3, 3)\nplt.ylim(-3, 3)\n\n# Plotting vector 1\nplt.quiver(0, 0, vector1[0], vector1[1], scale=1, scale_units='xy', angles='xy', color='blue')\nplt.text(x=vector1[0]+displacement, y=vector1[1], \\\n             s=f\"(%s, %s)\" % (vector1[0], vector1[1]), size=20);\n\n# Plotting vector 2\nplt.quiver(0, 0, vector2[0], vector2[1], scale=1, scale_units='xy', angles='xy', color='violet')\nplt.text(x=vector2[0]+displacement, y=vector2[1], \\\n             s=f\"(%s, %s)\" % (vector2[0], vector2[1]), size=20);\n\nplt.legend(['vector1', 'vector2'], loc='upper left');\n\n# Plotting the x and y axes\nplt.axhline(0, color='white');\nplt.axvline(0, color='white');\n\n\n\n\n\n\n\n\nOne of the benefits of this shift is that we can make visual sense of the act of vector addition. In particular, we follow the directions given by one vector, and then follow the directions given by the other, as seen below:\n\n\n\n\n\nVector subtraction has a similar interpretation. By considering the identity that \\(\\mathbf{u} = \\mathbf{v} + (\\mathbf{u} - \\mathbf{v})\\), we see that the vector \\(\\mathbf{u} - \\mathbf{v}\\) is the direction that takes us from the point \\(\\mathbf{v}\\) to the point \\(\\mathbf{u}\\).\n\nvector1 = pd.Series([1, 2])\nvector2 = pd.Series([2, -1])\n\nsum_vector = vector1 + vector2\n\nsum_vector\n\n0    3\n1    1\ndtype: int64\n\n\n\nvector1 = pd.Series([1, 2])\nvector2 = pd.Series([2, -1])\nsum = vector1 + vector2\n\nplt.xlim(-3, 3)\nplt.ylim(-3, 3)\n\n# Plotting vector 1\nplt.quiver(0, 0, vector1[0], vector1[1], scale=1, scale_units='xy', angles='xy', color='blue')\nplt.text(x=vector1[0]+displacement, y=vector1[1], \\\n             s=f\"(%s, %s)\" % (vector1[0], vector1[1]), size=20);\n\n# Plotting vector 2\nplt.quiver(vector1[0], vector1[1], vector2[0], vector2[1], scale=1, scale_units='xy', angles='xy', color='magenta')\nplt.text(x=vector2[0]+displacement, y=vector2[1], \\\n             s=f\"(%s, %s)\" % (vector2[0], vector2[1]), size=20);\n\n\nplt.quiver(0, 0, sum[0], sum[1], scale=1, scale_units='xy', angles='xy', color='lime')\nplt.text(x=sum[0]+displacement, y=sum[1], \\\n             s=f\"(%s, %s)\" % (sum[0], sum[1]), size=20);\n\nplt.legend(['vector1', 'vector2', 'sum'], loc='upper left');\n\n# Plotting the x and y axes\nplt.axhline(0, color='white');\nplt.axvline(0, color='white');",
     "crumbs": [
       "Home",
       "Data Science and Machine Learning",
-      "Geometric Interpretation"
+      "Distance based Modeling"
     ]
   },
   {
-    "objectID": "linearalgebra/vectors.html#geometry-of-vectors",
-    "href": "linearalgebra/vectors.html#geometry-of-vectors",
-    "title": "Geometric Interpretation",
+    "objectID": "linearalgebra/distance.html#geometry-of-vectors",
+    "href": "linearalgebra/distance.html#geometry-of-vectors",
+    "title": "Distance based Modeling",
     "section": "",
     "text": "Vectors have two common geometric interpretations:\n\nVectors as Points in Feature Space: In this interpretation, we consider vectors as points in a space with a fixed reference point called the origin.\nVectors as Displacement: In this interpretation, we consider vectors as displacements between points in space.\n\n\n\nGiven a vector, the first interpretation that we should give it is as a point in space.\nIn two or three dimensions, we can visualize these points by using the components of the vectors to define the location of the points in space compared to a fixed reference called the origin. This can be seen in the figure below.\n\n\n\n\nThis geometric point of view allows us to consider the problem on a more abstract level. No longer faced with some insurmountable seeming problem like classifying pictures as either cats or dogs, we can start considering tasks abstractly as collections of points in space and picturing the task as discovering how to separate two distinct clusters of points.\n\nimport pandas as pd \nfrom matplotlib import pyplot as plt\n\nplt.style.use('dark_background')\n\nplt.xlim(-3, 3)\nplt.ylim(-3, 3)\n\nvector1 = [1, 2]\nvector2 = [2, -1]\n\ndisplacement = 0.1\n\n# Plotting vector 1\nplt.scatter(x=vector1[0], y=vector1[1], color='blue');\nplt.text(x=vector1[0]+displacement, y=vector1[1], \\\n             s=f\"(%s, %s)\" % (vector1[0], vector1[1]), size=15);\n\n# Plotting vector 2\nplt.scatter(x=vector2[0], y=vector2[1], color='magenta');\nplt.text(x=vector2[0]+displacement, y=vector2[1], \\\n             s=f\"(%s, %s)\" % (vector2[0], vector2[1]), size=15);\n\n# Plotting the x and y axes\nplt.axhline(0, color='white');\nplt.axvline(0, color='white');\n\n# Plotting the legend\nplt.legend(['vector1', 'vector2'], loc='upper left');\n\n\n\n\n\n\n\n\n\n\n\nIn parallel, there is a second point of view that people often take of vectors: as directions in space. Not only can we think of the vector \\(\\textbf{v} = [3, 2]^{T}\\) as the location \\(3\\) units to the right and \\(2\\) units up from the origin, we can also think of it as the direction itself to take \\(3\\) steps to the right and \\(2\\) steps up. In this way, we consider all the vectors in figure below the same.\n\n\n\n\n\n\n\nplt.xlim(-3, 3)\nplt.ylim(-3, 3)\n\n# Plotting vector 1\nplt.quiver(0, 0, vector1[0], vector1[1], scale=1, scale_units='xy', angles='xy', color='blue')\nplt.text(x=vector1[0]+displacement, y=vector1[1], \\\n             s=f\"(%s, %s)\" % (vector1[0], vector1[1]), size=20);\n\n# Plotting vector 2\nplt.quiver(0, 0, vector2[0], vector2[1], scale=1, scale_units='xy', angles='xy', color='violet')\nplt.text(x=vector2[0]+displacement, y=vector2[1], \\\n             s=f\"(%s, %s)\" % (vector2[0], vector2[1]), size=20);\n\nplt.legend(['vector1', 'vector2'], loc='upper left');\n\n# Plotting the x and y axes\nplt.axhline(0, color='white');\nplt.axvline(0, color='white');\n\n\n\n\n\n\n\n\nOne of the benefits of this shift is that we can make visual sense of the act of vector addition. In particular, we follow the directions given by one vector, and then follow the directions given by the other, as seen below:\n\n\n\n\n\nVector subtraction has a similar interpretation. By considering the identity that \\(\\mathbf{u} = \\mathbf{v} + (\\mathbf{u} - \\mathbf{v})\\), we see that the vector \\(\\mathbf{u} - \\mathbf{v}\\) is the direction that takes us from the point \\(\\mathbf{v}\\) to the point \\(\\mathbf{u}\\).\n\nvector1 = pd.Series([1, 2])\nvector2 = pd.Series([2, -1])\n\nsum_vector = vector1 + vector2\n\nsum_vector\n\n0    3\n1    1\ndtype: int64\n\n\n\nvector1 = pd.Series([1, 2])\nvector2 = pd.Series([2, -1])\nsum = vector1 + vector2\n\nplt.xlim(-3, 3)\nplt.ylim(-3, 3)\n\n# Plotting vector 1\nplt.quiver(0, 0, vector1[0], vector1[1], scale=1, scale_units='xy', angles='xy', color='blue')\nplt.text(x=vector1[0]+displacement, y=vector1[1], \\\n             s=f\"(%s, %s)\" % (vector1[0], vector1[1]), size=20);\n\n# Plotting vector 2\nplt.quiver(vector1[0], vector1[1], vector2[0], vector2[1], scale=1, scale_units='xy', angles='xy', color='magenta')\nplt.text(x=vector2[0]+displacement, y=vector2[1], \\\n             s=f\"(%s, %s)\" % (vector2[0], vector2[1]), size=20);\n\n\nplt.quiver(0, 0, sum[0], sum[1], scale=1, scale_units='xy', angles='xy', color='lime')\nplt.text(x=sum[0]+displacement, y=sum[1], \\\n             s=f\"(%s, %s)\" % (sum[0], sum[1]), size=20);\n\nplt.legend(['vector1', 'vector2', 'sum'], loc='upper left');\n\n# Plotting the x and y axes\nplt.axhline(0, color='white');\nplt.axvline(0, color='white');",
     "crumbs": [
       "Home",
       "Data Science and Machine Learning",
-      "Geometric Interpretation"
+      "Distance based Modeling"
     ]
   },
   {
-    "objectID": "linearalgebra/vectors.html#norms",
-    "href": "linearalgebra/vectors.html#norms",
-    "title": "Geometric Interpretation",
+    "objectID": "linearalgebra/distance.html#norms",
+    "href": "linearalgebra/distance.html#norms",
+    "title": "Distance based Modeling",
     "section": "Norms",
     "text": "Norms\nSome of the most useful operators in linear algebra are norms. A norm is a function \\(\\| \\cdot \\|\\) that maps a vector to a scalar.\nInformally, the norm of a vector tells us magnitude or length of the vector.\nFor instance, the \\(l_2\\) norm measures the euclidean length of a vector. That is, \\(l_2\\) norm measures the euclidean distance of a vector from the origin \\((0, 0)\\).\n\n \\[ \\|\\mathbf{x}\\|_2 = \\sqrt{\\sum_{i=1}^n x_i^2} \\]\n\nx = pd.Series(vector1)\nl2_norm = (x**2).sum()**(1/2)\nl2_norm\n\n2.23606797749979\n\n\nThe \\(l_1\\) norm is also common and the associated measure is called the Manhattan distance. By definition, the \\(l_1\\) norm sums the absolute values of a vector’s elements:\n\\[ \\|\\mathbf{x}\\|_1 = \\sum_{i=1}^n \\left|x_i \\right| \\]\nCompared to the \\(l_2\\) norm, it is less sensitive to outliers. To compute the \\(l_1\\) norm, we compose the absolute value with the sum operation.\n\nl1_norm = x.abs().sum()\nl1_norm\n\n6\n\n\nBoth the \\(l_1\\) and \\(l_2\\) norms are special cases of the more general norms:\n\\[ \\|\\mathbf{x}\\|_p = \\left(\\sum_{i=1}^n \\left|x_i \\right|^p \\right)^{1/p}. \\]\n\nvec = pd.Series([1, 2, 3, 4, 5, 6, 7, 8, 9])\n\np = 3\n\nlp_norm = ((abs(vec))**p).sum()**(1/p)\n\nlp_norm\n\n12.651489979526238",
     "crumbs": [
       "Home",
       "Data Science and Machine Learning",
-      "Geometric Interpretation"
+      "Distance based Modeling"
     ]
   },
   {
-    "objectID": "linearalgebra/vectors.html#dot-product",
-    "href": "linearalgebra/vectors.html#dot-product",
-    "title": "Geometric Interpretation",
+    "objectID": "linearalgebra/distance.html#dot-product",
+    "href": "linearalgebra/distance.html#dot-product",
+    "title": "Distance based Modeling",
     "section": "Dot Product",
     "text": "Dot Product\nOne of the most fundamental operations in linear algebra (and all of data science and machine learning) is the dot product.\nGiven two vectors \\(\\textbf{x}, \\textbf{y} \\in \\mathbb{R}^d\\), their dot product \\(\\textbf{x}^{\\top} \\textbf{y}\\) (also known as inner product \\(\\langle \\textbf{x}, \\textbf{y} \\rangle\\)) is a sum over the products of the elements at the same position:\n\\[\\textbf{x}^\\top \\textbf{y} = \\sum_{i=1}^{d} x_i y_i\\]\n\nimport pandas as pd\n\nx = pd.Series([1, 2, 3])\ny = pd.Series([4, 5, 6])\n\nx.dot(y) # 1*4 + 2*5 + 3*6 \n\n32\n\n\nEquivalently, we can calculate the dot product of two vectors by performing an elementwise multiplication followed by a sum:\n\nsum(x * y)\n\n32\n\n\nDot products are useful in a wide range of contexts. For example, given some set of values, denoted by a vector $ ^{n} $ , and a set of weights, denoted by \\(\\mathbf{x} \\in \\mathbb{R}^{n}\\), the weighted sum of the values in \\(\\mathbf{x}\\) according to the weights \\(\\mathbf{w}\\) could be expressed as the dot product \\(\\mathbf{x}^\\top \\mathbf{w}\\). When the weights are nonnegative and sum to \\(1\\), i.e., \\((\\sum_{i=1}^n w_i = 1)\\), the dot product expresses a weighted average. After normalizing two vectors to have unit length, the dot products express the cosine of the angle between them. Later in this section, we will formally introduce this notion of length.",
     "crumbs": [
       "Home",
       "Data Science and Machine Learning",
-      "Geometric Interpretation"
+      "Distance based Modeling"
     ]
   },
   {
-    "objectID": "linearalgebra/vectors.html#dot-products-and-angles",
-    "href": "linearalgebra/vectors.html#dot-products-and-angles",
-    "title": "Geometric Interpretation",
+    "objectID": "linearalgebra/distance.html#dot-products-and-angles",
+    "href": "linearalgebra/distance.html#dot-products-and-angles",
+    "title": "Distance based Modeling",
     "section": "Dot Products and Angles",
     "text": "Dot Products and Angles\nIf we take two column vectors \\(\\mathbf{u}\\) and \\(\\mathbf{v}\\), we can form their dot product by computing:\n\\[ \\mathbf{u}^\\top\\mathbf{v} = \\sum_i u_i\\cdot v_i \\]\nBecause the equation above is symmetric, we will mirror the notation of classical multiplication and write\n\\[ \\mathbf{u}\\cdot\\mathbf{v} = \\mathbf{u}^\\top\\mathbf{v} = \\mathbf{v}^\\top\\mathbf{u}, \\]\nto highlight the fact that exchanging the order of the vectors will yield the same answer.\nThe dot product also admits a geometric interpretation: dot product it is closely related to the angle between two vectors.\n\n\n\nTo start, let’s consider two specific vectors:\n\\[ \\mathbf{v} = (r,0) \\; \\textrm{and} \\; \\mathbf{w} = (s\\cos(\\theta), s \\sin(\\theta)) \\]\nThe vector \\(\\mathbf{v}\\) is length \\(r\\) and runs parallel to the \\(x\\)-axis, and the vector \\(\\mathbf{w}\\) is of length \\(s\\) and at angle \\(\\theta\\) with the \\(x\\)-axis.\nIf we compute the dot product of these two vectors, we see that\n\\[ \\mathbf{v}\\cdot\\mathbf{w} = rs\\cos(\\theta) = \\|\\mathbf{v}\\|\\|\\mathbf{w}\\|\\cos(\\theta) \\]\nWith some simple algebraic manipulation, we can rearrange terms to obtain the equation for any two vectors \\(\\mathbf{v}\\) and \\(\\mathbf{w}\\):\n\\[ \\theta = \\arccos\\left(\\frac{\\mathbf{v}\\cdot\\mathbf{w}}{\\|\\mathbf{v}\\|\\|\\mathbf{w}\\|}\\right) \\]\nWe will not use it right now, but it is useful to know that we will refer to vectors for which the angle is \\(\\pi/2\\)(or equivalently \\(90^{\\circ}\\)) as being orthogonal.\nBy examining the equation above, we see that this happens when \\(\\theta = \\pi/2\\), which is the same thing as \\(cos(\\theta) = 0\\).\nThe only way this can happen is if the dot product itself is zero, and two vectors are orthogonal if and only if \\(\\mathbf{v}\\cdot\\mathbf{w} = 0\\).\nThis will prove to be a helpful formula when understanding objects geometrically.\nIt is reasonable to ask: why is computing the angle useful? Consider the problem of classifying text data. We might want the topic or sentiment in the text to not change if we write twice as long of document that says the same thing.\nFor some encoding (such as counting the number of occurrences of words in some vocabulary), this corresponds to a doubling of the vector encoding the document, so again we can use the angle.\n\nv = pd.Series([0, 2])\nw = pd.Series([2, 0])\n\nv.dot(w)\n\n0\n\n\n\nfrom math import acos\n\ndef l2_norm(vec):\n    return (vec**2).sum()**(1/2)\n\nv = pd.Series([0, 2])\nw = pd.Series([2, 0])\n\nv.dot(w) / (l2_norm(v) * l2_norm(w))\n\n0.0\n\n\n\nfrom math import acos, pi\n\ntheta = acos(v.dot(w) / (l2_norm(v) * l2_norm(w)))\n\ntheta == pi / 2\n\nTrue",
     "crumbs": [
       "Home",
       "Data Science and Machine Learning",
-      "Geometric Interpretation"
+      "Distance based Modeling"
     ]
   },
   {
-    "objectID": "linearalgebra/vectors.html#cosine-similaritydistance",
-    "href": "linearalgebra/vectors.html#cosine-similaritydistance",
-    "title": "Geometric Interpretation",
+    "objectID": "linearalgebra/distance.html#cosine-similaritydistance",
+    "href": "linearalgebra/distance.html#cosine-similaritydistance",
+    "title": "Distance based Modeling",
     "section": "Cosine Similarity/Distance",
     "text": "Cosine Similarity/Distance\nIn ML contexts where the angle is employed to measure the closeness of two vectors, practitioners adopt the term cosine similarity to refer to the portion\n\\[ \\cos(\\theta) = \\frac{\\mathbf{v}\\cdot\\mathbf{w}}{\\|\\mathbf{v}\\|\\|\\mathbf{w}\\|}. \\]\nThe cosine takes a maximum value of \\(1\\) when the two vectors point in the same direction, a minimum value of \\(-1\\) when they point in opposite directions, and a value of \\(0\\) when the two vectors are orthogonal. \nNote that cosine similarity can be converted to cosine distance by subtracting it from \\(1\\) and dividing by 2.\n\\[ \\text{Cosine Distance} = \\frac{1 - \\text{Cosine Similarity}}{2}\\]\nwhere \\(\\text{Cosine Similarity} = \\frac{\\mathbf{v}\\cdot\\mathbf{w}}{\\|\\mathbf{v}\\|\\|\\mathbf{w}\\|}\\)\nCosine distance is a very useful alternative to Euclidean distance for data where the absolute magnitude of the features is not particularly meaningful, which is a very common scenario in practice.\n\nfrom random import uniform\nimport pandas as pd\nimport seaborn as sns\n\ndf = pd.DataFrame()\ndf['cosine similarity'] = pd.Series([uniform(-1, 1) for i in range(100)])\ndf['cosine distance']   = (1 - df['cosine similarity'])/2\nax = sns.scatterplot(data=df, x='cosine similarity', y='cosine distance');\nax.set(title='Cosine Similarity vs. Cosine Distance')\nplt.grid()\n\n\n\n\n\n\n\n\n\ndef l2_norm(vec):\n    return (vec**2).sum()**(1/2)\n\nplt.axhline(0, color='black');\nplt.axvline(0, color='black');\n\nv = pd.Series([1.2, 1.2])\nw = pd.Series([2, 2.5])\n\nplt.quiver(0, 0, v[0], v[1], scale=1, scale_units='xy', angles='xy', color='navy')\nplt.quiver(0, 0, w[0], w[1], scale=1, scale_units='xy', angles='xy', color='magenta')\n\nplt.xlim(-3, 3)\nplt.ylim(-3, 3)\n\ncosine_similarity = v.dot(w) / (l2_norm(v) * l2_norm(w))\ncosine_similarity = round(cosine_similarity, 2)\n\ncosine_distance = (1 - cosine_similarity) / 2\ncosine_distance = round(cosine_distance, 2)\n\nplt.title(\"θ ≈ 0° (or 0 radians)\\n\"+\\\n          \"Cosine Similarity: %s \\nCosine Distance: %s\" % \\\n          (cosine_similarity, cosine_distance), size=15);\n\n\n\n\n\n\n\n\n\ncosine_similarity\n\n0.0\n\n\n\n\nplt.axhline(0, color='black');\nplt.axvline(0, color='black');\n\nv = pd.Series([2, 2])\nw = pd.Series([1, -1])\n\nplt.quiver(0, 0, v[0], v[1], scale=1, scale_units='xy', angles='xy', color='navy')\nplt.quiver(0, 0, w[0], w[1], scale=1, scale_units='xy', angles='xy', color='magenta')\n\nplt.xlim(-3, 3)\nplt.ylim(-3, 3)\n\ncosine_similarity = v.dot(w) / (l2_norm(v) * l2_norm(w))\ncosine_similarity = round(cosine_similarity, 2)\n\n\ncosine_distance = (1 - cosine_similarity) / 2\ncosine_distance = round(cosine_distance, 2)\n\nplt.title(\"θ = 90° (or π / 2 radians) \\nCosine Similarity: %s \\nCosine Distance: %s\" % (cosine_similarity, cosine_distance));\n\n\n\n\n\n\n\n\nNote that cosine similarity can be negative, which means that the angle is greater than \\(90^{\\circ}\\), i.e., the vectors point in opposite directions.\n\nv = pd.Series([2, 2])\nw = pd.Series([-1, -1])\n\nplt.quiver(0, 0, v[0], v[1], scale=1, scale_units='xy', angles='xy', color='navy')\nplt.quiver(0, 0, w[0], w[1], scale=1, scale_units='xy', angles='xy', color='magenta')\n\nplt.xlim(-3, 3)\nplt.ylim(-3, 3)\n\nplt.axhline(0, color='black');\nplt.axvline(0, color='black');\n\ncosine_similarity = v.dot(w) / (l2_norm(v) * l2_norm(w))\n\ncosine_similarity = round(cosine_similarity, 2)\n\ncosine_distance = (1 - cosine_similarity) / 2\ncosine_distance = round(cosine_distance, 2)\n\nplt.title(\"θ = 180° (or π radians)\\n\"+\\\n          \"Cosine Similarity: %s \\nCosine Distance: %s\" % \\\n          (cosine_similarity, cosine_distance), size=15);",
     "crumbs": [
       "Home",
       "Data Science and Machine Learning",
-      "Geometric Interpretation"
+      "Distance based Modeling"
     ]
+  },
+  {
+    "objectID": "linearalgebra/distance.html#matrices",
+    "href": "linearalgebra/distance.html#matrices",
+    "title": "Distance based Modeling",
+    "section": "Matrices",
+    "text": "Matrices\nWe denote matrices by bold capital letters (e.g., \\(X\\), \\(Y\\), and \\(Z\\)), and represent them in code by pd.DataFrame. The expression \\(\\mathbf{A} \\in \\mathbb{R}^{m \\times n}\\) indicates that a matrix \\(\\textbf{A}\\) contains \\(m \\times n\\) real-valued scalars, arranged as \\(m\\) rows and \\(n\\) columns. When \\(m = n\\), we say that a matrix is square. Visually, we can illustrate any matrix as a table. To refer to an individual element, we subscript both the row and column indices, e.g., \\(a_{ij}\\) is the value that belongs to \\(\\mathbf{A}\\)’s \\(i^{th}\\) row and \\(j^{th}\\) column:\n\\[ \\begin{split}\\mathbf{A}=\\begin{bmatrix} a_{11} & a_{12} & \\cdots & a_{1n} \\\\ a_{21} & a_{22} & \\cdots & a_{2n} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ a_{m1} & a_{m2} & \\cdots & a_{mn} \\\\ \\end{bmatrix}.\\end{split} \\]\n\nimport pandas as pd \n\ndf = pd.DataFrame({'a': [1, 20, 3, 40], 'b': [50, 6, 70, 8]})\n\ndf.index = ['v1', 'v2', 'v3', 'v4']\n\ndf\n\n\n\n\n\n\n\n\na\nb\n\n\n\n\nv1\n1\n50\n\n\nv2\n20\n6\n\n\nv3\n3\n70\n\n\nv4\n40\n8",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Distance based Modeling"
+    ]
+  },
+  {
+    "objectID": "linearalgebra/distance.html#geometry-of-matrices",
+    "href": "linearalgebra/distance.html#geometry-of-matrices",
+    "title": "Distance based Modeling",
+    "section": "Geometry of Matrices",
+    "text": "Geometry of Matrices\nAn (n, d) matrix can be interpreted as a collection of n vectors in d-dimensional space.\n\nimport seaborn as sns\nfrom matplotlib import pyplot as plt\n\nplt.style.use('dark_background')\n\nax = sns.scatterplot(x='a', y='b', data=df, s=100);\nax.set(title='Scatterplot of a vs b', xlabel='a', ylabel='b');\n\ndef annotate(row):\n    plt.text(x=row['a']+0.05, y=row['b'], s=row.name, size=20);\n\ndf.apply(annotate, axis=1);",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Distance based Modeling"
+    ]
+  },
+  {
+    "objectID": "linearalgebra/distance.html#transpose",
+    "href": "linearalgebra/distance.html#transpose",
+    "title": "Distance based Modeling",
+    "section": "Transpose",
+    "text": "Transpose\nSometimes we want to flip the axes. When we exchange a matrix’s rows and columns, the result is called its transpose. Formally, we signify a matrix’s \\(\\textbf{A}\\) transpose by \\(\\mathbf{A}^\\top\\) and if \\(\\mathbf{B} = \\mathbf{A}^\\top\\), then \\(b_{ij} = a_{ij}\\) for all \\(i\\) and \\(j\\). Thus, the transpose of an \\(m \\times n\\) matrix is an \\(n \\times m\\) matrix:\n\\[ \\begin{split}\\mathbf{A}^\\top =\n\\begin{bmatrix}\n    a_{11} & a_{21} & \\dots  & a_{m1} \\\\\n    a_{12} & a_{22} & \\dots  & a_{m2} \\\\\n    \\vdots & \\vdots & \\ddots  & \\vdots \\\\\n    a_{1n} & a_{2n} & \\dots  & a_{mn}\n\\end{bmatrix}.\\end{split} \\]\n\nIn pandas, you can transpose a DataFrame with the .T attribute:\n\ndf.T\n\n\n\n\n\n\n\n\nv1\nv2\nv3\nv4\n\n\n\n\na\n1\n20\n3\n40\n\n\nb\n50\n6\n70\n8\n\n\n\n\n\n\n\nNote that columns of original dataframe df are the same as index of df.T\n\ndf.columns == df.T.index\n\narray([ True,  True])\n\n\n\ndf.T\n\n\n\n\n\n\n\n\nv1\nv2\nv3\nv4\n\n\n\n\na\n1\n20\n3\n40\n\n\nb\n50\n6\n70\n8",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Distance based Modeling"
+    ]
+  },
+  {
+    "objectID": "linearalgebra/distance.html#matrix-vector-products",
+    "href": "linearalgebra/distance.html#matrix-vector-products",
+    "title": "Distance based Modeling",
+    "section": "Matrix-Vector Products",
+    "text": "Matrix-Vector Products\nNow that we know how to calculate dot products, we can begin to understand the product between an \\(m \\times n\\) matrix and an \\(n\\)-dimensional vector \\(\\mathbf{x}\\).\nTo start off, we visualize our matrix in terms of its row vectors\n\\[\n\\begin{split}\\mathbf{A}=\n\\begin{bmatrix}\n\\mathbf{a}^\\top_{1} \\\\\n\\mathbf{a}^\\top_{2} \\\\\n\\vdots \\\\\n\\mathbf{a}^\\top_m \\\\\n\\end{bmatrix},\\end{split}\n\\]\nwhere each \\(\\mathbf{a}^\\top_{i} \\in \\mathbb{R}^n\\) is a row vector representing the \\(i^\\textrm{th}\\) row of the matrix \\(\\mathbf{A}\\).\nThe matrix–vector product \\(\\mathbf{A}\\mathbf{x}\\) is simply a column vector of length \\(m\\) , whose \\(i^{th}\\) element is the dot product \\(\\mathbf{a}^\\top_i \\mathbf{x}\\)\n\\[\n\\begin{split}\\mathbf{A}\\mathbf{x}\n= \\begin{bmatrix}\n\\mathbf{a}^\\top_{1} \\\\\n\\mathbf{a}^\\top_{2} \\\\\n\\vdots \\\\\n\\mathbf{a}^\\top_m \\\\\n\\end{bmatrix}\\mathbf{x}\n= \\begin{bmatrix}\n\\mathbf{a}^\\top_{1} \\mathbf{x}  \\\\\n\\mathbf{a}^\\top_{2} \\mathbf{x} \\\\\n\\vdots\\\\\n\\mathbf{a}^\\top_{m} \\mathbf{x}\\\\\n\\end{bmatrix}.\\end{split}\n\\]\nWe can think of multiplication with a matrix \\(\\mathbf{A}\\in \\mathbb{R}^{m \\times n}\\) as a transformation that projects vectors from \\(\\mathbb{R}^{n}\\) to \\(\\mathbb{R}^{m}\\).\nThese transformations are remarkably useful. For example, we can represent rotations as multiplications by certain square matrices. Matrix–vector products also describe the key calculation involved in computing the outputs of each layer in a neural network given the outputs from the previous layer.\n\nFinding similar vectors\nNote that, given a vector \\(\\mathbf{v}\\), vector-matrix products can also be used to compute the similarity of \\(\\mathbf{v}\\) and each row \\(\\mathbf{a}^\\top_i\\) of matrix \\(\\mathbf{A}\\). This is because the matrix-vector product \\(\\mathbf{A}\\mathbf{v}\\) will contain the dot products of \\(\\mathbf{v}\\) and each row in \\(\\mathbf{A}\\).\nThere is one thing to be careful about: recall that the formula for cosine similarity is:\n\\[\\text{cos}(\\theta) = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{\\|\\mathbf{a}\\| \\|\\mathbf{b}\\|}\\]\nThe dot product (numerator, on the right hand side) is equal to the cosine of the angle between the two vectors when the vectors are normalized (i.e. each divided by their norms).\nThe example below shows how to compute the cosine similarity between a vector \\(\\mathbf{v}\\) and each row of matrix \\(\\mathbf{A}\\).\n\nimport pandas as pd\ndata = pd.read_csv('https://raw.githubusercontent.com/fahadsultan/csc272/main/data/chat_dataset.csv')\n\n\n# creating bow representation\nvocab = (' '.join(data['message'].values)).lower().split()\nbow = pd.DataFrame(columns=vocab)\nfor word in vocab: \n    bow[word] = data['message'].apply(lambda msg: msg.count(word))\n\n\n# l2 norm of a vector\ndef l2_norm(vec):\n    return (sum(vec**2))**(1/2)\n\n# bow where each row is a unit vectors i.e. ||row|| = 1\nbow_unit = bow.apply(lambda row: row/l2_norm(row), axis=1)\n\n\n# random message : I don't have an opinion on this\nmsg = bow_unit.iloc[20] \n\n# cosine similarity of first message with all other messages\nmsg_sim = bow_unit.dot(msg.T)\nmsg_sim.index = data['message']\n\nmsg_sim.sort_values(ascending=False)\n\nmessage\nI don't have an opinion on this           1.000000\nI don't really have an opinion on this    0.984003\nI have no strong opinion about this       0.971575\nI have no strong opinions about this      0.971226\nI have no strong opinion on this          0.969768\n                                            ...   \nI'm not sure what to do 😕                 0.204587\nI'm not sure what to do next 🤷‍♂️         0.201635\nI'm not sure what to do next 🤔            0.200593\nThe food was not good                     0.200295\nThe food was not very good                0.197220\nLength: 584, dtype: float64",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Distance based Modeling"
+    ]
+  },
+  {
+    "objectID": "linearalgebra/distance.html#matrix-matrix-multiplication",
+    "href": "linearalgebra/distance.html#matrix-matrix-multiplication",
+    "title": "Distance based Modeling",
+    "section": "Matrix-Matrix Multiplication",
+    "text": "Matrix-Matrix Multiplication\nOnce you have gotten the hang of dot products and matrix–vector products, then matrix–matrix multiplication should be straightforward.\nSay that we have two matrices \\(\\mathbf{A} \\in \\mathbb{R}^{n \\times k}\\) and \\(\\mathbf{B} \\in \\mathbb{R}^{k \\times m}\\):\n\\[\n\\begin{split}\\mathbf{A}=\\begin{bmatrix}\na_{11} & a_{12} & \\cdots & a_{1k} \\\\\na_{21} & a_{22} & \\cdots & a_{2k} \\\\\n\\vdots & \\vdots & \\ddots & \\vdots \\\\\na_{n1} & a_{n2} & \\cdots & a_{nk} \\\\\n\\end{bmatrix},\\quad\n\\mathbf{B}=\\begin{bmatrix}\nb_{11} & b_{12} & \\cdots & b_{1m} \\\\\nb_{21} & b_{22} & \\cdots & b_{2m} \\\\\n\\vdots & \\vdots & \\ddots & \\vdots \\\\\nb_{k1} & b_{k2} & \\cdots & b_{km} \\\\\n\\end{bmatrix}.\\end{split}\n\\]\nLet \\(\\mathbf{a}^\\top_{i} \\in \\mathbb{R}^k\\) denote the row vector representing the \\(i^\\textrm{th}\\) row of the matrix \\(\\mathbf{A}\\) and let \\(\\mathbf{b}_{j} \\in \\mathbb{R}^k\\) denote the column vector from the \\(j^\\textrm{th}\\) column of the matrix \\(\\mathbf{B}\\) :\n\\[\n\\begin{split}\\mathbf{A}=\n\\begin{bmatrix}\n\\mathbf{a}^\\top_{1} \\\\\n\\mathbf{a}^\\top_{2} \\\\\n\\vdots \\\\\n\\mathbf{a}^\\top_n \\\\\n\\end{bmatrix},\n\\quad \\mathbf{B}=\\begin{bmatrix}\n\\mathbf{b}_{1} & \\mathbf{b}_{2} & \\cdots & \\mathbf{b}_{m} \\\\\n\\end{bmatrix}.\\end{split}\n\\]\nTo form the matrix product \\(\\mathbf{C} \\in \\mathbb{R}^{n \\times m}\\) , we simply compute each element \\(c_{ij}\\) as the dot product between the \\(i^{\\textrm{th}}\\) row of \\(\\mathbf{A}\\) and the \\(i^{\\textrm{th}}\\) column of \\(\\mathbf{B}\\) , i.e., \\(\\mathbf{a}^\\top_i \\mathbf{b}_j\\) :\n\\[\n\\begin{split}\\mathbf{C} = \\mathbf{AB} = \\begin{bmatrix}\n\\mathbf{a}^\\top_{1} \\\\\n\\mathbf{a}^\\top_{2} \\\\\n\\vdots \\\\\n\\mathbf{a}^\\top_n \\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\mathbf{b}_{1} & \\mathbf{b}_{2} & \\cdots & \\mathbf{b}_{m} \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n\\mathbf{a}^\\top_{1} \\mathbf{b}_1 & \\mathbf{a}^\\top_{1}\\mathbf{b}_2& \\cdots & \\mathbf{a}^\\top_{1} \\mathbf{b}_m \\\\\n\\mathbf{a}^\\top_{2}\\mathbf{b}_1 & \\mathbf{a}^\\top_{2} \\mathbf{b}_2 & \\cdots & \\mathbf{a}^\\top_{2} \\mathbf{b}_m \\\\\n\\vdots & \\vdots & \\ddots &\\vdots\\\\\n\\mathbf{a}^\\top_{n} \\mathbf{b}_1 & \\mathbf{a}^\\top_{n}\\mathbf{b}_2& \\cdots& \\mathbf{a}^\\top_{n} \\mathbf{b}_m\n\\end{bmatrix}.\\end{split}\n\\]\nWe can think of the matrix–matrix multiplication \\(\\mathbf{AB}\\) as performing \\(m\\) matrix–vector products or \\(m \\times n\\) dot products and stitching the results together to form an \\(m \\times n\\) matrix. In the following snippet, we perform matrix multiplication on A and B. Here, A is a matrix with two rows and three columns, and B is a matrix with three rows and four columns. After multiplication, we obtain a matrix with two rows and four columns.\n\nComputing similarity / distance matrix\nNote that, given two matrices \\(\\mathbf{A}\\) and \\(\\mathbf{B}\\), matrix-matrix products can also be used to compute the similarity between each row \\(\\mathbf{a}^\\top_i\\) of matrix \\(\\mathbf{A}\\) and each row \\(\\mathbf{b}^\\top_j\\) of matrix \\(\\mathbf{B}\\). This is because the matrix-matrix product \\(\\mathbf{A}\\mathbf{B}\\) will contain the dot products of each pair of rows in \\(\\mathbf{A}\\) and \\(\\mathbf{B}\\).\n\nsimilarity_matrix = bow_unit.dot(bow_unit.T)\n\nsimilarity_matrix.shape\n\n(584, 584)\n\n\n\nsimilarity_matrix.head()\n\n\n\n\n\n\n\n\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n...\n574\n575\n576\n577\n578\n579\n580\n581\n582\n583\n\n\n\n\n0\n1.000000\n0.568191\n0.453216\n0.565809\n0.612787\n0.608156\n0.377769\n0.631309\n0.793969\n0.642410\n...\n0.516106\n0.612624\n0.660911\n0.490580\n0.845518\n0.573549\n0.648564\n0.629598\n0.594468\n0.570452\n\n\n1\n0.568191\n1.000000\n0.508206\n0.928580\n0.687137\n0.681944\n0.423604\n0.707906\n0.551139\n0.720354\n...\n0.573755\n0.686954\n0.741100\n0.546166\n0.801864\n0.643139\n0.721001\n0.705988\n0.652357\n0.639666\n\n\n2\n0.453216\n0.508206\n1.000000\n0.506075\n0.548093\n0.707857\n0.778316\n0.621438\n0.538883\n0.648861\n...\n0.457088\n0.547948\n0.650512\n0.443105\n0.593732\n0.512998\n0.574392\n0.605515\n0.520351\n0.609064\n\n\n3\n0.565809\n0.928580\n0.506075\n1.000000\n0.685614\n0.679085\n0.421828\n0.704938\n0.548828\n0.717334\n...\n0.571349\n0.684074\n0.737993\n0.543876\n0.798502\n0.640442\n0.717978\n0.703027\n0.649622\n0.638039\n\n\n4\n0.612787\n0.687137\n0.548093\n0.685614\n1.000000\n0.735468\n0.273748\n0.559585\n0.714100\n0.599091\n...\n0.926494\n0.825530\n0.806139\n0.933257\n0.802775\n0.945544\n0.931874\n0.913601\n0.928473\n0.690556\n\n\n\n\n5 rows × 584 columns\n\n\n\n\nfrom matplotlib import pyplot as plt\nplt.imshow(similarity_matrix, cmap='Greens')\nplt.colorbar();\nplt.title(\"Similarity Matrix: Each cell contains cosine \\nsimilarity between two messages\");\nplt.xlabel(\"Message Index\");\nplt.ylabel(\"Message Index\");\n\n\n\n\n\n\n\n\nNote how 1. the similarity matrix is symmetric, i.e. \\(sim_{ij} = sim_{ji}\\) and 2. the diagonal elements are all 1, i.e. \\(sim_{ii} = 1\\).\n\ndistance_matrix = 1 - bow_unit.dot(bow_unit.T)\n\nfrom matplotlib import pyplot as plt\nplt.imshow(distance_matrix, cmap='Reds')\nplt.colorbar();\nplt.title(\"Distance Matrix: Each cell contains cosine \\ndistance between two messages\");\nplt.xlabel(\"Message Index\");\nplt.ylabel(\"Message Index\");",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Distance based Modeling"
+    ]
+  },
+  {
+    "objectID": "linearalgebra/distance.html#pseudocode",
+    "href": "linearalgebra/distance.html#pseudocode",
+    "title": "Distance based Modeling",
+    "section": "Pseudocode",
+    "text": "Pseudocode\nThe pseudocode for the nearest neighbor algorithm is as follows:\n\nFor each test data point:\n\nCalculate the distance between the test data point and all training data points.\nSort the distances in ascending order.\nSelect the nearest data points.\nDetermine the class of the nearest data points.\nAssign the test data point to the nearest neighbor class.",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Distance based Modeling"
+    ]
+  },
+  {
+    "objectID": "linearalgebra/distance.html#k-nn-algorithm",
+    "href": "linearalgebra/distance.html#k-nn-algorithm",
+    "title": "Distance based Modeling",
+    "section": "k-NN Algorithm",
+    "text": "k-NN Algorithm\nThe k-NN algorithm is an extension of the nearest neighbor algorithm. Instead of returning the most similar data point, the algorithm returns the k most similar data points. The class of the test data is determined by the majority class of the k most similar data points.\nFor example, in the figure below, the test sample (green dot) should be classified either to blue squares or to red triangles. If k = 3 (solid line circle) it is assigned to the red triangles because there are 2 triangles and only 1 square inside the inner circle. If k = 5 (dashed line circle) it is assigned to the blue squares (3 squares vs. 2 triangles inside the outer circle).\n\n\n\n\n\nThe k-NN algorithm is more robust than the nearest neighbor algorithm, as it reduces the noise in the data. However, it is computationally more expensive, as it requires storing and comparing more data points.\n\n\n\nThe k-NN algorithm is a simple and effective algorithm for classification and regression tasks. It is widely used in various fields, such as pattern recognition, image processing, and data mining.",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Distance based Modeling"
+    ]
+  },
+  {
+    "objectID": "linearalgebra/nearestneighbor.html",
+    "href": "linearalgebra/nearestneighbor.html",
+    "title": "Nearest Neighbor",
+    "section": "",
+    "text": "Nearest Neighbor is a simple algorithm that stores all available cases and classifies new cases based on a similarity measure (e.g., distance functions). It is a type of instance-based learning, or lazy learning, where the function is only approximated locally and all computation is deferred until function evaluation.\n# import libraries\nfrom matplotlib import pyplot as plt \nimport pandas as pd\n\nplt.style.use('dark_background')\n\nfig, ax = plt.subplots(figsize=(8, 5))\n\nurl  = 'https://raw.githubusercontent.com/fahadsultan/csc343/refs/heads/main/data/uscities.csv'\ndata = pd.read_csv(url)\nus_mainland = data[(data['state_id'] != 'HI') & \\\n                   (data['state_id'] != 'AK') & \\\n                   (data['state_id'] != 'PR')]\n\nsc = us_mainland[us_mainland['state_id'] == 'SC']\nga = us_mainland[us_mainland['state_id'] == 'GA']\n\nunknown1 = (33.04366363086289, -79.34728514760124)\nunknown2 = (33.69266640894652, -82.22939618795743)\nunknown3 = (32.9806084015696,  -81.46763167425789)\nunknown4 = (34.84821943641973, -84.2073074091929)\n\nax.scatter(sc['lng'], sc['lat'], label='South Carolina', color='red',  marker='x');\nax.scatter(ga['lng'], ga['lat'], label='Georgia',        color='blue', marker='^');\nax.scatter(unknown1[1], unknown1[0], s=40, label='Unknowns', color='lightgreen');\nax.scatter(unknown2[1], unknown2[0], s=40, color='lightgreen');\nax.scatter(unknown3[1], unknown3[0], s=40, color='lightgreen');\nax.scatter(unknown4[1], unknown4[0], s=40, color='lightgreen');\nax.legend(fontsize=12);\nThe algorithm is composed of two stages:\nThe algorithm is based on the assumption that the data points that are close to each other are similar. The similarity is calculated using a distance function, such as Euclidean distance, Manhattan distance, Minkowski distance, etc.\nThe algorithm is simple and easy to implement, but it is computationally expensive, especially when the training data is large. It is also sensitive to the curse of dimensionality, which means that the algorithm’s performance deteriorates as the number of dimensions increases."
+  },
+  {
+    "objectID": "linearalgebra/nearestneighbor.html#pseudocode",
+    "href": "linearalgebra/nearestneighbor.html#pseudocode",
+    "title": "Nearest Neighbor",
+    "section": "Pseudocode",
+    "text": "Pseudocode\nThe pseudocode for the nearest neighbor algorithm is as follows:\n\nFor each test data point:\n\nCalculate the distance between the test data point and all training data points.\nSort the distances in ascending order.\nSelect the nearest data points.\nDetermine the class of the nearest data points.\nAssign the test data point to the nearest neighbor class."
+  },
+  {
+    "objectID": "linearalgebra/nearestneighbor.html#k-nn-algorithm",
+    "href": "linearalgebra/nearestneighbor.html#k-nn-algorithm",
+    "title": "Nearest Neighbor",
+    "section": "k-NN Algorithm",
+    "text": "k-NN Algorithm\nThe k-NN algorithm is an extension of the nearest neighbor algorithm. Instead of returning the most similar data point, the algorithm returns the k most similar data points. The class of the test data is determined by the majority class of the k most similar data points.\nFor example, in the figure below, the test sample (green dot) should be classified either to blue squares or to red triangles. If k = 3 (solid line circle) it is assigned to the red triangles because there are 2 triangles and only 1 square inside the inner circle. If k = 5 (dashed line circle) it is assigned to the blue squares (3 squares vs. 2 triangles inside the outer circle).\n\n\n\n\n\nThe k-NN algorithm is more robust than the nearest neighbor algorithm, as it reduces the noise in the data. However, it is computationally more expensive, as it requires storing and comparing more data points.\n\n\n\nThe k-NN algorithm is a simple and effective algorithm for classification and regression tasks. It is widely used in various fields, such as pattern recognition, image processing, and data mining."
   },
   {
     "objectID": "plotting/anatomy.html",
@@ -1473,96 +1578,56 @@
     "href": "beyond/gc.html",
     "title": "Garbage Collection",
     "section": "",
-    "text": "Garbage collection is a form of automatic memory management. The garbage collector, or just collector, attempts to reclaim garbage, or memory occupied by objects that are no longer in use by the program.\nGarbage collection is important because it helps to prevent memory leaks. A memory leak occurs when a program allocates memory but does not deallocate it, leading to memory exhaustion.\nGarbage collection is also important because it helps to prevent memory fragmentation. Memory fragmentation occurs when the memory is divided into small, non-contiguous blocks, leading to inefficient memory usage.\nIn the context of data science and pandas, garbage collection is important because data science projects often involve working with large datasets, which can consume a significant amount of memory. If memory is not properly managed, it can lead to performance issues and crashes.\nIn Python, garbage collection is handled by the gc module. The gc module provides an interface to the optional garbage collector. It provides the ability to disable the collector, tune the collection frequency, and set debugging options.",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Garbage Collection"
-    ]
+    "text": "Garbage collection is a form of automatic memory management. The garbage collector, or just collector, attempts to reclaim garbage, or memory occupied by objects that are no longer in use by the program.\nGarbage collection is important because it helps to prevent memory leaks. A memory leak occurs when a program allocates memory but does not deallocate it, leading to memory exhaustion.\nGarbage collection is also important because it helps to prevent memory fragmentation. Memory fragmentation occurs when the memory is divided into small, non-contiguous blocks, leading to inefficient memory usage.\nIn the context of data science and pandas, garbage collection is important because data science projects often involve working with large datasets, which can consume a significant amount of memory. If memory is not properly managed, it can lead to performance issues and crashes.\nIn Python, garbage collection is handled by the gc module. The gc module provides an interface to the optional garbage collector. It provides the ability to disable the collector, tune the collection frequency, and set debugging options."
   },
   {
     "objectID": "beyond/gc.html#how-does-python-manage-memory",
     "href": "beyond/gc.html#how-does-python-manage-memory",
     "title": "Garbage Collection",
     "section": "How does Python manage memory?",
-    "text": "How does Python manage memory?\nPython uses a private heap to manage memory. The heap holds all the objects and data structures created by the program. The heap is the memory space where all the objects are stored. The heap is managed by the Python memory manager.\nThe Python memory manager has different components:\n\nThe memory allocator: The memory allocator is responsible for allocating memory for objects and data structures.\nThe garbage collector: The garbage collector is responsible for reclaiming memory occupied by objects that are no longer in use by the program.\nThe memory deallocator: The memory deallocator is responsible for deallocating memory when an object is no longer needed.",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Garbage Collection"
-    ]
+    "text": "How does Python manage memory?\nPython uses a private heap to manage memory. The heap holds all the objects and data structures created by the program. The heap is the memory space where all the objects are stored. The heap is managed by the Python memory manager.\nThe Python memory manager has different components:\n\nThe memory allocator: The memory allocator is responsible for allocating memory for objects and data structures.\nThe garbage collector: The garbage collector is responsible for reclaiming memory occupied by objects that are no longer in use by the program.\nThe memory deallocator: The memory deallocator is responsible for deallocating memory when an object is no longer needed."
   },
   {
     "objectID": "beyond/gc.html#what-is-garbage-collection",
     "href": "beyond/gc.html#what-is-garbage-collection",
     "title": "Garbage Collection",
     "section": "What is garbage collection?",
-    "text": "What is garbage collection?",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Garbage Collection"
-    ]
+    "text": "What is garbage collection?"
   },
   {
     "objectID": "beyond/gc.html#how-does-garbage-collection-work-in-python",
     "href": "beyond/gc.html#how-does-garbage-collection-work-in-python",
     "title": "Garbage Collection",
     "section": "How does garbage collection work in Python?",
-    "text": "How does garbage collection work in Python?\nPython uses a reference counting mechanism to manage memory. Reference counting is a simple and efficient memory management technique. It works by keeping track of the number of references to an object. When an object is created, its reference count is set to one. When an object is referenced by another object, its reference count is incremented. When an object is no longer referenced, its reference count is decremented. When an object’s reference count reaches zero, the object is no longer in use by the program and can be reclaimed by the garbage collector.\nPython also uses a cyclic garbage collector to handle reference cycles. A reference cycle occurs when two or more objects reference each other in a circular manner. The cyclic garbage collector is responsible for detecting and breaking reference cycles.",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Garbage Collection"
-    ]
+    "text": "How does garbage collection work in Python?\nPython uses a reference counting mechanism to manage memory. Reference counting is a simple and efficient memory management technique. It works by keeping track of the number of references to an object. When an object is created, its reference count is set to one. When an object is referenced by another object, its reference count is incremented. When an object is no longer referenced, its reference count is decremented. When an object’s reference count reaches zero, the object is no longer in use by the program and can be reclaimed by the garbage collector.\nPython also uses a cyclic garbage collector to handle reference cycles. A reference cycle occurs when two or more objects reference each other in a circular manner. The cyclic garbage collector is responsible for detecting and breaking reference cycles."
   },
   {
     "objectID": "beyond/gc.html#how-to-disable-garbage-collection",
     "href": "beyond/gc.html#how-to-disable-garbage-collection",
     "title": "Garbage Collection",
     "section": "How to disable garbage collection?",
-    "text": "How to disable garbage collection?\nYou can disable garbage collection in Python using the gc module. The gc module provides an interface to the optional garbage collector. You can disable the garbage collector by setting the gc.disable() function.\nHere is an example that demonstrates how to disable garbage collection in Python:\n\nimport gc\n\ngc.disable()",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Garbage Collection"
-    ]
+    "text": "How to disable garbage collection?\nYou can disable garbage collection in Python using the gc module. The gc module provides an interface to the optional garbage collector. You can disable the garbage collector by setting the gc.disable() function.\nHere is an example that demonstrates how to disable garbage collection in Python:\n\nimport gc\n\ngc.disable()"
   },
   {
     "objectID": "beyond/gc.html#how-to-enable-garbage-collection",
     "href": "beyond/gc.html#how-to-enable-garbage-collection",
     "title": "Garbage Collection",
     "section": "How to enable garbage collection?",
-    "text": "How to enable garbage collection?\nYou can enable garbage collection in Python using the gc module. The gc module provides an interface to the optional garbage collector. You can enable the garbage collector by setting the gc.enable() function.\nHere is an example that demonstrates how to enable garbage collection in Python:\n\nimport gc \n\ngc.enable()",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Garbage Collection"
-    ]
+    "text": "How to enable garbage collection?\nYou can enable garbage collection in Python using the gc module. The gc module provides an interface to the optional garbage collector. You can enable the garbage collector by setting the gc.enable() function.\nHere is an example that demonstrates how to enable garbage collection in Python:\n\nimport gc \n\ngc.enable()"
   },
   {
     "objectID": "beyond/gc.html#how-to-manually-run-garbage-collection",
     "href": "beyond/gc.html#how-to-manually-run-garbage-collection",
     "title": "Garbage Collection",
     "section": "How to manually run garbage collection?",
-    "text": "How to manually run garbage collection?\nYou can manually run garbage collection in Python using the gc module. The gc module provides an interface to the optional garbage collector. You can manually run garbage collection by setting the gc.collect() function.\nHere is an example that demonstrates how to manually run garbage collection in Python:\n\nimport gc \n\ngc.collect()",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Garbage Collection"
-    ]
+    "text": "How to manually run garbage collection?\nYou can manually run garbage collection in Python using the gc module. The gc module provides an interface to the optional garbage collector. You can manually run garbage collection by setting the gc.collect() function.\nHere is an example that demonstrates how to manually run garbage collection in Python:\n\nimport gc \n\ngc.collect()"
   },
   {
     "objectID": "beyond/gc.html#how-to-get-the-garbage-collection-statistics",
     "href": "beyond/gc.html#how-to-get-the-garbage-collection-statistics",
     "title": "Garbage Collection",
     "section": "How to get the garbage collection statistics?",
-    "text": "How to get the garbage collection statistics?\nYou can get the garbage collection statistics in Python using the gc module. The gc module provides an interface to the optional garbage collector. You can get the garbage collection statistics by setting the gc.get_stats() function.\nHere is an example that demonstrates how to get the garbage collection statistics in Python:\n\nimport gc \n\ngc.get_stats()\n\ngc.get_stats() returns a list of dictionaries, where each dictionary contains the following keys:\n\ncollections: The number of garbage collections that have occurred.\ncollected: The total number of objects collected.\nuncollectable: The total number of uncollectable objects.\ngarbage: The total number of objects that are garbage.",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Garbage Collection"
-    ]
+    "text": "How to get the garbage collection statistics?\nYou can get the garbage collection statistics in Python using the gc module. The gc module provides an interface to the optional garbage collector. You can get the garbage collection statistics by setting the gc.get_stats() function.\nHere is an example that demonstrates how to get the garbage collection statistics in Python:\n\nimport gc \n\ngc.get_stats()\n\ngc.get_stats() returns a list of dictionaries, where each dictionary contains the following keys:\n\ncollections: The number of garbage collections that have occurred.\ncollected: The total number of objects collected.\nuncollectable: The total number of uncollectable objects.\ngarbage: The total number of objects that are garbage."
   },
   {
     "objectID": "beyond/41_classification.html",
@@ -1608,6 +1673,117 @@
     "title": "Regression",
     "section": "1. Simple Linear Regression",
     "text": "1. Simple Linear Regression"
+  },
+  {
+    "objectID": "beyond/normalization.html",
+    "href": "beyond/normalization.html",
+    "title": "Normalizing & Standardizing Data",
+    "section": "",
+    "text": "Machine learning models require clean and well-structured data to perform effectively.\nTwo common techniques for preparing data are normalization and standardization.\nNormalization scales the data to a fixed range, typically [0, 1], while standardization transforms the data to have a mean of 0 and a standard deviation of 1.\nimport pandas as pd \n\nurl = \"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv\"\n\nelections = pd.read_csv(url)\n\nelections.head()\n\n\n\n\n\n\n\n\nYear\nCandidate\nParty\nPopular vote\nResult\n%\n\n\n\n\n0\n1824\nAndrew Jackson\nDemocratic-Republican\n151271\nloss\n57.210122\n\n\n1\n1824\nJohn Quincy Adams\nDemocratic-Republican\n113142\nwin\n42.789878\n\n\n2\n1828\nAndrew Jackson\nDemocratic\n642806\nwin\n56.203927\n\n\n3\n1828\nJohn Quincy Adams\nNational Republican\n500897\nloss\n43.796073\n\n\n4\n1832\nAndrew Jackson\nDemocratic\n702735\nwin\n54.574789\nfrom matplotlib import pyplot as plt \n\nfig, axs = plt.subplots(1, 3, figsize=(15, 5))\n\naxs[0].scatter(elections['Popular vote'], elections['%']);\naxs[0].set_xlabel('Popular Vote');\naxs[0].set_ylabel('Percentage (%)');\n# axs[0].set_title('');\n\naxs[1].hist(elections['%'], bins=20, color='orange', alpha=0.7, label='Percentage (%)');\naxs[1].hist(elections['Popular vote'], bins=20, color='green', alpha=0.7, label='Popular Vote');\naxs[1].set_xlabel('Value');\naxs[1].set_ylabel('Frequency');\n# axs[1].set_title('Note the difference in distributions of both features');\naxs[1].legend();\n\naxs[2].boxplot([elections['%'], elections['Popular vote']], vert=True, patch_artist=True, labels=['Percentage (%)', 'Popular Vote']);\naxs[2].set_ylabel('Value');\n# axs[2].set_title('Note the difference in scales of both features');\n\nfig.suptitle('Before Any Preprocessing\\nNote the difference in scales of both axes i.e.  \\n  % $\\in$ [0, 100] whereas Popular Vote $\\in$ [0, 8e7]', fontsize=16, y=1.1);",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Normalizing & Standardizing Data"
+    ]
+  },
+  {
+    "objectID": "beyond/normalization.html#min-max-normalization",
+    "href": "beyond/normalization.html#min-max-normalization",
+    "title": "Normalizing & Standardizing Data",
+    "section": "Min-Max Normalization",
+    "text": "Min-Max Normalization\nMin-Max Normalization scales the data to a fixed range, usually [0, 1]. The formula for Min-Max Normalization is:\n\\[ X_{norm} = \\frac{X - \\text{min}(X)}{\\text{max}(X) - \\text{min}(X)}\\]\nWhere:\n\n\\(X\\) is the original column vector.\n\\(X_{norm}\\) is the normalized column vector.\n\\(\\text{min}(X)\\) is the minimum value (scalar) of the \\(X\\).\n\\(\\text{max}(X)\\) is also the maximum value (scalar) of the \\(X\\).\n\n\n# Import MinMax scaler\nfrom sklearn.preprocessing import MinMaxScaler\n\nfig, axs = plt.subplots(1, 3, figsize=(12, 5))\n\n# Create a MinMaxScaler object\nscaler = MinMaxScaler()\n\n# Fit and transform the 'total_votes' column\nelections['Popular vote scaled'] = scaler.fit_transform(elections[['Popular vote']])\nelections['% scaled'] = scaler.fit_transform(elections[['%']])\n\n\n# Display the first few rows of the updated DataFrame\naxs[0].scatter(elections['Popular vote scaled'], elections['% scaled']);\naxs[0].set_xlabel('Popular Vote (Scaled)');\naxs[0].set_ylabel('Percentage (%) (Scaled)');\n# axs[0].set_title('After Min-Max Scaling\\n\\n Note both axes now share the same scale i.e.  \\n  % $\\in$ [0, 1] and Popular Vote $\\in$ [0, 1]');\n\naxs[1].hist(elections['% scaled'], bins=10, color='orange', alpha=0.8, label='Percentage (%) (Scaled)');\naxs[1].hist(elections['Popular vote scaled'], bins=10, color='green', alpha=0.7, label='Popular Vote (Scaled)');\naxs[1].set_xlabel('Value (Scaled)');\naxs[1].set_ylabel('Frequency');\naxs[1].legend();\n\naxs[2].boxplot([elections['% scaled'], elections['Popular vote scaled']], vert=True, patch_artist=True, labels=['Percentage (%)\\n(Scaled)', 'Popular Vote\\n(Scaled)']);\naxs[2].set_ylabel('Value (Scaled)');\nfig.suptitle('After Min-Max Scaling\\n Note both features now share the same scale i.e. [0, 1]', fontsize=16);",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Normalizing & Standardizing Data"
+    ]
+  },
+  {
+    "objectID": "beyond/validation.html",
+    "href": "beyond/validation.html",
+    "title": "Model Validation",
+    "section": "",
+    "text": "Model validation is a crucial step in the machine learning workflow that ensures the performance and reliability of a model before it is deployed in real-world applications. It involves assessing how well a model generalizes to unseen data, which helps in identifying potential issues such as overfitting or underfitting.",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Model Validation"
+    ]
+  },
+  {
+    "objectID": "beyond/validation.html#baselines",
+    "href": "beyond/validation.html#baselines",
+    "title": "Model Validation",
+    "section": "Baselines",
+    "text": "Baselines\nEstablishing a baseline is an essential step in model validation. A baseline provides a reference point against which the performance of more complex models can be compared. It helps to determine whether a new model is actually improving upon simpler approaches.\n\nTypes of Baselines\n\nSimple Heuristic Baseline:\n\nA straightforward approach that uses basic rules or averages. For example, in a classification task, predicting the majority class for all instances.\n\nRandom Baseline:\n\nA model that makes random predictions. This is often used to demonstrate that a more sophisticated model performs better than chance.\n\nMajority Class Baseline:\n\nIn classification tasks, this baseline predicts the most frequent class in the training data for all instances.",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Model Validation"
+    ]
+  },
+  {
+    "objectID": "beyond/sklearn.html",
+    "href": "beyond/sklearn.html",
+    "title": "Scikit-learn",
+    "section": "",
+    "text": "Sklearn is a Python library for machine learning. It features various classification, regression and clustering algorithms including support vector machines, random forests, gradient boosting, k-means and DBSCAN, and is designed to interoperate with the Python numerical and scientific libraries NumPy and SciPy."
+  },
+  {
+    "objectID": "beyond/sklearn.html#fitting-and-predicting-estimator-basics",
+    "href": "beyond/sklearn.html#fitting-and-predicting-estimator-basics",
+    "title": "Scikit-learn",
+    "section": "Fitting and predicting: estimator basics",
+    "text": "Fitting and predicting: estimator basics\nScikit-learn provides dozens of built-in machine learning algorithms and models, called estimators. Each estimator can be fitted to some data using its fit method.\nHere is a simple example where we fit a RandomForestClassifier to some very basic data:\n\nimport warnings \nwarnings.filterwarnings(\"ignore\")\n\nfrom sklearn.naive_bayes import MultinomialNB\nfrom sklearn.neighbors import KNeighborsClassifier\n\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\n\nX, y = load_iris(return_X_y=True)\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=0)\n\nnb = MultinomialNB()\nnn = KNeighborsClassifier()\n\nnb.fit(X_train, y_train)\nnn.fit(X_train, y_train)\n\npreds_nb = nb.predict(X_test)\npreds_nn = nn.predict(X_test)\n\nprint(\"Naive Bayes accuracy: \", (preds_nb == y_test).mean())\nprint(\"KNN accuracy: \", (preds_nn == y_test).mean())\n\nNaive Bayes accuracy:  0.6\nKNN accuracy:  0.96\n\n\n\nfrom sklearn.metrics import classification_report\n\nprint(classification_report(preds_nb, y_test))\n\n              precision    recall  f1-score   support\n\n           0       1.00      1.00      1.00        21\n           1       0.00      0.00      0.00         0\n           2       1.00      0.44      0.62        54\n\n    accuracy                           0.60        75\n   macro avg       0.67      0.48      0.54        75\nweighted avg       1.00      0.60      0.72        75\n\n\n\nThe fit method generally accepts 2 inputs:\n\nThe samples matrix (or design matrix) X. The size of X is typically (n_samples, n_features), which means that samples are represented as rows and features are represented as columns.\nThe target values y which are real numbers for regression tasks, or integers for classification (or any other discrete set of values). For unsupervised learning tasks, y does not need to be specified. y is usually a 1d array where the i th entry corresponds to the target of the i th sample (row) of X.\n\nBoth X and y are usually expected to be numpy arrays or equivalent array-like data types, though some estimators work with other formats such as sparse matrices.\nOnce the estimator is fitted, it can be used for predicting target values of new data. You don’t need to re-train the estimator:"
+  },
+  {
+    "objectID": "beyond/sklearn.html#transformers-and-pre-processors",
+    "href": "beyond/sklearn.html#transformers-and-pre-processors",
+    "title": "Scikit-learn",
+    "section": "Transformers and pre-processors",
+    "text": "Transformers and pre-processors\nMachine learning workflows are often composed of different parts. A typical pipeline consists of a pre-processing step that transforms or imputes the data, and a final predictor that predicts target values.\nIn scikit-learn, pre-processors and transformers follow the same API as the estimator objects (they actually all inherit from the same BaseEstimator class). The transformer objects don’t have a predict method but rather a transform method that outputs a newly transformed sample matrix X:\n\nfrom sklearn.preprocessing import StandardScaler\nX = [[0, 15],\n     [1, -10]]\n# scale data according to computed scaling values\nStandardScaler().fit(X).transform(X)\n\nSometimes, you want to apply different transformations to different features: the ColumnTransformer is designed for these use-cases."
+  },
+  {
+    "objectID": "beyond/sklearn.html#pipelines-chaining-pre-processors-and-estimators",
+    "href": "beyond/sklearn.html#pipelines-chaining-pre-processors-and-estimators",
+    "title": "Scikit-learn",
+    "section": "Pipelines: chaining pre-processors and estimators",
+    "text": "Pipelines: chaining pre-processors and estimators\nTransformers and estimators (predictors) can be combined together into a single unifying object: a Pipeline. The pipeline offers the same API as a regular estimator: it can be fitted and used for prediction with fit and predict. As we will see later, using a pipeline will also prevent you from data leakage, i.e. disclosing some testing data in your training data.\nIn the following example, we load the Iris dataset, split it into train and test sets, and compute the accuracy score of a pipeline on the test data:\n\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score\n# create a pipeline object\npipe = make_pipeline(\n    StandardScaler(),\n    LogisticRegression()\n)\n# load the iris dataset and split it into train and test sets\nX, y = load_iris(return_X_y=True)\nX_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)\n# fit the whole pipeline\npipe.fit(X_train, y_train)\n# we can now use it like any other estimator\naccuracy_score(pipe.predict(X_test), y_test)"
+  },
+  {
+    "objectID": "beyond/sklearn.html#model-evaluation",
+    "href": "beyond/sklearn.html#model-evaluation",
+    "title": "Scikit-learn",
+    "section": "Model evaluation",
+    "text": "Model evaluation\nFitting a model to some data does not entail that it will predict well on unseen data. This needs to be directly evaluated. We have just seen the train_test_split helper that splits a dataset into train and test sets, but scikit-learn provides many other tools for model evaluation, in particular for cross-validation.\nWe here briefly show how to perform a 5-fold cross-validation procedure, using the cross_validate helper. Note that it is also possible to manually iterate over the folds, use different data splitting strategies, and use custom scoring functions. Please refer to our User Guide for more details\n\nfrom sklearn.datasets import make_regression\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import cross_validate\nX, y = make_regression(n_samples=1000, random_state=0)\nlr = LinearRegression()\nresult = cross_validate(lr, X, y)  # defaults to 5-fold CV\nresult['test_score']  # r_squared score is high because dataset is easy"
+  },
+  {
+    "objectID": "beyond/sklearn.html#automatic-parameter-searches",
+    "href": "beyond/sklearn.html#automatic-parameter-searches",
+    "title": "Scikit-learn",
+    "section": "Automatic parameter searches",
+    "text": "Automatic parameter searches\nAll estimators have parameters (often called hyper-parameters in the literature) that can be tuned. The generalization power of an estimator often critically depends on a few parameters. For example a RandomForestRegressor has a n_estimators parameter that determines the number of trees in the forest, and a max_depth parameter that determines the maximum depth of each tree. Quite often, it is not clear what the exact values of these parameters should be since they depend on the data at hand.\nScikit-learn provides tools to automatically find the best parameter combinations (via cross-validation). In the following example, we randomly search over the parameter space of a random forest with a RandomizedSearchCV object. When the search is over, the RandomizedSearchCV behaves as a RandomForestRegressor that has been fitted with the best set of parameters. Read more in the User Guide:\n\nfrom sklearn.datasets import fetch_california_housing\nfrom sklearn.ensemble import RandomForestRegressor\nfrom sklearn.model_selection import RandomizedSearchCV\nfrom sklearn.model_selection import train_test_split\nfrom scipy.stats import randint\nX, y = fetch_california_housing(return_X_y=True)\nX_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)\n# define the parameter space that will be searched over\nparam_distributions = {'n_estimators': randint(1, 5),\n                       'max_depth': randint(5, 10)}\n# now create a searchCV object and fit it to the data\nsearch = RandomizedSearchCV(estimator=RandomForestRegressor(random_state=0),\n                            n_iter=5,\n                            param_distributions=param_distributions,\n                            random_state=0)\nsearch.fit(X_train, y_train)\nsearch.best_params_\n\n# the search object now acts like a normal random forest estimator\n# with max_depth=9 and n_estimators=4\nsearch.score(X_test, y_test)\n\nIn practice, you almost always want to search over a pipeline, instead of a single estimator. One of the main reasons is that if you apply a pre-processing step to the whole dataset without using a pipeline, and then perform any kind of cross-validation, you would be breaking the fundamental assumption of independence between training and testing data. Indeed, since you pre-processed the data using the whole dataset, some information about the test sets are available to the train sets. This will lead to over-estimating the generalization power of the estimator (you can read more in this Kaggle post).\nUsing a pipeline for cross-validation and searching will largely keep you from this common pitfall."
+  },
+  {
+    "objectID": "beyond/feature_selection.html",
+    "href": "beyond/feature_selection.html",
+    "title": "Feature Selection",
+    "section": "",
+    "text": "Feature selection is a crucial step in the machine learning pipeline that involves selecting a subset of relevant features (variables, predictors) for use in model construction. The main goals of feature selection are to improve model performance, reduce overfitting, and decrease training time."
+  },
+  {
+    "objectID": "beyond/feature_selection.html#types-of-feature-selection-methods",
+    "href": "beyond/feature_selection.html#types-of-feature-selection-methods",
+    "title": "Feature Selection",
+    "section": "Types of Feature Selection Methods",
+    "text": "Types of Feature Selection Methods"
+  },
+  {
+    "objectID": "beyond/beyond.html",
+    "href": "beyond/beyond.html",
+    "title": "BEYOND PANDAS",
+    "section": "",
+    "text": "BEYOND PANDAS\nPython has a lot of libraries that are useful for data analysis in addition to pandas. In this section, we will explore some of these libraries and how they can be used to analyze data.\n\nHere we will explore some of the libraries that are commonly used in data analysis and machine learning."
   },
   {
     "objectID": "beyond/42_regression.html",
@@ -1680,85 +1856,6 @@
       "Data Science and Machine Learning",
       "Regression"
     ]
-  },
-  {
-    "objectID": "beyond/sklearn.html",
-    "href": "beyond/sklearn.html",
-    "title": "Scikit-learn",
-    "section": "",
-    "text": "Sklearn is a Python library for machine learning. It features various classification, regression and clustering algorithms including support vector machines, random forests, gradient boosting, k-means and DBSCAN, and is designed to interoperate with the Python numerical and scientific libraries NumPy and SciPy.",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "beyond/sklearn.html#fitting-and-predicting-estimator-basics",
-    "href": "beyond/sklearn.html#fitting-and-predicting-estimator-basics",
-    "title": "Scikit-learn",
-    "section": "Fitting and predicting: estimator basics",
-    "text": "Fitting and predicting: estimator basics\nScikit-learn provides dozens of built-in machine learning algorithms and models, called estimators. Each estimator can be fitted to some data using its fit method.\nHere is a simple example where we fit a RandomForestClassifier to some very basic data:\n\nimport warnings \nwarnings.filterwarnings(\"ignore\")\n\nfrom sklearn.naive_bayes import MultinomialNB\nfrom sklearn.neighbors import KNeighborsClassifier\n\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\n\nX, y = load_iris(return_X_y=True)\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=0)\n\nnb = MultinomialNB()\nnn = KNeighborsClassifier()\n\nnb.fit(X_train, y_train)\nnn.fit(X_train, y_train)\n\npreds_nb = nb.predict(X_test)\npreds_nn = nn.predict(X_test)\n\nprint(\"Naive Bayes accuracy: \", (preds_nb == y_test).mean())\nprint(\"KNN accuracy: \", (preds_nn == y_test).mean())\n\nNaive Bayes accuracy:  0.6\nKNN accuracy:  0.96\n\n\n\nfrom sklearn.metrics import classification_report\n\nprint(classification_report(preds_nb, y_test))\n\n              precision    recall  f1-score   support\n\n           0       1.00      1.00      1.00        21\n           1       0.00      0.00      0.00         0\n           2       1.00      0.44      0.62        54\n\n    accuracy                           0.60        75\n   macro avg       0.67      0.48      0.54        75\nweighted avg       1.00      0.60      0.72        75\n\n\n\nThe fit method generally accepts 2 inputs:\n\nThe samples matrix (or design matrix) X. The size of X is typically (n_samples, n_features), which means that samples are represented as rows and features are represented as columns.\nThe target values y which are real numbers for regression tasks, or integers for classification (or any other discrete set of values). For unsupervised learning tasks, y does not need to be specified. y is usually a 1d array where the i th entry corresponds to the target of the i th sample (row) of X.\n\nBoth X and y are usually expected to be numpy arrays or equivalent array-like data types, though some estimators work with other formats such as sparse matrices.\nOnce the estimator is fitted, it can be used for predicting target values of new data. You don’t need to re-train the estimator:",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "beyond/sklearn.html#transformers-and-pre-processors",
-    "href": "beyond/sklearn.html#transformers-and-pre-processors",
-    "title": "Scikit-learn",
-    "section": "Transformers and pre-processors",
-    "text": "Transformers and pre-processors\nMachine learning workflows are often composed of different parts. A typical pipeline consists of a pre-processing step that transforms or imputes the data, and a final predictor that predicts target values.\nIn scikit-learn, pre-processors and transformers follow the same API as the estimator objects (they actually all inherit from the same BaseEstimator class). The transformer objects don’t have a predict method but rather a transform method that outputs a newly transformed sample matrix X:\n\nfrom sklearn.preprocessing import StandardScaler\nX = [[0, 15],\n     [1, -10]]\n# scale data according to computed scaling values\nStandardScaler().fit(X).transform(X)\n\nSometimes, you want to apply different transformations to different features: the ColumnTransformer is designed for these use-cases.",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "beyond/sklearn.html#pipelines-chaining-pre-processors-and-estimators",
-    "href": "beyond/sklearn.html#pipelines-chaining-pre-processors-and-estimators",
-    "title": "Scikit-learn",
-    "section": "Pipelines: chaining pre-processors and estimators",
-    "text": "Pipelines: chaining pre-processors and estimators\nTransformers and estimators (predictors) can be combined together into a single unifying object: a Pipeline. The pipeline offers the same API as a regular estimator: it can be fitted and used for prediction with fit and predict. As we will see later, using a pipeline will also prevent you from data leakage, i.e. disclosing some testing data in your training data.\nIn the following example, we load the Iris dataset, split it into train and test sets, and compute the accuracy score of a pipeline on the test data:\n\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.datasets import load_iris\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score\n# create a pipeline object\npipe = make_pipeline(\n    StandardScaler(),\n    LogisticRegression()\n)\n# load the iris dataset and split it into train and test sets\nX, y = load_iris(return_X_y=True)\nX_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)\n# fit the whole pipeline\npipe.fit(X_train, y_train)\n# we can now use it like any other estimator\naccuracy_score(pipe.predict(X_test), y_test)",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "beyond/sklearn.html#model-evaluation",
-    "href": "beyond/sklearn.html#model-evaluation",
-    "title": "Scikit-learn",
-    "section": "Model evaluation",
-    "text": "Model evaluation\nFitting a model to some data does not entail that it will predict well on unseen data. This needs to be directly evaluated. We have just seen the train_test_split helper that splits a dataset into train and test sets, but scikit-learn provides many other tools for model evaluation, in particular for cross-validation.\nWe here briefly show how to perform a 5-fold cross-validation procedure, using the cross_validate helper. Note that it is also possible to manually iterate over the folds, use different data splitting strategies, and use custom scoring functions. Please refer to our User Guide for more details\n\nfrom sklearn.datasets import make_regression\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import cross_validate\nX, y = make_regression(n_samples=1000, random_state=0)\nlr = LinearRegression()\nresult = cross_validate(lr, X, y)  # defaults to 5-fold CV\nresult['test_score']  # r_squared score is high because dataset is easy",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "beyond/sklearn.html#automatic-parameter-searches",
-    "href": "beyond/sklearn.html#automatic-parameter-searches",
-    "title": "Scikit-learn",
-    "section": "Automatic parameter searches",
-    "text": "Automatic parameter searches\nAll estimators have parameters (often called hyper-parameters in the literature) that can be tuned. The generalization power of an estimator often critically depends on a few parameters. For example a RandomForestRegressor has a n_estimators parameter that determines the number of trees in the forest, and a max_depth parameter that determines the maximum depth of each tree. Quite often, it is not clear what the exact values of these parameters should be since they depend on the data at hand.\nScikit-learn provides tools to automatically find the best parameter combinations (via cross-validation). In the following example, we randomly search over the parameter space of a random forest with a RandomizedSearchCV object. When the search is over, the RandomizedSearchCV behaves as a RandomForestRegressor that has been fitted with the best set of parameters. Read more in the User Guide:\n\nfrom sklearn.datasets import fetch_california_housing\nfrom sklearn.ensemble import RandomForestRegressor\nfrom sklearn.model_selection import RandomizedSearchCV\nfrom sklearn.model_selection import train_test_split\nfrom scipy.stats import randint\nX, y = fetch_california_housing(return_X_y=True)\nX_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)\n# define the parameter space that will be searched over\nparam_distributions = {'n_estimators': randint(1, 5),\n                       'max_depth': randint(5, 10)}\n# now create a searchCV object and fit it to the data\nsearch = RandomizedSearchCV(estimator=RandomForestRegressor(random_state=0),\n                            n_iter=5,\n                            param_distributions=param_distributions,\n                            random_state=0)\nsearch.fit(X_train, y_train)\nsearch.best_params_\n\n# the search object now acts like a normal random forest estimator\n# with max_depth=9 and n_estimators=4\nsearch.score(X_test, y_test)\n\nIn practice, you almost always want to search over a pipeline, instead of a single estimator. One of the main reasons is that if you apply a pre-processing step to the whole dataset without using a pipeline, and then perform any kind of cross-validation, you would be breaking the fundamental assumption of independence between training and testing data. Indeed, since you pre-processed the data using the whole dataset, some information about the test sets are available to the train sets. This will lead to over-estimating the generalization power of the estimator (you can read more in this Kaggle post).\nUsing a pipeline for cross-validation and searching will largely keep you from this common pitfall.",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "beyond/beyond.html",
-    "href": "beyond/beyond.html",
-    "title": "BEYOND PANDAS",
-    "section": "",
-    "text": "BEYOND PANDAS\nPython has a lot of libraries that are useful for data analysis in addition to pandas. In this section, we will explore some of these libraries and how they can be used to analyze data.\n\nHere we will explore some of the libraries that are commonly used in data analysis and machine learning."
   },
   {
     "objectID": "beyond/21_clustering.html",
@@ -2451,102 +2548,6 @@
       "Home",
       "Data Visualization",
       "Bar Plot (Distribution of Discrete / Categorical Data)"
-    ]
-  },
-  {
-    "objectID": "linearalgebra/matrices.html",
-    "href": "linearalgebra/matrices.html",
-    "title": "Matrices",
-    "section": "",
-    "text": "We denote matrices by bold capital letters (e.g., \\(X\\), \\(Y\\), and \\(Z\\)), and represent them in code by pd.DataFrame. The expression \\(\\mathbf{A} \\in \\mathbb{R}^{m \\times n}\\) indicates that a matrix \\(\\textbf{A}\\) contains \\(m \\times n\\) real-valued scalars, arranged as \\(m\\) rows and \\(n\\) columns. When \\(m = n\\), we say that a matrix is square. Visually, we can illustrate any matrix as a table. To refer to an individual element, we subscript both the row and column indices, e.g., \\(a_{ij}\\) is the value that belongs to \\(\\mathbf{A}\\)’s \\(i^{th}\\) row and \\(j^{th}\\) column:\n\\[ \\begin{split}\\mathbf{A}=\\begin{bmatrix} a_{11} & a_{12} & \\cdots & a_{1n} \\\\ a_{21} & a_{22} & \\cdots & a_{2n} \\\\ \\vdots & \\vdots & \\ddots & \\vdots \\\\ a_{m1} & a_{m2} & \\cdots & a_{mn} \\\\ \\end{bmatrix}.\\end{split} \\]\nimport pandas as pd \n\ndf = pd.DataFrame({'a': [1, 20, 3, 40], 'b': [50, 6, 70, 8]})\n\ndf.index = ['v1', 'v2', 'v3', 'v4']\n\ndf\n\n\n\n\n\n\n\n\na\nb\n\n\n\n\nv1\n1\n50\n\n\nv2\n20\n6\n\n\nv3\n3\n70\n\n\nv4\n40\n8",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Matrices"
-    ]
-  },
-  {
-    "objectID": "linearalgebra/matrices.html#geometry-of-matrices",
-    "href": "linearalgebra/matrices.html#geometry-of-matrices",
-    "title": "Matrices",
-    "section": "Geometry of Matrices",
-    "text": "Geometry of Matrices\nAn (n, d) matrix can be interpreted as a collection of n vectors in d-dimensional space.\n\nimport seaborn as sns\nfrom matplotlib import pyplot as plt\n\nplt.style.use('dark_background')\n\nax = sns.scatterplot(x='a', y='b', data=df, s=100);\nax.set(title='Scatterplot of a vs b', xlabel='a', ylabel='b');\n\ndef annotate(row):\n    plt.text(x=row['a']+0.05, y=row['b'], s=row.name, size=20);\n\ndf.apply(annotate, axis=1);",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Matrices"
-    ]
-  },
-  {
-    "objectID": "linearalgebra/matrices.html#transpose",
-    "href": "linearalgebra/matrices.html#transpose",
-    "title": "Matrices",
-    "section": "Transpose",
-    "text": "Transpose\nSometimes we want to flip the axes. When we exchange a matrix’s rows and columns, the result is called its transpose. Formally, we signify a matrix’s \\(\\textbf{A}\\) transpose by \\(\\mathbf{A}^\\top\\) and if \\(\\mathbf{B} = \\mathbf{A}^\\top\\), then \\(b_{ij} = a_{ij}\\) for all \\(i\\) and \\(j\\). Thus, the transpose of an \\(m \\times n\\) matrix is an \\(n \\times m\\) matrix:\n\\[ \\begin{split}\\mathbf{A}^\\top =\n\\begin{bmatrix}\n    a_{11} & a_{21} & \\dots  & a_{m1} \\\\\n    a_{12} & a_{22} & \\dots  & a_{m2} \\\\\n    \\vdots & \\vdots & \\ddots  & \\vdots \\\\\n    a_{1n} & a_{2n} & \\dots  & a_{mn}\n\\end{bmatrix}.\\end{split} \\]\n\nIn pandas, you can transpose a DataFrame with the .T attribute:\n\ndf.T\n\n\n\n\n\n\n\n\nv1\nv2\nv3\nv4\n\n\n\n\na\n1\n20\n3\n40\n\n\nb\n50\n6\n70\n8\n\n\n\n\n\n\n\nNote that columns of original dataframe df are the same as index of df.T\n\ndf.columns == df.T.index\n\narray([ True,  True])\n\n\n\ndf.T\n\n\n\n\n\n\n\n\nv1\nv2\nv3\nv4\n\n\n\n\na\n1\n20\n3\n40\n\n\nb\n50\n6\n70\n8",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Matrices"
-    ]
-  },
-  {
-    "objectID": "linearalgebra/matrices.html#matrix-vector-products",
-    "href": "linearalgebra/matrices.html#matrix-vector-products",
-    "title": "Matrices",
-    "section": "Matrix-Vector Products",
-    "text": "Matrix-Vector Products\nNow that we know how to calculate dot products, we can begin to understand the product between an \\(m \\times n\\) matrix and an \\(n\\)-dimensional vector \\(\\mathbf{x}\\).\nTo start off, we visualize our matrix in terms of its row vectors\n\\[\n\\begin{split}\\mathbf{A}=\n\\begin{bmatrix}\n\\mathbf{a}^\\top_{1} \\\\\n\\mathbf{a}^\\top_{2} \\\\\n\\vdots \\\\\n\\mathbf{a}^\\top_m \\\\\n\\end{bmatrix},\\end{split}\n\\]\nwhere each \\(\\mathbf{a}^\\top_{i} \\in \\mathbb{R}^n\\) is a row vector representing the \\(i^\\textrm{th}\\) row of the matrix \\(\\mathbf{A}\\).\nThe matrix–vector product \\(\\mathbf{A}\\mathbf{x}\\) is simply a column vector of length \\(m\\) , whose \\(i^{th}\\) element is the dot product \\(\\mathbf{a}^\\top_i \\mathbf{x}\\)\n\\[\n\\begin{split}\\mathbf{A}\\mathbf{x}\n= \\begin{bmatrix}\n\\mathbf{a}^\\top_{1} \\\\\n\\mathbf{a}^\\top_{2} \\\\\n\\vdots \\\\\n\\mathbf{a}^\\top_m \\\\\n\\end{bmatrix}\\mathbf{x}\n= \\begin{bmatrix}\n\\mathbf{a}^\\top_{1} \\mathbf{x}  \\\\\n\\mathbf{a}^\\top_{2} \\mathbf{x} \\\\\n\\vdots\\\\\n\\mathbf{a}^\\top_{m} \\mathbf{x}\\\\\n\\end{bmatrix}.\\end{split}\n\\]\nWe can think of multiplication with a matrix \\(\\mathbf{A}\\in \\mathbb{R}^{m \\times n}\\) as a transformation that projects vectors from \\(\\mathbb{R}^{n}\\) to \\(\\mathbb{R}^{m}\\).\nThese transformations are remarkably useful. For example, we can represent rotations as multiplications by certain square matrices. Matrix–vector products also describe the key calculation involved in computing the outputs of each layer in a neural network given the outputs from the previous layer.\n\nFinding similar vectors\nNote that, given a vector \\(\\mathbf{v}\\), vector-matrix products can also be used to compute the similarity of \\(\\mathbf{v}\\) and each row \\(\\mathbf{a}^\\top_i\\) of matrix \\(\\mathbf{A}\\). This is because the matrix-vector product \\(\\mathbf{A}\\mathbf{v}\\) will contain the dot products of \\(\\mathbf{v}\\) and each row in \\(\\mathbf{A}\\).\nThere is one thing to be careful about: recall that the formula for cosine similarity is:\n\\[\\text{cos}(\\theta) = \\frac{\\mathbf{a} \\cdot \\mathbf{b}}{\\|\\mathbf{a}\\| \\|\\mathbf{b}\\|}\\]\nThe dot product (numerator, on the right hand side) is equal to the cosine of the angle between the two vectors when the vectors are normalized (i.e. each divided by their norms).\nThe example below shows how to compute the cosine similarity between a vector \\(\\mathbf{v}\\) and each row of matrix \\(\\mathbf{A}\\).\n\nimport pandas as pd\ndata = pd.read_csv('https://raw.githubusercontent.com/fahadsultan/csc272/main/data/chat_dataset.csv')\n\n\n# creating bow representation\nvocab = (' '.join(data['message'].values)).lower().split()\nbow = pd.DataFrame(columns=vocab)\nfor word in vocab: \n    bow[word] = data['message'].apply(lambda msg: msg.count(word))\n\n\n# l2 norm of a vector\ndef l2_norm(vec):\n    return (sum(vec**2))**(1/2)\n\n# bow where each row is a unit vectors i.e. ||row|| = 1\nbow_unit = bow.apply(lambda row: row/l2_norm(row), axis=1)\n\n\n# random message : I don't have an opinion on this\nmsg = bow_unit.iloc[20] \n\n# cosine similarity of first message with all other messages\nmsg_sim = bow_unit.dot(msg.T)\nmsg_sim.index = data['message']\n\nmsg_sim.sort_values(ascending=False)\n\nmessage\nI don't have an opinion on this           1.000000\nI don't really have an opinion on this    0.984003\nI have no strong opinion about this       0.971575\nI have no strong opinions about this      0.971226\nI have no strong opinion on this          0.969768\n                                            ...   \nI'm not sure what to do 😕                 0.204587\nI'm not sure what to do next 🤷‍♂️         0.201635\nI'm not sure what to do next 🤔            0.200593\nThe food was not good                     0.200295\nThe food was not very good                0.197220\nLength: 584, dtype: float64",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Matrices"
-    ]
-  },
-  {
-    "objectID": "linearalgebra/matrices.html#matrix-matrix-multiplication",
-    "href": "linearalgebra/matrices.html#matrix-matrix-multiplication",
-    "title": "Matrices",
-    "section": "Matrix-Matrix Multiplication",
-    "text": "Matrix-Matrix Multiplication\nOnce you have gotten the hang of dot products and matrix–vector products, then matrix–matrix multiplication should be straightforward.\nSay that we have two matrices \\(\\mathbf{A} \\in \\mathbb{R}^{n \\times k}\\) and \\(\\mathbf{B} \\in \\mathbb{R}^{k \\times m}\\):\n\\[\n\\begin{split}\\mathbf{A}=\\begin{bmatrix}\na_{11} & a_{12} & \\cdots & a_{1k} \\\\\na_{21} & a_{22} & \\cdots & a_{2k} \\\\\n\\vdots & \\vdots & \\ddots & \\vdots \\\\\na_{n1} & a_{n2} & \\cdots & a_{nk} \\\\\n\\end{bmatrix},\\quad\n\\mathbf{B}=\\begin{bmatrix}\nb_{11} & b_{12} & \\cdots & b_{1m} \\\\\nb_{21} & b_{22} & \\cdots & b_{2m} \\\\\n\\vdots & \\vdots & \\ddots & \\vdots \\\\\nb_{k1} & b_{k2} & \\cdots & b_{km} \\\\\n\\end{bmatrix}.\\end{split}\n\\]\nLet \\(\\mathbf{a}^\\top_{i} \\in \\mathbb{R}^k\\) denote the row vector representing the \\(i^\\textrm{th}\\) row of the matrix \\(\\mathbf{A}\\) and let \\(\\mathbf{b}_{j} \\in \\mathbb{R}^k\\) denote the column vector from the \\(j^\\textrm{th}\\) column of the matrix \\(\\mathbf{B}\\) :\n\\[\n\\begin{split}\\mathbf{A}=\n\\begin{bmatrix}\n\\mathbf{a}^\\top_{1} \\\\\n\\mathbf{a}^\\top_{2} \\\\\n\\vdots \\\\\n\\mathbf{a}^\\top_n \\\\\n\\end{bmatrix},\n\\quad \\mathbf{B}=\\begin{bmatrix}\n\\mathbf{b}_{1} & \\mathbf{b}_{2} & \\cdots & \\mathbf{b}_{m} \\\\\n\\end{bmatrix}.\\end{split}\n\\]\nTo form the matrix product \\(\\mathbf{C} \\in \\mathbb{R}^{n \\times m}\\) , we simply compute each element \\(c_{ij}\\) as the dot product between the \\(i^{\\textrm{th}}\\) row of \\(\\mathbf{A}\\) and the \\(i^{\\textrm{th}}\\) column of \\(\\mathbf{B}\\) , i.e., \\(\\mathbf{a}^\\top_i \\mathbf{b}_j\\) :\n\\[\n\\begin{split}\\mathbf{C} = \\mathbf{AB} = \\begin{bmatrix}\n\\mathbf{a}^\\top_{1} \\\\\n\\mathbf{a}^\\top_{2} \\\\\n\\vdots \\\\\n\\mathbf{a}^\\top_n \\\\\n\\end{bmatrix}\n\\begin{bmatrix}\n\\mathbf{b}_{1} & \\mathbf{b}_{2} & \\cdots & \\mathbf{b}_{m} \\\\\n\\end{bmatrix}\n= \\begin{bmatrix}\n\\mathbf{a}^\\top_{1} \\mathbf{b}_1 & \\mathbf{a}^\\top_{1}\\mathbf{b}_2& \\cdots & \\mathbf{a}^\\top_{1} \\mathbf{b}_m \\\\\n\\mathbf{a}^\\top_{2}\\mathbf{b}_1 & \\mathbf{a}^\\top_{2} \\mathbf{b}_2 & \\cdots & \\mathbf{a}^\\top_{2} \\mathbf{b}_m \\\\\n\\vdots & \\vdots & \\ddots &\\vdots\\\\\n\\mathbf{a}^\\top_{n} \\mathbf{b}_1 & \\mathbf{a}^\\top_{n}\\mathbf{b}_2& \\cdots& \\mathbf{a}^\\top_{n} \\mathbf{b}_m\n\\end{bmatrix}.\\end{split}\n\\]\nWe can think of the matrix–matrix multiplication \\(\\mathbf{AB}\\) as performing \\(m\\) matrix–vector products or \\(m \\times n\\) dot products and stitching the results together to form an \\(m \\times n\\) matrix. In the following snippet, we perform matrix multiplication on A and B. Here, A is a matrix with two rows and three columns, and B is a matrix with three rows and four columns. After multiplication, we obtain a matrix with two rows and four columns.\n\nComputing similarity / distance matrix\nNote that, given two matrices \\(\\mathbf{A}\\) and \\(\\mathbf{B}\\), matrix-matrix products can also be used to compute the similarity between each row \\(\\mathbf{a}^\\top_i\\) of matrix \\(\\mathbf{A}\\) and each row \\(\\mathbf{b}^\\top_j\\) of matrix \\(\\mathbf{B}\\). This is because the matrix-matrix product \\(\\mathbf{A}\\mathbf{B}\\) will contain the dot products of each pair of rows in \\(\\mathbf{A}\\) and \\(\\mathbf{B}\\).\n\nsimilarity_matrix = bow_unit.dot(bow_unit.T)\n\nsimilarity_matrix.shape\n\n(584, 584)\n\n\n\nsimilarity_matrix.head()\n\n\n\n\n\n\n\n\n0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n...\n574\n575\n576\n577\n578\n579\n580\n581\n582\n583\n\n\n\n\n0\n1.000000\n0.568191\n0.453216\n0.565809\n0.612787\n0.608156\n0.377769\n0.631309\n0.793969\n0.642410\n...\n0.516106\n0.612624\n0.660911\n0.490580\n0.845518\n0.573549\n0.648564\n0.629598\n0.594468\n0.570452\n\n\n1\n0.568191\n1.000000\n0.508206\n0.928580\n0.687137\n0.681944\n0.423604\n0.707906\n0.551139\n0.720354\n...\n0.573755\n0.686954\n0.741100\n0.546166\n0.801864\n0.643139\n0.721001\n0.705988\n0.652357\n0.639666\n\n\n2\n0.453216\n0.508206\n1.000000\n0.506075\n0.548093\n0.707857\n0.778316\n0.621438\n0.538883\n0.648861\n...\n0.457088\n0.547948\n0.650512\n0.443105\n0.593732\n0.512998\n0.574392\n0.605515\n0.520351\n0.609064\n\n\n3\n0.565809\n0.928580\n0.506075\n1.000000\n0.685614\n0.679085\n0.421828\n0.704938\n0.548828\n0.717334\n...\n0.571349\n0.684074\n0.737993\n0.543876\n0.798502\n0.640442\n0.717978\n0.703027\n0.649622\n0.638039\n\n\n4\n0.612787\n0.687137\n0.548093\n0.685614\n1.000000\n0.735468\n0.273748\n0.559585\n0.714100\n0.599091\n...\n0.926494\n0.825530\n0.806139\n0.933257\n0.802775\n0.945544\n0.931874\n0.913601\n0.928473\n0.690556\n\n\n\n\n5 rows × 584 columns\n\n\n\n\nfrom matplotlib import pyplot as plt\nplt.imshow(similarity_matrix, cmap='Greens')\nplt.colorbar();\nplt.title(\"Similarity Matrix: Each cell contains cosine \\nsimilarity between two messages\");\nplt.xlabel(\"Message Index\");\nplt.ylabel(\"Message Index\");\n\n\n\n\n\n\n\n\nNote how 1. the similarity matrix is symmetric, i.e. \\(sim_{ij} = sim_{ji}\\) and 2. the diagonal elements are all 1, i.e. \\(sim_{ii} = 1\\).\n\ndistance_matrix = 1 - bow_unit.dot(bow_unit.T)\n\nfrom matplotlib import pyplot as plt\nplt.imshow(distance_matrix, cmap='Reds')\nplt.colorbar();\nplt.title(\"Distance Matrix: Each cell contains cosine \\ndistance between two messages\");\nplt.xlabel(\"Message Index\");\nplt.ylabel(\"Message Index\");",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Matrices"
-    ]
-  },
-  {
-    "objectID": "linearalgebra/nearestneighbor.html",
-    "href": "linearalgebra/nearestneighbor.html",
-    "title": "Nearest Neighbor",
-    "section": "",
-    "text": "Nearest Neighbor is a simple algorithm that stores all available cases and classifies new cases based on a similarity measure (e.g., distance functions). It is a type of instance-based learning, or lazy learning, where the function is only approximated locally and all computation is deferred until function evaluation.\n# import libraries\nfrom matplotlib import pyplot as plt \nimport pandas as pd\n\nplt.style.use('dark_background')\n\nfig, ax = plt.subplots(figsize=(8, 5))\n\nurl  = 'https://raw.githubusercontent.com/fahadsultan/csc343/refs/heads/main/data/uscities.csv'\ndata = pd.read_csv(url)\nus_mainland = data[(data['state_id'] != 'HI') & \\\n                   (data['state_id'] != 'AK') & \\\n                   (data['state_id'] != 'PR')]\n\nsc = us_mainland[us_mainland['state_id'] == 'SC']\nga = us_mainland[us_mainland['state_id'] == 'GA']\n\nunknown1 = (33.04366363086289, -79.34728514760124)\nunknown2 = (33.69266640894652, -82.22939618795743)\nunknown3 = (32.9806084015696,  -81.46763167425789)\nunknown4 = (34.84821943641973, -84.2073074091929)\n\nax.scatter(sc['lng'], sc['lat'], label='South Carolina', color='red',  marker='x');\nax.scatter(ga['lng'], ga['lat'], label='Georgia',        color='blue', marker='^');\nax.scatter(unknown1[1], unknown1[0], s=40, label='Unknowns', color='lightgreen');\nax.scatter(unknown2[1], unknown2[0], s=40, color='lightgreen');\nax.scatter(unknown3[1], unknown3[0], s=40, color='lightgreen');\nax.scatter(unknown4[1], unknown4[0], s=40, color='lightgreen');\nax.legend(fontsize=12);\nThe algorithm is composed of two stages:\nThe algorithm is based on the assumption that the data points that are close to each other are similar. The similarity is calculated using a distance function, such as Euclidean distance, Manhattan distance, Minkowski distance, etc.\nThe algorithm is simple and easy to implement, but it is computationally expensive, especially when the training data is large. It is also sensitive to the curse of dimensionality, which means that the algorithm’s performance deteriorates as the number of dimensions increases.",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Nearest Neighbor"
-    ]
-  },
-  {
-    "objectID": "linearalgebra/nearestneighbor.html#pseudocode",
-    "href": "linearalgebra/nearestneighbor.html#pseudocode",
-    "title": "Nearest Neighbor",
-    "section": "Pseudocode",
-    "text": "Pseudocode\nThe pseudocode for the nearest neighbor algorithm is as follows:\n\nFor each test data point:\n\nCalculate the distance between the test data point and all training data points.\nSort the distances in ascending order.\nSelect the nearest data points.\nDetermine the class of the nearest data points.\nAssign the test data point to the nearest neighbor class.",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Nearest Neighbor"
-    ]
-  },
-  {
-    "objectID": "linearalgebra/nearestneighbor.html#k-nn-algorithm",
-    "href": "linearalgebra/nearestneighbor.html#k-nn-algorithm",
-    "title": "Nearest Neighbor",
-    "section": "k-NN Algorithm",
-    "text": "k-NN Algorithm\nThe k-NN algorithm is an extension of the nearest neighbor algorithm. Instead of returning the most similar data point, the algorithm returns the k most similar data points. The class of the test data is determined by the majority class of the k most similar data points.\nFor example, in the figure below, the test sample (green dot) should be classified either to blue squares or to red triangles. If k = 3 (solid line circle) it is assigned to the red triangles because there are 2 triangles and only 1 square inside the inner circle. If k = 5 (dashed line circle) it is assigned to the blue squares (3 squares vs. 2 triangles inside the outer circle).\n\n\n\n\n\nThe k-NN algorithm is more robust than the nearest neighbor algorithm, as it reduces the noise in the data. However, it is computationally more expensive, as it requires storing and comparing more data points.\n\n\n\nThe k-NN algorithm is a simple and effective algorithm for classification and regression tasks. It is widely used in various fields, such as pattern recognition, image processing, and data mining.",
-    "crumbs": [
-      "Home",
-      "Data Science and Machine Learning",
-      "Nearest Neighbor"
     ]
   },
   {

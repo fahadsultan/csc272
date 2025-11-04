@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Correlations</title>
+<title>Feature Selection</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -227,7 +227,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/analytics.html">Data Science and Machine Learning</a></li><li class="breadcrumb-item"><a href="../stats/correlations.html">Correlations</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/analytics.html">Data Science and Machine Learning</a></li><li class="breadcrumb-item"><a href="../stats/correlations.html">Feature Selection</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -471,26 +471,26 @@ window.Quarto = {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../beyond/normalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Normalizing &amp; Standardizing Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../stats/correlations.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Correlations</span></a>
+ <span class="menu-text">Feature Selection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../linearalgebra/vectors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Geometric Interpretation</span></a>
+  <a href="../beyond/validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Validation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../linearalgebra/matrices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Matrices</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../linearalgebra/nearestneighbor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Nearest Neighbor</span></a>
+  <a href="../linearalgebra/distance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distance based Modeling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -515,18 +515,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Naive Bayes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/gc.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Garbage Collection</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/sklearn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Scikit-learn</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -559,12 +547,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#covariance" id="toc-covariance" class="nav-link active" data-scroll-target="#covariance">Covariance</a></li>
-  <li><a href="#correlations" id="toc-correlations" class="nav-link" data-scroll-target="#correlations">Correlations</a>
+  <li><a href="#correlations" id="toc-correlations" class="nav-link active" data-scroll-target="#correlations">Correlations</a>
   <ul class="collapse">
   <li><a href="#pearson-correlation-coefficient" id="toc-pearson-correlation-coefficient" class="nav-link" data-scroll-target="#pearson-correlation-coefficient">Pearson Correlation Coefficient</a></li>
   <li><a href="#spearman-correlation" id="toc-spearman-correlation" class="nav-link" data-scroll-target="#spearman-correlation">Spearman Correlation</a></li>
-  <li><a href="#corr" id="toc-corr" class="nav-link" data-scroll-target="#corr"><code>.corr()</code></a></li>
+  </ul></li>
+  <li><a href="#feature-selection-using-correlations" id="toc-feature-selection-using-correlations" class="nav-link" data-scroll-target="#feature-selection-using-correlations">Feature Selection using Correlations</a>
+  <ul class="collapse">
+  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix">1. Correlation Matrix</a></li>
+  <li><a href="#removing-highly-correlated-features" id="toc-removing-highly-correlated-features" class="nav-link" data-scroll-target="#removing-highly-correlated-features">2. Removing Highly Correlated Features</a></li>
+  <li><a href="#using-correlation-thresholds" id="toc-using-correlation-thresholds" class="nav-link" data-scroll-target="#using-correlation-thresholds">3. Using Correlation Thresholds</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -572,9 +564,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/analytics.html">Data Science and Machine Learning</a></li><li class="breadcrumb-item"><a href="../stats/correlations.html">Correlations</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/analytics.html">Data Science and Machine Learning</a></li><li class="breadcrumb-item"><a href="../stats/correlations.html">Feature Selection</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Correlations</h1>
+<h1 class="title">Feature Selection</h1>
 </div>
 
 
@@ -591,19 +583,41 @@ window.Quarto = {
 </header>
 
 
-<section id="covariance" class="level2">
-<h2 class="anchored" data-anchor-id="covariance">Covariance</h2>
-<p>Covariance is a measure of the relationship between two random variables. It is similar to correlation, but it is not normalized.</p>
-<p><span class="math display">\[ \text{Cov}(X, Y) = \frac{\sum_{i=1}^{n} (x_i - \mu_x)(y_i - \mu_y)}{n} \]</span></p>
-<p>where <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_i\)</span> are the <span class="math inline">\(i\)</span>-th values of the two variables, $ _x$ and $ _y$ are the means of the two variables, and <span class="math inline">\(n\)</span> is the number of values.</p>
-<p>The covariance can be positive, negative, or zero. A positive covariance indicates that the two variables tend to increase or decrease together, while a negative covariance indicates that one variable tends to increase as the other decreases.</p>
-</section>
+<p>Feature selection is a crucial step in the machine learning pipeline. It involves selecting a subset of relevant features (variables, predictors) for use in model construction. The main goals of feature selection are to improve model performance, reduce overfitting, and decrease training time.</p>
+<center>
+<img src="https://www.sc-best-practices.org/_images/feature_selection.jpeg" style="filter:invert(1)" width="100%">
+</center>
+<!-- ## Covariance
+
+Covariance is a measure of the relationship between two random variables. Intiuitively, it indicates how much the two variables change together. That is, if one variable tends to increase when the other increases, the covariance is positive; if one variable tends to decrease when the other increases, the covariance is negative.
+
+$$ \text{Cov}(X, Y) = \frac{\sum_{i=1}^{n} (x_i - \mu_x)(y_i - \mu_y)}{n} $$
+
+where $x_i$ and $y_i$ are the $i$-th values of the two variables, $ \mu_x$ and $ \mu_y$ are the means of the two variables, and $n$ is the number of values.
+
+<center><img src="https://media.geeksforgeeks.org/wp-content/uploads/Covar.png" alt="Covariance" style="filter:invert(1)" width="90%"></center>
+
+The covariance can be positive, negative, or zero. A positive covariance indicates that the two variables tend to increase or decrease together, while a negative covariance indicates that one variable tends to increase as the other decreases.
+
+Covariance is used in feature selection to identify features that are correlated with the target variable. Features with high covariance with the target variable are likely to be more informative and useful for prediction.
+
+Covariance however, has some limitations:
+
+- **Scale Dependence**: Covariance is affected by the scale of the variables. This means that if the units of measurement change, the covariance value will also change, making it difficult to compare covariances across different datasets or features.
+
+- **Interpretability**: The magnitude of covariance is not easily interpretable. A high covariance value does not necessarily imply a strong relationship between the variables, as it depends on the scales of the variables involved.
+
+- **Non-linearity**: Covariance only captures linear relationships between variables. It may not effectively identify non-linear relationships, which can be important in many real-world scenarios.
+
+To address these limitations, correlation coefficients such as Pearson's correlation coefficient are often used in feature selection, as they provide a standardized measure of the strength and direction of the linear relationship between variables. -->
 <section id="correlations" class="level2">
 <h2 class="anchored" data-anchor-id="correlations">Correlations</h2>
-<p>Correlation is a statistical measure that describes the relationship between two variables. It can be positive, negative, or zero.</p>
-<p>Positive correlation: If one variable increases, the other variable also increases.</p>
-<p>Negative correlation: If one variable increases, the other variable decreases.</p>
-<p>Zero correlation: There is no relationship between the two variables.</p>
+<p>Correlations are statistical measures that describe the strength and direction of the relationship between two variables. They help to identify how changes in one variable are associated with changes in another variable.</p>
+<ul>
+<li><p>Positive correlation: If one variable increases, the other variable also increases.</p></li>
+<li><p>Negative correlation: If one variable increases, the other variable decreases.</p></li>
+<li><p>Zero correlation: There is no relationship between the two variables.</p></li>
+</ul>
 <p>The correlation coefficient ranges from -1 to 1. A value of 1 indicates a perfect positive correlation, a value of -1 indicates a perfect negative correlation, and a value of 0 indicates no correlation.</p>
 <p>There are several methods to compute the correlation between two variables. The two most common methods are the Pearson correlation coefficient and the Spearman correlation</p>
 <section id="pearson-correlation-coefficient" class="level3">
@@ -611,48 +625,208 @@ window.Quarto = {
 <p>The Pearson correlation coefficient measures the linear relationship between two variables. It ranges from -1 to 1.</p>
 <p><span class="math display">\[ r = \frac{\sum_{i=1}^{n} (x_i - \mu_x)(y_i - \mu_y)}{\sqrt{\sum_{i=1}^{n} (x_i -  \mu_x)^2} \sqrt{\sum_{i=1}^{n} (y_i -  \mu_y)^2}} \]</span></p>
 <p>where <span class="math inline">\(x_i\)</span> and <span class="math inline">\(y_i\)</span> are the <span class="math inline">\(i\)</span>-th values of the two variables, $ _x$ and $ _y$ are the means of the two variables, and <span class="math inline">\(n\)</span> is the number of values.</p>
-<div id="30205720" class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>elections <span class="op">=</span> pd.read_csv(url)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>elections.head()</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> elections[<span class="st">'Popular vote'</span>]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> elections[<span class="st">'%'</span>]</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> x.cov(y) <span class="op">/</span> (x.std() <span class="op">*</span> y.std())</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>r</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="55e7b286" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'x'</span>] <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(n))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'y_pos'</span>] <span class="op">=</span> df[<span class="st">'x'</span>]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'y_neg'</span>] <span class="op">=</span> df[<span class="st">'x'</span>].values[::<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'y_zero'</span>] <span class="op">=</span> [<span class="dv">0</span>  <span class="cf">if</span> (i <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>) <span class="cf">else</span> <span class="dv">1</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>r_pos <span class="op">=</span> df[<span class="st">'x'</span>].corr(df[<span class="st">'y_pos'</span>])</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>r_neg <span class="op">=</span> df[<span class="st">'x'</span>].corr(df[<span class="st">'y_neg'</span>])</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>r_zero <span class="op">=</span> df[<span class="st">'x'</span>].corr(df[<span class="st">'y_zero'</span>])</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">5</span>))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].scatter(df[<span class="st">'x'</span>], df[<span class="st">'y_pos'</span>])</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="ss">f'Positive Correlation (r=</span><span class="sc">{</span>r_pos<span class="sc">:.1f}</span><span class="ss">)'</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">'y_pos'</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].grid(<span class="va">True</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].scatter(df[<span class="st">'x'</span>], df[<span class="st">'y_neg'</span>])</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="ss">f'Negative Correlation (r=</span><span class="sc">{</span>r_neg<span class="sc">:.1f}</span><span class="ss">)'</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">'y_neg'</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].grid(<span class="va">True</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].scatter(df[<span class="st">'x'</span>], df[<span class="st">'y_zero'</span>])</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_title(<span class="ss">f'No Correlation (r=</span><span class="sc">{</span>r_zero<span class="sc">:.1f}</span><span class="ss">)'</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_ylabel(<span class="st">'y_zero'</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].grid(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<pre><code>0.559061061317942</code></pre>
+<div>
+<figure class="figure">
+<p><img src="correlations_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="5ff5e25b" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>corrs <span class="op">=</span> df.corr()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(corrs, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>plt.colorbar(label<span class="op">=</span><span class="st">'Correlation Coefficient'</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="bu">len</span>(corrs)), corrs.columns, rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.yticks(<span class="bu">range</span>(<span class="bu">len</span>(corrs)), corrs.columns)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Correlation Matrix Heatmap'</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="correlations_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Pearson correlation is extremely sensitive to outliers and assumes that the relationship between the variables is linear.</p>
+<div id="6b67f6b7" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'y_pos_outlier'</span>] <span class="op">=</span> df[<span class="st">'y_pos'</span>].copy()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'y_pos_outlier'</span>].iloc[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">100</span>  <span class="co"># Introduce an outlier</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>r_pos_outlier <span class="op">=</span> df[<span class="st">'x'</span>].corr(df[<span class="st">'y_pos_outlier'</span>])</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>fig2, ax2 <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">0</span>].scatter(df[<span class="st">'x'</span>], df[<span class="st">'y_pos'</span>])</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">0</span>].set_title(<span class="ss">f'Original Positive Correlation (r=</span><span class="sc">{</span>r_pos<span class="sc">:.1f}</span><span class="ss">)'</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">0</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">0</span>].set_ylabel(<span class="st">'y_pos'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">0</span>].grid(<span class="va">True</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">1</span>].scatter(df[<span class="st">'x'</span>], df[<span class="st">'y_pos_outlier'</span>])</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">1</span>].set_title(<span class="ss">f'With Outlier (r=</span><span class="sc">{</span>r_pos_outlier<span class="sc">:.1f}</span><span class="ss">)'</span>)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">1</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">1</span>].set_ylabel(<span class="st">'y_pos_outlier'</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">1</span>].grid(<span class="va">True</span>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="correlations_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="30205720" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>elections <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>elections.head()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> elections[<span class="st">'Popular vote'</span>]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> elections[<span class="st">'%'</span>]</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> x.corr(y, method<span class="op">=</span><span class="st">'pearson'</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Correlation between Popular Vote and Percentage: </span><span class="sc">{</span>r<span class="sc">:.2f}</span><span class="ss">'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="correlations_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="a526ddf3" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>corrs <span class="op">=</span> elections.corr()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(corrs, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, vmin<span class="op">=-</span><span class="dv">1</span>, vmax<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.colorbar(label<span class="op">=</span><span class="st">'Correlation Coefficient'</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="bu">len</span>(corrs)), corrs.columns, rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.yticks(<span class="bu">range</span>(<span class="bu">len</span>(corrs)), corrs.columns)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Elections Correlation Matrix Heatmap'</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="correlations_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>You can also compute the correlation between two columns of a <code>DataFrame</code> using the <code>.corr()</code> method.</p>
-<div id="02060746" class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x.corr(y, method<span class="op">=</span><span class="st">'pearson'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>0.559061061317942</code></pre>
-</div>
-</div>
 </section>
 <section id="spearman-correlation" class="level3">
 <h3 class="anchored" data-anchor-id="spearman-correlation">Spearman Correlation</h3>
-<p>The Spearman correlation coefficient measures the monotonic relationship between two variables. It ranges from -1 to 1.</p>
-<p><span class="math display">\[ r = 1 - \frac{6 \sum_{i=1}^{n} d_i^2}{n(n^2 - 1)} \]</span></p>
-<p>where <span class="math inline">\(d_i\)</span> is the difference between the ranks of the two variables and <span class="math inline">\(n\)</span> is the number of values.</p>
+<p>The Spearman correlation coefficient measures the monotonic relationship between two variables. In simpler terms, it assesses how well the relationship between two variables can be described constantly increasing or decreasing, regardless of whether that relationship is linear.</p>
+<p>Another way to think about it is that the Spearman correlation evaluates the relationship between the ranks of the data rather than the raw data itself. It creates a ranking of the values for each variable and then computes the Pearson correlation coefficient on these ranks.</p>
+<p>Similar to Pearson correlation, coefficient, it ranges from -1 to 1.</p>
 <div id="d982d5a3" class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x.corr(y, method<span class="op">=</span><span class="st">'spearman'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x.corr(y, method<span class="op">=</span><span class="st">'spearman'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>0.7432486904455022</code></pre>
 </div>
 </div>
+<div id="c58d1548" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'y_pos_outlier'</span>] <span class="op">=</span> df[<span class="st">'y_pos'</span>].copy()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'y_pos_outlier'</span>].iloc[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">100</span>  <span class="co"># Introduce an outlier</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>r_pos_outlier <span class="op">=</span> df[<span class="st">'x'</span>].corr(df[<span class="st">'y_pos_outlier'</span>], method<span class="op">=</span><span class="st">'spearman'</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>fig2, ax2 <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">0</span>].scatter(df[<span class="st">'x'</span>], df[<span class="st">'y_pos'</span>])</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">0</span>].set_title(<span class="ss">f'Original Positive Correlation (r=</span><span class="sc">{</span>r_pos<span class="sc">:.1f}</span><span class="ss">)'</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">0</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">0</span>].set_ylabel(<span class="st">'y_pos'</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">0</span>].grid(<span class="va">True</span>)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">1</span>].scatter(df[<span class="st">'x'</span>], df[<span class="st">'y_pos_outlier'</span>])</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">1</span>].set_title(<span class="ss">f'With Outlier (r=</span><span class="sc">{</span>r_pos_outlier<span class="sc">:.1f}</span><span class="ss">)'</span>)</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">1</span>].set_xlabel(<span class="st">'x'</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">1</span>].set_ylabel(<span class="st">'y_pos_outlier'</span>)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>ax2[<span class="dv">1</span>].grid(<span class="va">True</span>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>fig2.suptitle(<span class="st">'Spearman Correlation with Outlier Effect'</span>)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="correlations_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="corr" class="level3">
-<h3 class="anchored" data-anchor-id="corr"><code>.corr()</code></h3>
-<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html"><code>.corr()</code></a> method computes the correlation between columns in a DataFrame. By default, it computes the Pearson correlation coefficient, but the <code>method</code> parameter can be used to specify the method to use.</p>
+</section>
+<section id="feature-selection-using-correlations" class="level2">
+<h2 class="anchored" data-anchor-id="feature-selection-using-correlations">Feature Selection using Correlations</h2>
+<p>Feature selection using correlations involves identifying and selecting features that have a strong correlation with the target variable while minimizing redundancy among the features themselves. Here are some common techniques for feature selection using correlations:</p>
+<section id="correlation-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="correlation-matrix">1. Correlation Matrix</h3>
+<p>A correlation matrix is a table that displays the correlation coefficients between multiple variables. It helps to visualize the relationships between features and the target variable.</p>
+<p>Once you have the correlation matrix, you can identify features that have a high correlation with the target variable (e.g., above a certain threshold like 0.5 or 0.7) and select them for your model.</p>
+</section>
+<section id="removing-highly-correlated-features" class="level3">
+<h3 class="anchored" data-anchor-id="removing-highly-correlated-features">2. Removing Highly Correlated Features</h3>
+<p>Highly correlated features can introduce multicollinearity, which can negatively impact model performance. To address this, you can remove one of the features from pairs of highly correlated features (e.g., correlation coefficient above 0.8 or 0.9).</p>
+</section>
+<section id="using-correlation-thresholds" class="level3">
+<h3 class="anchored" data-anchor-id="using-correlation-thresholds">3. Using Correlation Thresholds</h3>
+<p>You can set a correlation threshold to filter out features that do not meet a certain level of correlation with the target variable. For example, you might choose to keep only features with a correlation coefficient above 0.3 or below -0.3.</p>
 
 
 </section>

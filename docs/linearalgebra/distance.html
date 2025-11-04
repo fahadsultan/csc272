@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Distance based Modeling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../logo.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-syllabus" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Syllabus</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-syllabus">    
+        <li>
+    <a class="dropdown-item" href="../syllabus/about.html">
+ <span class="dropdown-text">Course Description and Goals</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/grading.html">
+ <span class="dropdown-text">Grading</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/academic_success.html">
+ <span class="dropdown-text">Center for Academic Success</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/textbook.html">
+ <span class="dropdown-text">Textbooks &amp; Other Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/integrity.html">
+ <span class="dropdown-text">Academic Integrity</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/mental_health.html">
+ <span class="dropdown-text">Mental Health Resources</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/accomodations.html">
+ <span class="dropdown-text">Accomodations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../syllabus/title_9.html">
+ <span class="dropdown-text">Nondiscrimination Policy and Sexual Misconduct</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../project/project.html"> 
+<span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../project/data.html"> 
+<span class="menu-text">Datasets</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://courses.furman.edu/course/view.php?id=20763"> 
+<span class="menu-text">Moodle Page</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus/appointment.html"> 
+<span class="menu-text">Office Hours</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://calendly.com/ssultan-dpq/"> 
+<span class="menu-text">Set an Appointment</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/analytics.html">Data Science and Machine Learning</a></li><li class="breadcrumb-item"><a href="../linearalgebra/distance.html">Distance based Modeling</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../pandas/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Wranging and Manipulation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/preliminaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Flat vs.&nbsp;Hierarchical Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/read_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/linalg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Scalars, Vectors and Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/view_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Index and Columns</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vectorized Operations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/selection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Selection: subset of columns</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/filtering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Filtering: subset of rows</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/extraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extracting and Dropping values</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Descriptive Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/concat_merge.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Concatenation and Merging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/apply.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Applying custom functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/grouping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aggregation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/pivot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pivot table</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pandas/write_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../plotting/basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Visualization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Feature Types</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plotting/anatomy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Anatomy of a Plot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plotting/lineplots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Line Plots (Temporal Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plotting/scatter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Scatter Plots (<span class="math inline">\(\geq\)</span> 2 numeric variables)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plotting/barplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bar Plot (Distribution of Discrete / Categorical Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plotting/histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Histogram (Distribution of Continuous Data)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plotting/boxplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Box Plots</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../plotting/13_log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logarithms</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../encoding/encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Cleaning and Encoding Modalities</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/missing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Missing Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/onehotencoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Label and One-Hot Encoding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Text Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/network.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Networks Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/sound.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Audio Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../encoding/images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Image Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../beyond/analytics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Science and Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beyond/normalization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Normalizing &amp; Standardizing Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../stats/correlations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Feature Selection</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beyond/validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../linearalgebra/distance.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Distance based Modeling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/joint_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Joint Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/conditional_prob.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conditional Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Naive Bayes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beyond/41_classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Classification</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beyond/21_clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clustering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beyond/42_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#geometry-of-vectors" id="toc-geometry-of-vectors" class="nav-link active" data-scroll-target="#geometry-of-vectors">Geometry of Vectors</a>
+  <ul class="collapse">
+  <li><a href="#vectors-as-points-in-feature-space" id="toc-vectors-as-points-in-feature-space" class="nav-link" data-scroll-target="#vectors-as-points-in-feature-space">1. Vectors as Points in Feature Space</a></li>
+  <li><a href="#vectors-as-directions-in-feature-space" id="toc-vectors-as-directions-in-feature-space" class="nav-link" data-scroll-target="#vectors-as-directions-in-feature-space">2. Vectors as directions in feature space</a></li>
+  </ul></li>
+  <li><a href="#norms" id="toc-norms" class="nav-link" data-scroll-target="#norms">Norms</a></li>
+  <li><a href="#dot-product" id="toc-dot-product" class="nav-link" data-scroll-target="#dot-product">Dot Product</a></li>
+  <li><a href="#dot-products-and-angles" id="toc-dot-products-and-angles" class="nav-link" data-scroll-target="#dot-products-and-angles">Dot Products and Angles</a></li>
+  <li><a href="#cosine-similaritydistance" id="toc-cosine-similaritydistance" class="nav-link" data-scroll-target="#cosine-similaritydistance">Cosine Similarity/Distance</a></li>
+  <li><a href="#matrices" id="toc-matrices" class="nav-link" data-scroll-target="#matrices">Matrices</a></li>
+  <li><a href="#geometry-of-matrices" id="toc-geometry-of-matrices" class="nav-link" data-scroll-target="#geometry-of-matrices">Geometry of Matrices</a></li>
+  <li><a href="#transpose" id="toc-transpose" class="nav-link" data-scroll-target="#transpose">Transpose</a></li>
+  <li><a href="#matrix-vector-products" id="toc-matrix-vector-products" class="nav-link" data-scroll-target="#matrix-vector-products">Matrix-Vector Products</a>
+  <ul class="collapse">
+  <li><a href="#finding-similar-vectors" id="toc-finding-similar-vectors" class="nav-link" data-scroll-target="#finding-similar-vectors">Finding similar vectors</a></li>
+  </ul></li>
+  <li><a href="#matrix-matrix-multiplication" id="toc-matrix-matrix-multiplication" class="nav-link" data-scroll-target="#matrix-matrix-multiplication">Matrix-Matrix Multiplication</a>
+  <ul class="collapse">
+  <li><a href="#computing-similarity-distance-matrix" id="toc-computing-similarity-distance-matrix" class="nav-link" data-scroll-target="#computing-similarity-distance-matrix">Computing similarity / distance matrix</a></li>
+  </ul></li>
+  <li><a href="#nearest-neighbor" id="toc-nearest-neighbor" class="nav-link" data-scroll-target="#nearest-neighbor">Nearest Neighbor</a>
+  <ul class="collapse">
+  <li><a href="#pseudocode" id="toc-pseudocode" class="nav-link" data-scroll-target="#pseudocode">Pseudocode</a></li>
+  <li><a href="#k-nn-algorithm" id="toc-k-nn-algorithm" class="nav-link" data-scroll-target="#k-nn-algorithm">k-NN Algorithm</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../beyond/analytics.html">Data Science and Machine Learning</a></li><li class="breadcrumb-item"><a href="../linearalgebra/distance.html">Distance based Modeling</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Distance based Modeling</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="geometry-of-vectors" class="level2">
+<h2 class="anchored" data-anchor-id="geometry-of-vectors">Geometry of Vectors</h2>
+<p>Vectors have two common geometric interpretations:</p>
+<ol type="1">
+<li><p><strong>Vectors as Points in Feature Space</strong>: In this interpretation, we consider vectors as points in a space with a fixed reference point called the origin.</p></li>
+<li><p><strong>Vectors as Displacement</strong>: In this interpretation, we consider vectors as displacements between points in space.</p></li>
+</ol>
+<section id="vectors-as-points-in-feature-space" class="level3">
+<h3 class="anchored" data-anchor-id="vectors-as-points-in-feature-space">1. Vectors as Points in Feature Space</h3>
+<p>Given a vector, the first interpretation that we should give it is as a point in space.</p>
+<p>In two or three dimensions, we can visualize these points by using the components of the vectors to define the location of the points in space compared to a fixed reference called the origin. This can be seen in the figure below.</p>
+<center>
+<img src="https://d2l.ai/_images/grid-points.svg" width="60%" style="filter:invert(1)">
+</center>
+<!-- <center><img  width="60%" src="https://d2l.ai/_images/grid-points.svg"></center> -->
+<p>This geometric point of view allows us to consider the problem on a more abstract level. No longer faced with some insurmountable seeming problem like classifying pictures as either cats or dogs, we can start considering tasks abstractly as collections of points in space and picturing the task as discovering how to separate two distinct clusters of points.</p>
+<div id="cell-5" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>vector1 <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>vector2 <span class="op">=</span> [<span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>displacement <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting vector 1</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.scatter(x<span class="op">=</span>vector1[<span class="dv">0</span>], y<span class="op">=</span>vector1[<span class="dv">1</span>], color<span class="op">=</span><span class="st">'blue'</span>)<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span>vector1[<span class="dv">0</span>]<span class="op">+</span>displacement, y<span class="op">=</span>vector1[<span class="dv">1</span>], <span class="op">\</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>             s<span class="op">=</span><span class="ss">f"(%s, %s)"</span> <span class="op">%</span> (vector1[<span class="dv">0</span>], vector1[<span class="dv">1</span>]), size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting vector 2</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.scatter(x<span class="op">=</span>vector2[<span class="dv">0</span>], y<span class="op">=</span>vector2[<span class="dv">1</span>], color<span class="op">=</span><span class="st">'magenta'</span>)<span class="op">;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span>vector2[<span class="dv">0</span>]<span class="op">+</span>displacement, y<span class="op">=</span>vector2[<span class="dv">1</span>], <span class="op">\</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>             s<span class="op">=</span><span class="ss">f"(%s, %s)"</span> <span class="op">%</span> (vector2[<span class="dv">0</span>], vector2[<span class="dv">1</span>]), size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the x and y axes</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>)<span class="op">;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>)<span class="op">;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the legend</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'vector1'</span>, <span class="st">'vector2'</span>], loc<span class="op">=</span><span class="st">'upper left'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="distance_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="vectors-as-directions-in-feature-space" class="level3">
+<h3 class="anchored" data-anchor-id="vectors-as-directions-in-feature-space">2. Vectors as directions in feature space</h3>
+<p>In parallel, there is a second point of view that people often take of vectors: as directions in space. Not only can we think of the vector <span class="math inline">\(\textbf{v} = [3, 2]^{T}\)</span> as the location <span class="math inline">\(3\)</span> units to the right and <span class="math inline">\(2\)</span> units up from the origin, we can also think of it as the direction itself to take <span class="math inline">\(3\)</span> steps to the right and <span class="math inline">\(2\)</span> steps up. In this way, we consider all the vectors in figure below the same.</p>
+<center>
+<img src="https://d2l.ai/_images/par-vec.svg" width="50%" style="filter:invert(1)">
+</center>
+<!-- ``` {figure} https://d2l.ai/_images/par-vec.svg
+
+---
+width: 50%
+name: par-vec
+---
+
+Any vector can be visualized as an arrow in the plane. In this case, every vector drawn is a representation of the vector $(3, 2)^\top$
+``` -->
+<!-- <center><img width="50%" src="https://d2l.ai/_images/par-vec.svg"></center> -->
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting vector 1</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, vector1[<span class="dv">0</span>], vector1[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span>vector1[<span class="dv">0</span>]<span class="op">+</span>displacement, y<span class="op">=</span>vector1[<span class="dv">1</span>], <span class="op">\</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>             s<span class="op">=</span><span class="ss">f"(%s, %s)"</span> <span class="op">%</span> (vector1[<span class="dv">0</span>], vector1[<span class="dv">1</span>]), size<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting vector 2</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, vector2[<span class="dv">0</span>], vector2[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'violet'</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span>vector2[<span class="dv">0</span>]<span class="op">+</span>displacement, y<span class="op">=</span>vector2[<span class="dv">1</span>], <span class="op">\</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>             s<span class="op">=</span><span class="ss">f"(%s, %s)"</span> <span class="op">%</span> (vector2[<span class="dv">0</span>], vector2[<span class="dv">1</span>]), size<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'vector1'</span>, <span class="st">'vector2'</span>], loc<span class="op">=</span><span class="st">'upper left'</span>)<span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the x and y axes</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>)<span class="op">;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="distance_files/figure-html/cell-3-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>One of the benefits of this shift is that we can make visual sense of the act of vector addition. In particular, we follow the directions given by one vector, and then follow the directions given by the other, as seen below:</p>
+<center>
+<img src="https://d2l.ai/_images/vec-add.svg" width="50%" style="filter:invert(1)">
+</center>
+<!-- ``` {figure} https://d2l.ai/_images/vec-add.svg
+
+---
+width: 50%
+name: vec-add
+---
+
+We can visualize vector addition by first following one vector, and then another.
+``` -->
+<!-- <center><img width="50%" src="https://d2l.ai/_images/vec-add.svg"></center> -->
+<p>Vector subtraction has a similar interpretation. By considering the identity that <span class="math inline">\(\mathbf{u} = \mathbf{v} + (\mathbf{u} - \mathbf{v})\)</span>, we see that the vector <span class="math inline">\(\mathbf{u} - \mathbf{v}\)</span> is the direction that takes us from the point <span class="math inline">\(\mathbf{v}\)</span> to the point <span class="math inline">\(\mathbf{u}\)</span>.</p>
+<div id="cell-12" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>vector1 <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>vector2 <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sum_vector <span class="op">=</span> vector1 <span class="op">+</span> vector2</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>sum_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>0    3
+1    1
+dtype: int64</code></pre>
+</div>
+</div>
+<div id="cell-13" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>vector1 <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>vector2 <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span> <span class="op">=</span> vector1 <span class="op">+</span> vector2</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting vector 1</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, vector1[<span class="dv">0</span>], vector1[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span>vector1[<span class="dv">0</span>]<span class="op">+</span>displacement, y<span class="op">=</span>vector1[<span class="dv">1</span>], <span class="op">\</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>             s<span class="op">=</span><span class="ss">f"(%s, %s)"</span> <span class="op">%</span> (vector1[<span class="dv">0</span>], vector1[<span class="dv">1</span>]), size<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting vector 2</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>plt.quiver(vector1[<span class="dv">0</span>], vector1[<span class="dv">1</span>], vector2[<span class="dv">0</span>], vector2[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'magenta'</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span>vector2[<span class="dv">0</span>]<span class="op">+</span>displacement, y<span class="op">=</span>vector2[<span class="dv">1</span>], <span class="op">\</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>             s<span class="op">=</span><span class="ss">f"(%s, %s)"</span> <span class="op">%</span> (vector2[<span class="dv">0</span>], vector2[<span class="dv">1</span>]), size<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, <span class="bu">sum</span>[<span class="dv">0</span>], <span class="bu">sum</span>[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'lime'</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>plt.text(x<span class="op">=</span><span class="bu">sum</span>[<span class="dv">0</span>]<span class="op">+</span>displacement, y<span class="op">=</span><span class="bu">sum</span>[<span class="dv">1</span>], <span class="op">\</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>             s<span class="op">=</span><span class="ss">f"(%s, %s)"</span> <span class="op">%</span> (<span class="bu">sum</span>[<span class="dv">0</span>], <span class="bu">sum</span>[<span class="dv">1</span>]), size<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">'vector1'</span>, <span class="st">'vector2'</span>, <span class="st">'sum'</span>], loc<span class="op">=</span><span class="st">'upper left'</span>)<span class="op">;</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the x and y axes</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>)<span class="op">;</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'white'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="distance_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="norms" class="level2">
+<h2 class="anchored" data-anchor-id="norms">Norms</h2>
+<p>Some of the most useful operators in linear algebra are <em>norms</em>. A norm is a function <span class="math inline">\(\| \cdot \|\)</span> that maps a vector to a scalar.</p>
+<p>Informally, the norm of a vector tells us magnitude or length of the vector.</p>
+<p>For instance, the <span class="math inline">\(l_2\)</span> norm measures the euclidean length of a vector. That is, <span class="math inline">\(l_2\)</span> norm measures the euclidean distance of a vector from the origin <span class="math inline">\((0, 0)\)</span>.</p>
+<!-- Here, we are employing a notion of _size_ that concerns the magnitude of a vector’s components (not its dimensionality). -->
+<p><!--and satisfies the following three properties:
+
+1. Given any vector $\mathbf{x}$, if we scale (all elements of) the vector by a scalar $\alpha \in \mathbb{R}$, its norm scales accordingly:
+
+$$\|\alpha \mathbf{x}\| = |\alpha| \|\mathbf{x}\|$$
+
+2. For any vectors $\mathbf{x}$ and $\mathbf{y}$, norms satisfy the triangle inequality:
+$$\|\mathbf{x} + \mathbf{y}\| \leq \|\mathbf{x}\| + \|\mathbf{y}\|$$
+
+3. The norm of a vector is nonnegative and it only vanishes if the vector is zero:
+
+$$ \|\mathbf{x}\| > 0 \textrm{ for all } \mathbf{x} \neq 0. $$
+
+Many functions are valid norms and different norms encode different notions of size. The Euclidean norm that we all learned in elementary school geometry when calculating the hypotenuse of a right triangle is the square root of the sum of squares of a vector’s elements. Formally, this is called the $l_2$ norm and expressed as
+--> <span class="math display">\[ \|\mathbf{x}\|_2 = \sqrt{\sum_{i=1}^n x_i^2} \]</span></p>
+<div id="cell-15" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> pd.Series(vector1)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>l2_norm <span class="op">=</span> (x<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>l2_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>2.23606797749979</code></pre>
+</div>
+</div>
+<p>The <span class="math inline">\(l_1\)</span> norm is also common and the associated measure is called the Manhattan distance. By definition, the <span class="math inline">\(l_1\)</span> norm sums the absolute values of a vector’s elements:</p>
+<p><span class="math display">\[ \|\mathbf{x}\|_1 = \sum_{i=1}^n \left|x_i \right| \]</span></p>
+<p>Compared to the <span class="math inline">\(l_2\)</span> norm, it is less sensitive to outliers. To compute the <span class="math inline">\(l_1\)</span> norm, we compose the absolute value with the sum operation.</p>
+<div id="cell-17" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>l1_norm <span class="op">=</span> x.<span class="bu">abs</span>().<span class="bu">sum</span>()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>l1_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>6</code></pre>
+</div>
+</div>
+<p>Both the <span class="math inline">\(l_1\)</span> and <span class="math inline">\(l_2\)</span> norms are special cases of the more general norms:</p>
+<p><span class="math display">\[ \|\mathbf{x}\|_p = \left(\sum_{i=1}^n \left|x_i \right|^p \right)^{1/p}. \]</span></p>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>vec <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>])</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>lp_norm <span class="op">=</span> ((<span class="bu">abs</span>(vec))<span class="op">**</span>p).<span class="bu">sum</span>()<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>p)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>lp_norm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>12.651489979526238</code></pre>
+</div>
+</div>
+</section>
+<section id="dot-product" class="level2">
+<h2 class="anchored" data-anchor-id="dot-product">Dot Product</h2>
+<p>One of the most fundamental operations in linear algebra (and all of data science and machine learning) is the dot product.</p>
+<p>Given two vectors <span class="math inline">\(\textbf{x}, \textbf{y} \in \mathbb{R}^d\)</span>, their <em>dot product</em> <span class="math inline">\(\textbf{x}^{\top} \textbf{y}\)</span> (also known as <em>inner product</em> <span class="math inline">\(\langle \textbf{x}, \textbf{y} \rangle\)</span>) is a sum over the products of the elements at the same position:</p>
+<p><span class="math display">\[\textbf{x}^\top \textbf{y} = \sum_{i=1}^{d} x_i y_i\]</span></p>
+<div id="cell-21" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> pd.Series([<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>x.dot(y) <span class="co"># 1*4 + 2*5 + 3*6 </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>32</code></pre>
+</div>
+</div>
+<p>Equivalently, we can calculate the dot product of two vectors by performing an elementwise multiplication followed by a sum:</p>
+<div id="cell-23" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(x <span class="op">*</span> y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>32</code></pre>
+</div>
+</div>
+<p>Dot products are useful in a wide range of contexts. For example, given some set of values, denoted by a vector $ ^{n} $ , and a set of weights, denoted by <span class="math inline">\(\mathbf{x} \in \mathbb{R}^{n}\)</span>, the weighted sum of the values in <span class="math inline">\(\mathbf{x}\)</span> according to the weights <span class="math inline">\(\mathbf{w}\)</span> could be expressed as the dot product <span class="math inline">\(\mathbf{x}^\top \mathbf{w}\)</span>. When the weights are nonnegative and sum to <span class="math inline">\(1\)</span>, i.e., <span class="math inline">\((\sum_{i=1}^n w_i = 1)\)</span>, the dot product expresses a <em>weighted average</em>. After normalizing two vectors to have unit length, the dot products express the cosine of the angle between them. Later in this section, we will formally introduce this notion of <em>length</em>.</p>
+</section>
+<section id="dot-products-and-angles" class="level2">
+<h2 class="anchored" data-anchor-id="dot-products-and-angles">Dot Products and Angles</h2>
+<p>If we take two column vectors <span class="math inline">\(\mathbf{u}\)</span> and <span class="math inline">\(\mathbf{v}\)</span>, we can form their dot product by computing:</p>
+<p><span class="math display">\[ \mathbf{u}^\top\mathbf{v} = \sum_i u_i\cdot v_i \]</span></p>
+<p>Because the equation above is symmetric, we will mirror the notation of classical multiplication and write</p>
+<p><span class="math display">\[ \mathbf{u}\cdot\mathbf{v} = \mathbf{u}^\top\mathbf{v} = \mathbf{v}^\top\mathbf{u}, \]</span></p>
+<p>to highlight the fact that exchanging the order of the vectors will yield the same answer.</p>
+<p>The dot product also admits a geometric interpretation: <strong>dot product it is closely related to the angle between two vectors</strong>.</p>
+<center>
+<img src="https://d2l.ai/_images/vec-angle.svg" width="50%" style="filter:invert(1)">
+</center>
+<p>To start, let’s consider two specific vectors:</p>
+<p><span class="math display">\[ \mathbf{v} = (r,0) \; \textrm{and} \; \mathbf{w} = (s\cos(\theta), s \sin(\theta)) \]</span></p>
+<p>The vector <span class="math inline">\(\mathbf{v}\)</span> is length <span class="math inline">\(r\)</span> and runs parallel to the <span class="math inline">\(x\)</span>-axis, and the vector <span class="math inline">\(\mathbf{w}\)</span> is of length <span class="math inline">\(s\)</span> and at angle <span class="math inline">\(\theta\)</span> with the <span class="math inline">\(x\)</span>-axis.</p>
+<p>If we compute the dot product of these two vectors, we see that</p>
+<p><span class="math display">\[ \mathbf{v}\cdot\mathbf{w} = rs\cos(\theta) = \|\mathbf{v}\|\|\mathbf{w}\|\cos(\theta) \]</span></p>
+<p>With some simple algebraic manipulation, we can rearrange terms to obtain <u>the equation for any two vectors <span class="math inline">\(\mathbf{v}\)</span> and <span class="math inline">\(\mathbf{w}\)</span></u>:</p>
+<p><span class="math display">\[ \theta = \arccos\left(\frac{\mathbf{v}\cdot\mathbf{w}}{\|\mathbf{v}\|\|\mathbf{w}\|}\right) \]</span></p>
+<p>We will not use it right now, but it is useful to know that we will refer to vectors for which the angle is <span class="math inline">\(\pi/2\)</span>(or equivalently <span class="math inline">\(90^{\circ}\)</span>) as being orthogonal.</p>
+<p>By examining the equation above, we see that this happens when <span class="math inline">\(\theta = \pi/2\)</span>, which is the same thing as <span class="math inline">\(cos(\theta) = 0\)</span>.</p>
+<p>The only way this can happen is if the dot product itself is zero, and two vectors are orthogonal if and only if <span class="math inline">\(\mathbf{v}\cdot\mathbf{w} = 0\)</span>.</p>
+<p>This will prove to be a helpful formula when understanding objects geometrically.</p>
+<p>It is reasonable to ask: why is computing the angle useful? Consider the problem of classifying text data. We might want the topic or sentiment in the text to not change if we write twice as long of document that says the same thing.</p>
+<p>For some encoding (such as counting the number of occurrences of words in some vocabulary), this corresponds to a doubling of the vector encoding the document, so again we can use the angle.</p>
+<div id="cell-26" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="dv">0</span>, <span class="dv">2</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">0</span>])</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>v.dot(w)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>0</code></pre>
+</div>
+</div>
+<div id="cell-27" class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> acos</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> l2_norm(vec):</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (vec<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="dv">0</span>, <span class="dv">2</span>])</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">0</span>])</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>0.0</code></pre>
+</div>
+</div>
+<div id="cell-28" class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> acos, pi</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> acos(v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w)))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">==</span> pi <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>True</code></pre>
+</div>
+</div>
+</section>
+<section id="cosine-similaritydistance" class="level2">
+<h2 class="anchored" data-anchor-id="cosine-similaritydistance">Cosine Similarity/Distance</h2>
+<p>In ML contexts where the angle is employed to measure the closeness of two vectors, practitioners adopt the term cosine similarity to refer to the portion</p>
+<p><span class="math display">\[ \cos(\theta) = \frac{\mathbf{v}\cdot\mathbf{w}}{\|\mathbf{v}\|\|\mathbf{w}\|}. \]</span></p>
+<p><u>The cosine takes a maximum value of <span class="math inline">\(1\)</span> when the two vectors point in the same direction, a minimum value of <span class="math inline">\(-1\)</span> when they point in opposite directions, and a value of <span class="math inline">\(0\)</span> when the two vectors are orthogonal. </u></p>
+<p>Note that <strong>cosine similarity</strong> can be converted to <strong>cosine distance</strong> by subtracting it from <span class="math inline">\(1\)</span> and dividing by 2.</p>
+<p><span class="math display">\[ \text{Cosine Distance} = \frac{1 - \text{Cosine Similarity}}{2}\]</span></p>
+<p>where <span class="math inline">\(\text{Cosine Similarity} = \frac{\mathbf{v}\cdot\mathbf{w}}{\|\mathbf{v}\|\|\mathbf{w}\|}\)</span></p>
+<p>Cosine distance is a very useful alternative to Euclidean distance for data where the absolute magnitude of the features is not particularly meaningful, which is a very common scenario in practice.</p>
+<div id="cell-30" class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> uniform</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'cosine similarity'</span>] <span class="op">=</span> pd.Series([uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)])</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'cosine distance'</span>]   <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> df[<span class="st">'cosine similarity'</span>])<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(data<span class="op">=</span>df, x<span class="op">=</span><span class="st">'cosine similarity'</span>, y<span class="op">=</span><span class="st">'cosine distance'</span>)<span class="op">;</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">'Cosine Similarity vs. Cosine Distance'</span>)</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="distance_files/figure-html/cell-14-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-31" class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> l2_norm(vec):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (vec<span class="op">**</span><span class="dv">2</span>).<span class="bu">sum</span>()<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="fl">1.2</span>, <span class="fl">1.2</span>])</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="fl">2.5</span>])</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, v[<span class="dv">0</span>], v[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'navy'</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, w[<span class="dv">0</span>], w[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'magenta'</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w))</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> <span class="bu">round</span>(cosine_similarity, <span class="dv">2</span>)</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> cosine_similarity) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> <span class="bu">round</span>(cosine_distance, <span class="dv">2</span>)</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"θ ≈ 0° (or 0 radians)</span><span class="ch">\n</span><span class="st">"</span><span class="op">+\</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Cosine Similarity: </span><span class="sc">%s</span><span class="st"> </span><span class="ch">\n</span><span class="st">Cosine Distance: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> <span class="op">\</span></span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>          (cosine_similarity, cosine_distance), size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="distance_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-32" class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>cosine_similarity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>0.0</code></pre>
+</div>
+</div>
+<div id="cell-33" class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">2</span>])</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, v[<span class="dv">0</span>], v[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'navy'</span>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, w[<span class="dv">0</span>], w[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'magenta'</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w))</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> <span class="bu">round</span>(cosine_similarity, <span class="dv">2</span>)</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> cosine_similarity) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> <span class="bu">round</span>(cosine_distance, <span class="dv">2</span>)</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"θ = 90° (or π / 2 radians) </span><span class="ch">\n</span><span class="st">Cosine Similarity: </span><span class="sc">%s</span><span class="st"> </span><span class="ch">\n</span><span class="st">Cosine Distance: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> (cosine_similarity, cosine_distance))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="distance_files/figure-html/cell-17-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that cosine similarity can be negative, which means that the angle is greater than <span class="math inline">\(90^{\circ}\)</span>, i.e., the vectors point in opposite directions.</p>
+<div id="cell-35" class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> pd.Series([<span class="dv">2</span>, <span class="dv">2</span>])</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> pd.Series([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, v[<span class="dv">0</span>], v[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'navy'</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="dv">0</span>, <span class="dv">0</span>, w[<span class="dv">0</span>], w[<span class="dv">1</span>], scale<span class="op">=</span><span class="dv">1</span>, scale_units<span class="op">=</span><span class="st">'xy'</span>, angles<span class="op">=</span><span class="st">'xy'</span>, color<span class="op">=</span><span class="st">'magenta'</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">'black'</span>)<span class="op">;</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> v.dot(w) <span class="op">/</span> (l2_norm(v) <span class="op">*</span> l2_norm(w))</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>cosine_similarity <span class="op">=</span> <span class="bu">round</span>(cosine_similarity, <span class="dv">2</span>)</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> (<span class="dv">1</span> <span class="op">-</span> cosine_similarity) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>cosine_distance <span class="op">=</span> <span class="bu">round</span>(cosine_distance, <span class="dv">2</span>)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"θ = 180° (or π radians)</span><span class="ch">\n</span><span class="st">"</span><span class="op">+\</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>          <span class="st">"Cosine Similarity: </span><span class="sc">%s</span><span class="st"> </span><span class="ch">\n</span><span class="st">Cosine Distance: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> <span class="op">\</span></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>          (cosine_similarity, cosine_distance), size<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="distance_files/figure-html/cell-18-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- 
+## Hyperplanes 
+
+In addition to working with vectors, another key object that you must understand to go far in linear algebra is the hyperplane, a generalization to higher dimensions of a line (two dimensions) or of a plane (three dimensions). In an 
+-dimensional vector space, a hyperplane has 
+ dimensions and divides the space into two half-spaces.
+
+<center><img style="filter:invert(1)" width="70%" src="https://community.alteryx.com/t5/image/serverpage/image-id/53830i662E91D903B0F64B/image-size/large?v=v2&px=999"></center>
+ 
+Let’s start with an example. Suppose that we have a column vector $\mathbf{w}=[2,1]^\top$. We want to know, “what are the points $\mathbf{v}$ with $\mathbf{w}\cdot\mathbf{v} = 1$?” We can define $\mathbf{v} = [x, y]$
+
+$$ \mathbf{w}\cdot\mathbf{v} = 1$$
+
+$$ [2, 1]^\top \cdot [x, y] = 1$$
+
+$$ 2x + y = 1$$
+
+$$ y = -2x + 1$$
+
+Recall that the equation for a line is $y = mx + b$. Therefore, in the equations above, we have defined a line where the slope ($m$) is $-2$ and the intercept ($b$) is $1$. -->
+<!-- <center>
+<img src="https://d2l.ai/_images/proj-vec.svg">
+</center> -->
+<!-- ``` {figure} https://d2l.ai/_images/proj-vec.svg
+
+---
+width: 50%
+name: proj-vec
+---
+
+Recalling trigonometry, we see the formula $\|\mathbf{v}\|\cos(\theta)$ is the length of the projection of the vector $\mathbf{v}$ onto the direction of $\mathbf{w}$
+``` -->
+<!-- If we consider the geometric meaning of this expression, we see that this is equivalent to saying that the length of the projection of $\mathbf{v}$ onto the direction of 
+$\mathbf{w}$ is exactly $1/\|\mathbf{w}\|$, as is shown in the figure above. 
+
+The set of all points where this is true is a line at right angles to the vector $\mathbf{w}$. 
+
+If we wanted, we could find the equation for this line and see that it is $2x + y = 1$ or equivalently $y = 1 - 2x$.
+
+If we now look at what happens when we ask about the set of points with $\mathbf{w}\cdot\mathbf{v} > 1$ or $\mathbf{w}\cdot\mathbf{v} < 1$ we can see that these are cases where the projections are longer or shorter than $1/\|\mathbf{w}\|$, respectively.
+
+Thus, those two inequalities define either side of the line.  -->
+<!-- 
+In this way, we have found a way to cut our space into two halves, where all the points on one side have dot product below a threshold, and the other side above as we see below:
+
+<center><img src="https://d2l.ai/_images/space-division.svg" width="50%" style="filter:invert(1)"/></center>
+
+The story in higher dimension is much the same. If we now take $\mathbf{w} = [1,2,3]^\top$ and ask about the points in three dimensions with $\mathbf{w}\cdot\mathbf{v} = 1$, we obtain a plane at right angles to the given vector $\mathbf{w}$. The two inequalities again define the two sides of the plane as is shown below: 
+
+<center><img src="https://d2l.ai/_images/space-division-3d.svg" width="50%" style="filter:invert(1)"/></center> -->
+</section>
+<section id="matrices" class="level2">
+<h2 class="anchored" data-anchor-id="matrices">Matrices</h2>
+<p>We denote matrices by bold capital letters (e.g., <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, and <span class="math inline">\(Z\)</span>), and represent them in code by <code>pd.DataFrame</code>. The expression <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> indicates that a matrix <span class="math inline">\(\textbf{A}\)</span> contains <span class="math inline">\(m \times n\)</span> real-valued scalars, arranged as <span class="math inline">\(m\)</span> rows and <span class="math inline">\(n\)</span> columns. When <span class="math inline">\(m = n\)</span>, we say that a matrix is <em>square</em>. Visually, we can illustrate any matrix as a table. To refer to an individual element, we subscript both the row and column indices, e.g., <span class="math inline">\(a_{ij}\)</span> is the value that belongs to <span class="math inline">\(\mathbf{A}\)</span>’s <span class="math inline">\(i^{th}\)</span> row and <span class="math inline">\(j^{th}\)</span> column:</p>
+<p><span class="math display">\[ \begin{split}\mathbf{A}=\begin{bmatrix} a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\ a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn} \\ \end{bmatrix}.\end{split} \]</span></p>
+<div id="cell-40" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'a'</span>: [<span class="dv">1</span>, <span class="dv">20</span>, <span class="dv">3</span>, <span class="dv">40</span>], <span class="st">'b'</span>: [<span class="dv">50</span>, <span class="dv">6</span>, <span class="dv">70</span>, <span class="dv">8</span>]})</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>df.index <span class="op">=</span> [<span class="st">'v1'</span>, <span class="st">'v2'</span>, <span class="st">'v3'</span>, <span class="st">'v4'</span>]</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">a</th>
+<th data-quarto-table-cell-role="th">b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">v1</td>
+<td>1</td>
+<td>50</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">v2</td>
+<td>20</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">v3</td>
+<td>3</td>
+<td>70</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">v4</td>
+<td>40</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="geometry-of-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="geometry-of-matrices">Geometry of Matrices</h2>
+<p>An (n, d) matrix can be interpreted as a collection of n vectors in d-dimensional space.</p>
+<div id="cell-42" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.scatterplot(x<span class="op">=</span><span class="st">'a'</span>, y<span class="op">=</span><span class="st">'b'</span>, data<span class="op">=</span>df, s<span class="op">=</span><span class="dv">100</span>)<span class="op">;</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>ax.<span class="bu">set</span>(title<span class="op">=</span><span class="st">'Scatterplot of a vs b'</span>, xlabel<span class="op">=</span><span class="st">'a'</span>, ylabel<span class="op">=</span><span class="st">'b'</span>)<span class="op">;</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> annotate(row):</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    plt.text(x<span class="op">=</span>row[<span class="st">'a'</span>]<span class="op">+</span><span class="fl">0.05</span>, y<span class="op">=</span>row[<span class="st">'b'</span>], s<span class="op">=</span>row.name, size<span class="op">=</span><span class="dv">20</span>)<span class="op">;</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>df.<span class="bu">apply</span>(annotate, axis<span class="op">=</span><span class="dv">1</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="distance_files/figure-html/cell-20-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="transpose" class="level2">
+<h2 class="anchored" data-anchor-id="transpose">Transpose</h2>
+<p>Sometimes we want to flip the axes. When we exchange a matrix’s rows and columns, the result is called its transpose. Formally, we signify a matrix’s <span class="math inline">\(\textbf{A}\)</span> transpose by <span class="math inline">\(\mathbf{A}^\top\)</span> and if <span class="math inline">\(\mathbf{B} = \mathbf{A}^\top\)</span>, then <span class="math inline">\(b_{ij} = a_{ij}\)</span> for all <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>. Thus, the transpose of an <span class="math inline">\(m \times n\)</span> matrix is an <span class="math inline">\(n \times m\)</span> matrix:</p>
+<p><span class="math display">\[ \begin{split}\mathbf{A}^\top =
+\begin{bmatrix}
+    a_{11} &amp; a_{21} &amp; \dots  &amp; a_{m1} \\
+    a_{12} &amp; a_{22} &amp; \dots  &amp; a_{m2} \\
+    \vdots &amp; \vdots &amp; \ddots  &amp; \vdots \\
+    a_{1n} &amp; a_{2n} &amp; \dots  &amp; a_{mn}
+\end{bmatrix}.\end{split} \]</span></p>
+<!-- We can convert any appropriately sized 
+ tensor into an 
+ matrix by passing the desired shape to reshape:
+
+A matrix is a rectangular array of numbers. Matrices are often used to represent linear transformations such as rotations and reflections. For example, a matrix can be used to represent a rotation of 90 degrees clockwise about the origin.
+
+Matrices can be added together to form new matrices. For example, the matrix representing a rotation of 90 degrees clockwise about the origin can be added to the matrix representing a rotation of 90 degrees counterclockwise about the origin to form the matrix representing a rotation of 180 degrees about the origin.
+
+Matrices can also be multiplied together to form new matrices. For example, the matrix representing a rotation of 90 degrees clockwise about the origin can be multiplied by the matrix representing a rotation of 90 degrees counterclockwise about the origin to form the matrix representing a rotation of 180 degrees about the origin. -->
+<p>In pandas, you can transpose a <code>DataFrame</code> with the <strong><code>.T</code></strong> attribute:</p>
+<div id="cell-46" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">v1</th>
+<th data-quarto-table-cell-role="th">v2</th>
+<th data-quarto-table-cell-role="th">v3</th>
+<th data-quarto-table-cell-role="th">v4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>1</td>
+<td>20</td>
+<td>3</td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>50</td>
+<td>6</td>
+<td>70</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Note that columns of original dataframe <code>df</code> are the same as index of <code>df.T</code></p>
+<div id="cell-48" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df.columns <span class="op">==</span> df.T.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>array([ True,  True])</code></pre>
+</div>
+</div>
+<div id="cell-49" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>df.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">v1</th>
+<th data-quarto-table-cell-role="th">v2</th>
+<th data-quarto-table-cell-role="th">v3</th>
+<th data-quarto-table-cell-role="th">v4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">a</td>
+<td>1</td>
+<td>20</td>
+<td>3</td>
+<td>40</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">b</td>
+<td>50</td>
+<td>6</td>
+<td>70</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="matrix-vector-products" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-vector-products">Matrix-Vector Products</h2>
+<p>Now that we know how to calculate dot products, we can begin to understand the product between an <span class="math inline">\(m \times n\)</span> matrix and an <span class="math inline">\(n\)</span>-dimensional vector <span class="math inline">\(\mathbf{x}\)</span>.</p>
+<p>To start off, we visualize our matrix in terms of its row vectors</p>
+<p><span class="math display">\[
+\begin{split}\mathbf{A}=
+\begin{bmatrix}
+\mathbf{a}^\top_{1} \\
+\mathbf{a}^\top_{2} \\
+\vdots \\
+\mathbf{a}^\top_m \\
+\end{bmatrix},\end{split}
+\]</span></p>
+<p>where each <span class="math inline">\(\mathbf{a}^\top_{i} \in \mathbb{R}^n\)</span> is a row vector representing the <span class="math inline">\(i^\textrm{th}\)</span> row of the matrix <span class="math inline">\(\mathbf{A}\)</span>.</p>
+<p>The matrix–vector product <span class="math inline">\(\mathbf{A}\mathbf{x}\)</span> is simply a column vector of length <span class="math inline">\(m\)</span> , whose <span class="math inline">\(i^{th}\)</span> element is the dot product <span class="math inline">\(\mathbf{a}^\top_i \mathbf{x}\)</span></p>
+<p><span class="math display">\[
+\begin{split}\mathbf{A}\mathbf{x}
+= \begin{bmatrix}
+\mathbf{a}^\top_{1} \\
+\mathbf{a}^\top_{2} \\
+\vdots \\
+\mathbf{a}^\top_m \\
+\end{bmatrix}\mathbf{x}
+= \begin{bmatrix}
+\mathbf{a}^\top_{1} \mathbf{x}  \\
+\mathbf{a}^\top_{2} \mathbf{x} \\
+\vdots\\
+\mathbf{a}^\top_{m} \mathbf{x}\\
+\end{bmatrix}.\end{split}
+\]</span></p>
+<p>We can think of multiplication with a matrix <span class="math inline">\(\mathbf{A}\in \mathbb{R}^{m \times n}\)</span> as a transformation that projects vectors from <span class="math inline">\(\mathbb{R}^{n}\)</span> to <span class="math inline">\(\mathbb{R}^{m}\)</span>.</p>
+<p>These transformations are remarkably useful. For example, we can represent rotations as multiplications by certain square matrices. Matrix–vector products also describe the key calculation involved in computing the outputs of each layer in a neural network given the outputs from the previous layer.</p>
+<section id="finding-similar-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="finding-similar-vectors">Finding similar vectors</h3>
+<p>Note that, given a vector <span class="math inline">\(\mathbf{v}\)</span>, vector-matrix products can also be used to compute the similarity of <span class="math inline">\(\mathbf{v}\)</span> and each row <span class="math inline">\(\mathbf{a}^\top_i\)</span> of matrix <span class="math inline">\(\mathbf{A}\)</span>. This is because the matrix-vector product <span class="math inline">\(\mathbf{A}\mathbf{v}\)</span> will contain the dot products of <span class="math inline">\(\mathbf{v}\)</span> and each row in <span class="math inline">\(\mathbf{A}\)</span>.</p>
+<p>There is one thing to be careful about: recall that the formula for cosine similarity is:</p>
+<p><span class="math display">\[\text{cos}(\theta) = \frac{\mathbf{a} \cdot \mathbf{b}}{\|\mathbf{a}\| \|\mathbf{b}\|}\]</span></p>
+<p><strong>The dot product (numerator, on the right hand side) is equal to the cosine of the angle between the two vectors when the vectors are normalized (i.e.&nbsp;each divided by their norms).</strong></p>
+<p>The example below shows how to compute the cosine similarity between a vector <span class="math inline">\(\mathbf{v}\)</span> and each row of matrix <span class="math inline">\(\mathbf{A}\)</span>.</p>
+<div id="cell-52" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/fahadsultan/csc272/main/data/chat_dataset.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-53" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating bow representation</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>vocab <span class="op">=</span> (<span class="st">' '</span>.join(data[<span class="st">'message'</span>].values)).lower().split()</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>bow <span class="op">=</span> pd.DataFrame(columns<span class="op">=</span>vocab)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> word <span class="kw">in</span> vocab: </span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    bow[word] <span class="op">=</span> data[<span class="st">'message'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> msg: msg.count(word))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-54" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># l2 norm of a vector</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> l2_norm(vec):</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="bu">sum</span>(vec<span class="op">**</span><span class="dv">2</span>))<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># bow where each row is a unit vectors i.e. ||row|| = 1</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>bow_unit <span class="op">=</span> bow.<span class="bu">apply</span>(<span class="kw">lambda</span> row: row<span class="op">/</span>l2_norm(row), axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-55" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># random message : I don't have an opinion on this</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>msg <span class="op">=</span> bow_unit.iloc[<span class="dv">20</span>] </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cosine similarity of first message with all other messages</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>msg_sim <span class="op">=</span> bow_unit.dot(msg.T)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>msg_sim.index <span class="op">=</span> data[<span class="st">'message'</span>]</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>msg_sim.sort_values(ascending<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>message
+I don't have an opinion on this           1.000000
+I don't really have an opinion on this    0.984003
+I have no strong opinion about this       0.971575
+I have no strong opinions about this      0.971226
+I have no strong opinion on this          0.969768
+                                            ...   
+I'm not sure what to do 😕                 0.204587
+I'm not sure what to do next 🤷‍♂️         0.201635
+I'm not sure what to do next 🤔            0.200593
+The food was not good                     0.200295
+The food was not very good                0.197220
+Length: 584, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="matrix-matrix-multiplication" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-matrix-multiplication">Matrix-Matrix Multiplication</h2>
+<p>Once you have gotten the hang of dot products and matrix–vector products, then matrix–matrix multiplication should be straightforward.</p>
+<p>Say that we have two matrices <span class="math inline">\(\mathbf{A} \in \mathbb{R}^{n \times k}\)</span> and <span class="math inline">\(\mathbf{B} \in \mathbb{R}^{k \times m}\)</span>:</p>
+<p><span class="math display">\[
+\begin{split}\mathbf{A}=\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1k} \\
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2k} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nk} \\
+\end{bmatrix},\quad
+\mathbf{B}=\begin{bmatrix}
+b_{11} &amp; b_{12} &amp; \cdots &amp; b_{1m} \\
+b_{21} &amp; b_{22} &amp; \cdots &amp; b_{2m} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+b_{k1} &amp; b_{k2} &amp; \cdots &amp; b_{km} \\
+\end{bmatrix}.\end{split}
+\]</span></p>
+<p>Let <span class="math inline">\(\mathbf{a}^\top_{i} \in \mathbb{R}^k\)</span> denote the row vector representing the <span class="math inline">\(i^\textrm{th}\)</span> row of the matrix <span class="math inline">\(\mathbf{A}\)</span> and let <span class="math inline">\(\mathbf{b}_{j} \in \mathbb{R}^k\)</span> denote the column vector from the <span class="math inline">\(j^\textrm{th}\)</span> column of the matrix <span class="math inline">\(\mathbf{B}\)</span> :</p>
+<p><span class="math display">\[
+\begin{split}\mathbf{A}=
+\begin{bmatrix}
+\mathbf{a}^\top_{1} \\
+\mathbf{a}^\top_{2} \\
+\vdots \\
+\mathbf{a}^\top_n \\
+\end{bmatrix},
+\quad \mathbf{B}=\begin{bmatrix}
+\mathbf{b}_{1} &amp; \mathbf{b}_{2} &amp; \cdots &amp; \mathbf{b}_{m} \\
+\end{bmatrix}.\end{split}
+\]</span></p>
+<p>To form the matrix product <span class="math inline">\(\mathbf{C} \in \mathbb{R}^{n \times m}\)</span> , we simply compute each element <span class="math inline">\(c_{ij}\)</span> as the dot product between the <span class="math inline">\(i^{\textrm{th}}\)</span> row of <span class="math inline">\(\mathbf{A}\)</span> and the <span class="math inline">\(i^{\textrm{th}}\)</span> column of <span class="math inline">\(\mathbf{B}\)</span> , i.e., <span class="math inline">\(\mathbf{a}^\top_i \mathbf{b}_j\)</span> :</p>
+<p><span class="math display">\[
+\begin{split}\mathbf{C} = \mathbf{AB} = \begin{bmatrix}
+\mathbf{a}^\top_{1} \\
+\mathbf{a}^\top_{2} \\
+\vdots \\
+\mathbf{a}^\top_n \\
+\end{bmatrix}
+\begin{bmatrix}
+\mathbf{b}_{1} &amp; \mathbf{b}_{2} &amp; \cdots &amp; \mathbf{b}_{m} \\
+\end{bmatrix}
+= \begin{bmatrix}
+\mathbf{a}^\top_{1} \mathbf{b}_1 &amp; \mathbf{a}^\top_{1}\mathbf{b}_2&amp; \cdots &amp; \mathbf{a}^\top_{1} \mathbf{b}_m \\
+\mathbf{a}^\top_{2}\mathbf{b}_1 &amp; \mathbf{a}^\top_{2} \mathbf{b}_2 &amp; \cdots &amp; \mathbf{a}^\top_{2} \mathbf{b}_m \\
+\vdots &amp; \vdots &amp; \ddots &amp;\vdots\\
+\mathbf{a}^\top_{n} \mathbf{b}_1 &amp; \mathbf{a}^\top_{n}\mathbf{b}_2&amp; \cdots&amp; \mathbf{a}^\top_{n} \mathbf{b}_m
+\end{bmatrix}.\end{split}
+\]</span></p>
+<p>We can think of the matrix–matrix multiplication <span class="math inline">\(\mathbf{AB}\)</span> as performing <span class="math inline">\(m\)</span> matrix–vector products or <span class="math inline">\(m \times n\)</span> dot products and stitching the results together to form an <span class="math inline">\(m \times n\)</span> matrix. In the following snippet, we perform matrix multiplication on A and B. Here, A is a matrix with two rows and three columns, and B is a matrix with three rows and four columns. After multiplication, we obtain a matrix with two rows and four columns.</p>
+<section id="computing-similarity-distance-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="computing-similarity-distance-matrix">Computing similarity / distance matrix</h3>
+<p>Note that, given two matrices <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span>, matrix-matrix products can also be used to compute the similarity between each row <span class="math inline">\(\mathbf{a}^\top_i\)</span> of matrix <span class="math inline">\(\mathbf{A}\)</span> and each row <span class="math inline">\(\mathbf{b}^\top_j\)</span> of matrix <span class="math inline">\(\mathbf{B}\)</span>. This is because the matrix-matrix product <span class="math inline">\(\mathbf{A}\mathbf{B}\)</span> will contain the dot products of each pair of rows in <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span>.</p>
+<div id="cell-58" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>similarity_matrix <span class="op">=</span> bow_unit.dot(bow_unit.T)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>similarity_matrix.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>(584, 584)</code></pre>
+</div>
+</div>
+<div id="cell-59" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>similarity_matrix.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
+<th data-quarto-table-cell-role="th">3</th>
+<th data-quarto-table-cell-role="th">4</th>
+<th data-quarto-table-cell-role="th">5</th>
+<th data-quarto-table-cell-role="th">6</th>
+<th data-quarto-table-cell-role="th">7</th>
+<th data-quarto-table-cell-role="th">8</th>
+<th data-quarto-table-cell-role="th">9</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">574</th>
+<th data-quarto-table-cell-role="th">575</th>
+<th data-quarto-table-cell-role="th">576</th>
+<th data-quarto-table-cell-role="th">577</th>
+<th data-quarto-table-cell-role="th">578</th>
+<th data-quarto-table-cell-role="th">579</th>
+<th data-quarto-table-cell-role="th">580</th>
+<th data-quarto-table-cell-role="th">581</th>
+<th data-quarto-table-cell-role="th">582</th>
+<th data-quarto-table-cell-role="th">583</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1.000000</td>
+<td>0.568191</td>
+<td>0.453216</td>
+<td>0.565809</td>
+<td>0.612787</td>
+<td>0.608156</td>
+<td>0.377769</td>
+<td>0.631309</td>
+<td>0.793969</td>
+<td>0.642410</td>
+<td>...</td>
+<td>0.516106</td>
+<td>0.612624</td>
+<td>0.660911</td>
+<td>0.490580</td>
+<td>0.845518</td>
+<td>0.573549</td>
+<td>0.648564</td>
+<td>0.629598</td>
+<td>0.594468</td>
+<td>0.570452</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0.568191</td>
+<td>1.000000</td>
+<td>0.508206</td>
+<td>0.928580</td>
+<td>0.687137</td>
+<td>0.681944</td>
+<td>0.423604</td>
+<td>0.707906</td>
+<td>0.551139</td>
+<td>0.720354</td>
+<td>...</td>
+<td>0.573755</td>
+<td>0.686954</td>
+<td>0.741100</td>
+<td>0.546166</td>
+<td>0.801864</td>
+<td>0.643139</td>
+<td>0.721001</td>
+<td>0.705988</td>
+<td>0.652357</td>
+<td>0.639666</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.453216</td>
+<td>0.508206</td>
+<td>1.000000</td>
+<td>0.506075</td>
+<td>0.548093</td>
+<td>0.707857</td>
+<td>0.778316</td>
+<td>0.621438</td>
+<td>0.538883</td>
+<td>0.648861</td>
+<td>...</td>
+<td>0.457088</td>
+<td>0.547948</td>
+<td>0.650512</td>
+<td>0.443105</td>
+<td>0.593732</td>
+<td>0.512998</td>
+<td>0.574392</td>
+<td>0.605515</td>
+<td>0.520351</td>
+<td>0.609064</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0.565809</td>
+<td>0.928580</td>
+<td>0.506075</td>
+<td>1.000000</td>
+<td>0.685614</td>
+<td>0.679085</td>
+<td>0.421828</td>
+<td>0.704938</td>
+<td>0.548828</td>
+<td>0.717334</td>
+<td>...</td>
+<td>0.571349</td>
+<td>0.684074</td>
+<td>0.737993</td>
+<td>0.543876</td>
+<td>0.798502</td>
+<td>0.640442</td>
+<td>0.717978</td>
+<td>0.703027</td>
+<td>0.649622</td>
+<td>0.638039</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0.612787</td>
+<td>0.687137</td>
+<td>0.548093</td>
+<td>0.685614</td>
+<td>1.000000</td>
+<td>0.735468</td>
+<td>0.273748</td>
+<td>0.559585</td>
+<td>0.714100</td>
+<td>0.599091</td>
+<td>...</td>
+<td>0.926494</td>
+<td>0.825530</td>
+<td>0.806139</td>
+<td>0.933257</td>
+<td>0.802775</td>
+<td>0.945544</td>
+<td>0.931874</td>
+<td>0.913601</td>
+<td>0.928473</td>
+<td>0.690556</td>
+</tr>
+</tbody>
+</table>
+
+<p>5 rows × 584 columns</p>
+</div>
+</div>
+</div>
+<div id="cell-60" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>plt.imshow(similarity_matrix, cmap<span class="op">=</span><span class="st">'Greens'</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>plt.colorbar()<span class="op">;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Similarity Matrix: Each cell contains cosine </span><span class="ch">\n</span><span class="st">similarity between two messages"</span>)<span class="op">;</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Message Index"</span>)<span class="op">;</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Message Index"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="distance_files/figure-html/cell-30-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note how 1. the similarity matrix is symmetric, i.e.&nbsp;<span class="math inline">\(sim_{ij} = sim_{ji}\)</span> and 2. the diagonal elements are all 1, i.e.&nbsp;<span class="math inline">\(sim_{ii} = 1\)</span>.</p>
+<div id="cell-62" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>distance_matrix <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> bow_unit.dot(bow_unit.T)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>plt.imshow(distance_matrix, cmap<span class="op">=</span><span class="st">'Reds'</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>plt.colorbar()<span class="op">;</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Distance Matrix: Each cell contains cosine </span><span class="ch">\n</span><span class="st">distance between two messages"</span>)<span class="op">;</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Message Index"</span>)<span class="op">;</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Message Index"</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="distance_files/figure-html/cell-31-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="nearest-neighbor" class="level1">
+<h1>Nearest Neighbor</h1>
+<p>Nearest Neighbor is a simple algorithm that stores all available cases and classifies new cases based on a similarity measure (e.g., distance functions). It is a type of instance-based learning, or lazy learning, where the function is only approximated locally and all computation is deferred until function evaluation.</p>
+<div id="cell-65" class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import libraries</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'dark_background'</span>)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>url  <span class="op">=</span> <span class="st">'https://raw.githubusercontent.com/fahadsultan/csc343/refs/heads/main/data/uscities.csv'</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(url)</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>us_mainland <span class="op">=</span> data[(data[<span class="st">'state_id'</span>] <span class="op">!=</span> <span class="st">'HI'</span>) <span class="op">&amp;</span> <span class="op">\</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>                   (data[<span class="st">'state_id'</span>] <span class="op">!=</span> <span class="st">'AK'</span>) <span class="op">&amp;</span> <span class="op">\</span></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>                   (data[<span class="st">'state_id'</span>] <span class="op">!=</span> <span class="st">'PR'</span>)]</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>sc <span class="op">=</span> us_mainland[us_mainland[<span class="st">'state_id'</span>] <span class="op">==</span> <span class="st">'SC'</span>]</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>ga <span class="op">=</span> us_mainland[us_mainland[<span class="st">'state_id'</span>] <span class="op">==</span> <span class="st">'GA'</span>]</span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>unknown1 <span class="op">=</span> (<span class="fl">33.04366363086289</span>, <span class="op">-</span><span class="fl">79.34728514760124</span>)</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>unknown2 <span class="op">=</span> (<span class="fl">33.69266640894652</span>, <span class="op">-</span><span class="fl">82.22939618795743</span>)</span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>unknown3 <span class="op">=</span> (<span class="fl">32.9806084015696</span>,  <span class="op">-</span><span class="fl">81.46763167425789</span>)</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>unknown4 <span class="op">=</span> (<span class="fl">34.84821943641973</span>, <span class="op">-</span><span class="fl">84.2073074091929</span>)</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>ax.scatter(sc[<span class="st">'lng'</span>], sc[<span class="st">'lat'</span>], label<span class="op">=</span><span class="st">'South Carolina'</span>, color<span class="op">=</span><span class="st">'red'</span>,  marker<span class="op">=</span><span class="st">'x'</span>)<span class="op">;</span></span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>ax.scatter(ga[<span class="st">'lng'</span>], ga[<span class="st">'lat'</span>], label<span class="op">=</span><span class="st">'Georgia'</span>,        color<span class="op">=</span><span class="st">'blue'</span>, marker<span class="op">=</span><span class="st">'^'</span>)<span class="op">;</span></span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>ax.scatter(unknown1[<span class="dv">1</span>], unknown1[<span class="dv">0</span>], s<span class="op">=</span><span class="dv">40</span>, label<span class="op">=</span><span class="st">'Unknowns'</span>, color<span class="op">=</span><span class="st">'lightgreen'</span>)<span class="op">;</span></span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>ax.scatter(unknown2[<span class="dv">1</span>], unknown2[<span class="dv">0</span>], s<span class="op">=</span><span class="dv">40</span>, color<span class="op">=</span><span class="st">'lightgreen'</span>)<span class="op">;</span></span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>ax.scatter(unknown3[<span class="dv">1</span>], unknown3[<span class="dv">0</span>], s<span class="op">=</span><span class="dv">40</span>, color<span class="op">=</span><span class="st">'lightgreen'</span>)<span class="op">;</span></span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>ax.scatter(unknown4[<span class="dv">1</span>], unknown4[<span class="dv">0</span>], s<span class="op">=</span><span class="dv">40</span>, color<span class="op">=</span><span class="st">'lightgreen'</span>)<span class="op">;</span></span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">12</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="distance_files/figure-html/cell-32-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The algorithm is composed of two stages:</p>
+<ol type="1">
+<li><p>Training stage: The algorithm stores all the training data.</p></li>
+<li><p>Testing stage: The algorithm compares the test data with the training data and returns the most similar data.</p></li>
+</ol>
+<p>The algorithm is based on the assumption that the data points that are close to each other are similar. The similarity is calculated using a distance function, such as Euclidean distance, Manhattan distance, Minkowski distance, etc.</p>
+<p>The algorithm is simple and easy to implement, but it is computationally expensive, especially when the training data is large. It is also sensitive to the curse of dimensionality, which means that the algorithm’s performance deteriorates as the number of dimensions increases.</p>
+<section id="pseudocode" class="level2">
+<h2 class="anchored" data-anchor-id="pseudocode">Pseudocode</h2>
+<p>The pseudocode for the nearest neighbor algorithm is as follows:</p>
+<ul>
+<li>For each test data point:
+<ol type="1">
+<li>Calculate the distance between the test data point and all training data points.</li>
+<li>Sort the distances in ascending order.</li>
+<li>Select the nearest data points.</li>
+<li>Determine the class of the nearest data points.</li>
+<li>Assign the test data point to the nearest neighbor class.</li>
+</ol></li>
+</ul>
+</section>
+<section id="k-nn-algorithm" class="level2">
+<h2 class="anchored" data-anchor-id="k-nn-algorithm">k-NN Algorithm</h2>
+<p>The k-NN algorithm is an extension of the nearest neighbor algorithm. Instead of returning the most similar data point, the algorithm returns the k most similar data points. The class of the test data is determined by the majority class of the k most similar data points.</p>
+<p>For example, in the figure below, the test sample (green dot) should be classified either to blue squares or to red triangles. If k = 3 (solid line circle) it is assigned to the red triangles because there are 2 triangles and only 1 square inside the inner circle. If k = 5 (dashed line circle) it is assigned to the blue squares (3 squares vs.&nbsp;2 triangles inside the outer circle).</p>
+<br>
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/KnnClassification.svg/1920px-KnnClassification.svg.png" width="40%" style="filter:invert(1)">
+</center>
+<p><br></p>
+<p>The k-NN algorithm is more robust than the nearest neighbor algorithm, as it reduces the noise in the data. However, it is computationally more expensive, as it requires storing and comparing more data points.</p>
+<center>
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/78/KNN_decision_surface_animation.gif" width="100%" style="filter:invert(1)">
+</center>
+<p>The k-NN algorithm is a simple and effective algorithm for classification and regression tasks. It is widely used in various fields, such as pattern recognition, image processing, and data mining.</p>
+<!-- ## Linear Transformations
+
+A linear transformation is a function that maps vectors to vectors. For example, a rotation of 90 degrees clockwise about the origin is a linear transformation that maps vectors to vectors.
+
+Linear transformations can be represented as matrices. For example, a rotation of 90 degrees clockwise about the origin can be represented as the matrix
+
+$$ \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix} $$
+
+## Norms
+
+Norms, in the case of matrices, are more complicated. After all, matrices can be viewed both as collections of individual entries and as objects that operate on vectors and transform them into other vectors. For instance, we can ask by how much longer the matrix–vector product $\mathbf{X} \mathbf{v}$ could be relative to 
+. This line of thought leads to what is called the spectral norm. For now, we introduce the Frobenius norm, which is much easier to compute and defined as the square root of the sum of the squares of a matrix’s elements:
+
+$$ \|\mathbf{X}\|_\textrm{F} = \sqrt{\sum_{i=1}^m \sum_{j=1}^n x_{ij}^2} $$
+
+The Frobenius norm behaves as if it were an $l_2$ norm of a matrix-shaped vector. Invoking the following function will calculate the Frobenius norm of a matrix.
+
+While we do not want to get too far ahead of ourselves, we already can plant some intuition about why these concepts are useful. In deep learning, we are often trying to solve optimization problems: maximize the probability assigned to observed data; maximize the revenue associated with a recommender model; minimize the distance between predictions and the ground truth observations; minimize the distance between representations of photos of the same person while maximizing the distance between representations of photos of different people. These distances, which constitute the objectives of deep learning algorithms, are often expressed as norms. -->
+<!-- ## Tensors -->
+<!-- While you can go far in your machine learning journey with only scalars, vectors, and matrices, eventually you may need to work with higher-order tensors. Tensors give us a generic way of describing extensions to $n^{th}$-order arrays. We call software objects of the _tensor_ class “tensors” precisely because they too can have arbitrary numbers of axes. While it may be confusing to use the word tensor for both the mathematical object and its realization in code, our meaning should usually be clear from context. We denote general tensors by capital letters with a special font face (e.g., $\mathsf{X}$, $\mathsf{Y}$, and $\mathsf{Z}$) and their indexing mechanism (e.g., $x_{ijk}$ and $[\mathsf{X}_{1,2i-1,3}]$) follows naturally from that of matrices.
+
+Tensors will become more important when we start working with images. Each image arrives as a 
+-order tensor with axes corresponding to the height, width, and channel. At each spatial location, the intensities of each color (red, green, and blue) are stacked along the channel. Furthermore, a collection of images is represented in code by a 
+-order tensor, where distinct images are indexed along the first axis. Higher-order tensors are constructed, as were vectors and matrices, by growing the number of shape components. -->
+<!-- <center>
+
+<img width="70%" src="../assets/tensors.png">
+
+<img width="70%" src="../assets/tensors2.png">
+
+<img width="30%" src="../assets/tensors3.png">
+
+</center> -->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
