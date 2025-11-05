@@ -550,15 +550,13 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#training-and-test-sets" id="toc-training-and-test-sets" class="nav-link active" data-scroll-target="#training-and-test-sets"><strong>Training and Test Sets</strong>:</a></li>
-  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation"><strong>Cross-Validation</strong>:</a></li>
-  <li><a href="#performance-metrics" id="toc-performance-metrics" class="nav-link" data-scroll-target="#performance-metrics"><strong>Performance Metrics</strong>:</a></li>
-  <li><a href="#overfitting-and-underfitting" id="toc-overfitting-and-underfitting" class="nav-link" data-scroll-target="#overfitting-and-underfitting"><strong>Overfitting and Underfitting</strong>:</a></li>
-  <li><a href="#hyperparameter-tuning" id="toc-hyperparameter-tuning" class="nav-link" data-scroll-target="#hyperparameter-tuning"><strong>Hyperparameter Tuning</strong>:</a></li>
-  <li><a href="#baselines" id="toc-baselines" class="nav-link" data-scroll-target="#baselines">Baselines</a>
-  <ul class="collapse">
-  <li><a href="#types-of-baselines" id="toc-types-of-baselines" class="nav-link" data-scroll-target="#types-of-baselines">Types of Baselines</a></li>
-  </ul></li>
+  <li><a href="#training-and-test-sets" id="toc-training-and-test-sets" class="nav-link active" data-scroll-target="#training-and-test-sets">Training and Test Sets</a></li>
+  <li><a href="#performance-metrics" id="toc-performance-metrics" class="nav-link" data-scroll-target="#performance-metrics">Performance Metrics</a></li>
+  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation">Cross-Validation</a></li>
+  <li><a href="#overfitting-and-underfitting" id="toc-overfitting-and-underfitting" class="nav-link" data-scroll-target="#overfitting-and-underfitting">Overfitting and Underfitting</a></li>
+  <li><a href="#hyperparameter-tuning" id="toc-hyperparameter-tuning" class="nav-link" data-scroll-target="#hyperparameter-tuning">Hyperparameter Tuning</a></li>
+  <li><a href="#baselines" id="toc-baselines" class="nav-link" data-scroll-target="#baselines">Baselines</a></li>
+  <li><a href="#baseline-models" id="toc-baseline-models" class="nav-link" data-scroll-target="#baseline-models">Baseline Models</a></li>
   </ul>
 </nav>
     </div>
@@ -585,8 +583,8 @@ window.Quarto = {
 
 
 <p>Model validation is a crucial step in the machine learning workflow that ensures the performance and reliability of a model before it is deployed in real-world applications. It involves assessing how well a model generalizes to unseen data, which helps in identifying potential issues such as overfitting or underfitting.</p>
-<section id="training-and-test-sets" class="level3">
-<h3 class="anchored" data-anchor-id="training-and-test-sets"><strong>Training and Test Sets</strong>:</h3>
+<section id="training-and-test-sets" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-test-sets">Training and Test Sets</h2>
 <p>For effective model validation, the dataset is typically divided into atleast two subsets:</p>
 <ol type="1">
 <li><p><strong>Training Set</strong>: This subset is used to train the model. Training involves feeding the model with input data and corresponding labels so that it can learn patterns and relationships.</p></li>
@@ -695,30 +693,117 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="cross-validation" class="level3">
-<h3 class="anchored" data-anchor-id="cross-validation"><strong>Cross-Validation</strong>:</h3>
+<section id="performance-metrics" class="level2">
+<h2 class="anchored" data-anchor-id="performance-metrics">Performance Metrics</h2>
+<p>Depending on the type of problem (classification, regression, etc.), different metrics are used to evaluate model performance. Common metrics include accuracy, precision, recall, F1-score for classification tasks, and mean squared error (MSE), R-squared for regression tasks.</p>
+<p>The most common metric for evaluating a classifier is <strong>accuracy</strong>. Accuracy is the proportion of correct predictions. It is the number of correct predictions divided by the total number of predictions.</p>
+<p><span class="math display">\[Accuracy = \frac{\text{Number of correct predictions}}{\text{Total number of predictions}}\]</span></p>
+<p>For example, if we have a test set of 100 documents, and our classifier correctly predicts the class of 80 of them, then the accuracy is 80%.</p>
+<p>Accuracy is a good metric when the classes are <em>balanced</em> <span class="math inline">\(N_{class1} \approx N_{class2}\)</span>. However, when the classes are imbalanced, accuracy can be misleading. For example, if we have a test set of 100 documents, and 95 of them are positive and 5 of them are negative, then a classifier that always predicts positive will have an accuracy of 95%. However, this classifier is not useful, because it never predicts negative.</p>
+<p><strong>Multi-class classification as multiple Binary classifications</strong></p>
+<p>Every multi-class classification problem can be decomposed into multiple binary classification problems. For example, if we have a multi-class classification problem with 3 classes, we can decompose it into 3 binary classification problems.</p>
+<p><br></p>
+<p><img src="../assets/binary_multiclass.png" width="100%" style="filter:invert(1)"></p>
+<p><br> <br></p>
+<p>Assuming the categorical variable that we are trying to predict is binary, we can define the accuracy in terms of the four possible outcomes of a binary classifier:</p>
+<ol type="1">
+<li>True Positive (TP): The classifier correctly predicted the positive class.</li>
+<li>False Positive (FP): The classifier <strong>incorrectly</strong> predicted the negative class as positive.</li>
+<li>True Negative (TN): The classifier correctly predicted the negative class.</li>
+<li>False Negative (FN): The classifier <strong>incorrectly</strong> predicted the positive class as negative.</li>
+</ol>
+<p>True positive means that the classifier correctly predicted the positive class. False positive means that the classifier incorrectly predicted the positive class. True negative means that the classifier correctly predicted the negative class. False negative means that the classifier incorrectly predicted the negative class.</p>
+<p>These definitions are summarized in the table below:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Prediction <span class="math inline">\(\hat{y} = f'(x)\)</span></th>
+<th style="text-align: right;">Truth <span class="math inline">\(y = f(x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">True Negative (TN)</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">False Negative (FN)</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">False Positive (FP)</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">True Positive (TP)</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+<p>In terms of the four outcomes above, the accuracy is:</p>
+<p><span class="math display">\[ \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}\]</span></p>
+<p>Accuracy is a useful metric, but it can be misleading.</p>
+<p>Other metrics that are often used to evaluate classifiers are:</p>
+<ul>
+<li><strong>Precision</strong>: The proportion of positive predictions that are correct. Mathematically, it is defined as:</li>
+</ul>
+<p><span class="math display">\[\text{Precision} = \frac{TP}{TP + FP}\]</span></p>
+<ul>
+<li><strong>Recall</strong>: The proportion of positive instances that are correctly predicted. Mathematically, it is defined as:</li>
+</ul>
+<p><span class="math display">\[\text{Recall} = \frac{TP}{TP + FN}\]</span></p>
+<p>The precision and recall are often combined into a single metric called the <strong>F1 score</strong>. The F1 score is the harmonic mean of precision and recall. The harmonic mean of two numbers is given by:</p>
+<ul>
+<li><strong>F1 Score</strong>: The harmonic mean of precision and recall.</li>
+</ul>
+<p><span class="math display">\[\text{F1-Score} = 2 \times \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}\]</span></p>
+<!-- $$Baseline\ Accuracy = \frac{Number\ of\ majority\ class\ predictions}{Total\ number\ of\ predictions}$$ -->
+<!-- The baseline accuracy is the accuracy of the majority class classifier. It is the accuracy we would get if we just guessed the majority class for every instance. It is a useful baseline to compare our classifier to. If our classifier is not better than the baseline, then we should probably just use the baseline classifier.
+
+Another way to evaluate a classifier is to look at the confusion matrix. A confusion matrix is a table that shows the number of correct and incorrect predictions for each class. For example, if we have a test set of 100 documents, and our classifier correctly predicts the class of 80 of them, then the accuracy is 80%. But if we had just guessed the majority class for all of them, we would have gotten 50% accuracy. This is called the baseline accuracy.
+
+<img src="../assets/confusion_matrix.png">
+
+
+
+<img src="../assets/classification.png">
+
+
+
+<img src="../assets/training_testing.png">
+ -->
+</section>
+<section id="cross-validation" class="level2">
+<h2 class="anchored" data-anchor-id="cross-validation">Cross-Validation</h2>
 <ul>
 <li>A technique used to assess how the results of a statistical analysis will generalize to an independent dataset. Common methods include k-fold cross-validation and leave-one-out cross-validation.</li>
 </ul>
+<p><img src="../assets/cross_validation.png" width="100%" style="filter:invert(1)"></p>
 </section>
-<section id="performance-metrics" class="level3">
-<h3 class="anchored" data-anchor-id="performance-metrics"><strong>Performance Metrics</strong>:</h3>
-<pre><code>- Depending on the type of problem (classification, regression, etc.), different metrics are used to evaluate model performance. Common metrics include accuracy, precision, recall, F1-score for classification tasks, and mean squared error (MSE), R-squared for regression tasks.</code></pre>
+<section id="overfitting-and-underfitting" class="level2">
+<h2 class="anchored" data-anchor-id="overfitting-and-underfitting">Overfitting and Underfitting</h2>
+<ul>
+<li><p><strong>Overfitting</strong>: When a model learns the training data too well, including noise and outliers, leading to poor generalization on new data.</p></li>
+<li><p><strong>Underfitting</strong>: When a model is too simple to capture the underlying patterns in the data, resulting in poor performance on both training and test sets.</p></li>
+</ul>
 </section>
-<section id="overfitting-and-underfitting" class="level3">
-<h3 class="anchored" data-anchor-id="overfitting-and-underfitting"><strong>Overfitting and Underfitting</strong>:</h3>
-<pre><code>- **Overfitting**: When a model learns the training data too well, including noise and outliers, leading to poor generalization on new data.
-- **Underfitting**: When a model is too simple to capture the underlying patterns in the data, resulting in poor performance on both training and test sets.</code></pre>
-</section>
-<section id="hyperparameter-tuning" class="level3">
-<h3 class="anchored" data-anchor-id="hyperparameter-tuning"><strong>Hyperparameter Tuning</strong>:</h3>
-<pre><code>- The process of optimizing the parameters that govern the training process of the model (e.g., learning rate, number of trees in a random forest) to improve performance on the validation set.</code></pre>
+<section id="hyperparameter-tuning" class="level2">
+<h2 class="anchored" data-anchor-id="hyperparameter-tuning">Hyperparameter Tuning</h2>
+<ul>
+<li>The process of optimizing the parameters that govern the training process of the model (e.g., learning rate, number of trees in a random forest) to improve performance on the validation set.</li>
+</ul>
 </section>
 <section id="baselines" class="level2">
 <h2 class="anchored" data-anchor-id="baselines">Baselines</h2>
 <p>Establishing a baseline is an essential step in model validation. A baseline provides a reference point against which the performance of more complex models can be compared. It helps to determine whether a new model is actually improving upon simpler approaches.</p>
-<section id="types-of-baselines" class="level3">
-<h3 class="anchored" data-anchor-id="types-of-baselines">Types of Baselines</h3>
+</section>
+<section id="baseline-models" class="level2">
+<h2 class="anchored" data-anchor-id="baseline-models">Baseline Models</h2>
 <ol type="1">
 <li><p><strong>Simple Heuristic Baseline</strong>:</p>
 <ul>
@@ -735,7 +820,6 @@ window.Quarto = {
 </ol>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

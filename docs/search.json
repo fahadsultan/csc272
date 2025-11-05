@@ -1711,11 +1711,83 @@
     ]
   },
   {
+    "objectID": "beyond/validation.html#training-and-test-sets",
+    "href": "beyond/validation.html#training-and-test-sets",
+    "title": "Model Validation",
+    "section": "Training and Test Sets",
+    "text": "Training and Test Sets\nFor effective model validation, the dataset is typically divided into atleast two subsets:\n\nTraining Set: This subset is used to train the model. Training involves feeding the model with input data and corresponding labels so that it can learn patterns and relationships.\nTest Set: This subset is used to assess the final performance of the model after training and validation. It provides an unbiased evaluation of the model’s generalization ability. It is extremely important that the test set remains completely unseen during the training to ensure an unbiased evaluation of the model’s performance.\n\n\n\n\nIn some cases, a third subset called the Validation Set is also used during the training process to tune hyperparameters and make decisions about model architecture. However, in simpler workflows, cross-validation techniques can be employed instead of a separate validation set.\nIn sklearn, the train_test_split function from the model_selection module is commonly used to split the dataset into training and test sets. Here is an example:\n\nimport pandas as pd \nfrom sklearn.model_selection import train_test_split\n\nurl = \"https://raw.githubusercontent.com/fahadsultan/csc272/main/data/elections.csv\"\n\nelections = pd.read_csv(url)\n\nelections.head()\n\n\n\n\n\n\n\n\nYear\nCandidate\nParty\nPopular vote\nResult\n%\n\n\n\n\n0\n1824\nAndrew Jackson\nDemocratic-Republican\n151271\nloss\n57.210122\n\n\n1\n1824\nJohn Quincy Adams\nDemocratic-Republican\n113142\nwin\n42.789878\n\n\n2\n1828\nAndrew Jackson\nDemocratic\n642806\nwin\n56.203927\n\n\n3\n1828\nJohn Quincy Adams\nNational Republican\n500897\nloss\n43.796073\n\n\n4\n1832\nAndrew Jackson\nDemocratic\n702735\nwin\n54.574789\n\n\n\n\n\n\n\n\nX = elections[['Year', 'Popular vote']]\n\ny = elections['Result']\n\n\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)\n\n\nX_train.shape, y_train.shape\n\n((127, 2), (127,))\n\n\n\nX_test.shape, y_test.shape\n\n((55, 2), (55,))",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Model Validation"
+    ]
+  },
+  {
+    "objectID": "beyond/validation.html#performance-metrics",
+    "href": "beyond/validation.html#performance-metrics",
+    "title": "Model Validation",
+    "section": "Performance Metrics",
+    "text": "Performance Metrics\nDepending on the type of problem (classification, regression, etc.), different metrics are used to evaluate model performance. Common metrics include accuracy, precision, recall, F1-score for classification tasks, and mean squared error (MSE), R-squared for regression tasks.\nThe most common metric for evaluating a classifier is accuracy. Accuracy is the proportion of correct predictions. It is the number of correct predictions divided by the total number of predictions.\n\\[Accuracy = \\frac{\\text{Number of correct predictions}}{\\text{Total number of predictions}}\\]\nFor example, if we have a test set of 100 documents, and our classifier correctly predicts the class of 80 of them, then the accuracy is 80%.\nAccuracy is a good metric when the classes are balanced \\(N_{class1} \\approx N_{class2}\\). However, when the classes are imbalanced, accuracy can be misleading. For example, if we have a test set of 100 documents, and 95 of them are positive and 5 of them are negative, then a classifier that always predicts positive will have an accuracy of 95%. However, this classifier is not useful, because it never predicts negative.\nMulti-class classification as multiple Binary classifications\nEvery multi-class classification problem can be decomposed into multiple binary classification problems. For example, if we have a multi-class classification problem with 3 classes, we can decompose it into 3 binary classification problems.\n\n\n \nAssuming the categorical variable that we are trying to predict is binary, we can define the accuracy in terms of the four possible outcomes of a binary classifier:\n\nTrue Positive (TP): The classifier correctly predicted the positive class.\nFalse Positive (FP): The classifier incorrectly predicted the negative class as positive.\nTrue Negative (TN): The classifier correctly predicted the negative class.\nFalse Negative (FN): The classifier incorrectly predicted the positive class as negative.\n\nTrue positive means that the classifier correctly predicted the positive class. False positive means that the classifier incorrectly predicted the positive class. True negative means that the classifier correctly predicted the negative class. False negative means that the classifier incorrectly predicted the negative class.\nThese definitions are summarized in the table below:\n\n\n\n\nPrediction \\(\\hat{y} = f'(x)\\)\nTruth \\(y = f(x)\\)\n\n\n\n\nTrue Negative (TN)\n0\n0\n\n\nFalse Negative (FN)\n0\n1\n\n\nFalse Positive (FP)\n1\n0\n\n\nTrue Positive (TP)\n1\n1\n\n\n\nIn terms of the four outcomes above, the accuracy is:\n\\[ \\text{Accuracy} = \\frac{TP + TN}{TP + TN + FP + FN}\\]\nAccuracy is a useful metric, but it can be misleading.\nOther metrics that are often used to evaluate classifiers are:\n\nPrecision: The proportion of positive predictions that are correct. Mathematically, it is defined as:\n\n\\[\\text{Precision} = \\frac{TP}{TP + FP}\\]\n\nRecall: The proportion of positive instances that are correctly predicted. Mathematically, it is defined as:\n\n\\[\\text{Recall} = \\frac{TP}{TP + FN}\\]\nThe precision and recall are often combined into a single metric called the F1 score. The F1 score is the harmonic mean of precision and recall. The harmonic mean of two numbers is given by:\n\nF1 Score: The harmonic mean of precision and recall.\n\n\\[\\text{F1-Score} = 2 \\times \\frac{\\text{Precision} \\cdot \\text{Recall}}{\\text{Precision} + \\text{Recall}}\\]",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Model Validation"
+    ]
+  },
+  {
+    "objectID": "beyond/validation.html#cross-validation",
+    "href": "beyond/validation.html#cross-validation",
+    "title": "Model Validation",
+    "section": "Cross-Validation",
+    "text": "Cross-Validation\n\nA technique used to assess how the results of a statistical analysis will generalize to an independent dataset. Common methods include k-fold cross-validation and leave-one-out cross-validation.",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Model Validation"
+    ]
+  },
+  {
+    "objectID": "beyond/validation.html#overfitting-and-underfitting",
+    "href": "beyond/validation.html#overfitting-and-underfitting",
+    "title": "Model Validation",
+    "section": "Overfitting and Underfitting",
+    "text": "Overfitting and Underfitting\n\nOverfitting: When a model learns the training data too well, including noise and outliers, leading to poor generalization on new data.\nUnderfitting: When a model is too simple to capture the underlying patterns in the data, resulting in poor performance on both training and test sets.",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Model Validation"
+    ]
+  },
+  {
+    "objectID": "beyond/validation.html#hyperparameter-tuning",
+    "href": "beyond/validation.html#hyperparameter-tuning",
+    "title": "Model Validation",
+    "section": "Hyperparameter Tuning",
+    "text": "Hyperparameter Tuning\n\nThe process of optimizing the parameters that govern the training process of the model (e.g., learning rate, number of trees in a random forest) to improve performance on the validation set.",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Model Validation"
+    ]
+  },
+  {
     "objectID": "beyond/validation.html#baselines",
     "href": "beyond/validation.html#baselines",
     "title": "Model Validation",
     "section": "Baselines",
-    "text": "Baselines\nEstablishing a baseline is an essential step in model validation. A baseline provides a reference point against which the performance of more complex models can be compared. It helps to determine whether a new model is actually improving upon simpler approaches.\n\nTypes of Baselines\n\nSimple Heuristic Baseline:\n\nA straightforward approach that uses basic rules or averages. For example, in a classification task, predicting the majority class for all instances.\n\nRandom Baseline:\n\nA model that makes random predictions. This is often used to demonstrate that a more sophisticated model performs better than chance.\n\nMajority Class Baseline:\n\nIn classification tasks, this baseline predicts the most frequent class in the training data for all instances.",
+    "text": "Baselines\nEstablishing a baseline is an essential step in model validation. A baseline provides a reference point against which the performance of more complex models can be compared. It helps to determine whether a new model is actually improving upon simpler approaches.",
+    "crumbs": [
+      "Home",
+      "Data Science and Machine Learning",
+      "Model Validation"
+    ]
+  },
+  {
+    "objectID": "beyond/validation.html#baseline-models",
+    "href": "beyond/validation.html#baseline-models",
+    "title": "Model Validation",
+    "section": "Baseline Models",
+    "text": "Baseline Models\n\nSimple Heuristic Baseline:\n\nA straightforward approach that uses basic rules or averages. For example, in a classification task, predicting the majority class for all instances.\n\nRandom Baseline:\n\nA model that makes random predictions. This is often used to demonstrate that a more sophisticated model performs better than chance.\n\nMajority Class Baseline:\n\nIn classification tasks, this baseline predicts the most frequent class in the training data for all instances.",
     "crumbs": [
       "Home",
       "Data Science and Machine Learning",
