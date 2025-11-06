@@ -493,7 +493,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linearalgebra/distance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distance based Modeling</span></a>
+ <span class="menu-text">Distance-based Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beyond/21_clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clustering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beyond/42_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Generalized Linear Models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -520,24 +532,6 @@ window.Quarto = {
  <span class="menu-text">Naive Bayes</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/41_classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Classification</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/21_clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Clustering</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/42_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Regression</span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -550,11 +544,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#normalization-feature-column-scaling" id="toc-normalization-feature-column-scaling" class="nav-link active" data-scroll-target="#normalization-feature-column-scaling">Normalization: Feature (Column) Scaling</a>
-  <ul class="collapse">
-  <li><a href="#min-max-normalization" id="toc-min-max-normalization" class="nav-link" data-scroll-target="#min-max-normalization">Min-Max Normalization</a></li>
-  </ul></li>
-  <li><a href="#standardization-z-scores" id="toc-standardization-z-scores" class="nav-link" data-scroll-target="#standardization-z-scores">Standardization: Z-Scores</a></li>
+  <li><a href="#min-max-normalization" id="toc-min-max-normalization" class="nav-link active" data-scroll-target="#min-max-normalization">Min-Max Normalization</a></li>
+  <li><a href="#z-scores-standardization" id="toc-z-scores-standardization" class="nav-link" data-scroll-target="#z-scores-standardization">Z-Scores Standardization</a></li>
   </ul>
 </nav>
     </div>
@@ -689,14 +680,12 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<section id="normalization-feature-column-scaling" class="level1">
-<h1>Normalization: Feature (Column) Scaling</h1>
+<section id="min-max-normalization" class="level1">
+<h1>Min-Max Normalization</h1>
 <p>Feature scaling is a technique used to standardize the range of independent variables or features of data.</p>
 <p>For instance, consider a dataset with two features: age (ranging from 0 to 100) and income (ranging from 0 to 1,000,000).</p>
 <p>If we do not scale these features, a machine learning algorithm may give disproportionate attention to the income feature due to its larger range.</p>
 <p>In order to address this issue, we can apply normalization techniques such as Min-Max Normalization.</p>
-<section id="min-max-normalization" class="level2">
-<h2 class="anchored" data-anchor-id="min-max-normalization">Min-Max Normalization</h2>
 <p>Min-Max Normalization scales the data to a fixed range, usually [0, 1]. The formula for Min-Max Normalization is:</p>
 <p><span class="math display">\[ X_{norm} = \frac{X - \text{min}(X)}{\text{max}(X) - \text{min}(X)}\]</span></p>
 <p>Where:</p>
@@ -744,9 +733,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-</section>
-<section id="standardization-z-scores" class="level1">
-<h1>Standardization: Z-Scores</h1>
+<section id="z-scores-standardization" class="level1">
+<h1>Z-Scores Standardization</h1>
 <p>Commonly used in machine learning, standardization transforms the data to have a mean of 0 and a standard deviation of 1.</p>
 <p>The formula for Z-Score Standardization is:</p>
 <p><span class="math display">\[ Z = \frac{X - \mu}{\sigma} \]</span></p>

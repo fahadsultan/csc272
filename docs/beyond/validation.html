@@ -493,7 +493,19 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../linearalgebra/distance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Distance based Modeling</span></a>
+ <span class="menu-text">Distance-based Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beyond/21_clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clustering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beyond/42_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Generalized Linear Models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -520,24 +532,6 @@ window.Quarto = {
  <span class="menu-text">Naive Bayes</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/41_classification.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Classification</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/21_clustering.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Clustering</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../beyond/42_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Regression</span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -554,8 +548,6 @@ window.Quarto = {
   <li><a href="#performance-metrics" id="toc-performance-metrics" class="nav-link" data-scroll-target="#performance-metrics">Performance Metrics</a></li>
   <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation">Cross-Validation</a></li>
   <li><a href="#overfitting-and-underfitting" id="toc-overfitting-and-underfitting" class="nav-link" data-scroll-target="#overfitting-and-underfitting">Overfitting and Underfitting</a></li>
-  <li><a href="#hyperparameter-tuning" id="toc-hyperparameter-tuning" class="nav-link" data-scroll-target="#hyperparameter-tuning">Hyperparameter Tuning</a></li>
-  <li><a href="#baselines" id="toc-baselines" class="nav-link" data-scroll-target="#baselines">Baselines</a></li>
   <li><a href="#baseline-models" id="toc-baseline-models" class="nav-link" data-scroll-target="#baseline-models">Baseline Models</a></li>
   </ul>
 </nav>
@@ -784,6 +776,27 @@ Another way to evaluate a classifier is to look at the confusion matrix. A confu
 <li>A technique used to assess how the results of a statistical analysis will generalize to an independent dataset. Common methods include k-fold cross-validation and leave-one-out cross-validation.</li>
 </ul>
 <p><img src="../assets/cross_validation.png" width="100%" style="filter:invert(1)"></p>
+<p>k-fold cross-validation involves dividing the dataset into k subsets (or “folds”).</p>
+<p>The model is trained on k-1 folds and validated on the remaining fold.</p>
+<p>This process is repeated k times, with each fold serving as the validation set once.</p>
+<p>The final performance metric is typically the average of the metrics obtained from each fold.</p>
+<div id="cell-10" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cross validation</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> cross_val_score</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>knn <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(knn, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>scores.mean()</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>scores.std()</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>scores</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>knn.fit(X_train, y_train)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>knn.score(X_test, y_test)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> knn.predict(X_test)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report, confusion_matrix</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion_matrix(y_test, y_pred))</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="overfitting-and-underfitting" class="level2">
 <h2 class="anchored" data-anchor-id="overfitting-and-underfitting">Overfitting and Underfitting</h2>
@@ -791,33 +804,29 @@ Another way to evaluate a classifier is to look at the confusion matrix. A confu
 <li><p><strong>Overfitting</strong>: When a model learns the training data too well, including noise and outliers, leading to poor generalization on new data.</p></li>
 <li><p><strong>Underfitting</strong>: When a model is too simple to capture the underlying patterns in the data, resulting in poor performance on both training and test sets.</p></li>
 </ul>
-</section>
-<section id="hyperparameter-tuning" class="level2">
-<h2 class="anchored" data-anchor-id="hyperparameter-tuning">Hyperparameter Tuning</h2>
-<ul>
-<li>The process of optimizing the parameters that govern the training process of the model (e.g., learning rate, number of trees in a random forest) to improve performance on the validation set.</li>
-</ul>
-</section>
-<section id="baselines" class="level2">
-<h2 class="anchored" data-anchor-id="baselines">Baselines</h2>
-<p>Establishing a baseline is an essential step in model validation. A baseline provides a reference point against which the performance of more complex models can be compared. It helps to determine whether a new model is actually improving upon simpler approaches.</p>
+<!-- ## Hyperparameter Tuning
+
+- The process of optimizing the parameters that govern the training process of the model (e.g., learning rate, number of trees in a random forest) to improve performance on the validation set. -->
 </section>
 <section id="baseline-models" class="level2">
 <h2 class="anchored" data-anchor-id="baseline-models">Baseline Models</h2>
+<p>Establishing a baseline is an essential step in model validation. A baseline provides a reference point against which the performance of more complex models can be compared. It helps to determine whether a new model is actually improving upon simpler approaches.</p>
 <ol type="1">
-<li><p><strong>Simple Heuristic Baseline</strong>:</p>
-<ul>
-<li>A straightforward approach that uses basic rules or averages. For example, in a classification task, predicting the majority class for all instances.</li>
-</ul></li>
-<li><p><strong>Random Baseline</strong>:</p>
+<li><strong>Random Baseline</strong>:</li>
+</ol>
 <ul>
 <li>A model that makes random predictions. This is often used to demonstrate that a more sophisticated model performs better than chance.</li>
-</ul></li>
-<li><p><strong>Majority Class Baseline</strong>:</p>
-<ul>
-<li>In classification tasks, this baseline predicts the most frequent class in the training data for all instances.</li>
-</ul></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>Majority Class Baseline</strong>:</li>
 </ol>
+<ul>
+<li>In classification tasks, this baseline predicts the most frequent class in the training data for all instances. This is particularly useful in imbalanced datasets.</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>Mean/Median Baseline</strong>:</li>
+</ol>
+<p>For regression tasks, a common baseline is to predict the mean or median of the target variable. This provides a simple benchmark for evaluating the performance of regression models.</p>
 
 
 </section>

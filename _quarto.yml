@@ -98,6 +98,8 @@ website:
           - beyond/validation.ipynb
           # - linearalgebra/vectors.ipynb
           - linearalgebra/distance.ipynb
+          - beyond/21_clustering.ipynb
+          - beyond/42_regression.ipynb
           # - linearalgebra/nearestneighbor.ipynb
           # - stats/stats.ipynb
           - probability/probability.ipynb
@@ -110,9 +112,7 @@ website:
           # - beyond/pickle.ipynb
           # - beyond/gc.ipynb
           # - beyond/sklearn.ipynb
-          - beyond/41_classification.ipynb
-          - beyond/21_clustering.ipynb
-          - beyond/42_regression.ipynb
+          # - beyond/41_classification.ipynb
 
           # contents:
             # - section:
