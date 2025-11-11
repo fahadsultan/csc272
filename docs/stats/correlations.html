@@ -529,6 +529,12 @@ window.Quarto = {
  <span class="menu-text">Naive Bayes</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beyond/dimensionality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dimensionality Reduction</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -541,7 +547,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#correlations" id="toc-correlations" class="nav-link active" data-scroll-target="#correlations">Correlations</a>
+  <li><a href="#curse-of-dimensionality" id="toc-curse-of-dimensionality" class="nav-link active" data-scroll-target="#curse-of-dimensionality">Curse of Dimensionality</a></li>
+  <li><a href="#correlations" id="toc-correlations" class="nav-link" data-scroll-target="#correlations">Correlations</a>
   <ul class="collapse">
   <li><a href="#pearson-correlation-coefficient" id="toc-pearson-correlation-coefficient" class="nav-link" data-scroll-target="#pearson-correlation-coefficient">Pearson Correlation Coefficient</a></li>
   <li><a href="#spearman-correlation" id="toc-spearman-correlation" class="nav-link" data-scroll-target="#spearman-correlation">Spearman Correlation</a></li>
@@ -604,6 +611,32 @@ Covariance however, has some limitations:
 - **Non-linearity**: Covariance only captures linear relationships between variables. It may not effectively identify non-linear relationships, which can be important in many real-world scenarios.
 
 To address these limitations, correlation coefficients such as Pearson's correlation coefficient are often used in feature selection, as they provide a standardized measure of the strength and direction of the linear relationship between variables. -->
+<section id="curse-of-dimensionality" class="level2">
+<h2 class="anchored" data-anchor-id="curse-of-dimensionality">Curse of Dimensionality</h2>
+<p>The “curse of dimensionality” refers to various phenomena that arise when analyzing and organizing data in high-dimensional spaces that do not occur in low-dimensional settings.</p>
+<p>As the number of features (dimensions) increases, the volume of the space increases exponentially, leading to several challenges:</p>
+<ol type="1">
+<li><p><strong>Data Sparsity</strong>: In high-dimensional spaces, data points become sparse. This sparsity makes it difficult to find meaningful patterns or relationships in the data, as the distance between points increases.</p>
+<p>In other words, as the number of features increases, the amount of data needed to generalize accurately grows exponentially. This is because the volume of the search space increases exponentially with each new dimension added. To maintain the same level of data density, the number of required data points must also increase exponentially.</p></li>
+</ol>
+<center>
+<img src="https://www.i2tutorials.com/wp-content/media/2019/09/Curse-of-Dimensionality-i2tutorials.png" style="filter:invert(1)" width="70%">
+</center>
+<ol start="2" type="1">
+<li><p><strong>Increased Computational Cost</strong>: The computational cost of algorithms increases with the number of dimensions. Many machine learning algorithms become inefficient or infeasible to run as the dimensionality increases.</p></li>
+<li><p><strong>Overfitting</strong>: With more features, models can become overly complex and fit the noise in the training data rather than the underlying patterns. This leads to poor generalization to new data.</p></li>
+<li><p><strong>Distance Metrics Become Less Meaningful</strong>: In high-dimensional spaces, the concept of distance becomes less meaningful. For example, the difference between the nearest and farthest neighbor distances tends to diminish, making it harder to distinguish between points.</p></li>
+</ol>
+<p>As a general rule of thumb, having at least 5 to 10 times as many observations as features is recommended to ensure reliable model performance. i.e.&nbsp;</p>
+<p><span class="math display">\[ n \geq 5 \times d \]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the number of observations and <span class="math inline">\(d\)</span> is the number of features.</p>
+<p>This isn’t a strict mathematical law. It’s a practical heuristic that helps ensure models can generalize well rather than memorize noise.</p>
+<p>To mitigate the curse of dimensionality, feature selection techniques are employed to reduce the number of features while retaining the most informative ones. This helps improve model performance, reduce overfitting, and decrease computational costs.</p>
+<center>
+<img src="https://images.shiksha.com/mediadata/ugcDocuments/images/wordpressImages/2022_05_curse-of-dimensionality.jpg" style="filter:invert(1)" width="70%">
+</center>
+<p>This is why feature selection is essential in high-dimensional datasets to ensure that models can learn effectively without being overwhelmed by irrelevant or redundant information.</p>
+</section>
 <section id="correlations" class="level2">
 <h2 class="anchored" data-anchor-id="correlations">Correlations</h2>
 <p>Correlations are statistical measures that describe the strength and direction of the relationship between two variables. They help to identify how changes in one variable are associated with changes in another variable.</p>

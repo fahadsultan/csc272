@@ -107,6 +107,7 @@ website:
           - probability/conditional_prob.ipynb
           # - pandas/aggregation.ipynb
           - probability/naivebayes.ipynb
+          - beyond/dimensionality.ipynb
           # - beyond/beyond.qmd
           # - beyond/tqdm.ipynb
           # - beyond/pickle.ipynb

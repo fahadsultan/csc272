@@ -532,6 +532,12 @@ window.Quarto = {
  <span class="menu-text">Naive Bayes</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beyond/dimensionality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dimensionality Reduction</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -546,6 +552,7 @@ window.Quarto = {
   <ul>
   <li><a href="#min-max-normalization" id="toc-min-max-normalization" class="nav-link active" data-scroll-target="#min-max-normalization">Min-Max Normalization</a></li>
   <li><a href="#z-scores-standardization" id="toc-z-scores-standardization" class="nav-link" data-scroll-target="#z-scores-standardization">Z-Scores Standardization</a></li>
+  <li><a href="#when-should-you-use-each-technique" id="toc-when-should-you-use-each-technique" class="nav-link" data-scroll-target="#when-should-you-use-each-technique">When Should You Use Each Technique?</a></li>
   </ul>
 </nav>
     </div>
@@ -782,6 +789,18 @@ window.Quarto = {
 </div>
 </div>
 </div>
+</section>
+<section id="when-should-you-use-each-technique" class="level1">
+<h1>When Should You Use Each Technique?</h1>
+<ul>
+<li><p>Use Min-Max Normalization when the data does not follow a Gaussian distribution (bell curve) and when you want to bound the values within a specific range.</p>
+<p>Note that if you have extreme outliers in your data, Min-Max Normalization will not be effective, as the outliers will skew the min and max values, leading to a compressed range for the majority of the data points.</p></li>
+<li><p>Use Z-Score Standardization when the data follows a Gaussian distribution (bell curve) or when you want to center the data around the mean with a standard deviation of 1.</p>
+<p>When your data contains outliers, Z-Score Standardization is generally more robust than Min-Max Normalization, as it focuses on the mean and standard deviation rather than the extreme values.</p></li>
+</ul>
+<center>
+<img src="https://opensearch.org/wp-content/uploads/2025/04/blogpost3.png" alt="Normalization vs Standardization" width="70%">
+</center>
 
 
 </section>

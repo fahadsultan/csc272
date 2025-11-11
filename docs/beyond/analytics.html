@@ -495,6 +495,12 @@ window.Quarto = {
  <span class="menu-text">Naive Bayes</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../beyond/dimensionality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dimensionality Reduction</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -507,7 +513,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link active" data-scroll-target="#supervised-learning">Supervised Learning</a>
+  <li><a href="#mathematical-models" id="toc-mathematical-models" class="nav-link active" data-scroll-target="#mathematical-models">Mathematical Models</a></li>
+  <li><a href="#problems-in-machine-learning" id="toc-problems-in-machine-learning" class="nav-link" data-scroll-target="#problems-in-machine-learning">Problems in Machine Learning</a></li>
+  <li><a href="#supervised-learning" id="toc-supervised-learning" class="nav-link" data-scroll-target="#supervised-learning">Supervised Learning</a>
   <ul class="collapse">
   <li><a href="#classification" id="toc-classification" class="nav-link" data-scroll-target="#classification">Classification</a></li>
   <li><a href="#regression" id="toc-regression" class="nav-link" data-scroll-target="#regression">Regression</a></li>
@@ -544,8 +552,20 @@ window.Quarto = {
 
 
 <p>Machine Learning involves creating mathematical models that can learn from and make predictions or decisions based on data.</p>
+<section id="mathematical-models" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-models">Mathematical Models</h2>
 <p>A mathematical model in machine learning is typically represented as a function or a set of equations that describe the relationship between one set of columns (features) and another set of columns (target variable).</p>
-<p>There are two types of machine learning:</p>
+<p><span class="math display">\[ y = f(X) \]</span></p>
+<p>Where:</p>
+<ul>
+<li><p><span class="math inline">\(y\)</span> is the target variable (output) implemented as a vector of length <code>n_samples</code> i.e.&nbsp;<span class="math inline">\(y \in \mathbb{R}^n\)</span></p></li>
+<li><p><span class="math inline">\(X\)</span> is the feature set (input) implemented as a matrix of shape <code>(n_samples, n_features)</code> i.e.&nbsp;<span class="math inline">\(X \in \mathbb{R}^{n \times m}\)</span></p></li>
+<li><p><span class="math inline">\(f\)</span> is the model or set of equations that maps inputs to outputs</p></li>
+</ul>
+</section>
+<section id="problems-in-machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="problems-in-machine-learning">Problems in Machine Learning</h2>
+<p>There are primarily two types of machine learning:</p>
 <ol type="1">
 <li><p>Supervised Learning</p></li>
 <li><p>Unsupervised Learning</p></li>
@@ -553,6 +573,7 @@ window.Quarto = {
 <center>
 <img src="https://www.researchgate.net/publication/351953193/figure/fig3/AS:11431281117150742@1675395484096/Supervised-and-unsupervised-machine-learning-a-Schematic-representation-of-an.png" style="filter:invert(1)" width="70%">
 </center>
+</section>
 <section id="supervised-learning" class="level2">
 <h2 class="anchored" data-anchor-id="supervised-learning">Supervised Learning</h2>
 <p>In supervised learning, the model is trained on a labeled dataset, which means that each training example is paired with an output label. The goal is to learn a mapping from inputs to outputs. Common algorithms include linear regression, decision trees, and support vector machines.</p>
