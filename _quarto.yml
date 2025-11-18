@@ -97,7 +97,8 @@ website:
           - stats/correlations.ipynb
           - beyond/validation.ipynb
           # - linearalgebra/vectors.ipynb
-          - linearalgebra/distance.ipynb
+          # - linearalgebra/distance.ipynb
+          - linearalgebra/nearestneighbor.ipynb
           - beyond/21_clustering.ipynb
           - beyond/42_regression.ipynb
           # - linearalgebra/nearestneighbor.ipynb
