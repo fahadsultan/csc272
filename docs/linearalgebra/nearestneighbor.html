@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -102,6 +102,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -738,17 +741,110 @@ window.Quarto = {
 </section>
 <section id="cosine-similarity" class="level2">
 <h2 class="anchored" data-anchor-id="cosine-similarity">Cosine Similarity</h2>
+<p><img src="https://www.researchgate.net/publication/322821813/figure/fig2/AS:960500837937160@1606012653134/Difference-between-Euclidean-distance-and-cosine-distance_Q320.jpg" width="35%" style="filter:invert(1)" align="right"></p>
 <p>While Euclidean distance is the most commonly used distance metric in nearest neighbor algorithms, there are several alternative measures of similarity that can be used depending on the nature of the data and the specific application.</p>
 <p>Cosine similarity measures the cosine of the angle between two non-zero vectors in an inner product space. It is particularly useful for high-dimensional data, such as text data represented as BOW vectors, where the magnitude of the vectors may not be as important as their direction.</p>
 <p>The formula for cosine similarity between two vectors A and B is: <span class="math display">\[
-   \text{Cosine Similarity} = \frac{A \cdot B}{||A|| \times ||B||}
-   \]</span> where <span class="math inline">\(A \cdot B\)</span> is the dot product of the vectors defined as <span class="math inline">\(A \cdot B = \sum_{i=1}^{n} A_i B_i\)</span>,</p>
+\text{Cosine Similarity} = \frac{A \cdot B}{||A|| \times ||B||}
+\]</span> where <span class="math inline">\(A \cdot B\)</span> is the dot product of the vectors defined as <span class="math inline">\(A \cdot B = \sum_{i=1}^{n} A_i B_i\)</span>,</p>
 <p>and <span class="math inline">\(||A||\)</span> and <span class="math inline">\(||B||\)</span> are the magnitudes of the vectors, calculated as <span class="math inline">\(||A|| = \sqrt{\sum_{i=1}^{n} A_i^2}\)</span> and <span class="math inline">\(||B|| = \sqrt{\sum_{i=1}^{n} B_i^2}\)</span>.</p>
 <p>Use 1 - Cosine Similarity to convert it into a distance metric if needed.</p>
 <p>Cosine similarity ranges from -1 to 1, where 1 indicates that the vectors are identical, 0 indicates orthogonality (no similarity), and -1 indicates that the vectors are diametrically opposed.</p>
+<p><img src="https://storage.googleapis.com/lds-media/images/cosine-similarity-vectors.width-745.jpg" width="100%" style="filter:invert(1)"></p>
 <p>As opposed to Euclidean distance, which is sensitive to the magnitude of the vectors, cosine similarity focuses on the orientation of the vectors, making it more suitable for certain applications like text analysis and recommendation systems.</p>
 <p>In scikit-learn, you can use cosine similarity as a distance metric in k-NN as follows:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>knn <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">3</span>, metric<span class="op">=</span><span class="st">'cosine'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A classic toy example where cosine similarity works better than Euclidean distance is when magnitude doesn’t matter but direction does, especially in text or frequency/count vectors.</p>
+<p>Imagine we have 3 short “documents” represented as word-count vectors in a 3-dimensional vocabulary: <code>[“data”, “science”, “cat”]</code></p>
+<div id="cell-13" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>bow <span class="op">=</span> pd.DataFrame()</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>bow[<span class="st">'data'</span>]     <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>bow[<span class="st">'science'</span>]  <span class="op">=</span> [<span class="dv">10</span>, <span class="dv">1</span>, <span class="dv">0</span>]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>bow[<span class="st">'cat'</span>]      <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>bow.index       <span class="op">=</span> [<span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'C'</span>]</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>bow</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">data</th>
+<th data-quarto-table-cell-role="th">science</th>
+<th data-quarto-table-cell-role="th">cat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">A</td>
+<td>10</td>
+<td>10</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">B</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">C</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Euclidean distance considers magnitude — so A and B look nearly as far apart as A and C, even though semantically A and B are very similar (both about data science) while C is completely different (about cats):</p>
+<div id="cell-15" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> euclidean(row1, row2):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">sum</span>((row1 <span class="op">-</span> row2) <span class="op">**</span> <span class="dv">2</span>) <span class="op">**</span> <span class="fl">0.5</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A and B"</span>, euclidean(bow.loc[<span class="st">'A'</span>], bow.loc[<span class="st">'B'</span>]))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A and C"</span>, euclidean(bow.loc[<span class="st">'A'</span>], bow.loc[<span class="st">'C'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A and B 12.727922061357855
+A and C 14.177446878757825</code></pre>
+</div>
+</div>
+<p>Cosine ignores magnitude and cares only about direction (pattern of word usage).</p>
+<div id="cell-17" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cosine(row1, row2):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    dot_product <span class="op">=</span> <span class="bu">sum</span>(row1 <span class="op">*</span> row2)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    magnitude1  <span class="op">=</span> <span class="bu">sum</span>(row1 <span class="op">**</span> <span class="dv">2</span>) <span class="op">**</span> <span class="fl">0.5</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    magnitude2  <span class="op">=</span> <span class="bu">sum</span>(row2 <span class="op">**</span> <span class="dv">2</span>) <span class="op">**</span> <span class="fl">0.5</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dot_product <span class="op">/</span> (magnitude1 <span class="op">*</span> magnitude2)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A and B"</span>, cosine(bow.loc[<span class="st">'A'</span>], bow.loc[<span class="st">'B'</span>]))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A and C"</span>, cosine(bow.loc[<span class="st">'A'</span>], bow.loc[<span class="st">'C'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A and B 0.9999999999999998
+A and C 0.0</code></pre>
+</div>
+</div>
+<ul>
+<li>cos(A, B) = 1.0</li>
+</ul>
+<p>(They point in exactly the same direction: same ratios 10:10 and 1:1)</p>
+<ul>
+<li>cos(A, C) = 0</li>
+</ul>
+<p>(They share no common words → orthogonal directions)</p>
+<p>So cosine similarity says:</p>
+<ul>
+<li>A and B are identical</li>
+<li>A and C are completely unrelated</li>
+</ul>
+<p>This matches the semantic intuition.</p>
 
 
 </section>

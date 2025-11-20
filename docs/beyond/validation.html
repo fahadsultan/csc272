@@ -767,6 +767,12 @@ window.Quarto = {
 <li><strong>Recall</strong>: The proportion of positive instances that are correctly predicted. Mathematically, it is defined as:</li>
 </ul>
 <p><span class="math display">\[\text{Recall} = \frac{TP}{TP + FN}\]</span></p>
+<p>Intuitively, precision measures how many of the predicted positive instances are actually positive, while recall measures how many of the actual positive instances are correctly predicted.</p>
+<p>For example, consider a binary classification problem where we have 100 actual positive instances and 100 actual negative instances.</p>
+<p>If the model predicts 10 positive instances, of which 9 are correct (true positives) and 1 is incorrect (false positive), then the precision is 0.9 (9/10) and the recall is 0.09 (9/100).</p>
+<p>A model with <u>perfect precision but poor recall</u> predicts positives only when it’s absolutely certain, so it never makes a false positive, but it misses most true positives—for example, predicting only 5 correct positives out of 100 actual positives (precision = 1.0, recall = 0.05).</p>
+<p>In contrast, a model with <u>poor precision but good recall</u> predicts many more positives than truly exist, catching almost all real positives but generating many false alarms—for instance, predicting 200 positives when only 90 are correct out of 100 actual positives (precision = 0.45, recall = 0.90).</p>
+<p><img src="https://i.ibb.co/8Dfv1McD/Screenshot-2025-11-20-at-9-41-41-AM.png" width="100%" style="filter:invert(1)"></p>
 <p>The precision and recall are often combined into a single metric called the <strong>F1 score</strong>. The F1 score is the harmonic mean of precision and recall. The harmonic mean of two numbers is given by:</p>
 <ul>
 <li><strong>F1 Score</strong>: The harmonic mean of precision and recall.</li>
@@ -927,8 +933,7 @@ weighted avg       0.87      0.80      0.80         5
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>dummy_reg <span class="op">=</span> DummyRegressor(strategy<span class="op">=</span><span class="st">"mean"</span>)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>dummy_reg.fit(X_train, y_train)</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> dummy_reg.predict(X_test)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Baseline MSE:"</span>, mean_squared_error(y_test, y_pred))</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Baseline MSE:"</span>, mean_squared_error(y_test, y_pred))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
