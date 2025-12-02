@@ -100,15 +100,15 @@ website:
           # - linearalgebra/distance.ipynb
           - linearalgebra/nearestneighbor.ipynb
           - beyond/21_clustering.ipynb
-          - beyond/42_regression.ipynb
+          - beyond/dimensionality.ipynb
+          # - beyond/42_regression.ipynb
           # - linearalgebra/nearestneighbor.ipynb
           # - stats/stats.ipynb
-          - probability/probability.ipynb
-          - probability/joint_prob.ipynb
-          - probability/conditional_prob.ipynb
+          # - probability/probability.ipynb
+          # - probability/joint_prob.ipynb
+          # - probability/conditional_prob.ipynb
+          # - probability/naivebayes.ipynb
           # - pandas/aggregation.ipynb
-          - probability/naivebayes.ipynb
-          - beyond/dimensionality.ipynb
           # - beyond/beyond.qmd
           # - beyond/tqdm.ipynb
           # - beyond/pickle.ipynb

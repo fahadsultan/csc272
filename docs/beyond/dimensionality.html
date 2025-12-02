@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -467,36 +501,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../beyond/42_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Generalized Linear Models</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../probability/probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Probability</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../probability/joint_prob.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Joint Probability</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../probability/conditional_prob.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conditional Probability</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Naive Bayes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../beyond/dimensionality.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Dimensionality Reduction</span></a>
   </div>
@@ -513,11 +517,11 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link active" data-scroll-target="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a></li>
-  <li><a href="#linear-discriminant-analysis-lda" id="toc-linear-discriminant-analysis-lda" class="nav-link" data-scroll-target="#linear-discriminant-analysis-lda">Linear Discriminant Analysis (LDA)</a></li>
+  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link active" data-scroll-target="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a>
+  <ul class="collapse">
+  <li><a href="#evaluating-pca-explained-variance-ratio" id="toc-evaluating-pca-explained-variance-ratio" class="nav-link" data-scroll-target="#evaluating-pca-explained-variance-ratio">Evaluating PCA: Explained Variance Ratio</a></li>
+  </ul></li>
   <li><a href="#t-distributed-stochastic-neighbor-embedding-t-sne" id="toc-t-distributed-stochastic-neighbor-embedding-t-sne" class="nav-link" data-scroll-target="#t-distributed-stochastic-neighbor-embedding-t-sne">t-Distributed Stochastic Neighbor Embedding (t-SNE)</a></li>
-  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
-  <li><a href="#dimensionality-reduction" id="toc-dimensionality-reduction" class="nav-link" data-scroll-target="#dimensionality-reduction">Dimensionality Reduction</a></li>
   </ul>
 </nav>
     </div>
@@ -543,35 +547,111 @@ window.Quarto = {
 </header>
 
 
-<p>Dimensionality reduction is the process of reducing the number of random variables under consideration by obtaining a set of principal variables. It can be divided into feature selection and feature extraction.</p>
-<p>Feature selection is the process of selecting a subset of relevant features for use in model construction. It is a common technique in machine learning, where it is often used to simplify the model and make it easier to interpret. Feature selection is also useful for eliminating irrelevant or redundant features that do not contribute to the predictive power of the model.</p>
-<p>Feature extraction is the process of transforming the data from a high-dimensional space into a lower-dimensional space. This is done by projecting the data onto a lower-dimensional subspace that captures the most important information in the data. Feature extraction is useful for reducing the computational complexity of the model and for visualizing the data in a more interpretable form.</p>
+<p>Dimensionality reduction is the process of reducing the number of random variables under consideration by obtaining a set of principal variables.</p>
+<center>
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20250526125548648108/What-is-Dimensionality-Reduction-.webp" style="filter:invert(1)" width="100%">
+</center>
+<p>Although feature selection can also reduce the number of features in a dataset, dimensionality reduction typically involves <u><i>transforming the data into a lower-dimensional space</i></u>.</p>
+<p>After the transformation, the new features are combinations of the original features, rather than a subset of them.</p>
+<p>The transformed features are designed to retain as much information as possible from the original dataset, while reducing the number of dimensions.</p>
+<p>For example, consider a dataset with two features: height and weight. A dimensionality reduction technique might transform these two features into a single feature that captures the most important information from both height and weight, such as:</p>
+<p><span class="math display">\[ \text{new feature} = 0.7 \times \text{height} + 0.3 \times \text{weight} \]</span></p>
+<p>This new feature would retain much of the information from the original two features, while reducing the dimensionality of the dataset from two to one.</p>
 <p>In this notebook, we will explore some common techniques for dimensionality reduction, including principal component analysis (PCA), linear discriminant analysis (LDA), and t-distributed stochastic neighbor embedding (t-SNE). We will apply these techniques to a dataset and visualize the results to see how they can help us understand the structure of the data.</p>
 <section id="principal-component-analysis-pca" class="level1">
 <h1>Principal Component Analysis (PCA)</h1>
 <p>Principal component analysis (PCA) is a technique for reducing the dimensionality of a dataset by projecting it onto a lower-dimensional subspace that captures the most important information in the data. PCA works by finding the principal components of the data, which are the directions in which the data varies the most. These principal components are orthogonal to each other and form a new coordinate system for the data.</p>
+<p><img src="../assets/PCA_variance.png" style="filter:invert(1)" width="100%"></p>
 <p>PCA is commonly used for dimensionality reduction in machine learning, as it can help to reduce the computational complexity of the model and improve its performance. PCA is also useful for visualizing high-dimensional data in a lower-dimensional space, as it can reveal the underlying structure of the data and help to identify patterns and relationships.</p>
+<p><img src="https://cdn.prod.website-files.com/621e95f9ac30687a56e4297e/64adcad3f1a8195f54b8fa32_V2_1681216162455_637ea10c-2578-4213-b13f-9ef1e607a4fb_HIGH_RES.png" style="filter:invert(1)" width="100%"></p>
 <p>In this notebook, we will apply PCA to a dataset and visualize the results to see how it can help us understand the structure of the data.</p>
+<div id="cell-3" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import mnist </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers, models</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Load MNIST dataset</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>(x_train, y_train), (x_test, y_test) <span class="op">=</span> tf.keras.datasets.mnist.load_data()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-4" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>encoded <span class="op">=</span> [img.flatten() <span class="cf">for</span> img <span class="kw">in</span> x_train]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>encoded <span class="op">=</span> np.array(encoded)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-5" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import PCA from sklearn</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>pca <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>pca.fit(encoded)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>reduced <span class="op">=</span> pca.transform(encoded)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.scatter(reduced[:,<span class="dv">0</span>], reduced[:,<span class="dv">1</span>], c<span class="op">=</span>y_train, cmap<span class="op">=</span><span class="st">'plasma'</span>, s<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'First Principal Component'</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Second Principal Component'</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="../assets/PCA_mnist.png"></p>
+<p>In the above image, we can see how PCA has transformed the original high-dimensional data (28x28 pixel images of handwritten digits) into a lower-dimensional space (2D scatter plot). Each point in the scatter plot represents an image, and the colors indicate the different digit classes. PCA has effectively captured the variance in the data, allowing us to visualize the relationships between different digit classes in a 2D space.</p>
+<p>Note that PCA is an unsupervised technique, meaning that it does not take into account the class labels of the data. As a result, the transformed features may not necessarily correspond to the original classes in a meaningful way. However, PCA can still be useful for visualizing the overall structure of the data and identifying patterns that may not be immediately apparent in the original high-dimensional space.</p>
+<section id="evaluating-pca-explained-variance-ratio" class="level3">
+<h3 class="anchored" data-anchor-id="evaluating-pca-explained-variance-ratio">Evaluating PCA: Explained Variance Ratio</h3>
+<p>You can measure the effectiveness of PCA by looking at the explained variance ratio, which indicates how much variance is captured by each principal component.</p>
+<p>A higher explained variance ratio means that the principal component captures more information from the original data.</p>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pca.explained_variance_ratio_ </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>array([0.09704664, 0.07095924])</code></p>
+<div id="cell-10" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>(pca.explained_variance_ratio_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>np.float64(0.16800588418808382)</code></p>
+<p>The explained variance ratio for the first two principal components is approximately 0.097 and 0.071, respectively. This means that the first principal component captures about 9.7% of the total variance in the data, while the second principal component captures about 7.1% of the total variance.</p>
+<p>The total explained variance for the first two principal components is approximately 0.168, or 16.8%. This means that by projecting the data onto the first two principal components, we are able to retain about 16.8% of the total variance in the original dataset.</p>
 </section>
-<section id="linear-discriminant-analysis-lda" class="level1">
-<h1>Linear Discriminant Analysis (LDA)</h1>
-<p>Linear discriminant analysis (LDA) is a technique for dimensionality reduction that is commonly used in machine learning for classification tasks. LDA works by finding the directions in which the data is most separable into different classes, and projecting the data onto these directions.</p>
-<p>LDA is similar to PCA, but it is specifically designed for classification tasks. LDA aims to maximize the separation between different classes in the data, while PCA aims to capture the most important information in the data. LDA is useful for reducing the dimensionality of the data and improving the performance of classification models.</p>
-<p>In this notebook, we will apply LDA to a dataset and visualize the results to see how it can help us understand the structure of the data and improve the performance of a classification model.</p>
 </section>
 <section id="t-distributed-stochastic-neighbor-embedding-t-sne" class="level1">
 <h1>t-Distributed Stochastic Neighbor Embedding (t-SNE)</h1>
 <p>t-Distributed Stochastic Neighbor Embedding (t-SNE) is a technique for dimensionality reduction that is commonly used for visualizing high-dimensional data in a lower-dimensional space. t-SNE works by finding a low-dimensional representation of the data that preserves the local structure of the data points.</p>
 <p>t-SNE is useful for visualizing complex datasets that have a non-linear structure, as it can reveal patterns and relationships that are not apparent in the original data. t-SNE is commonly used for exploratory data analysis and for generating visualizations that help to understand the structure of the data.</p>
 <p>In this notebook, we will apply t-SNE to a dataset and visualize the results to see how it can help us understand the structure of the data and identify patterns and relationships.</p>
-</section>
-<section id="dataset" class="level1">
-<h1>Dataset</h1>
-<p>The dataset we will use in this notebook is the Iris dataset, which is a classic dataset in machine learning. The Iris dataset contains 150 samples of iris flowers, each with four features: sepal length, sepal width, petal length, and petal width. The goal of the dataset is to classify the iris flowers into three species: setosa, versicolor, and virginica.</p>
-<p>The Iris dataset is commonly used for classification tasks and for exploring dimensionality reduction techniques, as it is a small and well-known dataset that is easy to work with. In this notebook, we will apply PCA, LDA, and t-SNE to the Iris dataset and visualize the results to see how these techniques can help us understand the structure of the data.</p>
-</section>
-<section id="dimensionality-reduction" class="level1">
-<h1>Dimensionality Reduction</h1>
+<div id="cell-14" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import tsne</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>tsne <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>reduced  <span class="op">=</span> tsne.fit_transform(encoded)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>plt.scatter(reduced[:,<span class="dv">0</span>], reduced[:,<span class="dv">1</span>], c<span class="op">=</span>y_test, cmap<span class="op">=</span><span class="st">'plasma'</span>, s<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'t-SNE Dimension 1'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'t-SNE Dimension 2'</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'t-SNE on images of handwritten digits in MNIST'</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>plt.show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="../assets/tsne_mnist.png"></p>
+<p>t-SNE works by taking high-dimensional data and trying to create a 2D map where points that are similar stay close together.</p>
+<ol type="1">
+<li><p>It first measures how strongly each point “belongs” with others—like identifying who are close friends and who are strangers in high-dimensional space.</p></li>
+<li><p>Then it places all points randomly in 2D and gradually moves them using attraction (pull) and repulsion (push) forces so that points with strong relationships end up near each other while unrelated points are pushed apart.</p></li>
+<li><p>To avoid crowding everything together, t-SNE models distances in low dimensions using a special distribution (t-distribution) with heavy tails, helping clusters stay distinct.</p></li>
+</ol>
+<center>
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/20230518132346/8-(1)-min.png" style="filter:invert(1)" width="70%">
+</center>
+<p>The result is a visualization that preserves local neighborhoods and reveals meaningful clusters, even though the global axes themselves have no interpretable meaning.</p>
+<p>Note that t-SNE is significantly more computationally intensive than PCA, especially for large datasets. Additionally, t-SNE is sensitive to hyperparameters such as perplexity and learning rate, which can affect the quality of the resulting visualization. Therefore, it is important to experiment with different hyperparameter settings to achieve the best results.</p>
+<p>t-SNE unlike PCA is a non-linear dimensionality reduction technique. This means that t-SNE can capture complex relationships in the data that may not be well-represented by linear transformations. As a result, t-SNE is often more effective than PCA for visualizing high-dimensional data with non-linear structures.</p>
 
 
 </section>

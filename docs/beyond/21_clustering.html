@@ -504,36 +504,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../beyond/42_regression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Generalized Linear Models</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../probability/probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Probability</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../probability/joint_prob.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Joint Probability</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../probability/conditional_prob.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conditional Probability</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../probability/naivebayes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Naive Bayes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../beyond/dimensionality.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Dimensionality Reduction</span></a>
   </div>
@@ -778,57 +748,59 @@ window.Quarto = {
 </div>
 </div>
 <p>Note that the k-means algorithm has perfectly discovered the three blobs in the data.</p>
-<section id="implementation" class="level4">
-<h4 class="anchored" data-anchor-id="implementation">Implementation</h4>
+<!-- #### Implementation 
+
+import pandas as pd
+import numpy as np
+
+def euclidean_distance(x1, x2):
+    return np.sqrt(np.sum((x1 - x2) ** 2))
+
+def initialize_centroids(df, k):
+    """Randomly initialize centroids by selecting k rows from the DataFrame."""
+    return df.sample(n=k, random_state=0).reset_index(drop=True)
+
+def assign_clusters(df, centroids):
+    """Assign each data point to the nearest centroid."""
+
+    distances = pd.DataFrame(
+        {i: ((df - centroids.iloc[i]) ** 2).sum(axis=1) ** 0.5 for i in centroids.index}
+    )
+    return distances.idxmin(axis=1)
+
+def update_centroids(df, clusters, k):
+    """Update centroids as the mean of all points in each cluster."""
+    new_centroids = df.groupby(clusters).mean()
+    return new_centroids.reindex(range(k)).reset_index(drop=True)
+
+def kmeans(df, k, max_iters=1000, tolerance=1e-4):
+    """K-Means clustering algorithm."""
+    # Step 1: Initialize centroids
+    centroids = initialize_centroids(df, k)
+    for iteration in range(max_iters):
+        # Step 2: Assign clusters
+        clusters = assign_clusters(df, centroids)
+        
+        # Step 3: Update centroids
+        new_centroids = update_centroids(df, clusters, k)
+        
+        # Step 4: Check for convergence
+        if ((centroids - new_centroids).abs().sum().sum() < tolerance):
+            break
+        
+        centroids = new_centroids
+
+    return clusters, centroids
+
+X = datasets['blobs']
+clusters, centroids = kmeans(X[['x1', 'x2']], k=3)
+X['cluster'] = clusters
+
+plt.scatter(X['x1'], X['x2'], c=X['cluster'], cmap='viridis');
+plt.scatter(centroids['x1'], centroids['x2'], c='red', marker='x', s=100);
+-->
 <div id="cell-18" class="cell" data-execution_count="110">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> euclidean_distance(x1, x2):</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(np.<span class="bu">sum</span>((x1 <span class="op">-</span> x2) <span class="op">**</span> <span class="dv">2</span>))</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> initialize_centroids(df, k):</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Randomly initialize centroids by selecting k rows from the DataFrame."""</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.sample(n<span class="op">=</span>k, random_state<span class="op">=</span><span class="dv">0</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> assign_clusters(df, centroids):</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Assign each data point to the nearest centroid."""</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    distances <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        {i: ((df <span class="op">-</span> centroids.iloc[i]) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>) <span class="op">**</span> <span class="fl">0.5</span> <span class="cf">for</span> i <span class="kw">in</span> centroids.index}</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> distances.idxmin(axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update_centroids(df, clusters, k):</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Update centroids as the mean of all points in each cluster."""</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    new_centroids <span class="op">=</span> df.groupby(clusters).mean()</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> new_centroids.reindex(<span class="bu">range</span>(k)).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> kmeans(df, k, max_iters<span class="op">=</span><span class="dv">1000</span>, tolerance<span class="op">=</span><span class="fl">1e-4</span>):</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""K-Means clustering algorithm."""</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Step 1: Initialize centroids</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    centroids <span class="op">=</span> initialize_centroids(df, k)</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> iteration <span class="kw">in</span> <span class="bu">range</span>(max_iters):</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Step 2: Assign clusters</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>        clusters <span class="op">=</span> assign_clusters(df, centroids)</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Step 3: Update centroids</span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>        new_centroids <span class="op">=</span> update_centroids(df, clusters, k)</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Step 4: Check for convergence</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> ((centroids <span class="op">-</span> new_centroids).<span class="bu">abs</span>().<span class="bu">sum</span>().<span class="bu">sum</span>() <span class="op">&lt;</span> tolerance):</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>        centroids <span class="op">=</span> new_centroids</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> clusters, centroids</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> datasets[<span class="st">'blobs'</span>]</span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>clusters, centroids <span class="op">=</span> kmeans(X[[<span class="st">'x1'</span>, <span class="st">'x2'</span>]], k<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>X[<span class="st">'cluster'</span>] <span class="op">=</span> clusters</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[<span class="st">'x1'</span>], X[<span class="st">'x2'</span>], c<span class="op">=</span>X[<span class="st">'cluster'</span>], cmap<span class="op">=</span><span class="st">'viridis'</span>)<span class="op">;</span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>plt.scatter(centroids[<span class="st">'x1'</span>], centroids[<span class="st">'x2'</span>], c<span class="op">=</span><span class="st">'red'</span>, marker<span class="op">=</span><span class="st">'x'</span>, s<span class="op">=</span><span class="dv">100</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -837,7 +809,6 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section>
 <section id="limitations-of-k-means" class="level4">
 <h4 class="anchored" data-anchor-id="limitations-of-k-means">Limitations of K-means</h4>
 <p>K-means is a simple and popular clustering algorithm. However, it has some limitations:</p>
@@ -963,75 +934,76 @@ window.Quarto = {
 </div>
 </div>
 <p>Just because DBSCAN does better than k-means on the circles dataset, it does not mean that DBSCAN is always better than k-means. Each clustering algorithm has its own strengths and weaknesses.</p>
-<section id="implementation-1" class="level4">
-<h4 class="anchored" data-anchor-id="implementation-1">Implementation</h4>
+<!-- #### Implementation
+
+import pandas as pd
+
+def euclidean_distance(row1, row2):
+    """Compute Euclidean distance between two points."""
+    return ((row1 - row2) ** 2).sum() ** 0.5
+
+def get_neighbors(df, point_idx, eps):
+    """Find neighbors within `eps` distance of a point."""
+
+    point = df.iloc[point_idx]
+    neighbors = df.apply(lambda row: euclidean_distance(point, row), axis=1)
+    return list(neighbors[neighbors <= eps].index)
+
+def expand_cluster(df, labels, point_idx, neighbors, cluster_id, eps, min_samples):
+    """Expand a cluster starting from a core point."""
+
+    # Assign the point to the cluster
+    labels[point_idx] = cluster_id  
+    
+    i = 0
+    while i < len(neighbors):
+        neighbor_idx = neighbors[i]
+        
+        # If the point is noise, make it a part of the cluster
+        if labels[neighbor_idx] == -1:  
+            labels[neighbor_idx] = cluster_id
+            
+        # If the point is unvisited, mark it as visited and add its neighbors to the list
+        elif labels[neighbor_idx] == 0:  
+            labels[neighbor_idx] = cluster_id
+            new_neighbors = get_neighbors(df, neighbor_idx, eps)
+            
+            # If the point is a core point, merge its neighbors
+            if len(new_neighbors) >= min_samples:
+                neighbors = neighbors + [n for n in new_neighbors if n not in neighbors]
+                
+        i += 1
+
+def dbscan(df, eps, min_samples):
+    """DBSCAN clustering algorithm."""
+    # 0 means unvisited; -1 means noise; other numbers indicate the cluster ID
+    labels = [0] * len(df)  
+    cluster_id = 0
+    
+    for point_idx in range(len(df)):
+        # Skip if the point is already visited
+        if labels[point_idx] != 0:  
+            continue
+        
+        neighbors = get_neighbors(df, point_idx, eps)
+        
+        # Mark as noise if not enough neighbors
+        if len(neighbors) < min_samples:  
+            labels[point_idx] = -1
+        else:
+            # Start a new cluster
+            cluster_id += 1  
+            expand_cluster(df, labels, point_idx, neighbors, cluster_id, eps, min_samples)
+            
+    return labels
+
+X = datasets['noisy_moons']
+labels = dbscan(X[['x1', 'x2']], eps=0.2, min_samples=5)
+X['cluster'] = labels
+
+plt.scatter(X['x1'], X['x2'], c=X['cluster'], cmap='viridis'); -->
 <div id="cell-34" class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> euclidean_distance(row1, row2):</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute Euclidean distance between two points."""</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((row1 <span class="op">-</span> row2) <span class="op">**</span> <span class="dv">2</span>).<span class="bu">sum</span>() <span class="op">**</span> <span class="fl">0.5</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_neighbors(df, point_idx, eps):</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Find neighbors within `eps` distance of a point."""</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    point <span class="op">=</span> df.iloc[point_idx]</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    neighbors <span class="op">=</span> df.<span class="bu">apply</span>(<span class="kw">lambda</span> row: euclidean_distance(point, row), axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">list</span>(neighbors[neighbors <span class="op">&lt;=</span> eps].index)</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> expand_cluster(df, labels, point_idx, neighbors, cluster_id, eps, min_samples):</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Expand a cluster starting from a core point."""</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Assign the point to the cluster</span></span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    labels[point_idx] <span class="op">=</span> cluster_id  </span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> i <span class="op">&lt;</span> <span class="bu">len</span>(neighbors):</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>        neighbor_idx <span class="op">=</span> neighbors[i]</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If the point is noise, make it a part of the cluster</span></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> labels[neighbor_idx] <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>:  </span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>            labels[neighbor_idx] <span class="op">=</span> cluster_id</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If the point is unvisited, mark it as visited and add its neighbors to the list</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> labels[neighbor_idx] <span class="op">==</span> <span class="dv">0</span>:  </span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>            labels[neighbor_idx] <span class="op">=</span> cluster_id</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>            new_neighbors <span class="op">=</span> get_neighbors(df, neighbor_idx, eps)</span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>            <span class="co"># If the point is a core point, merge its neighbors</span></span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(new_neighbors) <span class="op">&gt;=</span> min_samples:</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a>                neighbors <span class="op">=</span> neighbors <span class="op">+</span> [n <span class="cf">for</span> n <span class="kw">in</span> new_neighbors <span class="cf">if</span> n <span class="kw">not</span> <span class="kw">in</span> neighbors]</span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>        i <span class="op">+=</span> <span class="dv">1</span></span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dbscan(df, eps, min_samples):</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""DBSCAN clustering algorithm."""</span></span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 0 means unvisited; -1 means noise; other numbers indicate the cluster ID</span></span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> [<span class="dv">0</span>] <span class="op">*</span> <span class="bu">len</span>(df)  </span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>    cluster_id <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> point_idx <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df)):</span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Skip if the point is already visited</span></span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> labels[point_idx] <span class="op">!=</span> <span class="dv">0</span>:  </span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>        neighbors <span class="op">=</span> get_neighbors(df, point_idx, eps)</span>
-<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Mark as noise if not enough neighbors</span></span>
-<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(neighbors) <span class="op">&lt;</span> min_samples:  </span>
-<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>            labels[point_idx] <span class="op">=</span> <span class="op">-</span><span class="dv">1</span></span>
-<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Start a new cluster</span></span>
-<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>            cluster_id <span class="op">+=</span> <span class="dv">1</span>  </span>
-<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>            expand_cluster(df, labels, point_idx, neighbors, cluster_id, eps, min_samples)</span>
-<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> labels</span>
-<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> datasets[<span class="st">'noisy_moons'</span>]</span>
-<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> dbscan(X[[<span class="st">'x1'</span>, <span class="st">'x2'</span>]], eps<span class="op">=</span><span class="fl">0.2</span>, min_samples<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>X[<span class="st">'cluster'</span>] <span class="op">=</span> labels</span>
-<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[<span class="st">'x1'</span>], X[<span class="st">'x2'</span>], c<span class="op">=</span>X[<span class="st">'cluster'</span>], cmap<span class="op">=</span><span class="st">'viridis'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1040,7 +1012,6 @@ window.Quarto = {
 </div>
 </div>
 </div>
-</section>
 </section>
 <section id="comparing-dbscan-and-k-means" class="level3">
 <h3 class="anchored" data-anchor-id="comparing-dbscan-and-k-means">Comparing DBSCAN and K-means</h3>
