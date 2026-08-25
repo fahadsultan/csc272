@@ -8,3 +8,5 @@ You can schedule an appointment with me using **[using this link](https://calend
 <!-- I also have an <u>**Open-door Policy**</u> and am generally in my office (Riley Hall 200-H) from 10 AM - 4 PM on most weekdays. You are always welcome to drop by and chat.  -->
 
 I am also ofcourse available via  email. 
+
+<img src="../assets/office.png" style="filter:invert(1)" width="50%" />

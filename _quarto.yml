@@ -16,10 +16,10 @@ website:
       - sidebar:syllabus
       - text: "Project"
         href: project/project.qmd
-      - text: "Datasets"
-        href: project/data.qmd
+      # - text: "Datasets"
+        # href: project/data.qmd
       - text: "Moodle Page"
-        href: https://courses.furman.edu/course/view.php?id=20763
+        href: https://courses.furman.edu/course/view.php?id=23020
       - text: "Office Hours"
         href: syllabus/appointment.md
       - text: "Set an Appointment"
@@ -38,6 +38,7 @@ website:
         - syllabus/mental_health.md
         - syllabus/accomodations.md
         - syllabus/title_9.md
+        - syllabus/aipolicy.md
     - id: content
       background: "#2d2d2d"
       style: "floating"

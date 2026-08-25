@@ -6,7 +6,7 @@ toc: true
 
 # About Me
 
-<span style="font-size: 2.0em; font-weight: bold;">
+<span style="font-size: 1.5em; font-weight: bold;">
 Syed Fahad Sultan سید فہد سلطان </span> 
 
 **Pronunciation**:  <a href="https://en.wikipedia.org/wiki/Sayyid">Saiyyudh</a> <a href="https://en.wikipedia.org/wiki/Fahd">Fahad</a> <a href="https://en.wikipedia.org/wiki/Sultan">Sool-tahn</a>
@@ -17,7 +17,7 @@ _Just call me **“Dr. Sultan”**_ (click on the speaker for a short audio clip
 <center><img style="filter:invert(1)" width="80%" src="assets/name.png"></center>
 <br/>
 
-I am originally from **[Lahore, Pakistan](https://en.wikipedia.org/wiki/Lahore)** and joined **Furman University** in Fall 2022 after earning my Ph.D. in Computer Science from **State University of New York at Stony Brook**.
+<!-- I am originally from **[Lahore, Pakistan](https://en.wikipedia.org/wiki/Lahore)** and joined **Furman University** in Fall 2022 after earning my Ph.D. in Computer Science from **State University of New York at Stony Brook**.
 
 <br/>
 <center><img width="70%" src="https://i.ibb.co/wJGFKqB/badshahi-mosque.png"></center>
@@ -41,16 +41,16 @@ Fresh out of college, I worked as a professional video game developer for a star
 <br/>
 
 I then went on to work at **Technology for People Initiative**, an applied research lab in my where I mined social media and cell phone data for proxies of socio-economic indicators that allowed more inclusive policy-making for marginalized communities. During these years, I also dabbled in data journalism and helped organize a boot camp on using data for journalists with the support of the International Center for Journalists (ICFJ) and the Knight Foundation.
+ 
 
 
-
-<!-- <img align="right" width="30%" src="https://i.ibb.co/j6XJkn8/Screen-Shot-2024-05-03-at-12-54-31-PM.png"> -->
+<!-- <img align="right" width="30%" src="https://i.ibb.co/j6XJkn8/Screen-Shot-2024-05-03-at-12-54-31-PM.png"> 
 
 
 In 2015, I moved to **Mecca, Saudi Arabia** to work for the GIS Innovation Center (now Wadi Makkah). There I worked on innovative **urban sensing** techniques for better crowd control during the annual pilgrimage to the city, the largest human gathering in the world every year.
 
 During my PhD, I worked at the intersection of **computational neuroscience, bioinformatics and machine learning**. My work focused on identifying neurological and genetic biomarkers linking type-2 diabetes with cognitive disorders such as Alzheimer's and other dementias.
-
+-->
 
 ### How to Reach Me
 

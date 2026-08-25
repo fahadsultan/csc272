@@ -5,13 +5,13 @@
 
 | Component | Percentage |
 |---------|------|
-| Project | 40% |
-| Assignments | 20% |
-| Exam 1 | 10% |
-| Exam 2   | 10% |
-| Exam 3 (Last class)  | 10% |
+| Project | 30% |
+| Assignments | 15% |
+| Exam 1 | 15% |
+| Exam 2   | 15% |
+| Exam 3 (Last class)  | 15% |
 | Professionalism  | 5% |
-| Asking Questions and Engaging in Class  | 5% |
+| Asking Questions in Class  | 5% |
 
 <!-- | <font color="lightgreen">Component | <font color="red"><s>Percentage<br/>(Pre-Helene)<s> | <font color="lightgreen">Percentage (New)</font> | <font color="lightgreen">$\Delta$ Change |
 |---------|------| --- | --- |
