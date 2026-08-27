@@ -122,55 +122,40 @@ Both handwritten or typed submissions are acceptable. Submissions, as always, on
 
 <u>**Programming Assignments:**</u>
 
-Programming assignments are going to be posted at the start of the lab session each week and will be due in 10 days, unless otherwise specified.
-
-All **Programming assignments** will be graded through an **in-person code review**. You are to give a walkthrough of your code and be able to answer questions about it. 
-
-During these code review, you will be given feedback on how to improve your code and avoid common mistakes.
+Programming assignments are going to be posted at the start of the lab session each week and will be due before next lab, unless otherwise specified. You are to submit your code on Moodle.
 
 You should expect questions in the exams similar to assignments.
 
-## AI Policy
-
-This course encourages you to explore the use of generative artificial intelligence (GAI) tools such as ChatGPT for all assignments and assessments. GAI is a subset of AI that utilizes machine learning models to create new, original content, such as images, text, or music, based on patterns and structures learned from existing data. As is indicated in the University academic integrity policy, use of GAI must be appropriately acknowledged and cited as you would any other source. By submitting assignments in this class, you pledge to affirm that they are your own work and you attribute use of any tools and sources. Violations of this policy will be considered academic misconduct.
-
-It is your responsibility to assess the validity and applicability of any GAI output that is submitted; you bear the final responsibility. You should be aware that all GAI tools have a tendency to make up incorrect facts and fake citations or confidently reassert factual errors, that code generation models have a tendency to produce inaccurate outputs, and that image generation models can occasionally come up with highly offensive products. You will be responsible for any inaccurate, biased, offensive, or otherwise unethical content you submit regardless of whether it originally comes from you or a GAI tool. Please also note that different classes at Furman may implement different GAI policies, and it is your responsibility to conform to expectations for each course.
-
-### Class Participation
+### Asking Questions
 
 Given the glut of information accessible online and otherwise in this day and age, **meaningful interactions with your peers and teachers is essentially why you are paying your college tuition**. 
 
-To encourage this, I have allocated **5% of your course grade to class participation**. Ways to earn class participation points include:
-
-1. Coming to class and labs regularly
-2. Asking questions during class
-3. Sharing your thoughts and comments during class discussions
-4. (Optional) Answering questions during class
+To encourage this, I have allocated **5% of your course grade to asking questions**. 
 
 Class participation is somewhat subjective, but I will do my best to be as fair as possible. I will share your overall class participation points with you with each graded exam. 
 
 ### Exams 
 
-There will be **three** exams in the course, including the final. The final exam will be cumulative. Exams constitute **60%** of your course grade.
+There will be **three** exams in the course, including the final. The final exam will be cumulative. 
 
 All exams will be on paper and closed-book. Exam 3 will be on the last day of class. 
 
 The finals week will be used for project presentations.
 
-### Giant Asterisk * 
+<!-- ### Giant Asterisk * 
 
-<i><u>**Everything is tentative and subject to change**</u></i>
+<i><u>**Everything is tentative and subject to change**</u></i> -->
 
 
-<img style="filter:invert(1)" src="assets/complaints.jpeg" width="25%" align="right">
+<!-- <img style="filter:invert(1)" src="assets/complaints.jpeg" width="25%" align="right"> -->
 
-**Any and all feedback** is welcome! 
+<!-- **Any and all feedback** is welcome!  -->
 
-I will an anonymous feedback poll on **Moodle**. Please use this to **anonymously** share any feedback. 
+<!-- I will an anonymous feedback poll on **Moodle**. Please use this to **anonymously** share any feedback.  -->
  
-Share **any changes** you want me to make in the course, **at any point in the semester**. You can submit multiple times over the span of the semester.  
+<!-- Share **any changes** you want me to make in the course, **at any point in the semester**. You can submit multiple times over the span of the semester.   -->
 
-Think of it as a _Complaints Box_ for the course.
+<!-- Think of it as a _Complaints Box_ for the course. -->
 
 
 
