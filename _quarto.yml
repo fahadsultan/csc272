@@ -67,10 +67,11 @@ website:
           - pandas/grouping.ipynb
           - pandas/pivot.ipynb
           - pandas/write_data.ipynb
+          - encoding/types.ipynb
+          - encoding/missing.ipynb
         - section: 
           href: plotting/basics.ipynb
           contents: 
-          - encoding/types.ipynb
           - plotting/anatomy.ipynb
           - plotting/lineplots.ipynb
           - plotting/scatter.ipynb
@@ -83,7 +84,6 @@ website:
         - section: 
           href: encoding/encoding.ipynb
           contents:
-          - encoding/missing.ipynb
           - encoding/onehotencoding.ipynb
           - encoding/text.ipynb
           - encoding/network.ipynb
