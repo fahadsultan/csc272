@@ -67,17 +67,18 @@ website:
           - pandas/grouping.ipynb
           - pandas/pivot.ipynb
           - pandas/write_data.ipynb
-          - encoding/types.ipynb
           - encoding/missing.ipynb
         - section: 
           href: plotting/basics.ipynb
           contents: 
+          - encoding/types.ipynb
           - plotting/anatomy.ipynb
           - plotting/lineplots.ipynb
           - plotting/scatter.ipynb
           - plotting/barplot.ipynb
           - plotting/histogram.ipynb
           - plotting/boxplot.ipynb
+          - plotting/heatmap.ipynb
           - plotting/13_log.ipynb
           # - plotting/21_univariate.ipynb
           # - plotting/22_multivariate.ipynb
